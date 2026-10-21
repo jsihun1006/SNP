@@ -1,0 +1,19 @@
+{
+  "frames": 7500,
+  "H": 3454,
+  "A": 2577,
+  "D": 1469,
+  "H_pct": 0.46053333333333335,
+  "A_pct": 0.3436,
+  "D_pct": 0.19586666666666666,
+  "n_possessions": 17,
+  "n_dead_spells": 4,
+  "mean_possession_s": 14.190588235294117,
+  "median_possession_s": 7.56,
+  "min_possession_s": 0.76,
+  "max_possession_s": 42.44,
+  "mean_dead_s": 14.690000000000001,
+  "median_dead_s": 16.4,
+  "short_under_1s": 1,
+  "short_under_2s": 2
+}
