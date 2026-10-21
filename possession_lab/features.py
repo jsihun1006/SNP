@@ -30,6 +30,7 @@ class Features:
     second_distance: np.ndarray
     margin: np.ndarray
     near_speed: np.ndarray
+    team_speed: np.ndarray
     ball_speed: np.ndarray
     ball_acceleration: np.ndarray
     gap: np.ndarray
@@ -136,6 +137,18 @@ def extract_features(
     d_away[~present] = np.nan
     margin = (second_distance - near_distance).astype(np.float32)
 
+    # Team motion energy: mean speed of the tracked players, smoothed over one second.  Players
+    # walk or stand still during a stoppage, so this separates dead ball from live play without
+    # looking at the ball at all.  Frames with no tracked player fall back to zero.
+    ok = tracking.player_present[start:stop] & np.isfinite(speeds)
+    count = ok.sum(axis=1)
+    frame_speed = np.where(ok, speeds, 0.0).sum(axis=1) / np.maximum(count, 1)
+    frame_speed[count == 0] = 0.0
+    kernel = np.ones(FPS, dtype=np.float64) / FPS
+    team_speed = np.convolve(
+        np.pad(frame_speed.astype(np.float64), FPS // 2, mode="edge"), kernel, mode="valid"
+    ).astype(np.float32)
+
     # Ball speed and acceleration, in metres/second, only across consecutive observations.
     ball_speed = np.full(n, np.nan, dtype=np.float32)
     if n > 1:
@@ -222,6 +235,7 @@ def extract_features(
         second_distance=second_distance,
         margin=margin,
         near_speed=near_speed,
+        team_speed=team_speed,
         ball_speed=ball_speed,
         ball_acceleration=ball_acceleration,
         gap=gap,

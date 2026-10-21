@@ -6,7 +6,9 @@ States: H (home), A (away), D (dead ball / out of play).  The emissions are deli
 * D gets a sigmoid on the nearest-player distance plus an out-of-play bonus;
 * when the ball is missing, short gaps are uniform (the transition prior carries the state);
 * long gaps use the team shape around the last known ball position, the last known edge, and a
-  weak smart-tag vote.
+  weak smart-tag vote;
+* a ball far from every player is treated as loose/in flight: uniform, or the last-touch team when
+  the ball is also slow, so distance alone cannot vote a live ball dead.
 
 The Viterbi pass is CPU-only.  It is a 199k-step, 3-state dynamic program; a GPU would spend more
 time copying arrays than computing, so the package does not pretend otherwise.
@@ -19,12 +21,12 @@ from typing import Any
 
 import numpy as np
 
-from .config import MODEL_PARAMS
+from .config import FPS, MODEL_PARAMS, X
 
 
 @dataclass(frozen=True)
 class ModelParams:
-    sigma: float = 3.0
+    sigma: float = 3.5
     d_dead: float = 7.0
     dead_scale: float = 1.5
     edge0: float = 5.0
@@ -34,6 +36,10 @@ class ModelParams:
     gap0: float = 100.0
     gap_scale: float = 25.0
     w_out: float = 1.0
+    w_dead: float = 0.0
+    w_motion: float = 0.0
+    motion0: float = 1.6
+    motion_scale: float = 0.35
     w_tag: float = 0.0
     w_sp: float = 0.0
     w_lt: float = 0.0
@@ -41,8 +47,12 @@ class ModelParams:
     p_stay: float = 0.995
     p_ha: float = 0.0005
     p_hd: float = 0.001
-    p_dh: float = 0.001
+    p_dh: float = 0.01
     gate: float = 0.0
+    loose_R: float = 7.0
+    loose_speed: float = 2.0
+    touch_age: int = 125
+    touch_p: float = 0.7
     miss_mode: str = "hybrid"
     sigma_miss: float = 6.0
     gap_thresh: float = 120.0
@@ -79,6 +89,26 @@ def _log_normalize(values: np.ndarray) -> np.ndarray:
     return np.log(values / normalizer)
 
 
+def dead_ball_evidence(features: Any, params: ModelParams = DEFAULT_PARAMS) -> np.ndarray:
+    """Additive support for the D state from stoppage evidence.
+
+    This is deliberately separate from the team-distance emission.  Players walk or stand still
+    during a stoppage, and the ball sits near a touchline for throw-ins, corners and goal kicks.
+    ``w_dead`` is a base-rate offset: it keeps the dead-ball prior independent of the scale of the
+    team Gaussians.
+    """
+    edge = np.where(np.isfinite(features.edge), features.edge, features.last_edge)
+    edge = np.where(np.isfinite(edge), edge, 20.0)
+    motion = _sigmoid(
+        (params.motion0 - np.asarray(features.team_speed, dtype=np.float64)) / params.motion_scale
+    )
+    return (
+        params.w_dead
+        + params.w_motion * motion
+        + params.w_edge * _sigmoid((params.edge0 - edge) / params.edge_scale)
+    )
+
+
 def emission_log_probs(features: Any, params: ModelParams = DEFAULT_PARAMS) -> np.ndarray:
     """Return an ``(n, 3)`` array of log emission probabilities."""
     n = len(np.asarray(features.present))
@@ -88,7 +118,6 @@ def emission_log_probs(features: Any, params: ModelParams = DEFAULT_PARAMS) -> n
     d_home = np.asarray(features.d_home, dtype=np.float64)
     d_away = np.asarray(features.d_away, dtype=np.float64)
     present = np.asarray(features.present, dtype=bool)
-    edge = np.asarray(features.edge, dtype=np.float64)
     last_edge = np.asarray(features.last_edge, dtype=np.float64)
     gap = np.asarray(features.gap, dtype=np.float64)
     out_of_play = np.asarray(features.out_of_play, dtype=bool)
@@ -114,10 +143,7 @@ def emission_log_probs(features: Any, params: ModelParams = DEFAULT_PARAMS) -> n
         0.0,
     ) + 1e-12
 
-    edge_effective = np.where(np.isfinite(edge), edge, last_edge)
-    edge_effective = np.where(np.isfinite(edge_effective), edge_effective, 20.0)
-    if params.w_edge:
-        q_dead += params.w_edge * _sigmoid((params.edge0 - edge_effective) / params.edge_scale)
+    q_dead += dead_ball_evidence(features, params)
     if params.w_gap:
         q_dead += params.w_gap * _sigmoid((gap - params.gap0) / params.gap_scale)
     q_dead += params.w_out * out_of_play
@@ -194,6 +220,25 @@ def emission_log_probs(features: Any, params: ModelParams = DEFAULT_PARAMS) -> n
         sparse = missing & (np.asarray(features.player_count) < params.min_players)
         log_emission[sparse] = np.log(1.0 / 3.0)
 
+    # A ball that is far from every player is loose or in flight, not evidence of a dead ball.
+    # Let the prior carry the possession instead of letting the distance term vote `D`.  When
+    # that loose ball is also slow, its only possession evidence is the team that touched it
+    # last, so give that team the mass and leave the rest for the prior.
+    if params.loose_R > 0:
+        loose = present & (d_min > params.loose_R) & ~out_of_play
+        log_emission[loose] = np.log(1.0 / 3.0)
+        if params.touch_p > 0:
+            last_touch = np.asarray(features.last_touch, dtype=np.int8)
+            recent = loose & (speed < params.loose_speed) & (last_touch >= 0)
+            recent = recent & (
+                np.asarray(features.last_touch_age, dtype=np.int64) <= params.touch_age
+            )
+            if recent.any():
+                touched = last_touch[recent]
+                q = np.full((touched.size, 3), (1.0 - params.touch_p) / 2.0)
+                q[np.arange(touched.size), touched] = params.touch_p
+                log_emission[recent] = np.log(q)
+
     return log_emission
 
 
@@ -226,6 +271,30 @@ def viterbi(log_emission: np.ndarray, params: ModelParams = DEFAULT_PARAMS) -> n
     for t in range(n - 1, 0, -1):
         states[t - 1] = back[t, states[t]]
     return states
+
+
+def merge_isolated_runs(codes: np.ndarray, min_frames: int = FPS) -> np.ndarray:
+    """Absorb brief label flips that return to the same label.
+
+    Viterbi can drop a possession for a few frames when the ball is between players, in flight,
+    or briefly untracked.  A run shorter than ``min_frames`` whose neighbours agree is a flicker,
+    not a new possession, so the neighbours take it back.  ``X`` frames are never changed.
+    """
+    out = np.asarray(codes, dtype=np.int8).copy()
+    if min_frames <= 1 or out.size < 3:
+        return out
+    starts = np.flatnonzero(np.r_[True, out[1:] != out[:-1]])
+    stops = np.r_[starts[1:], out.size]
+    for start, stop in zip(starts, stops):
+        if (
+            stop - start < min_frames
+            and 0 < start
+            and stop < out.size
+            and out[start] != X
+            and out[start - 1] == out[stop] != X
+        ):
+            out[start:stop] = out[start - 1]
+    return out
 
 
 def _logsumexp(values: np.ndarray, axis: int) -> np.ndarray:

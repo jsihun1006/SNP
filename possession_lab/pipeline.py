@@ -23,7 +23,7 @@ from .config import (
 )
 from .data import Homography, TagTable, TrackingData, load_homography, load_public_gt, load_smart_tags, load_tracking
 from .evaluate import features_for_window
-from .model import DEFAULT_PARAMS, DecodeResult, ModelParams, decode
+from .model import DEFAULT_PARAMS, DecodeResult, ModelParams, decode, merge_isolated_runs
 
 
 @dataclass(frozen=True)
@@ -74,7 +74,8 @@ def predict_full(
         hi = min(n, stop + context)
         features = features_for_window(tracking, tags, public=(lo, hi), context=0)
         result = decode(features, params, with_confidence=False)
-        prediction[start:stop] = result.codes[start - lo : stop - lo]
+        codes = merge_isolated_runs(result.codes[start - lo : stop - lo])
+        prediction[start:stop] = codes
     return prediction
 
 

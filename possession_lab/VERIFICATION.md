@@ -1,5 +1,9 @@
 # Verification evidence
 
+> Historical log: the metrics, label counts, and reference equality below were recorded before the
+> `σ=3.5`, `p_dh=0.01` retune. They still describe the pre-retune run; current values are in
+> `README.md`.
+
 Environment: repository virtualenv (`.venv`), Python 3.12, Linux CPU. No GPU path is used.
 
 ## Unit tests

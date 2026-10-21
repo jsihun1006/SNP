@@ -27,7 +27,7 @@ def make_tracking() -> TrackingData:
         ball=ball,
         ball_present=np.ones(n, dtype=bool),
         players=players,
-        speeds=np.ones((n, 2), dtype=np.float32),
+        speeds=np.full((n, 2), 3.0, dtype=np.float32),
         player_present=np.ones((n, 2), dtype=bool),
         teams=np.array([0, 1], dtype=np.int8),
         pitch=(105.3, 68.0),

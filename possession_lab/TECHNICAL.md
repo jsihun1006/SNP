@@ -29,6 +29,7 @@ For each frame:
 * `d_H`, `d_A`: distance from the ball to the nearest home/away tracked player.
 * `near_team`, `near_distance`, `second_distance`.
 * `ball_speed`, `ball_acceleration` (raw, only across consecutive observations).
+* `team_speed`: mean speed of the tracked players, smoothed over one second.
 * `gap`: frames since the last observed ball.
 * `edge`, `last_edge`: distance of the ball (or last known ball) from the nearest pitch boundary.
 * `out_of_play`: observed ball outside `[0,L] × [0,W]`.
@@ -39,18 +40,25 @@ For each frame:
 
 ## Emissions
 
-At visible frames, with `σ = 3 m`, `d_dead = 7 m`:
+At visible frames, with `σ = 3.5 m`, `d_dead = 7 m`:
 
 ```
 q_H = exp(-d_H² / (2σ²)) + 1e-12
 q_A = exp(-d_A² / (2σ²)) + 1e-12
 q_D = sigmoid((min(d_H, d_A) - d_dead) / 1.5) + 1e-12
+q_D += w_dead + w_motion * sigmoid((motion0 - team_speed) / motion_scale)
+     + w_edge * sigmoid((edge0 - edge) / edge_scale)
 q_D += w_out * out_of_play
 q   = [q_H, q_A, q_D] / sum(q)
 logB = log(q)
 ```
 
-The validated model sets `w_out = 1`. The speed gate is applied even when `gate = 0`:
+The validated model sets `w_out = 1`, `w_dead = 0.02`, `w_motion = 1`, `w_edge = 0.5`,
+`motion0 = 1.6 m/s`, `motion_scale = 0.35 m/s`. The motion and edge terms are the dead-ball
+evidence model: they do not look at the ball at all, which is what lets `D` separate a stoppage
+where the ball is visible and a player is standing next to it. `w_dead` is the dead-ball base
+rate; it keeps the `D` prior independent of the scale of the team Gaussians. The speed gate is
+applied even when `gate = 0`:
 
 ```
 α = 1 - sigmoid((ball_speed - gate) / 2)
@@ -59,6 +67,14 @@ logB = α * logB + (1 - α) * log(1/3)
 
 so a stationary or unknown-speed ball is blended 50/50 with uniform. This is a deliberate
 regulariser and is required to reproduce the reference metrics.
+
+Loose-ball rule. A ball far from every player is not evidence of a stoppage: it is loose or in
+flight. When `d_min > loose_R = 7 m` and the ball is not out of play, the emission is uniform and
+the transition prior carries the possession. If the ball is also slower than
+`loose_speed = 2 m/s`, the only possession evidence left is the team that touched it last, so that
+team gets `touch_p = 0.7` of the emission mass, provided the touch is younger than
+`touch_age = 125` frames (5 s). The remaining mass is split evenly over the other two states. This
+removed the false `D` stretches where a rolling or in-flight ball sits 7–10 m from both teams.
 
 Missing-ball emissions:
 
@@ -84,12 +100,14 @@ stress scores.
 ```
 T = [[.995,   .0005, .001],
      [.0005,  .995,  .001],
-     [.001,   .001,  .998]]
+     [.01,    .01,   .98]]
 ```
 
 Viterbi runs over each graded half with a leading 500-frame context pad. Frames outside
 `(11,185, 90,652)` and `(110,808, 190,198)` are `X`. Forward–backward posterior confidence is
-computed for diagnostics only.
+computed for diagnostics only. After decoding, a run shorter than one second that is flanked by
+the same label is absorbed by it: a few frames of `D` (or of the other team) between two equal
+labels are a tracking or ball-in-flight flicker, not a possession change. `X` is never changed.
 
 ## Local synchronized reviewer
 
@@ -118,20 +136,27 @@ unknown-route rejection.
 
 ## Validation
 
-* Unit tests: 26 stdlib `unittest` tests (17 HMM + 9 viewer), all passing.
-* Public prediction: bit-for-bit equal to `reports/data/final_window_codes.npy`.
-* Public metrics: exact match to the reference (spell F1 0.4965517241, macro F1 0.7709254257,
-  D-F1 0.5916230366, 12 predicted spells).
-* Stress table: every row matches `reports/data/final_stress.csv` exactly.
+* Unit tests: 32 stdlib `unittest` tests, all passing.
+* Public metrics for the current parameters: spell F1 0.6074, macro F1 0.8925,
+  D-F1 0.8584, 10 predicted spells.
+* Stress (HMM gap-aware, current parameters): clean 0.6074 / random 0.4615 / long 0.4000 spell F1.
+* The files in `reports/data/` were produced by the pre-retune parameter set (`σ=3.0`,
+  `p_dh=0.001`, no dead-ball evidence, no loose-ball rule) and are kept as history, not as an
+  equality target.
 * Submission: 199,319 rows, frames 0–199,318, official validator `OK`.
 
 ## Full-match reconciliation
 
-A previous reference run reported 256 spells and H 41.4% / A 32.5% / D 26.1%. This run reports
-255 spells and H 40.5% / A 32.5% / D 26.9%. The difference is frames 89,905–90,651: the ATD has no
-home players and only 1–3 away players, and the ball is missing. The old run's NaN emissions
-effectively reset to H. The sparse-tracking guard treats the stretch as missing evidence and
-predicts D. This is a full-match structural diagnostic; the public and stress metrics are unchanged.
+A previous reference run reported 256 spells and H 41.4% / A 32.5% / D 26.1%; the pre-retune run
+reported 255 spells and H 40.5% / A 32.5% / D 26.9%; the previous parameter set reported 239
+spells and H 44.1% / A 34.6% / D 21.3%. The current run reports 186 spells and
+H 42.3% / A 31.9% / D 25.8%. One part of the earlier difference is frames 89,905–90,651: the ATD
+has no home players and only 1–3 away players, and the ball is missing. The old run's NaN
+emissions effectively reset to H. The sparse-tracking guard treats the stretch as missing evidence
+and predicts D, which the public and stress metrics are insensitive to. The rest is the retune:
+wider team Gaussian, easier exits from D, the dead-ball evidence model, and the loose-ball rule
+that returns a slow ball far from every player to the team that touched it last. This is a
+full-match structural diagnostic, not a score.
 
 ## Reproducibility and privacy
 

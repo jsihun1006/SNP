@@ -68,6 +68,15 @@ class FeatureExtractionTest(unittest.TestCase):
         self.assertTrue(np.isfinite(f.d_home_last[2]))
         self.assertAlmostEqual(float(f.d_home_last[2]), 5.0)
         self.assertAlmostEqual(float(f.d_away_last[2]), 15.0)
+        np.testing.assert_allclose(f.team_speed, 1.0)
+
+    def test_team_speed_tracks_player_motion(self):
+        tracking = make_tracking()
+        tracking.speeds[:3] = 0.0
+        f = extract_features(tracking, TagTable.empty(tracking.n_frames))
+
+        self.assertLess(float(f.team_speed[0]), 1.0)
+        self.assertGreater(float(f.team_speed[-1]), float(f.team_speed[0]))
 
     def test_observed_mask_creates_a_gap_without_touching_raw_data(self):
         tracking = make_tracking()
