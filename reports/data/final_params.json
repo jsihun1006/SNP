@@ -1,0 +1,17 @@
+{
+  "sigma": 3,
+  "d_dead": 7,
+  "edge0": 5,
+  "w_edge": 0.0,
+  "w_out": 1.0,
+  "w_tag": 0.0,
+  "w_sp": 0.0,
+  "miss_mode": "hybrid",
+  "p_stay": 0.995,
+  "p_ha": 0.0005,
+  "p_hd": 0.001,
+  "p_dh": 0.001,
+  "gate": 0,
+  "sigma_miss": 6,
+  "gap_thresh": 120
+}

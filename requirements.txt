@@ -5,6 +5,7 @@
 # differently on my machine" is not a conversation anyone has to have.
 #
 # Optional tooling -- the ATD loader and anything that opens the video -- lives in
-# requirements-starter.txt.
+# requirements-starter.txt. The reproducible possession_lab solution (pinned Python 3.12
+# environment, figures and HTML report) uses requirements-possession.txt.
 numpy
 pandas

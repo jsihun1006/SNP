@@ -1,0 +1,12 @@
+method,family,public,macro,Df1,n_pred,note
+Raw nearest (argmax),Rule,0.0378,0.5972,0.42,131,No smoothing
+Nearest + 50-frame majority,Baseline,0.3256,0.6207,0.323,26,Published full-match 0.2433
+Nearest + 100-frame majority,Baseline,0.4485,0.5976,0.199,16,Best public window
+Ball interpolation + nearest,Trajectory,0.4485,,,16,No gain over smooth100
+Last-touch + smoothing,Rule,0.4364,0.5254,,16,"R=1.5, w=100; 88.7% H/A frames"
+HMM distance,HMM,0.4857,0.7778,0.622,11,"Sigma=3, d_dead=7"
+HMM + edge (public-tuned),HMM,0.5037,0.7138,0.516,10,Over-smooths; 10 spells
+HMM gap-aware (recommended),Hybrid,0.4966,0.7709,0.592,12,Adds long-gap player/tag inference
+ML argmax (5-fold CV),ML,0.1269,0.5514,0.13,87,HistGradientBoosting
+ML + HMM (5-fold CV),ML,0.2643,0.5517,0.122,39,Smoothed CV probabilities
+Smart-tag vote,Tags,0.25,0.4893,0.358,7,70-75% coverage; 69.6% H/A accuracy

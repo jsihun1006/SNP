@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Possession Review · BAR-ATH</title>
+  <link rel="stylesheet" href="/static/viewer.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">Possession Review</span>
+      <span class="brand-sub">BAR-ATH · táctica</span>
+    </div>
+    <div class="topbar-status">
+      <span id="syncState" class="status-pill">cargando…</span>
+      <span id="clock" class="mono">--:--.---</span>
+      <span id="frameMeta" class="mono">frame —</span>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="stage-grid" aria-label="Inspección de video y predicción">
+      <div class="left-column">
+        <div class="video-card">
+          <video id="video" preload="metadata" controls playsinline>
+            Tu navegador no puede reproducir este video.
+          </video>
+          <div id="videoError" class="video-error hidden" role="alert"></div>
+          <div class="video-caption">
+            <span>Video táctico sincronizado · 25 fps</span>
+            <span id="videoDuration" class="mono">duración —</span>
+          </div>
+        </div>
+
+        <section class="timeline-card" aria-label="Línea temporal del partido">
+          <div class="timeline-head">
+            <div>
+              <div class="eyebrow">Partido completo · 199.319 frames</div>
+              <div id="overviewHint" class="muted small">Predicción y GT pública · haz clic o arrastra para buscar</div>
+            </div>
+            <div class="legend" aria-label="Leyenda">
+              <span><i class="swatch swatch-H"></i>Barcelona</span>
+              <span><i class="swatch swatch-A"></i>Athletic</span>
+              <span><i class="swatch swatch-D"></i>Balón muerto</span>
+              <span><i class="swatch swatch-X"></i>Sin evaluar</span>
+            </div>
+          </div>
+
+          <div class="canvas-wrap overview-wrap">
+            <canvas id="overview" aria-label="Timeline completa del partido"></canvas>
+          </div>
+
+          <div class="detail-head">
+            <div>
+              <div class="eyebrow">Detalle ±20 s</div>
+              <div id="detailHint" class="muted small">Predicción arriba · GT pública abajo</div>
+            </div>
+            <div id="hoverInfo" class="mono muted">—</div>
+          </div>
+          <div class="canvas-wrap detail-wrap">
+            <canvas id="detail" aria-label="Detalle de veinte segundos alrededor del frame actual"></canvas>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column" aria-label="Detalle del frame">
+        <section class="card frame-card">
+          <div class="eyebrow">Frame actual</div>
+          <div id="frameNumber" class="frame-number">—</div>
+          <div id="timecode" class="mono timecode">—</div>
+
+          <div class="label-grid">
+            <div class="label-cell">
+              <span class="eyebrow">Predicción</span>
+              <div class="label-line">
+                <span id="predBadge" class="badge badge-X">—</span>
+                <span id="predName" class="label-name">—</span>
+              </div>
+            </div>
+            <div class="label-cell">
+              <span class="eyebrow">GT pública</span>
+              <div class="label-line">
+                <span id="gtBadge" class="badge badge-X">—</span>
+                <span id="gtName" class="label-name">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="agreement" class="agreement na">GT pública no disponible en este frame</div>
+
+          <dl class="facts">
+            <div><dt>Spell actual</dt><dd id="spellText">—</dd></div>
+            <div><dt>Duración</dt><dd id="spellDuration">—</dd></div>
+            <div><dt>Smart tag</dt><dd id="tagText">—</dd></div>
+            <div><dt>Detalle tag</dt><dd id="tagDetail" class="muted">—</dd></div>
+            <div><dt>Ventana GT</dt><dd id="gtWindow" class="muted">—</dd></div>
+          </dl>
+        </section>
+
+        <section class="card controls-card" aria-label="Controles de inspección">
+          <div class="eyebrow">Transporte</div>
+          <div class="transport">
+            <button id="playBtn" class="primary" type="button">Reproducir</button>
+            <button type="button" data-seek="-25" title="−1 segundo">−1 s</button>
+            <button type="button" data-seek="-1" title="−1 frame">−1 f</button>
+            <button type="button" data-seek="1" title="+1 frame">+1 f</button>
+            <button type="button" data-seek="25" title="+1 segundo">+1 s</button>
+          </div>
+
+          <div class="eyebrow spaced">Navegación</div>
+          <div class="nav-grid">
+            <button id="prevChange" type="button" title="Cambio de etiqueta anterior ([)">◀ cambio</button>
+            <button id="nextChange" type="button" title="Cambio de etiqueta siguiente (])">cambio ▶</button>
+            <button id="prevSpell" type="button" title="Posesión anterior (,)">◀ posesión</button>
+            <button id="nextSpell" type="button" title="Posesión siguiente (.)">posesión ▶</button>
+            <button id="prevDiff" type="button" title="Discrepancia anterior (d)">◀ discrep.</button>
+            <button id="nextDiff" type="button" title="Discrepancia siguiente (D)">discrep. ▶</button>
+          </div>
+
+          <div class="goto-row">
+            <label for="frameInput">Ir a frame</label>
+            <input id="frameInput" type="number" min="0" step="1" inputmode="numeric" autocomplete="off">
+            <button id="goFrame" type="button">Ir</button>
+          </div>
+          <div class="goto-row secondary-actions">
+            <button id="gotoPublic" type="button">Inicio GT pública</button>
+            <button id="gotoStart" type="button">Inicio partido</button>
+          </div>
+
+          <div class="shortcuts">
+            <span><kbd>Espacio</kbd> play</span>
+            <span><kbd>←</kbd><kbd>→</kbd> frame</span>
+            <span><kbd>⇧</kbd> + flechas 1 s</span>
+            <span><kbd>[</kbd><kbd>]</kbd> cambio</span>
+          </div>
+        </section>
+
+        <section id="metricsCard" class="card metrics-card hidden" aria-label="Métricas públicas">
+          <div class="eyebrow">Referencia pública</div>
+          <div id="metrics" class="metrics">—</div>
+          <p class="fine-print">La GT solo se muestra dentro de la ventana pública. Fuera de ella la etiqueta aparece como «sin evaluar».</p>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>Solo inspección: no edita etiquetas ni exporta CSV corregidos.</span>
+      <span>Video y datos gated permanecen fuera de la entrega.</span>
+    </footer>
+  </main>
+
+  <div id="fatal" class="fatal hidden" role="alert">
+    <div class="fatal-card">
+      <h1>No se pudo abrir el visor</h1>
+      <p id="fatalMessage">Error desconocido.</p>
+      <p class="fine-print">Comprueba que el servidor local sigue activo y recarga la página.</p>
+    </div>
+  </div>
+
+  <script src="/static/viewer.js"></script>
+</body>
+</html>

@@ -105,6 +105,23 @@ The match assets are released to enrolled participants who have accepted the ter
 
 Full description of every asset and how the frames line up: **[DATA.md](DATA.md)**.
 
+## Reproduce the possession lab
+
+The BAR-ATH solution, pinned dependencies, tests, and commands to regenerate the report are
+documented in [possession_lab/README.md](possession_lab/README.md). It needs the tactical ATD,
+ATD metadata, smart-tag XML, and homography CSV from the gated bundle; the video is not needed
+for inference. Do not commit the gated data or generated full-match predictions.
+
+From the repository root, after obtaining the bundle:
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-possession.txt
+.venv/bin/python -m possession_lab all --bootstrap-n 2000
+.venv/bin/python -m unittest discover -s possession_lab/tests -v
+.venv/bin/python evaluation/validate_submission.py possession_lab/outputs/predictions.csv
+```
+
 ---
 
 ## Read these, in this order
