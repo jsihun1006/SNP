@@ -50,13 +50,15 @@ full_stats.json          full-match spell structure
 timings.json             measured CPU timings and GPU note
 report.html              self-contained report with eight figures
 01_data_overview.png ... 08_tag_context.png
+user_truth.json          optional viewer-only UT (written by the local reviewer)
 ```
 
 ## Local synchronized reviewer
 
-The viewer is an **inspection-only** tool: it does not edit labels, export a corrected CSV, or
-reproduce the broadcast video. It synchronizes the tactical MP4 with the generated `frame,label`
-rows and the public ground truth, so the tricky frames can be checked by eye.
+The viewer synchronizes the tactical MP4 with the generated `frame,label` rows, the public ground
+truth, and a **user truth (UT)** that you can write by hand. It never rewrites
+`predictions.csv` or the public GT. The UT exists only to score the fixed prediction inside the
+viewer; the model, features, and training code never read it.
 
 ```bash
 # From the repository root, with the gated tactical video under data/
@@ -76,20 +78,29 @@ The default URL is `http://127.0.0.1:8765/`; the page opens at the first public 
 | `--gt PATH` | public GT CSV (default `evaluation/gt/BAR-ATH_possession_gt_public.csv`) |
 | `--tags PATH` | smart-tag XML (default: gated tactical tags) |
 | `--metrics PATH` | public metrics JSON (default `possession_lab/outputs/metrics_public.json`) |
+| `--user-truth PATH` | UT JSON (default `possession_lab/outputs/user_truth.json`) |
 | `--start-frame N` | initial frame; URL `?frame=N` overrides it |
 | `--no-open` | do not launch a browser |
 | `--port N` | local port (default `8765`) |
 
 What is shown:
 
-* Video, current frame, timecode, predicted label, and public GT (only inside frames
-  `[11,185, 18,685)`; outside it the GT is shown as `X` / “sin evaluar”).
-* Current H/A possession spell, smart-tag context, and public metrics.
-* Full-match overview timeline, a ±20 s detail strip, and navigation by label change, possession,
-  or GT disagreement. Click or drag either timeline to seek; the browser's native video controls
-  still work.
+* Video, current frame, timecode, predicted label, public GT (only inside frames
+  `[11,185, 18,685)`; outside it the GT is shown as `X` / “sin evaluar”), and the UT.
+* Current H/A possession spell, smart-tag context, public metrics, and **UT metrics**: spell F1,
+  macro F1, D-F1, accuracy, and spell counts scored only over the frames you tagged.
+* Full-match overview timeline with PRED / GT / UT channels, a ±20 s detail strip, and navigation
+  by label change, possession, or GT disagreement. Click or drag either timeline to seek; the
+  browser's native video controls still work.
+* UT editing: press **Ancla aquí** at the start of a passage, seek to its end, then press `H`, `A`,
+  or `D` to write that span; without an anchor a label applies to the current frame. `X` erases
+  the span and **Borrar UT** clears everything. The same `H/A/D/X` keys work anywhere on the page
+  (except while typing in a text field) and every label press leaves an anchor at the end of the
+  written span. Anchors are drawn on both timelines; drag one to move the label boundary. The UT is
+  written to `outputs/user_truth.json` after every edit and reloaded on the next session.
 * Keyboard: `Espacio` play/pause, `←/→` one frame, `Shift` + arrows one second, `[`/`]` previous/next
-  label change, `,`/`.` previous/next possession, `d`/`D` next/previous disagreement, `Home`/`End`.
+  label change, `,`/`.` previous/next possession, `n`/`N` next/previous GT disagreement, `H/A/D/X`
+  user-truth labels, `Home`/`End`.
 
 The tactical timeline is exact: `frame i` is row `i`, `currentTime = (i + 0.5) / 25`. The viewer
 uses the synchronized tactical video only; the unsynchronized broadcast is excluded. The 5 GB MP4
@@ -183,6 +194,8 @@ scores are unaffected. See the reconciliation note in `outputs/report.html`.
 * Uses the gated tactical **ATD**, **smart-tag XML**, and **homography CSV**.
 * Broadcast video is **not** used: it is unsynchronised and adds no label evidence.
 * The public GT is read from `evaluation/gt/BAR-ATH_possession_gt_public.csv` only for evaluation.
+* The viewer-only UT is stored in `possession_lab/outputs/user_truth.json`. It scores the fixed
+  prediction for the user and is never read by the model, features, or training code.
 * No private full-match ground truth is read, written, or inferred.
 * No match video frames are copied into the report.
 * `data/` and `possession_lab/outputs/` are git-ignored. Do not commit the gated bundle or the
@@ -212,7 +225,7 @@ possession_lab/
   evaluate.py     official metrics, stress masks, full-match stats
   pipeline.py     full-match inference, CSV writing, preflight
   visualize.py    eight figures + HTML report
-  viewer.py       local synchronized video reviewer + byte-range streaming
+  viewer.py       local reviewer: UT editor, stats, byte-range streaming
   viewer_assets/  index.html, viewer.css, viewer.js (no build step)
   cli.py          all / predict / evaluate / stress / visualize / viewer
   tests/          stdlib unittest suite

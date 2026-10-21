@@ -236,7 +236,7 @@ def cmd_visualize(args: argparse.Namespace) -> int:
 
 
 def cmd_viewer(args: argparse.Namespace) -> int:
-    from .config import PUBLIC_GT_PATH, asset_paths
+    from .config import PUBLIC_GT_PATH, USER_TRUTH_PATH, asset_paths
     from .viewer import serve_viewer, tactical_video_path
 
     output_dir = Path(args.output_dir)
@@ -245,6 +245,7 @@ def cmd_viewer(args: argparse.Namespace) -> int:
     gt = Path(args.gt) if args.gt else PUBLIC_GT_PATH
     tags = Path(args.tags) if args.tags else asset_paths(args.data_dir)["smart_tagging"]
     metrics = Path(args.metrics) if args.metrics else output_dir / "metrics_public.json"
+    user_truth = Path(args.user_truth) if args.user_truth else USER_TRUTH_PATH
 
     try:
         return serve_viewer(
@@ -253,6 +254,7 @@ def cmd_viewer(args: argparse.Namespace) -> int:
             gt_path=gt,
             tags_path=tags,
             metrics_path=metrics,
+            user_truth_path=user_truth,
             data_dir=args.data_dir,
             port=args.port,
             open_browser=not args.no_open,
@@ -295,6 +297,11 @@ def build_parser() -> argparse.ArgumentParser:
     viewer.add_argument("--video", default=None, help="tactical MP4 (default: data/tactical/BAR-ATH_tactical.mp4)")
     viewer.add_argument("--tags", default=None, help="smart-tag XML (default: gated tactical tags)")
     viewer.add_argument("--metrics", default=None, help="public metrics JSON (default: outputs/metrics_public.json)")
+    viewer.add_argument(
+        "--user-truth",
+        default=None,
+        help="user-truth JSON (default: outputs/user_truth.json; viewer-only, never used by the model)",
+    )
     viewer.add_argument("--start-frame", type=int, default=None, help="initial frame (default: public GT start)")
     viewer.add_argument("--verbose", action="store_true", help="log HTTP requests")
     return parser

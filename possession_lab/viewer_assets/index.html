@@ -39,7 +39,7 @@
           <div class="timeline-head">
             <div>
               <div class="eyebrow">Partido completo · 199.319 frames</div>
-              <div id="overviewHint" class="muted small">Predicción y GT pública · haz clic o arrastra para buscar</div>
+              <div id="overviewHint" class="muted small">Predicción, GT pública y UT · haz clic o arrastra para buscar</div>
             </div>
             <div class="legend" aria-label="Leyenda">
               <span><i class="swatch swatch-H"></i>Barcelona</span>
@@ -56,7 +56,7 @@
           <div class="detail-head">
             <div>
               <div class="eyebrow">Detalle ±20 s</div>
-              <div id="detailHint" class="muted small">Predicción arriba · GT pública abajo</div>
+              <div id="detailHint" class="muted small">Predicción · GT pública · UT</div>
             </div>
             <div id="hoverInfo" class="mono muted">—</div>
           </div>
@@ -87,9 +87,17 @@
                 <span id="gtName" class="label-name">—</span>
               </div>
             </div>
+            <div class="label-cell ut-cell">
+              <span class="eyebrow">UT (User truth)</span>
+              <div class="label-line">
+                <span id="utBadge" class="badge badge-X">—</span>
+                <span id="utName" class="label-name">Sin etiqueta</span>
+              </div>
+            </div>
           </div>
 
           <div id="agreement" class="agreement na">GT pública no disponible en este frame</div>
+          <div id="utAgreement" class="agreement na">UT sin etiqueta en este frame</div>
 
           <dl class="facts">
             <div><dt>Spell actual</dt><dd id="spellText">—</dd></div>
@@ -116,8 +124,8 @@
             <button id="nextChange" type="button" title="Cambio de etiqueta siguiente (])">cambio ▶</button>
             <button id="prevSpell" type="button" title="Posesión anterior (,)">◀ posesión</button>
             <button id="nextSpell" type="button" title="Posesión siguiente (.)">posesión ▶</button>
-            <button id="prevDiff" type="button" title="Discrepancia anterior (d)">◀ discrep.</button>
-            <button id="nextDiff" type="button" title="Discrepancia siguiente (D)">discrep. ▶</button>
+            <button id="prevDiff" type="button" title="Discrepancia anterior (N)">◀ discrep.</button>
+            <button id="nextDiff" type="button" title="Discrepancia siguiente (n)">discrep. ▶</button>
           </div>
 
           <div class="goto-row">
@@ -130,11 +138,25 @@
             <button id="gotoStart" type="button">Inicio partido</button>
           </div>
 
+          <div class="eyebrow spaced">UT (User truth) · solo evaluación</div>
+          <div class="ut-edit">
+            <button type="button" data-ut-label="H" class="ut-H" title="Etiquetar H">H</button>
+            <button type="button" data-ut-label="A" class="ut-A" title="Etiquetar A">A</button>
+            <button type="button" data-ut-label="D" class="ut-D" title="Etiquetar D">D</button>
+            <button type="button" data-ut-label="X" class="ut-X" title="Borrar UT en el tramo">X</button>
+            <button id="utAnchor" type="button" class="wide" title="Fijar el inicio del tramo en este frame">Ancla aquí</button>
+            <button id="utClear" type="button" class="wide" title="Borrar toda la UT">Borrar UT</button>
+          </div>
+          <div id="utStatus" class="muted small ut-status">Sin etiquetas UT.</div>
+          <p class="fine-print">Pulsa <kbd>H</kbd><kbd>A</kbd><kbd>D</kbd><kbd>X</kbd> en cualquier parte de la página para etiquetar el frame actual o el tramo ancla → frame actual; cada pulsación deja un ancla al final del tramo. Las anclas se muestran en las líneas temporales y se arrastran para ajustar los cortes. La UT se guarda en <code>outputs/user_truth.json</code> y el modelo nunca la usa.</p>
+
           <div class="shortcuts">
             <span><kbd>Espacio</kbd> play</span>
             <span><kbd>←</kbd><kbd>→</kbd> frame</span>
             <span><kbd>⇧</kbd> + flechas 1 s</span>
+            <span><kbd>H</kbd><kbd>A</kbd><kbd>D</kbd><kbd>X</kbd> UT</span>
             <span><kbd>[</kbd><kbd>]</kbd> cambio</span>
+            <span><kbd>n</kbd><kbd>N</kbd> discrep.</span>
           </div>
         </section>
 
@@ -143,11 +165,17 @@
           <div id="metrics" class="metrics">—</div>
           <p class="fine-print">La GT solo se muestra dentro de la ventana pública. Fuera de ella la etiqueta aparece como «sin evaluar».</p>
         </section>
+
+        <section id="utMetricsCard" class="card metrics-card" aria-label="Métricas de la verdad de usuario">
+          <div class="eyebrow">Referencia UT · solo evaluación</div>
+          <div id="utMetrics" class="metrics">Sin etiquetas UT.</div>
+          <p class="fine-print">La UT se guarda entre sesiones en <code>outputs/user_truth.json</code>. Solo puntúa la predicción mostrada: nunca se usa para predecir ni entrenar.</p>
+        </section>
       </aside>
     </section>
 
     <footer class="footer">
-      <span>Solo inspección: no edita etiquetas ni exporta CSV corregidos.</span>
+      <span>La UT solo se edita para evaluación: no modifica predictions.csv ni la GT.</span>
       <span>Video y datos gated permanecen fuera de la entrega.</span>
     </footer>
   </main>

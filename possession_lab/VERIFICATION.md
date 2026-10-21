@@ -13,7 +13,8 @@ OK
 The suite covers ATD/tag/homography parsing, feature geometry and gap state, HMM emissions and
 Viterbi/posterior consistency, sparse-tracking handling, official metric wiring, stress masks,
 full-match structure, inference, CSV writing, preflight validation, and the local viewer (payload,
-public-only GT band, byte ranges, HTTP 206/416/HEAD, API, and route whitelist).
+public-only GT band, UT scoring/editing/persistence and boundary moves, byte ranges, HTTP
+206/416/HEAD, API, and route whitelist).
 
 ## Public prediction equality
 
@@ -99,6 +100,7 @@ Browser checks:
 ## Data / privacy check
 
 * No private full-match ground truth is read by the package.
+* The viewer-only UT (`outputs/user_truth.json`) is never read by the prediction or training path.
 * No match video frames are copied into outputs.
 * `data/` is gated and git-ignored; `possession_lab/outputs/` is git-ignored.
 * The only GT used is the public CSV under `evaluation/gt/` (7,500 graded frames; X outside).

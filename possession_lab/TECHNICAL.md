@@ -105,20 +105,29 @@ server. The page is plain HTML/CSS/JS; no frontend build step or extra Python de
   graded halves, while GT segments/spells cover only the public window because the public CSV has
   `X` outside it. Changes, disagreement runs (grouped in the browser), 638 tag intervals, and
   public metrics are included.
+* **User truth (UT).** The browser can paint `H/A/D/X` on the current frame or an anchored range,
+  from the buttons or globally from the keyboard. Each label press leaves an anchor at the end of
+  the written span; run boundaries are drawn on both timelines and can be dragged to move a cut.
+  `POST /api/user-truth` updates the UT array (paint, boundary move, or clear), writes
+  `outputs/user_truth.json` atomically, and returns recomputed UT segments and official-scorer
+  metrics over exactly the tagged frames. The UT is viewer-only: `features.py`, `model.py`, and
+  `pipeline.py` never import or read it, and the fixed `predictions.csv` is never modified.
 * **Streaming.** `/video` implements a single-range `Range` parser and returns `206`, `200`, or
   `416` as appropriate. The 5.2 GB tactical MP4 has its `moov` atom at the end; the browser reads
   the tail range for metadata and then fetches playback ranges. Routes are whitelist-only:
-  `/`, `/static/viewer.css`, `/static/viewer.js`, `/api/viewer-data`, `/video`, `/favicon.ico`.
-* **Scope.** The UI has no label editing, correction export, or broadcast-video path. GT is shown
-  only on non-`X` public frames. The page works entirely from `127.0.0.1`.
+  `/`, `/static/viewer.css`, `/static/viewer.js`, `/api/viewer-data`, `/api/user-truth`, `/video`,
+  `/favicon.ico`.
+* **Scope.** The UI edits only the UT, has no correction export, and has no broadcast-video path.
+  GT is shown only on non-`X` public frames. The page works entirely from `127.0.0.1`; the POST
+  endpoint requires `application/json`.
 
 The reviewer is covered by `tests/test_viewer.py`: payload semantics, public-only GT behavior,
-range parsing (`normal`, open, suffix, invalid), HTTP `206`/`416`/`HEAD`, API payload, and
-unknown-route rejection.
+UT scoring/persistence/editing, range parsing (`normal`, open, suffix, invalid), HTTP
+`206`/`416`/`HEAD`, API payload, and unknown-route rejection.
 
 ## Validation
 
-* Unit tests: 26 stdlib `unittest` tests (17 HMM + 9 viewer), all passing.
+* Unit tests: 36 stdlib `unittest` tests (17 HMM + 19 viewer), all passing.
 * Public prediction: bit-for-bit equal to `reports/data/final_window_codes.npy`.
 * Public metrics: exact match to the reference (spell F1 0.4965517241, macro F1 0.7709254257,
   D-F1 0.5916230366, 12 predicted spells).

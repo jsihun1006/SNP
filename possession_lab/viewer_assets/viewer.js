@@ -35,7 +35,10 @@
     predName: $("#predName"),
     gtBadge: $("#gtBadge"),
     gtName: $("#gtName"),
+    utBadge: $("#utBadge"),
+    utName: $("#utName"),
     agreement: $("#agreement"),
+    utAgreement: $("#utAgreement"),
     spellText: $("#spellText"),
     spellDuration: $("#spellDuration"),
     tagText: $("#tagText"),
@@ -44,6 +47,10 @@
     videoDuration: $("#videoDuration"),
     metricsCard: $("#metricsCard"),
     metrics: $("#metrics"),
+    utMetrics: $("#utMetrics"),
+    utStatus: $("#utStatus"),
+    utAnchor: $("#utAnchor"),
+    utClear: $("#utClear"),
     playBtn: $("#playBtn"),
     frameInput: $("#frameInput"),
     goFrame: $("#goFrame"),
@@ -78,6 +85,9 @@
     syncWarning: false,
     lastRenderAt: 0,
     pendingSeekFrame: null,
+    utAnchor: null,
+    utSaving: false,
+    anchorDrag: null,
   };
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -185,6 +195,126 @@
     return null;
   }
 
+  function utCodeAt(frame) {
+    const segment = findInterval(state.data ? state.data.ut_segments : null, frame);
+    return segment ? LABELS[segment[2]] : "X";
+  }
+
+  function metricText(value) {
+    if (typeof value !== "number") return String(value);
+    return Number.isInteger(value) ? value.toLocaleString("es-ES") : value.toFixed(3);
+  }
+
+  function updateUTStatus(prefix) {
+    const data = state.data;
+    if (!data) return;
+    const frames = Number(data.ut_labeled_frames) || 0;
+    let anchor = "";
+    if (state.utAnchor !== null) {
+      anchor = state.utAnchor >= data.n_frames ? " · ancla al final" : ` · ancla en ${formatFrame(state.utAnchor)}`;
+    }
+    ui.utStatus.textContent = `${prefix || ""}UT: ${formatFrame(frames)} frames etiquetados${anchor}`;
+  }
+
+  function utAnchorFrames() {
+    const frames = new Set();
+    for (const [start, stop] of state.data ? state.data.ut_segments : []) {
+      frames.add(start);
+      frames.add(stop);
+    }
+    return Array.from(frames).sort((a, b) => a - b);
+  }
+
+  function frameToX(canvas, source, frame) {
+    const rect = canvas.getBoundingClientRect();
+    if (source === "overview") return (frame / state.data.n_frames) * rect.width;
+    const { start, stop } = detailWindow();
+    return ((frame - start) / Math.max(1, stop - start)) * rect.width;
+  }
+
+  function findDraggableAnchor(clientX, clientY, source) {
+    if (!state.data) return null;
+    const canvas = source === "overview" ? ui.overview : ui.detail;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0) return null;
+    const top = source === "overview" ? 54 : 82;
+    const bottom = source === "overview" ? 82 : 118;
+    const y = clientY - rect.top;
+    if (y < top || y > bottom) return null;
+    const x = clientX - rect.left;
+    let best = null;
+    let bestDistance = 7;
+    for (const frame of utAnchorFrames()) {
+      const distance = Math.abs(frameToX(canvas, source, frame) - x);
+      if (distance <= bestDistance) {
+        best = { frame, pending: false };
+        bestDistance = distance;
+      }
+    }
+    if (state.utAnchor !== null) {
+      const distance = Math.abs(frameToX(canvas, source, state.utAnchor) - x);
+      if (distance < bestDistance) best = { frame: state.utAnchor, pending: true };
+    }
+    return best;
+  }
+
+  function drawAnchors(ctx, xOf, top, bottom, width) {
+    const frames = utAnchorFrames();
+    ctx.save();
+    for (const frame of frames) {
+      const x = xOf(frame);
+      if (x < -4 || x > width + 4) continue;
+      ctx.strokeStyle = "rgba(232,240,247,0.85)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + 0.5, top);
+      ctx.lineTo(x + 0.5, bottom);
+      ctx.stroke();
+      ctx.fillStyle = "#e8f0f7";
+      ctx.beginPath();
+      ctx.moveTo(x - 3, top - 5);
+      ctx.lineTo(x + 3, top - 5);
+      ctx.lineTo(x, top);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    const pending = state.utAnchor;
+    if (pending !== null && !frames.includes(pending)) {
+      const x = xOf(pending);
+      if (x >= -4 && x <= width + 4) {
+        ctx.strokeStyle = "rgba(255,200,87,0.9)";
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(x + 0.5, top);
+        ctx.lineTo(x + 0.5, bottom);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = "#ffc857";
+        ctx.beginPath();
+        ctx.moveTo(x - 3, top - 5);
+        ctx.lineTo(x + 3, top - 5);
+        ctx.lineTo(x, top);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+
+    if (state.anchorDrag && state.anchorDrag.from !== state.anchorDrag.to) {
+      const x = xOf(state.anchorDrag.to);
+      if (x >= -4 && x <= width + 4) {
+        ctx.strokeStyle = "rgba(255,200,87,0.95)";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([2, 3]);
+        ctx.beginPath();
+        ctx.moveTo(x + 0.5, top);
+        ctx.lineTo(x + 0.5, bottom);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
   function spellStarts() {
     return state.data.pred_spells.map((spell) => spell[0]);
   }
@@ -249,6 +379,20 @@
       ui.agreement.className = "agreement bad";
     }
 
+    const ut = utCodeAt(frame);
+    setBadge(ui.utBadge, ut);
+    ui.utName.textContent = ut === "X" ? "Sin etiqueta" : NAMES[ut] || "—";
+    if (ut === "X") {
+      ui.utAgreement.textContent = "UT sin etiqueta en este frame";
+      ui.utAgreement.className = "agreement na";
+    } else if (pred === ut) {
+      ui.utAgreement.textContent = "✓ coincide con la UT";
+      ui.utAgreement.className = "agreement ok";
+    } else {
+      ui.utAgreement.textContent = `✗ no coincide · UT ${ut} · pred ${pred}`;
+      ui.utAgreement.className = "agreement bad";
+    }
+
     const spell = findInterval(data.pred_spells, frame);
     if (spell) {
       ui.spellText.textContent = `${spell[2]} · ${formatFrame(spell[0])}–${formatFrame(spell[1] - 1)}`;
@@ -286,10 +430,22 @@
         ["Accuracy", m.accuracy],
         ["Spells pred.", m.n_pred_spells],
         ["Spells GT", m.n_gt_spells],
-      ].map(([label, value]) => {
-        const rendered = typeof value === "number" ? value.toFixed(3) : String(value);
-        return `<div>${label} <strong>${rendered}</strong></div>`;
-      }).join("");
+      ].map(([label, value]) => `<div>${label} <strong>${metricText(value)}</strong></div>`).join("");
+    }
+
+    const utMetrics = data.ut_metrics;
+    if (utMetrics) {
+      ui.utMetrics.innerHTML = [
+        ["Spell F1", utMetrics.spell_f1],
+        ["Macro F1", utMetrics.macro_f1],
+        ["D-F1", utMetrics.d_f1],
+        ["Accuracy", utMetrics.accuracy],
+        ["Frames UT", data.ut_labeled_frames],
+        ["Spells UT", utMetrics.n_gt_spells],
+        ["Spells pred.", utMetrics.n_pred_spells],
+      ].map(([label, value]) => `<div>${label} <strong>${metricText(value)}</strong></div>`).join("");
+    } else {
+      ui.utMetrics.textContent = "Sin etiquetas UT.";
     }
   }
 
@@ -370,17 +526,22 @@
     ctx.fillStyle = "rgba(78,168,255,0.08)";
     ctx.fillRect(publicX1, 0, Math.max(1, publicX2 - publicX1), height);
 
-    paintSegments(ctx, data.pred_segments, xOf, 18, 24, width);
+    paintSegments(ctx, data.pred_segments, xOf, 12, 22, width);
     if (data.gt_available) {
-      paintSegments(ctx, data.gt_segments, xOf, 50, 18, width, 0.9);
+      paintSegments(ctx, data.gt_segments, xOf, 40, 16, width, 0.9);
     } else {
       ctx.fillStyle = "rgba(96,114,134,0.18)";
-      ctx.fillRect(0, 50, width, 18);
-      drawText(ctx, "GT no cargada", 8, 59, { color: "#6d8093", size: 9 });
+      ctx.fillRect(0, 40, width, 16);
+      drawText(ctx, "GT no cargada", 8, 48, { color: "#6d8093", size: 9 });
     }
+    ctx.fillStyle = "rgba(96,114,134,0.12)";
+    ctx.fillRect(0, 60, width, 16);
+    paintSegments(ctx, data.ut_segments, xOf, 60, 16, width);
+    drawAnchors(ctx, xOf, 60, 76, width);
 
-    drawText(ctx, "PRED", 6, 12, { size: 8, color: "#8ca0b4" });
-    drawText(ctx, "GT", 6, 45, { size: 8, color: "#8ca0b4" });
+    drawText(ctx, "PRED", 6, 8, { size: 8, color: "#8ca0b4" });
+    drawText(ctx, "GT", 6, 36, { size: 8, color: "#8ca0b4" });
+    drawText(ctx, "UT", 6, 56, { size: 8, color: "#8ca0b4" });
 
     const tickFrames = 15 * 60 * data.fps;
     ctx.strokeStyle = "rgba(255,255,255,0.10)";
@@ -411,7 +572,7 @@
     ctx.restore();
 
     if (publicX2 - publicX1 > 120) {
-      drawText(ctx, "GT pública", publicX1 + 6, 78, {
+      drawText(ctx, "GT pública", publicX1 + 6, 88, {
         size: 8,
         color: "rgba(168,207,243,0.8)",
       });
@@ -502,19 +663,24 @@
       }
     }
 
-    paintSegments(ctx, data.pred_segments, xOf, 12, 34, width);
+    paintSegments(ctx, data.pred_segments, xOf, 10, 30, width);
     if (data.gt_available) {
-      paintSegments(ctx, data.gt_segments, xOf, 64, 28, width, 0.9);
+      paintSegments(ctx, data.gt_segments, xOf, 52, 24, width, 0.9);
     } else {
       ctx.fillStyle = "rgba(96,114,134,0.18)";
-      ctx.fillRect(0, 64, width, 28);
+      ctx.fillRect(0, 52, width, 24);
     }
+    ctx.fillStyle = "rgba(96,114,134,0.12)";
+    ctx.fillRect(0, 88, width, 24);
+    paintSegments(ctx, data.ut_segments, xOf, 88, 24, width);
+    drawAnchors(ctx, xOf, 88, 112, width);
 
-    drawText(ctx, "PRED", 6, 20, { size: 8, color: "rgba(232,240,247,0.72)" });
-    drawText(ctx, data.gt_available ? "GT" : "GT no cargada", 6, 74, {
+    drawText(ctx, "PRED", 6, 18, { size: 8, color: "rgba(232,240,247,0.72)" });
+    drawText(ctx, data.gt_available ? "GT" : "GT no cargada", 6, 60, {
       size: 8,
       color: data.gt_available ? "rgba(232,240,247,0.72)" : "#6d8093",
     });
+    drawText(ctx, "UT", 6, 96, { size: 8, color: "rgba(232,240,247,0.72)" });
 
     ctx.save();
     ctx.setLineDash([4, 4]);
@@ -611,8 +777,10 @@
     }
     const pred = codeAt(state.data.labels, frame);
     const gt = codeAt(state.data.gt, frame);
+    const ut = utCodeAt(frame);
     const gtText = gt !== null && gt !== "X" ? ` · GT ${gt}` : "";
-    ui.hoverInfo.textContent = `frame ${formatFrame(frame)} · ${formatTime(frame / state.data.fps)} · pred ${pred || "—"}${gtText}`;
+    const utText = ut !== "X" ? ` · UT ${ut}` : "";
+    ui.hoverInfo.textContent = `frame ${formatFrame(frame)} · ${formatTime(frame / state.data.fps)} · pred ${pred || "—"}${gtText}${utText}`;
   }
 
   function eventFrame(event, source) {
@@ -631,10 +799,18 @@
     canvas.addEventListener("pointerdown", (event) => {
       if (!state.data) return;
       event.preventDefault();
-      state.scrubbing = true;
       state.pointerId = event.pointerId;
-      state.scrubSource = source;
       canvas.setPointerCapture(event.pointerId);
+      const hit = findDraggableAnchor(event.clientX, event.clientY, source);
+      if (hit) {
+        state.video.pause();
+        state.anchorDrag = { from: hit.frame, to: hit.frame, pending: hit.pending };
+        updateHover(hit.frame, source);
+        drawTimelines();
+        return;
+      }
+      state.scrubbing = true;
+      state.scrubSource = source;
       const frame = eventFrame(event, source);
       if (frame !== null) {
         updateHover(frame, source);
@@ -646,10 +822,15 @@
       if (!state.data) return;
       const frame = eventFrame(event, source);
       if (frame === null) return;
-      if (state.scrubbing && event.pointerId === state.pointerId) {
+      if (state.anchorDrag && event.pointerId === state.pointerId) {
+        state.anchorDrag.to = frame;
+        updateHover(frame, source);
+        drawTimelines();
+      } else if (state.scrubbing && event.pointerId === state.pointerId) {
         updateHover(frame, source);
         seekToFrame(frame, { pause: true, updateHistory: false });
       } else if (!state.scrubbing) {
+        canvas.style.cursor = findDraggableAnchor(event.clientX, event.clientY, source) ? "ew-resize" : "crosshair";
         updateHover(frame, source);
         if (source === "overview") drawOverview();
         else drawDetail();
@@ -657,7 +838,10 @@
     });
 
     const finish = (event) => {
-      if (!state.scrubbing || event.pointerId !== state.pointerId) return;
+      if (event.pointerId !== state.pointerId) return;
+      const drag = state.anchorDrag;
+      const wasScrubbing = state.scrubbing;
+      state.anchorDrag = null;
       state.scrubbing = false;
       state.pointerId = null;
       state.scrubSource = null;
@@ -666,13 +850,27 @@
       } catch (error) {
         // Pointer capture may already have been released by the browser.
       }
-      updateURL(state.frame);
+      if (drag) {
+        if (drag.pending) {
+          state.utAnchor = clamp(drag.to, 0, state.data.n_frames);
+          updateUTStatus("Ancla movida. ");
+          drawTimelines();
+        } else if (drag.to !== drag.from) {
+          drawTimelines();
+          postUserTruth({ boundary: drag.from, to: drag.to });
+        } else {
+          drawTimelines();
+        }
+        return;
+      }
+      if (wasScrubbing) updateURL(state.frame);
     };
     canvas.addEventListener("pointerup", finish);
     canvas.addEventListener("pointercancel", finish);
 
     canvas.addEventListener("pointerleave", () => {
-      if (state.scrubbing) return;
+      if (state.scrubbing || state.anchorDrag) return;
+      canvas.style.cursor = "crosshair";
       state.hoverFrame = null;
       state.hoverSource = null;
       updateHover(null, null);
@@ -704,6 +902,49 @@
     ui.fatalMessage.textContent = message;
     ui.fatal.classList.remove("hidden");
     setSync("error", "error");
+  }
+
+  async function postUserTruth(body) {
+    if (!state.data || state.utSaving) return;
+    state.utSaving = true;
+    try {
+      const response = await fetch("/api/user-truth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status} al guardar la UT`);
+      Object.assign(state.data, await response.json());
+      if (body.clear || body.boundary !== undefined) {
+        state.utAnchor = null;
+      } else {
+        state.utAnchor = clamp(body.stop, 0, state.data.n_frames);
+      }
+      drawTimelines();
+      updateUI();
+      updateUTStatus(
+        body.clear ? "UT borrada. " : body.boundary !== undefined ? "Ancla movida. " : "Ancla añadida. ",
+      );
+    } catch (error) {
+      ui.utStatus.textContent = `No se pudo guardar la UT: ${error instanceof Error ? error.message : String(error)}`;
+    } finally {
+      state.utSaving = false;
+    }
+  }
+
+  function paintUserTruth(label) {
+    if (!state.data || state.utSaving) return;
+    const frame = state.frame;
+    const anchor = state.utAnchor;
+    const start = anchor === null ? frame : Math.min(anchor, frame);
+    const stop = (anchor === null ? frame : Math.max(anchor, frame)) + 1;
+    postUserTruth({ start, stop, label });
+  }
+
+  function toggleUserTruthAnchor() {
+    if (!state.data) return;
+    state.utAnchor = state.utAnchor === state.frame ? null : state.frame;
+    updateUTStatus(state.utAnchor === null ? "Ancla quitada. " : "Ancla fijada. ");
   }
 
   function setup() {
@@ -798,8 +1039,24 @@
       }
     });
 
+    for (const button of document.querySelectorAll("[data-ut-label]")) {
+      button.addEventListener("click", () => paintUserTruth(button.dataset.utLabel));
+    }
+    ui.utAnchor.addEventListener("click", toggleUserTruthAnchor);
+    ui.utClear.addEventListener("click", () => postUserTruth({ clear: true }));
+
     window.addEventListener("keydown", (event) => {
       const target = event.target;
+      const typing =
+        target instanceof Element && target.closest("textarea, select, input:not([type='number'])");
+      if (!typing && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        const key = event.key.length === 1 ? event.key.toUpperCase() : "";
+        if (!event.repeat && ["H", "A", "D", "X"].includes(key)) {
+          event.preventDefault();
+          paintUserTruth(key);
+          return;
+        }
+      }
       if (target instanceof Element && target.closest("input, textarea, select, button")) return;
       if (event.code === "Space") {
         event.preventDefault();
@@ -820,10 +1077,10 @@
       } else if (event.key === ".") {
         event.preventDefault();
         jumpToValue(nextValue(spellStarts(), state.frame));
-      } else if (event.key === "d") {
+      } else if (event.key === "n") {
         event.preventDefault();
         jumpToValue(data.gt_available ? nextValue(disagreementStarts, state.frame) : null);
-      } else if (event.key === "D") {
+      } else if (event.key === "N") {
         event.preventDefault();
         jumpToValue(data.gt_available ? previousValue(disagreementStarts, state.frame) : null);
       } else if (event.key.toLowerCase() === "g" && data.gt_available) {
@@ -851,6 +1108,7 @@
     setPlayButton();
     drawTimelines();
     updateUI();
+    updateUTStatus();
   }
 
   async function boot() {

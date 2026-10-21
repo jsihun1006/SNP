@@ -1,9 +1,13 @@
 """Local, synchronized video reviewer for the possession predictions.
 
 The reviewer is intentionally boring infrastructure: one local HTTP server, one static page, and
-one MP4.  It never copies the gated video and it never writes labels.  The browser maps the tactical
-frame timeline to rows of ``predictions.csv``; the public ground truth is drawn only where it
-exists.
+one MP4.  It never copies the gated video and it never writes predictions.  The browser maps the
+tactical frame timeline to rows of ``predictions.csv``; the public ground truth is drawn only where
+it exists.
+
+The reviewer also lets a human write a **user truth (UT)** used only to score the fixed prediction
+in the UI.  The UT is stored in ``outputs/user_truth.json`` between sessions.  Nothing in the
+predict/train path imports this module, so the model can never see the UT.
 
 Command::
 
@@ -37,12 +41,14 @@ from .config import (
     GAME,
     GRADED_HALVES,
     H,
+    LABEL_TO_CODE,
     N_FRAMES,
     PUBLIC_GT_PATH,
     PUBLIC_START,
     PUBLIC_STOP,
     ROOT,
     SOURCE,
+    USER_TRUTH_PATH,
     X,
     asset_paths,
 )
@@ -74,6 +80,19 @@ def _validate_codes(codes: np.ndarray, name: str) -> np.ndarray:
     if not set(np.unique(codes).tolist()).issubset(set(CODE_TO_LABEL)):
         raise ValueError(f"{name} contains labels outside {{H,A,D,X}}")
     return codes.astype(np.int8, copy=False)
+
+
+def _metrics_payload(metrics: dict[str, Any]) -> dict[str, Any]:
+    """Compact metric fields shared by the public and user-truth stats."""
+    return {
+        "spell_f1": float(metrics["spell_f1_mean"]),
+        "macro_f1": float(metrics["macro_f1"]),
+        "d_f1": float(metrics["per_class"]["D"]["f1"]),
+        "accuracy": float(metrics["accuracy"]),
+        "n_pred_spells": int(metrics["n_pred_spells"]),
+        "n_gt_spells": int(metrics["n_gt_spells"]),
+        "n_graded": int(metrics.get("n_graded", 0)),
+    }
 
 
 def build_viewer_data(
@@ -160,14 +179,7 @@ def build_viewer_data(
     }
     metric_payload: dict[str, Any] | None = None
     if metrics is not None:
-        metric_payload = {
-            "spell_f1": float(metrics["spell_f1_mean"]),
-            "macro_f1": float(metrics["macro_f1"]),
-            "d_f1": float(metrics["per_class"]["D"]["f1"]),
-            "accuracy": float(metrics["accuracy"]),
-            "n_pred_spells": int(metrics["n_pred_spells"]),
-            "n_gt_spells": int(metrics["n_gt_spells"]),
-        }
+        metric_payload = _metrics_payload(metrics)
 
     return {
         "version": 1,
@@ -194,12 +206,101 @@ def build_viewer_data(
     }
 
 
+def load_user_truth(path: str | Path | None, n_frames: int = N_FRAMES) -> np.ndarray:
+    """Load the viewer-only user truth, or an all-``X`` array when it does not exist yet."""
+    user_truth = np.full(int(n_frames), X, dtype=np.int8)
+    if path is None:
+        return user_truth
+    path = Path(path)
+    if not path.is_file():
+        return user_truth
+    document = json.loads(path.read_text(encoding="utf-8"))
+    runs = document.get("runs") if isinstance(document, dict) else None
+    if not isinstance(runs, list):
+        raise ValueError(f"{path}: expected a JSON object with a 'runs' list")
+    for run in runs:
+        if not isinstance(run, list) or len(run) != 3:
+            raise ValueError(f"{path}: every run must be [start, stop, label]")
+        start, stop, label = int(run[0]), int(run[1]), str(run[2]).strip().upper()
+        if label not in LABEL_TO_CODE:
+            raise ValueError(f"{path}: unknown label {label!r}")
+        if not (0 <= start < stop <= int(n_frames)):
+            raise ValueError(f"{path}: run [{start}, {stop}) outside 0..{n_frames}")
+        user_truth[start:stop] = LABEL_TO_CODE[label]
+    return user_truth
+
+
+def save_user_truth(path: str | Path, user_truth: np.ndarray) -> Path:
+    """Persist the user truth as compact constant-label runs (atomic replace)."""
+    path = Path(path)
+    user_truth = _validate_codes(user_truth, "user_truth")
+    runs = [
+        [int(start), int(stop), CODE_TO_LABEL[int(code)]]
+        for start, stop, code in pm.segments(user_truth, pm.valid_runs(user_truth))
+    ]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_text(
+        json.dumps({"version": 1, "game": GAME, "runs": runs}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    temporary.replace(path)
+    return path
+
+
+def move_user_truth_boundary(
+    user_truth: np.ndarray, from_frame: int, to_frame: int
+) -> np.ndarray:
+    """Move a UT run boundary in place.
+
+    ``from_frame`` must sit between two different labels (``0`` and ``n_frames`` count as
+    boundaries when the edge label differs from ``X``).  Moving right gives the left label the
+    freed frames; moving left gives them to the right label.
+    """
+    user_truth = np.asarray(user_truth)
+    n = int(user_truth.size)
+    from_frame, to_frame = int(from_frame), int(to_frame)
+    if not (0 <= from_frame <= n and 0 <= to_frame <= n):
+        raise ValueError(f"boundary {from_frame} or target {to_frame} outside 0..{n}")
+    left = user_truth[from_frame - 1] if from_frame > 0 else X
+    right = user_truth[from_frame] if from_frame < n else X
+    if left == right:
+        raise ValueError(f"frame {from_frame} is not a user-truth boundary")
+    if to_frame > from_frame:
+        user_truth[from_frame:to_frame] = left
+    elif to_frame < from_frame:
+        user_truth[to_frame:from_frame] = right
+    return user_truth
+
+
+def build_user_truth_data(pred: np.ndarray, user_truth: np.ndarray) -> dict[str, Any]:
+    """Score the fixed prediction against the user truth.
+
+    This is the only place the UT is consumed.  ``pred`` is never modified, and the model path
+    (features/model/pipeline) has no access to this function or the UT file.
+    """
+    pred = _validate_codes(pred, "pred")
+    user_truth = _validate_codes(user_truth, "user_truth")
+    if user_truth.size != pred.size:
+        raise ValueError(f"user truth has {user_truth.size} frames; pred has {pred.size}")
+
+    runs = pm.valid_runs(user_truth)
+    labeled = int(np.count_nonzero(user_truth != X))
+    metrics = pm.evaluate(user_truth, pred, bootstrap_n=0) if labeled else None
+    return {
+        "ut_segments": [[int(a), int(b), int(c)] for a, b, c in pm.segments(user_truth, runs)],
+        "ut_labeled_frames": labeled,
+        "ut_metrics": _metrics_payload(metrics) if metrics is not None else None,
+    }
+
+
 def load_viewer_data(
     predictions_path: str | Path,
     *,
     gt_path: str | Path | None = PUBLIC_GT_PATH,
     tags_path: str | Path | None = None,
     metrics_path: str | Path | None = None,
+    user_truth_path: str | Path | None = USER_TRUTH_PATH,
     start_frame: int | None = None,
 ) -> dict[str, Any]:
     """Read the generated CSV outputs and build the viewer payload."""
@@ -221,13 +322,15 @@ def load_viewer_data(
     if metrics_path is not None and Path(metrics_path).is_file():
         metrics = json.loads(Path(metrics_path).read_text(encoding="utf-8"))
 
-    return build_viewer_data(
+    data = build_viewer_data(
         pred,
         gt,
         tags=tags,
         metrics=metrics,
         start_frame=start_frame,
     )
+    data.update(build_user_truth_data(pred, load_user_truth(user_truth_path, pred.size)))
+    return data
 
 
 def tactical_video_path(data_dir: str | Path | None = None) -> Path:
@@ -276,6 +379,10 @@ class ViewerRequestHandler(BaseHTTPRequestHandler):
     payload: bytes = b"{}"
     video_path: Path | None = None
     assets: dict[str, tuple[bytes, str]] = {}
+    pred: np.ndarray | None = None
+    user_truth: np.ndarray | None = None
+    user_truth_path: Path | None = None
+    ut_lock = threading.Lock()
     verbose = False
 
     def log_message(self, fmt: str, *args: Any) -> None:
@@ -287,6 +394,76 @@ class ViewerRequestHandler(BaseHTTPRequestHandler):
 
     def do_HEAD(self) -> None:  # noqa: N802 - stdlib naming
         self._dispatch(send_body=False)
+
+    def do_POST(self) -> None:  # noqa: N802 - stdlib naming
+        if urlsplit(self.path).path != "/api/user-truth":
+            self._send_error(HTTPStatus.NOT_FOUND, "not found")
+            return
+        if self.pred is None or self.user_truth is None or self.user_truth_path is None:
+            self._send_error(HTTPStatus.NOT_FOUND, "user truth not configured")
+            return
+        if not (self.headers.get("Content-Type") or "").lower().startswith("application/json"):
+            self._send_error(HTTPStatus.UNSUPPORTED_MEDIA_TYPE, "expected application/json")
+            return
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            if length <= 0 or length > 100_000:
+                raise ValueError
+            body = json.loads(self.rfile.read(length))
+            if not isinstance(body, dict):
+                raise ValueError
+            n_frames = int(self.pred.size)
+            clear = bool(body.get("clear"))
+            boundary = target = start = stop = code = None
+            if clear:
+                pass
+            elif "boundary" in body:
+                boundary, target = int(body["boundary"]), int(body["to"])
+                if not (0 <= boundary <= n_frames and 0 <= target <= n_frames):
+                    raise ValueError
+            else:
+                start, stop = int(body["start"]), int(body["stop"])
+                code = LABEL_TO_CODE[str(body["label"]).strip().upper()]
+                if not (0 <= start < stop <= n_frames):
+                    raise ValueError
+        except (ValueError, TypeError, KeyError, json.JSONDecodeError):
+            self._send_error(HTTPStatus.BAD_REQUEST, "invalid user-truth edit")
+            return
+
+        try:
+            with self.ut_lock:
+                backup = self.user_truth.copy()
+                try:
+                    if clear:
+                        self.user_truth[:] = X
+                    elif boundary is not None:
+                        move_user_truth_boundary(self.user_truth, boundary, target)
+                    else:
+                        self.user_truth[start:stop] = code
+                    save_user_truth(self.user_truth_path, self.user_truth)
+                except (OSError, ValueError):
+                    self.user_truth[:] = backup
+                    raise
+                ut_payload = build_user_truth_data(self.pred, self.user_truth)
+                merged = json.loads(self.payload)
+                merged.update(ut_payload)
+                merged_payload = json.dumps(
+                    merged, ensure_ascii=False, separators=(",", ":")
+                ).encode("utf-8")
+                self.__class__.payload = merged_payload
+        except ValueError:
+            self._send_error(HTTPStatus.BAD_REQUEST, "invalid user-truth boundary")
+            return
+        except OSError:
+            self._send_error(HTTPStatus.INTERNAL_SERVER_ERROR, "could not save user truth")
+            return
+
+        self._send_bytes(
+            json.dumps(ut_payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8"),
+            "application/json; charset=utf-8",
+            send_body=True,
+            cache="no-store",
+        )
 
     def _dispatch(self, *, send_body: bool) -> None:
         path = urlsplit(self.path).path
@@ -429,18 +606,26 @@ def make_server(
     payload: bytes,
     video_path: str | Path,
     assets_dir: str | Path,
+    pred: np.ndarray | None = None,
+    user_truth: np.ndarray | None = None,
+    user_truth_path: str | Path | None = None,
 ) -> ViewerHTTPServer:
     """Create the local reviewer server.  ``port=0`` chooses an ephemeral port."""
     assets = _load_assets(Path(assets_dir))
-    handler = type(
-        "BoundViewerRequestHandler",
-        (ViewerRequestHandler,),
-        {
-            "payload": payload,
-            "video_path": Path(video_path),
-            "assets": assets,
-        },
-    )
+    attributes: dict[str, Any] = {
+        "payload": payload,
+        "video_path": Path(video_path),
+        "assets": assets,
+    }
+    if pred is not None and user_truth is not None and user_truth_path is not None:
+        attributes.update(
+            {
+                "pred": np.array(pred, dtype=np.int8, copy=True),
+                "user_truth": np.array(user_truth, dtype=np.int8, copy=True),
+                "user_truth_path": Path(user_truth_path),
+            }
+        )
+    handler = type("BoundViewerRequestHandler", (ViewerRequestHandler,), attributes)
     return ViewerHTTPServer((host, port), handler)
 
 
@@ -451,6 +636,7 @@ def serve_viewer(
     gt_path: str | Path | None = PUBLIC_GT_PATH,
     tags_path: str | Path | None = None,
     metrics_path: str | Path | None = None,
+    user_truth_path: str | Path | None = USER_TRUTH_PATH,
     data_dir: str | Path | None = None,
     host: str = "127.0.0.1",
     port: int = 8765,
@@ -477,18 +663,31 @@ def serve_viewer(
         gt_path=gt_path,
         tags_path=tags_path,
         metrics_path=metrics_path,
+        user_truth_path=user_truth_path,
         start_frame=start_frame,
     )
+    pred = load_submission(predictions)
+    user_truth = load_user_truth(user_truth_path, pred.size)
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     assets_dir = Path(__file__).resolve().parent / "viewer_assets"
-    server = make_server(host, port, payload=payload, video_path=video, assets_dir=assets_dir)
+    server = make_server(
+        host,
+        port,
+        payload=payload,
+        video_path=video,
+        assets_dir=assets_dir,
+        pred=pred,
+        user_truth=user_truth,
+        user_truth_path=user_truth_path,
+    )
     ViewerRequestHandler.verbose = verbose
     url = f"http://{host}:{server.server_address[1]}/"
     print(f"viewer: {url}", flush=True)
     print(
         f"data: {data['n_frames']:,} frames | {data['duration_s']:.2f}s | "
         f"{len(data['pred_spells'])} predicted spells | "
-        f"GT {'yes' if data['gt_available'] else 'no'}",
+        f"GT {'yes' if data['gt_available'] else 'no'} | "
+        f"UT {data['ut_labeled_frames']:,} frames",
         flush=True,
     )
     print(

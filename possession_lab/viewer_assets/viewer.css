@@ -415,6 +415,42 @@ video {
   border-style: dashed;
 }
 
+#utBadge {
+  border-style: dotted;
+}
+
+.ut-cell {
+  grid-column: 1 / -1;
+}
+
+.ut-status {
+  margin-top: 0.5rem;
+}
+
+.ut-edit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin-top: 0.55rem;
+}
+
+.ut-edit button {
+  flex: 1 1 2.2rem;
+  padding: 0.5rem 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ut-edit button.wide {
+  flex: 1 1 5rem;
+  font-weight: 600;
+}
+
+.ut-edit .ut-H { border-color: rgba(78, 168, 255, 0.45); }
+.ut-edit .ut-A { border-color: rgba(255, 107, 95, 0.45); }
+.ut-edit .ut-D { border-color: rgba(255, 200, 87, 0.45); }
+.ut-edit .ut-X { border-color: rgba(96, 114, 134, 0.55); }
+
 .agreement {
   margin-top: 0.65rem;
   padding: 0.48rem 0.6rem;
@@ -616,11 +652,11 @@ kbd {
 }
 
 .overview-wrap {
-  height: 86px;
+  height: 112px;
 }
 
 .detail-wrap {
-  height: 116px;
+  height: 154px;
 }
 
 canvas {
@@ -753,6 +789,6 @@ canvas {
   }
 
   .overview-wrap {
-    height: 74px;
+    height: 112px;
   }
 }

@@ -34,6 +34,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = Path(os.environ.get("MTAH_DATA_DIR", ROOT / "data"))
 OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
 PUBLIC_GT_PATH = ROOT / "evaluation" / "gt" / "BAR-ATH_possession_gt_public.csv"
+# Written by the local viewer only.  Never read by the model, features, or training code.
+USER_TRUTH_PATH = OUTPUT_DIR / "user_truth.json"
 
 # The exact parameters of the recommended model.  Kept here so the CLI, tests, and report agree.
 MODEL_PARAMS = {
