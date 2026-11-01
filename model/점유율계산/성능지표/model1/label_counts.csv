@@ -1,0 +1,17 @@
+model,scope,label,frames
+model1,full_video,H,66685
+model1,full_video,A,46971
+model1,full_video,D,85663
+model1,full_video,X,0
+model1,public_graded,H,4281
+model1,public_graded,A,2339
+model1,public_graded,D,880
+model1,public_graded,X,0
+baseline_smooth50,full_video,H,72957
+baseline_smooth50,full_video,A,54842
+baseline_smooth50,full_video,D,71520
+baseline_smooth50,full_video,X,0
+baseline_smooth50,public_graded,H,4362
+baseline_smooth50,public_graded,A,2660
+baseline_smooth50,public_graded,D,478
+baseline_smooth50,public_graded,X,0

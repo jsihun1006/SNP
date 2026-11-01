@@ -1,0 +1,6 @@
+.venv/
+weights/
+logs/
+.ultralytics/
+__pycache__/
+outputs_*/
