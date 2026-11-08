@@ -1,0 +1,14 @@
+{
+  "model": "dead_ball",
+  "phase": 1,
+  "version": 1,
+  "source": "tactical",
+  "fps": 25,
+  "pipeline": ["src/apply_competition.py", "src/final_dead_balls.py"],
+  "settings_file": "src/config.py",
+  "feature_set": "v2",
+  "output_root": "model/영상추출/추출csv/dead_ball",
+  "output_columns": ["frame", "time_seconds", "graded", "dead_score", "dead", "dead_source"],
+  "selection_policy": "Model and post-processing were chosen on the public DFL matches (leave-one-match-out) and checked on two Metrica sample games. No labels or tuning from the competition match or its public 5 minutes.",
+  "note": "All thresholds and their sources live in src/config.py (CONFIG['smooth_choice'], CONFIG['final']). The exact values used in a run are copied into run_manifest.json."
+}
