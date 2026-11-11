@@ -41,28 +41,24 @@ python model/영상추출/모델/dead_ball/extract.py --skip-pipeline  # 이미 
 python model/영상추출/모델/dead_ball/validate.py model/영상추출/추출csv/dead_ball/<실행ID>
 ```
 
-## 모델 파일 (Git 제외)
+## LightGBM 모델 파일
 
 | 항목 | 값 |
 |---|---|
 | 파일 | `data/external/dfl/model_all_v2.txt` (LightGBM 텍스트 모델, 약 2.8 MB) |
-| SHA-256 | `18a46eb5dd1e89f1057edc163e04b5f33b178a5c63123d7b4b2078724683737e` |
+| 재학습본 SHA-256 | `ada5dec2f4cf5b3685d013e8363588405e1c96b6fa012837680e85f5ec0bad84` |
+| 기존 HSJ 배포본 SHA-256 | `18a46eb5dd1e89f1057edc163e04b5f33b178a5c63123d7b4b2078724683737e` |
 | 학습 데이터 | Sportec Open DFL(IDSSE) 7경기. Bassek et al. 2025, Scientific Data 12, 195. CC-BY 4.0(DFL 표기) |
 | 학습 설정 | `src/config.py` (특징 세트 v2, `lgbm_params`, `sim_seed` 7) |
 
-받는 방법은 둘 중 하나다.
+이 저장소의 모델은 공개 DFL 7경기로 재학습한 버전이다. 원본 데이터 출처와 실험 결과 경로는 [data/README.md](../../../../data/README.md)를 참고한다.
 
-1. **팀 내부 전달**: 위 파일을 받아 `data/external/dfl/`에 넣고 해시를 확인한다.
-2. **직접 학습**: DFL 원본 XML 7경기 × 3파일을 figshare(doi 10.6084/m9.figshare.28196177)에서 브라우저로 받아
-   `data/external/dfl/raw/`에 둔 뒤 실행한다(스크립트 내려받기는 막혀 있다). 경기 ID는 `src/dfl_load.py`의 `MATCHES`.
+직접 학습하려면 DFL 원본 XML 7경기 × 3파일을 `data/external/dfl/raw/`에 둔다. 경기 ID는 `src/dfl_load.py`의 `MATCHES`에서 확인할 수 있다.
 
-   ```bash
-   python src/dfl_load.py all
-   python src/train_dfl.py --save-final
-   ```
-
-   시드는 고정돼 있지만 운영체제가 다르면 LightGBM 결과가 아주 조금 다를 수 있다(추정). 같은 결과가
-   필요하면 1번을 쓴다.
+```bash
+python src/dfl_load.py all
+python src/train_dfl.py --save-final
+```
 
 ## 출력: `model/영상추출/추출csv/dead_ball/<실행ID>/` (Git 제외)
 
