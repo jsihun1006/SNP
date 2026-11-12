@@ -1,0 +1,35 @@
+{
+  "schema_version": 4,
+  "goalkeeper": {
+    "minimum_torso_support": 0.35,
+    "minimum_shorts_support": 0.15,
+    "window": 30,
+    "minimum_observations": 10,
+    "minimum_fraction": 0.65,
+    "minimum_goal_hints": 3,
+    "reset_gap_frames": 10
+  },
+  "other": {
+    "minimum_torso_width": 10,
+    "minimum_torso_height": 12,
+    "minimum_torso_pixels": 256,
+    "minimum_focus_variance": 20.0,
+    "maximum_defined_color_support": 0.10,
+    "maximum_grass_fraction": 0.25,
+    "minimum_observations": 10,
+    "latch_until_scene_reset": true
+  },
+  "staff": {"minimum_observations": 50, "require_verified_technical_area": true,
+            "require_camera_compensated_nonplayer_motion": true},
+  "possession": {"distance_pixels": 45, "consecutive_team_frames": 20},
+  "scene": {"history_frames": 10, "hard_histogram_distance": 0.45,
+            "hard_mean_pixel_difference": 35, "window_histogram_distance": 0.35,
+            "window_mean_pixel_difference": 25},
+  "rationale": {
+    "threshold_status": "Engineering safeguards, not label-tuned probabilities. GK support 0.35/0.15 requires torso/shorts agreement; 10 of 30 and 3 weak geometry observations must accompany it.",
+    "staff": "No trustworthy technical-area/pitch-motion producer is available in these cached data. STAFF is supported by the API but abstains on this run; spectators/bench appearances are not automatically staff.",
+    "other": "Require 10 consecutive well-resolved, textured, non-grass, nonmatching observations. Previously observed known uniforms block OTHER and GK relabels on that track. Weak known colors and orange/green searches remain UNKNOWN. Confirmed OTHER cannot automatically become player or GK on the same uninterrupted track.",
+    "goal_context": "Hough goal geometry is weak and can match field lines/ads. It is combined with persistent kit and shorts evidence; live/replay state and person identity remain unverified. No hard-coded match frame, track ID, or manually mapped pitch region is used.",
+    "retention": "After establishment, a GK retains role without new goal hints while fresh compatible color continues. Scene/frame discontinuity, ID change, large gap or contradictory appearance requires renewed evidence."
+  }
+}
