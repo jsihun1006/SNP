@@ -16,11 +16,11 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+from tryolabs_runtime import configure_cache, resolve_device, DetectorPair, log_event
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "data/derived/tryolabs_broadcast"
-os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/mtah-tryolabs-mpl")
-os.environ.setdefault("YOLOV5_AUTOINSTALL", "false")
+configure_cache()
 
 import cv2
 import numpy as np
@@ -58,16 +58,21 @@ def import_upstream():
     return locals()
 
 
-def load_model(path):
+def load_model(path, device="cpu"):
     from models.common import AutoShape
     from models.experimental import attempt_load
 
     # These two specific public, hashed legacy checkpoints contain full models.
     # Restrict the compatibility override to checkpoint loading, then restore it.
+    path = Path(path)
+    if not path.is_file():
+        raise FileNotFoundError(f"Model weights missing: {path}. Prepare local assets before running.")
+    selected = resolve_device(device)
     original_load = torch.load
     try:
         torch.load = functools.partial(original_load, weights_only=False)
         model = AutoShape(attempt_load(path, device=torch.device("cpu")))
+        model = model.to(selected).eval()
     finally:
         torch.load = original_load
     return model
@@ -186,6 +191,8 @@ def main():
     parser.add_argument("--seconds", type=float, default=10)
     parser.add_argument("--output", type=Path, default=ASSETS / "preview")
     parser.add_argument("--self-check", action="store_true")
+    parser.add_argument("--device", default="cpu", help="cpu (legacy default), auto, cuda, cuda:0 or mps")
+    parser.add_argument("--model-residency", choices=["auto", "single", "both"], default="auto")
     args = parser.parse_args()
     u = import_upstream()
     if args.self_check:
@@ -208,9 +215,13 @@ def main():
     source_stat = args.video.stat()
     torch.set_num_threads(4)
     start_time = time.monotonic()
-    person_model = load_model(ASSETS / "yolov5x.pt")
-    ball_model = load_model(ASSETS / "ball.pt")
-    person_model.classes = [0]
+    try:
+        selected_device = resolve_device(args.device)
+        detectors = DetectorPair(load_model, ASSETS, selected_device, args.model_residency, out / "runtime_events.jsonl")
+    except Exception as exc:
+        log_event(out / "runtime_events.jsonl", "run_failed", error=str(exc))
+        cap.release()
+        raise
     import imageio_ffmpeg
     command = [imageio_ffmpeg.get_ffmpeg_exe(), "-nostdin", "-v", "error", "-n", "-f", "rawvideo", "-pix_fmt", "bgr24",
                "-s", "1920x800", "-r", "25", "-i", "pipe:0", "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "21",
@@ -231,9 +242,8 @@ def main():
                     raise ValueError(f"Exact source decode failed at {frame0}")
                 t0 = time.monotonic()
                 # Preserve upstream BGR input and inference size, thresholds and NMS.
-                with torch.inference_mode():
-                    pdf = person_model(frame, size=640).pandas().xyxy[0]
-                    bdf = ball_model(frame, size=640).pandas().xyxy[0]
+                pp, bb = detectors.predict([frame], [frame0])
+                pdf, bdf = pp[0], bb[0]
                 pdf = pdf[(pdf["name"] == "person") & (pdf["confidence"] > .35)]
                 bdf = bdf[bdf["confidence"] > .3]
                 raw_people = cvt.DataFrame_to_Detections(pdf)
@@ -302,11 +312,12 @@ def main():
                     print(json.dumps({k:row[k] for k in ["segment", "source_frame0", "raw_persons", "raw_balls", "main_ball_age_frames", "reason"]}), flush=True)
     finally:
         cap.release()
+        detectors.close()
         encoder.stdin.close()
         encoder.wait()
         encoder_log.close()
         if rows:
-            with (out / "frames.csv").open("w") as f:
+            with (out / "frames.csv").open("w", encoding="utf-8", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=list(rows[0]))
                 writer.writeheader(); writer.writerows(rows)
         with (out / "detections.jsonl").open("w") as f:
@@ -346,7 +357,7 @@ def main():
                    checkpoint_sha256={name:digest(ASSETS/name) for name in ["ball.pt", "yolov5x.pt"]},
                    source_video=str(args.video.resolve()), source_size_bytes=source_stat.st_size,
                    source_mtime_ns=source_stat.st_mtime_ns, source_unchanged=True,
-                   device="cpu", decoded_output_frames=decoded, output_fps=output_fps,
+                   device=selected_device, model_residency=detectors.residency, decoded_output_frames=decoded, output_fps=output_fps,
                    elapsed_seconds=time.monotonic()-start_time, events=len(events), segments=segments,
                    scope="Local video-only diagnostic, not accuracy evaluation or H/A/D submission")
     (out / "summary.json").write_text(json.dumps(summary, indent=2)+"\n")
