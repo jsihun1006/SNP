@@ -1,5 +1,6 @@
 """Handoff safety/selection and real subprocess tests; no native Windows claim."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -111,14 +112,29 @@ class HandoffTests(unittest.TestCase):
         for name in ["../video.mp4","/tmp/x.py","data/ball.pt","starter/weights.pt","starter\\x.py","C:/x.py"]:
             with self.assertRaises(ValueError):installer.safe_member(name)
     def test_windows_crlf_existing_source_is_preserved(self):
-        with tempfile.TemporaryDirectory() as temp:
-            p=Path(temp);package.build(p/"code.zip")
-            with zipfile.ZipFile(p/"code.zip") as z:z.extractall(p/"bundle")
-            dest=p/"target/starter/tryolabs_uniform_v3.py";dest.parent.mkdir(parents=True)
-            original=(p/"bundle/starter/tryolabs_uniform_v3.py").read_bytes().replace(b"\r\n",b"\n").replace(b"\n",b"\r\n")
-            dest.write_bytes(original)
-            r=installer.install(p/"bundle",p/"target")
-            self.assertEqual(r["newline_equivalent_files"],1);self.assertEqual(dest.read_bytes(),original)
+        for source_newline in (b"\n",b"\r\n"):
+            with self.subTest(source_newline=source_newline), tempfile.TemporaryDirectory() as temp:
+                p=Path(temp);package.build(p/"code.zip")
+                with zipfile.ZipFile(p/"code.zip") as z:z.extractall(p/"bundle")
+                name="starter/tryolabs_uniform_v3.py";source=p/"bundle"/name
+                normalized=source.read_bytes().replace(b"\r\n",b"\n")
+                source_bytes=normalized.replace(b"\n",source_newline)
+                source.write_bytes(source_bytes)
+                # Only the temporary bundle fixture changes; keep its manifest valid.
+                manifest_path=p/"bundle/bundle_manifest.json"
+                manifest=json.loads(manifest_path.read_text(encoding="utf-8"))
+                manifest["files"][name]=dict(size=len(source_bytes),sha256=hashlib.sha256(source_bytes).hexdigest())
+                manifest_path.write_text(json.dumps(manifest),encoding="utf-8")
+                target_newline=b"\r\n" if source_newline==b"\n" else b"\n"
+                original=normalized.replace(b"\n",target_newline)
+                self.assertNotEqual(source_bytes,original)
+                self.assertEqual(source_bytes.replace(b"\r\n",b"\n"),original.replace(b"\r\n",b"\n"))
+                dest=p/"target"/name;dest.parent.mkdir(parents=True);dest.write_bytes(original)
+                r=installer.install(p/"bundle",p/"target")
+                self.assertEqual(r["newline_equivalent_files"],1)
+                self.assertEqual(r["existing_files_overwritten"],0)
+                self.assertEqual(dest.read_bytes(),original)
+                self.assertEqual(source.read_bytes(),source_bytes)
 
 
 if __name__=="__main__":unittest.main()
