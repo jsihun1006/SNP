@@ -19,7 +19,10 @@
   3. 시작 보정: 데드볼 시작 앞뒤 out_start_window_s 안에 라인 아웃이 보이면 그 프레임을 시작으로 한다.
   4. 공개 킥오프(FAQ.md): 후반 채점 시작~킥오프는 D이고 킥오프에서 끝난다. 전반 킥오프 프레임에서 시작하는 구간은 뺀다.
 라인 아웃 = 공이 경기장 안(보임)에서 밖(보임)으로 넘고, 넘기 직전 1초 안에 굴러가고 있었으며, 넘은 뒤
-out_confirm_s 안에 경기장 안에서 빠른 공이 보이지 않는 것(높이 뜬 공의 지면 투영을 거른다).
+out_confirm_s 안에 경기장 안에서 빠른 공이 보이지 않고, out_min_restart_s(공이 나간 뒤 가장 빠른 재개,
+DFL에서 잼) 안에 경기장 안에서 공이 (속도와 상관없이) 보이지 않는 것.
+진짜 아웃이면 공을 가져와 다시 차거나 던질 때까지 그보다 빨리 안으로 돌아올 수 없다. 더 빨리 돌아오면
+높이 뜬 공이 2D 투영으로 밖에 찍힌 것으로 본다.
 DFL 7경기 검증(src/eval_crossing.py): 인플레이 구간 F1 0.845(모델만) → 0.850(1) → 0.877(1+2).
 스마트 태깅은 결과 보고에만 쓴다. 상수는 src/config.py의 final 항목에 있다.
 """
@@ -79,17 +82,21 @@ def ball_signals(match):
 
 def line_crossings(sig):
     """공이 안(보임)에서 다음 프레임 밖(보임)으로 넘은 곳 중, 넘기 직전 1초 안에 공이 움직였고 넘은 뒤
-    out_confirm 안에 경기장 안에서 빠르게 움직이는 공이 없는 것. 반환은 밖으로 나간 첫 프레임."""
+    (a) out_confirm_s 안에 경기장 안에서 빠르게 움직이는 공이 없고 (b) out_min_restart_s 안에 경기장 안에서
+    공이 보이지 않는 것(속도 무관). 반환은 밖으로 나간 첫 프레임."""
     n = len(sig["seen"])
     t = np.flatnonzero(sig["inside"][:-1] & sig["outside"][1:])
     if not len(t):
         return t
     rolled = np.concatenate(([0], np.cumsum(sig["rolling"])))
     before = rolled[t + 1] - rolled[np.maximum(t + 1 - FPS, 0)]
-    back = np.concatenate(([0], np.cumsum(sig["inside"] & sig["moving"])))
+    fast = np.concatenate(([0], np.cumsum(sig["inside"] & sig["moving"])))
     confirm = int(F["out_confirm_s"] * FPS)
-    returned = back[np.minimum(t + 2 + confirm, n)] - back[np.minimum(t + 2, n)]
-    return t[(before > 0) & (returned == 0)] + 1
+    returned_fast = fast[np.minimum(t + 2 + confirm, n)] - fast[np.minimum(t + 2, n)]
+    any_in = np.concatenate(([0], np.cumsum(sig["inside"])))
+    restart = int(F["out_min_restart_s"] * FPS)
+    returned_soon = any_in[np.minimum(t + 2 + restart, n)] - any_in[np.minimum(t + 2, n)]
+    return t[(before > 0) & (returned_fast == 0) & (returned_soon == 0)] + 1
 
 
 def viewer_rows(table, blocks):
@@ -144,7 +151,7 @@ def build(model_segments, crossings, window):
 def force_line_outs(state, crossings, sig, score, period):
     """확실한 라인 아웃은 무조건 데드볼(축구 규칙: 공이 라인을 완전히 넘으면 경기 중단).
 
-    라인 아웃 프레임 c가 인플레이로 판정돼 있으면 c부터 데드로 바꾸고, 그 뒤 '공이 경기장 안에서 보이고 모델 확률이
+    라인 아웃 프레임 c가 인플레이로 판정돼 있으면 c부터 데드로 바꾸고, 그 뒤 '공이 경기장 안에서 빠르게 움직이고(ball_moving_mps) 모델 확률이
     인플레이(0.5 미만)'인 첫 프레임 직전까지 데드로 둔다. 공이 안으로 돌아오기 전에는 재개될 수 없고, 공만 안으로
     던져진 것(선수들은 멈춰 있음)은 재개가 아니다. 같은 하프 안에서만 늘린다. 새 기준값 없음.
     DFL 7경기: 인플레이 구간 F1 0.850 → 0.877, 7경기 모두 개선(src/eval_crossing.py).
@@ -152,7 +159,9 @@ def force_line_outs(state, crossings, sig, score, period):
     이를 막는 안전장치(모델 확률이 0.5를 넘는 순간이 있어야 강제)는 DFL에서 0.867로 손해라 넣지 않았다.
     반환: (새 state, 새로 만든 구간 목록)."""
     out = state.copy()
-    inside = sig["inside"]
+    # 재개 = 공이 던져지거나 차여 경기장 안에서 움직임(축구 규칙 13·15·16·17조). 안에서 보이기만 하는 것은 재개가
+    # 아니다: 스로인 선수가 라인 밖에서 머리 위로 든 공은 2D 투영으로 안쪽에 찍힐 수 있다.
+    inside = sig["inside"] & sig["moving"]
     alive_model = score < 0.5
     made = []
     for c in crossings:

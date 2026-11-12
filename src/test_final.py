@@ -47,8 +47,10 @@ def test_force_line_out_until_ball_back_in_and_model_alive():
     state = np.zeros(n, dtype=bool)
     score = np.full(n, 0.1)
     inside = np.ones(n, dtype=bool); inside[100:180] = False
-    out, made = fd.force_line_outs(state, np.array([100]), {"inside": inside}, score, np.ones(n, dtype=int))
-    assert made == [(100, 180)] and out[100:180].all() and not out[180:].any()
+    moving = np.ones(n, dtype=bool); moving[180:200] = False  # 안에 들어왔지만 멈춰 있음(재개 아님) → 200에서 재개
+    out, made = fd.force_line_outs(state, np.array([100]), {"inside": inside, "moving": moving}, score,
+                                   np.ones(n, dtype=int))
+    assert made == [(100, 200)] and out[100:200].all() and not out[200:].any()
 
 
 def test_public_kickoffs():
