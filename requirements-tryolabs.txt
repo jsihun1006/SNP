@@ -1,0 +1,16 @@
+# Optional, isolated Tryolabs experiment; do not install into the main environment.
+# Tested with CPython 3.11.17 on macOS arm64; see docs/TRYOLABS_BROADCAST.md.
+torch==2.15.0
+torchvision==0.29.2
+norfair==2.2.0
+numpy==1.26.4
+pandas==3.0.6
+opencv-python==4.10.0.84
+Pillow==13.0.0
+scipy==1.17.1
+matplotlib==3.11.2
+seaborn==0.13.2
+PyYAML==6.0.3
+tqdm==4.70.1
+requests==2.34.2
+imageio-ffmpeg==0.6.0
