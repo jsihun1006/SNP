@@ -1,5 +1,7 @@
 # dead_ball: 선수 움직임 기반 데드볼 판정 (Phase 1)
 
+**보정 실험과 BAR–ATH 적용** · [LightGBM v2 보정 안내](README_lightgbm_corrections.md)
+
 전술 ATD에서 **프레임마다 데드볼 여부**를 만든다. H/A 점유는 판단하지 않는다.
 Phase 2 점유 모델이 D 상태를 정할 때 입력으로 쓰라고 만든 특징 파일이다
 (예: model1의 "긴 공 누락 → D" 대신 `dead`를 사용).
