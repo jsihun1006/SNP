@@ -132,8 +132,10 @@ def viterbi_cost(log_odds, enter, leave):
     return state
 
 
-def decode(score, players, ball, pitch, period, crossings, setting=None):
-    """라인 아웃 순간 진입 비용 0(지금 파이프라인 1단계) + ⑤ 보호 구간. force_line_outs 전 상태를 돌려준다."""
+def decode(score, players, ball, pitch, period, crossings, setting=None, restarts=()):
+    """라인 아웃 순간 진입 비용 0(지금 파이프라인 1단계) + ⑤ 보호 구간. force_line_outs 전 상태를 돌려준다.
+    restarts: 확실한 재개 프레임(감지된 페널티킥). 그 프레임은 인플레이로 고정하고 데드에서 나오는 비용을 0으로 둔다
+    (라인 아웃의 진입 비용 0과 대칭). 킥 뒤 인플레이가 얼마나 이어질지는 모델 확률과 기존 벌점이 정한다(새 상수 없음)."""
     setting = setting or CONFIG["slow_buildup"]
     penalty, bias = CONFIG["smooth_choice"]["penalty"], CONFIG["smooth_choice"]["bias"]
     strength, bonus, margin = setting["strength"], setting["bonus"], setting["margin"]
@@ -144,7 +146,8 @@ def decode(score, players, ball, pitch, period, crossings, setting=None):
         n = len(p)
         sig = movement_signals(players[half], ball[half], pitch, margin)
         old = crossings[(crossings >= half.start) & (crossings < half.stop)] - half.start
-        if not sig["reliable"].any():
+        rs_in = np.asarray([r - half.start for r in restarts if half.start <= r < half.stop], dtype=np.int64)
+        if not sig["reliable"].any() and not len(rs_in):
             result[half] = smoothing.viterbi(p, np.zeros(n), penalty, bias).astype(bool)
             continue
         log_odds = logit(np.clip(p, 1e-6, 1 - 1e-6))
@@ -164,5 +167,7 @@ def decode(score, players, ball, pitch, period, crossings, setting=None):
         enter[protected] += 28 * strength
         log_odds[protected] -= 2.5 * bonus
         enter[old] = 0
+        leave[rs_in] = 0
+        log_odds[rs_in] = -1e9
         result[half] = viterbi_cost(log_odds, enter, leave)
     return result

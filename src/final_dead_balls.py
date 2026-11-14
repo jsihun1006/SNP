@@ -10,6 +10,7 @@
     frame_signals.csv  frame, eps(선수 평균 속도), ball_speed, seen, inside — 공 보임 여부 등(Phase 1 내보내기와 로컬 뷰어용)
     viewer.csv         로컬 확인용 뷰어(dead_ball_viewer.html, 저장소에 없음)가 읽는 구간 목록
     missed_tags.csv, viewer_missed.csv   최종 구간과 겹치지 않는 SET PIECES 태그(진단용)
+    penalty_kicks.csv, viewer_penalty.csv   페널티킥 감지(실험, 보기용. 최종 구간은 바꾸지 않는다)
     summary.txt        화면 출력과 같은 집계
 
 순서:
@@ -18,6 +19,10 @@
      높이고 데드 쪽 점수를 낮춘다. Metrica 3경기 0.809 → 0.820, SkillCorner 20경기 0.729 → 0.748.
   2. 확실한 라인 아웃은 무조건 데드볼: 모델이 인플레이로 본 라인 아웃 프레임부터, 공이 경기장 안에서 다시 보이고
      모델이 인플레이로 볼 때까지(force_line_outs).
+  2b. 페널티킥 순간 데드볼 끊기(split_at_penalty_kicks): 감지된 차는 순간부터 인플레이, 공이 보이면 3초 안의
+     다음 라인 아웃까지, 아니면 0.6초. 공개 30경기(src/eval_penalty_split.py, 차는 순간 = 배치 깨짐):
+     DFL 3경기 +0.0016~+0.0059, Metrica game2 +0.0039(공 없으면 −0.0003), SkillCorner 1874553 −0.0035
+     (그 라벨은 킥 6.4초 전부터 인플레이로 봐서 정의가 다름), 나머지 변화 없음.
   3. 시작 보정: 데드볼 시작 앞뒤 out_start_window_s 안에 라인 아웃이 보이면 그 프레임을 시작으로 한다.
   4. 공개 킥오프(FAQ.md): 후반 채점 시작~킥오프는 D이고 킥오프에서 끝난다. 전반 킥오프 프레임에서 시작하는 구간은 뺀다.
 라인 아웃 = 공이 경기장 안(보임)에서 밖(보임)으로 넘고, 넘기 직전 1초 안에 굴러가고 있었으며, 넘은 뒤
@@ -177,6 +182,113 @@ def force_line_outs(state, crossings, sig, score, period):
     return out, made
 
 
+# --- 페널티킥 순간 데드볼 끊기(2026-11-15) ---
+# 페널티킥은 재개다(규칙 14조). 감지된 차는 순간부터 PENALTY_ALIVE_S초는 인플레이, 그 뒤는 원래 판정.
+# 공개 실제 페널티킥 7개(DFL 3, SkillCorner 3, Metrica 1)의 킥 → 다음 데드볼 시작: 0.48~1.50초, 중앙값 0.60초.
+# 공이 보여서 킥 뒤 PENALTY_OUT_MAX_S초 안에 라인 아웃(골 포함)이 보이면 그 순간까지 인플레이(라인 아웃 = 데드 시작).
+# 아니면(공이 안 보이는 등) 중앙값 PENALTY_ALIVE_S초. 고정 0.6초만 쓰면 킥 → 골이 1.5초인 SkillCorner 1874553에서
+# 인플레이 구간이 짧아 손해였다(src/eval_penalty_split.py). PENALTY_OUT_MAX_S는 결과 보기 전에 정한 상한:
+# 마크에서 찬 공이 골라인에 닿기에 충분하고, 막혀서 경기가 이어지면 그 뒤는 원래 판정에 맡긴다.
+PENALTY_ALIVE_S, PENALTY_OUT_MAX_S = 0.6, 3.0
+
+
+def penalty_kicks(match):
+    """감지된 페널티킥 순간 [(frame, method)] (eval_penalty_combo의 v2 두 방식, 5초 안 중복은 앞의 것)."""
+    import eval_penalty_combo as pk
+    # run_up_v2의 차는 순간 = 배치가 처음 깨진 순간(src/eval_penalty_moment.py: 공개 실제 페널티킥 5개 오차 절댓값
+    # 중앙값 0.08초, 마크 도착 기준은 0.20초로 일찍 잡힘. 가짜 감지는 둘 다 0).
+    found = sorted([(k, "run_up_v2") for k in pk.run_up_v2(match, "break")]
+                   + [(k, "setup_then_kick_v2") for k in pk.setup_then_kick_v2(match)])
+    out = []
+    for k, method in found:
+        if not out or k - out[-1][0] > pk.MERGE_S * FPS:
+            out.append((k, method))
+    return out
+
+
+def split_at_penalty_kicks(state, kicks, period, crossings=()):
+    """킥 순간이 데드로 판정돼 있으면 킥부터 인플레이로(같은 하프 안). 끝: 킥 뒤 PENALTY_OUT_MAX_S초 안의 첫 라인 아웃,
+    없으면 킥 + PENALTY_ALIVE_S. 반환 (새 state, 바꾼 킥)."""
+    out = state.copy()
+    period = np.asarray(period)
+    crossings = np.sort(np.asarray(crossings, dtype=np.int64))
+    m, cap = int(round(PENALTY_ALIVE_S * FPS)), int(round(PENALTY_OUT_MAX_S * FPS))
+    changed = []
+    for k in kicks:
+        if 0 <= k < len(out) and out[k] and period[k] > 0:
+            c = crossings[(crossings > k) & (crossings <= k + cap)]
+            e = min(int(c[0]) if len(c) else k + m, len(out))
+            e = k + int(np.argmax(period[k:e] != period[k])) if (period[k:e] != period[k]).any() else e
+            out[k:e] = False
+            changed.append(int(k))
+    return out, changed
+
+
+# --- 골 뒤 재개까지 데드(실험, 2026-11-15) ---
+# 규칙 8조: 골 뒤에는 센터 마크 킥오프로 재개한다. 2D라 크로스바 위로 넘은 공도 골대 사이로 보이므로 골킥(16조)과
+# 코너킥(17조) 재개도 끝으로 인정한다. 재개 = 그 자리에 STILL_S초 이상 멈춰 놓였던 공이 빠르게 출발.
+# 놓인 공을 요구하는 이유: 세리머니 중 골키퍼가 그물의 공을 차 내거나 선수가 공을 차서 보내는 것은 재개가 아니다.
+# 상수는 결과를 보기 전에 정했다. RESTART_TOL_M은 페널티 마크 감지와 같은 좌표 흔들림 허용치.
+POST_HALF_M, GOAL_AREA_DEPTH_M, GOAL_AREA_HALF_M, CORNER_ARC_M = 3.66, 5.5, 9.16, 1.0   # 경기 규칙 1조
+RESTART_TOL_M, STILL_S = 2.0, 0.5
+
+
+def goal_crossings(crossings, ball, pitch):
+    """라인 아웃 중 골대 사이로 골라인을 넘은 것(넘기 전후 프레임 y 평균). 반환 (프레임, 골 쪽 0: x=0 / 1: x=length)."""
+    length, width = pitch
+    c = np.asarray(crossings, dtype=np.int64)
+    c = c[c > 0]
+    x = ball[c, 0]
+    y_mid = (ball[c - 1, 1] + ball[c, 1]) / 2
+    with np.errstate(invalid="ignore"):
+        keep = ((x < 0) | (x > length)) & (np.abs(y_mid - width / 2) <= POST_HALF_M)
+    return c[keep], (x[keep] > length).astype(np.int64)
+
+
+def restart_spots(ball, pitch, side):
+    """프레임별로 공이 이 골 뒤의 재개 자리(센터 마크, 그 골의 골 에어리어, 그 골 쪽 코너)에 있는지."""
+    length, width = pitch
+    bx, by = ball[:, 0].astype(np.float64), ball[:, 1].astype(np.float64)
+    depth = bx if side == 0 else length - bx
+    t = RESTART_TOL_M
+    with np.errstate(invalid="ignore"):
+        center = np.hypot(bx - length / 2, by - width / 2) <= t
+        goal_area = (depth <= GOAL_AREA_DEPTH_M + t) & (depth >= -t) & (np.abs(by - width / 2) <= GOAL_AREA_HALF_M + t)
+        corner = np.hypot(depth, np.abs(by - width / 2) - width / 2) <= CORNER_ARC_M + t
+    return [center, goal_area, corner]
+
+
+def hold_goal_dead(state, crossings, sig, ball, pitch, period):
+    """골대 사이 골라인 아웃 c부터 첫 재개(놓인 공이 재개 자리에서 출발) 직전까지 데드. 같은 하프 안에서 재개를
+    못 찾으면 바꾸지 않는다. 반환 (새 state, [(c, t)] 바꾼 구간, 재개 못 찾은 수)."""
+    out = state.copy()
+    n = len(out)
+    still = sig["seen"] & (np.nan_to_num(sig["speed"], nan=np.inf) <= F["line_out_moving_mps"])
+    go = sig["inside"] & sig["moving"]
+    k = int(STILL_S * FPS)
+    period = np.asarray(period)
+    goals, sides = goal_crossings(crossings, ball, pitch)
+    made, missing = [], 0
+    for c, side in zip(goals, sides):
+        end = c + 1
+        while end < n and period[end] == period[c]:
+            end += 1
+        restart = None
+        for spot in restart_spots(ball[c:end], pitch, side):
+            placed = np.concatenate(([0], np.cumsum(still[c:end] & spot)))
+            idx = np.flatnonzero(go[c:end] & spot)
+            idx = idx[idx >= k]
+            ok = idx[(placed[idx] - placed[idx - k]) == k]
+            if len(ok):
+                restart = c + int(ok[0]) if restart is None else min(restart, c + int(ok[0]))
+        if restart is None:
+            missing += 1
+            continue
+        out[c:restart] = True
+        made.append((int(c), int(restart)))
+    return out, made, missing
+
+
 def apply_public_kickoffs(final, first_kickoff, second_start, second_kickoff):
     out = [(a, b, k) for a, b, k in final if not (a < second_kickoff and b > second_start) and a != first_kickoff]
     out.append((second_start, second_kickoff, "public_kickoff"))
@@ -227,6 +339,44 @@ def missed_tag_report(blocks, spans, model_segments, crossings, model_dir, out_d
     return lines
 
 
+def penalty_kick_report(pen_kicks, blocks, final, out_dir, clock):
+    """페널티킥 감지 결과(main 2b에서 최종 구간을 차는 순간에 끊는다. 이 함수는 기록만 한다).
+
+    penalty_kicks.csv / viewer_penalty.csv(뷰어: 차기 15초 전 ~ 차는 순간). 방식은 src/eval_penalty_combo.py:
+    배치(v2, formation): 골라인 위 골키퍼 + 마크 8.15 m 안 키커 1명 외에는 박스 깊숙이·마크 근처에 아무도 없음.
+    보이는 선수 수 조건은 없다(겹친 선수가 한 명으로 잡히는 대회 트래킹 대비, src/eval_penalty_visible.py).
+      run_up_v2           서 있던 키커가 마크에 도착하고, 그 뒤 배치가 깨지는 순간(공 안 씀)
+      setup_then_kick_v2  배치가 1초 이상 이어진 뒤 3초 안에 마크 근처에서 공이 골 쪽으로 빠르게 출발
+    공개 30경기(실제 페널티킥 DFL 3, SkillCorner 3, Metrica 1): 가짜 감지 둘 다 0. 공이 안 보여도 run_up_v2는 그대로다.
+      run_up_v2           DFL 3/3, 시뮬레이션 2/3, Metrica 1/1, SkillCorner 0/3(검출 선수만 1/3)
+      setup_then_kick_v2  DFL 3/3, 시뮬레이션 2/3, Metrica 0/1, SkillCorner 1/3(검출 선수만 1/3)
+    상수는 대회 장면에 맞추지 않는다.
+    열: in_dead(최종 데드 구간 안인지), dead_end_after_s(그 구간이 차는 순간 몇 초 뒤에 끝나는지, 음수면 먼저 끝남)."""
+    rows = []
+    for k, method in pen_kicks:
+        inside = [(a, b) for a, b, _ in final if a <= k < b]
+        near = min(final, key=lambda seg: min(abs(seg[0] - k), abs(seg[1] - k)), default=None)
+        seg = inside[0] if inside else (near[0], near[1]) if near else None
+        rows.append({"kick": int(k), "clock": clock(int(k)), "method": method, "in_dead": bool(inside),
+                     "dead_end_after_s": round((seg[1] - k) / FPS, 1) if seg else None})
+    rows.sort(key=lambda r: r["kick"])
+    table = pd.DataFrame(rows, columns=["kick", "clock", "method", "in_dead", "dead_end_after_s"])
+    table.to_csv(os.path.join(out_dir, "penalty_kicks.csv"), index=False)
+    lead = 15 * FPS
+    pd.DataFrame([{"dead_id": i + 1, "restart_type": "penalty?", "half": 1 if r["kick"] < blocks[1][0] else 2,
+                   "source": r["method"], "t_stop": max(r["kick"] - lead, 0), "t_recover": max(r["kick"] - lead, 0),
+                   "t_setup": max(r["kick"] - lead, 0), "t_kick": r["kick"], "t_receive": r["kick"],
+                   "dead_len_s": lead / FPS, "stop_method": r["method"], "restart_method": "-",
+                   "reception_method": "-", "recover_method": "-", "setup_method": "-", "t_line_out": -1,
+                   "t_vanish": -1, "t_slowdown": -1, "tag_start": "", "tag_end": "", "review": r["method"]}
+                  for i, r in enumerate(rows)]).to_csv(os.path.join(out_dir, "viewer_penalty.csv"), index=False)
+    lines = ["", "== penalty kicks detected (dead ball split at the kick): {} (penalty_kicks.csv, "
+             "viewer_penalty.csv) ==".format(len(rows))]
+    if rows:
+        lines.append(table.to_string(index=False))
+    return lines
+
+
 OUT_DIR = os.path.join(DEAD_DIR, "final_model")
 
 
@@ -256,6 +406,9 @@ def main():
     # 2. 확실한 라인 아웃은 무조건 데드볼
     state, forced = force_line_outs(state, cross_in, sig, score, match.period)
     state &= graded
+    # 2b. 페널티킥 순간 데드볼 끊기(차는 순간은 재개). 공이 보이면 다음 라인 아웃까지, 아니면 0.6초 인플레이.
+    pen_kicks = [(k, m) for k, m in penalty_kicks(match) if graded[k]]
+    state, pen_split = split_at_penalty_kicks(state, [k for k, _ in pen_kicks], match.period, cross_in)
     model_segments = [(a0 + a, a0 + b) for a0, b0 in blocks for a, b in runs_of(state[a0:b0])]
     baseline_count = len(pd.read_csv(os.path.join(model_dir, "segments.csv")))
     # 3. 시작을 라인 아웃 프레임에 맞춤, 4. 공개 킥오프
@@ -277,6 +430,7 @@ def main():
              "start moved to a visible line crossing: {} (shift s p10/p50/p90 {})".format(
                  len(shifts), " / ".join("{:.1f}".format(v) for v in np.percentile(shifts, [10, 50, 90]))
                  if shifts else "-"),
+             "penalty kicks detected {}, dead ball split at the kick {}".format(len(pen_kicks), len(pen_split)),
              "public kickoffs: segments replaced or dropped {}".format(before - len(final) + 1),
              "clear line-outs in graded halves still outside a final dead segment: {}".format(
                  int(sum(1 for c in crossings if c < n and graded[c] and not mask[c]))),
@@ -298,6 +452,7 @@ def main():
     viewer_rows(table, blocks).to_csv(os.path.join(out_dir, "viewer.csv"), index=False)
     write_viewer_signals(os.path.join(out_dir, "frame_signals.csv"), match, sig)
     lines += missed_tag_report(blocks, spans, model_segments, crossings, model_dir, out_dir, clock)
+    lines += penalty_kick_report(pen_kicks, blocks, final, out_dir, clock)
     with open(os.path.join(out_dir, "summary.txt"), "w", encoding="utf-8") as handle:
         handle.write("\n".join(lines) + "\n")
     print("\n".join(lines))
