@@ -1,0 +1,327 @@
+{
+  "seed": 7,
+  "n_splits": 7,
+  "split_unit": "match_half",
+  "shuffle": "numpy.random.default_rng(7).permutation",
+  "feature_count": 370,
+  "suggested_scoring": {
+    "metrics": [
+      "dead_spell_f1",
+      "alive_spell_f1"
+    ],
+    "iou_thresholds": [
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7
+    ],
+    "match_spells_within_each_test_half": true,
+    "report_per_fold_and_mean": true
+  },
+  "shuffled_halves": [
+    {
+      "id": "J03WN1_H2",
+      "match": "J03WN1",
+      "period": 2,
+      "file": "J03WN1.parquet",
+      "rows": 14455,
+      "first_frame": 100002,
+      "last_frame": 172272
+    },
+    {
+      "id": "J03WR9_H1",
+      "match": "J03WR9",
+      "period": 1,
+      "file": "J03WR9.parquet",
+      "rows": 13671,
+      "first_frame": 10000,
+      "last_frame": 78350
+    },
+    {
+      "id": "J03WPY_H1",
+      "match": "J03WPY",
+      "period": 1,
+      "file": "J03WPY.parquet",
+      "rows": 13827,
+      "first_frame": 10000,
+      "last_frame": 79130
+    },
+    {
+      "id": "J03WOY_H1",
+      "match": "J03WOY",
+      "period": 1,
+      "file": "J03WOY.parquet",
+      "rows": 13823,
+      "first_frame": 10000,
+      "last_frame": 79110
+    },
+    {
+      "id": "J03WOY_H2",
+      "match": "J03WOY",
+      "period": 2,
+      "file": "J03WOY.parquet",
+      "rows": 14685,
+      "first_frame": 100004,
+      "last_frame": 173424
+    },
+    {
+      "id": "J03WMX_H1",
+      "match": "J03WMX",
+      "period": 1,
+      "file": "J03WMX.parquet",
+      "rows": 14142,
+      "first_frame": 10000,
+      "last_frame": 80705
+    },
+    {
+      "id": "J03WOH_H1",
+      "match": "J03WOH",
+      "period": 1,
+      "file": "J03WOH.parquet",
+      "rows": 13885,
+      "first_frame": 10000,
+      "last_frame": 79420
+    },
+    {
+      "id": "J03WMX_H2",
+      "match": "J03WMX",
+      "period": 2,
+      "file": "J03WMX.parquet",
+      "rows": 15052,
+      "first_frame": 100002,
+      "last_frame": 175257
+    },
+    {
+      "id": "J03WR9_H2",
+      "match": "J03WR9",
+      "period": 2,
+      "file": "J03WR9.parquet",
+      "rows": 15691,
+      "first_frame": 100001,
+      "last_frame": 178451
+    },
+    {
+      "id": "J03WQQ_H1",
+      "match": "J03WQQ",
+      "period": 1,
+      "file": "J03WQQ.parquet",
+      "rows": 13841,
+      "first_frame": 10000,
+      "last_frame": 79200
+    },
+    {
+      "id": "J03WN1_H1",
+      "match": "J03WN1",
+      "period": 1,
+      "file": "J03WN1.parquet",
+      "rows": 13858,
+      "first_frame": 10000,
+      "last_frame": 79285
+    },
+    {
+      "id": "J03WOH_H2",
+      "match": "J03WOH",
+      "period": 2,
+      "file": "J03WOH.parquet",
+      "rows": 13558,
+      "first_frame": 100001,
+      "last_frame": 167786
+    },
+    {
+      "id": "J03WPY_H2",
+      "match": "J03WPY",
+      "period": 2,
+      "file": "J03WPY.parquet",
+      "rows": 15416,
+      "first_frame": 100004,
+      "last_frame": 177079
+    },
+    {
+      "id": "J03WQQ_H2",
+      "match": "J03WQQ",
+      "period": 2,
+      "file": "J03WQQ.parquet",
+      "rows": 14628,
+      "first_frame": 100001,
+      "last_frame": 173136
+    }
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "train": [
+        "J03WPY_H1",
+        "J03WOY_H1",
+        "J03WOY_H2",
+        "J03WMX_H1",
+        "J03WOH_H1",
+        "J03WMX_H2",
+        "J03WR9_H2",
+        "J03WQQ_H1",
+        "J03WN1_H1",
+        "J03WOH_H2",
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "test": [
+        "J03WN1_H2",
+        "J03WR9_H1"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WN1",
+        "J03WR9"
+      ]
+    },
+    {
+      "fold": 2,
+      "train": [
+        "J03WN1_H2",
+        "J03WR9_H1",
+        "J03WOY_H2",
+        "J03WMX_H1",
+        "J03WOH_H1",
+        "J03WMX_H2",
+        "J03WR9_H2",
+        "J03WQQ_H1",
+        "J03WN1_H1",
+        "J03WOH_H2",
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "test": [
+        "J03WPY_H1",
+        "J03WOY_H1"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WOY",
+        "J03WPY"
+      ]
+    },
+    {
+      "fold": 3,
+      "train": [
+        "J03WN1_H2",
+        "J03WR9_H1",
+        "J03WPY_H1",
+        "J03WOY_H1",
+        "J03WOH_H1",
+        "J03WMX_H2",
+        "J03WR9_H2",
+        "J03WQQ_H1",
+        "J03WN1_H1",
+        "J03WOH_H2",
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "test": [
+        "J03WOY_H2",
+        "J03WMX_H1"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WMX",
+        "J03WOY"
+      ]
+    },
+    {
+      "fold": 4,
+      "train": [
+        "J03WN1_H2",
+        "J03WR9_H1",
+        "J03WPY_H1",
+        "J03WOY_H1",
+        "J03WOY_H2",
+        "J03WMX_H1",
+        "J03WR9_H2",
+        "J03WQQ_H1",
+        "J03WN1_H1",
+        "J03WOH_H2",
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "test": [
+        "J03WOH_H1",
+        "J03WMX_H2"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WMX",
+        "J03WOH"
+      ]
+    },
+    {
+      "fold": 5,
+      "train": [
+        "J03WN1_H2",
+        "J03WR9_H1",
+        "J03WPY_H1",
+        "J03WOY_H1",
+        "J03WOY_H2",
+        "J03WMX_H1",
+        "J03WOH_H1",
+        "J03WMX_H2",
+        "J03WN1_H1",
+        "J03WOH_H2",
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "test": [
+        "J03WR9_H2",
+        "J03WQQ_H1"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WQQ",
+        "J03WR9"
+      ]
+    },
+    {
+      "fold": 6,
+      "train": [
+        "J03WN1_H2",
+        "J03WR9_H1",
+        "J03WPY_H1",
+        "J03WOY_H1",
+        "J03WOY_H2",
+        "J03WMX_H1",
+        "J03WOH_H1",
+        "J03WMX_H2",
+        "J03WR9_H2",
+        "J03WQQ_H1",
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "test": [
+        "J03WN1_H1",
+        "J03WOH_H2"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WN1",
+        "J03WOH"
+      ]
+    },
+    {
+      "fold": 7,
+      "train": [
+        "J03WN1_H2",
+        "J03WR9_H1",
+        "J03WPY_H1",
+        "J03WOY_H1",
+        "J03WOY_H2",
+        "J03WMX_H1",
+        "J03WOH_H1",
+        "J03WMX_H2",
+        "J03WR9_H2",
+        "J03WQQ_H1",
+        "J03WN1_H1",
+        "J03WOH_H2"
+      ],
+      "test": [
+        "J03WPY_H2",
+        "J03WQQ_H2"
+      ],
+      "matches_shared_across_train_test": [
+        "J03WPY",
+        "J03WQQ"
+      ]
+    }
+  ]
+}
