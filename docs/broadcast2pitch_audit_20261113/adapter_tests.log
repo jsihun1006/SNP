@@ -1,0 +1,22 @@
+test_actual_tracker_keeps_detection_indices_after_reordering_and_empty_frames (test_core.AssociationTests.test_actual_tracker_keeps_detection_indices_after_reordering_and_empty_frames) ... ok
+test_gated_lap_and_empty_frames (test_core.AssociationTests.test_gated_lap_and_empty_frames) ... ok
+test_inclusive_pixel_iou (test_core.AssociationTests.test_inclusive_pixel_iou) ... ok
+test_lap_minimizes_cost_including_unmatched (test_core.AssociationTests.test_lap_minimizes_cost_including_unmatched) ... ok
+test_existing_output_is_preserved (test_core.ContractTests.test_existing_output_is_preserved) ... ok
+test_output_cannot_contain_source_inputs (test_core.ContractTests.test_output_cannot_contain_source_inputs) ... ok
+test_refinement_preserves_observations_and_sorts_a_merge (test_core.ContractTests.test_refinement_preserves_observations_and_sorts_a_merge) ... ok
+test_replay_is_explicit_and_malformed_features_fail (test_core.ContractTests.test_replay_is_explicit_and_malformed_features_fail) ... ok
+test_split_uses_gaps_and_unknown_attributes_abstain (test_core.ContractTests.test_split_uses_gaps_and_unknown_attributes_abstain) ... ok
+test_calibration_uses_explicit_frame_key_and_rejects_identity (test_core.GeometryTests.test_calibration_uses_explicit_frame_key_and_rejects_identity) ... ok
+test_fixed_lm_accepts_four_correspondences (test_core.GeometryTests.test_fixed_lm_accepts_four_correspondences) ... ok
+test_four_point_direction_and_mtah_dimensions (test_core.GeometryTests.test_four_point_direction_and_mtah_dimensions) ... ok
+test_projection_at_infinity_is_missing (test_core.GeometryTests.test_projection_at_infinity_is_missing) ... ok
+test_comparison_reports_disagreement_and_unmatched (test_core.IntegrationTests.test_comparison_reports_disagreement_and_unmatched) ... ok
+test_synthetic_video_full_pipeline_is_labeled_synthetic (test_core.IntegrationTests.test_synthetic_video_full_pipeline_is_labeled_synthetic) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.274s
+
+OK
+Saved comparison: /var/folders/h_/4b_t3fnn13q2dg4gtl_8p0lc0000gn/T/tmpvdxq8du3/result
+Saved: /private/var/folders/h_/4b_t3fnn13q2dg4gtl_8p0lc0000gn/T/tmppu3sfzfx/smoke/runs/run_20261113T113256_371823Z

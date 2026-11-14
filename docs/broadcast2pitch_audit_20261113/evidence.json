@@ -1,0 +1,271 @@
+{
+  "date_kst": "2026-11-13",
+  "handoff": {
+    "path": "/Users/kkj_1120/Downloads/GSR1_Broadcast2Pitch_Codex_Handoff.md",
+    "sha256": "43f5bc1caefa65102feef8fee0a3f902379f148ee33ecad80e735b90a76be4f8"
+  },
+  "original_probes": {
+    "python": "3.14.6",
+    "executable": "/opt/anaconda3/bin/python",
+    "upstream_sha": "dbfb65c05c847e8e50baa47aa91ace960cc5e600",
+    "scope": "isolated functions and synthetic geometry; NOT neural inference or tracking benchmark",
+    "probes": {
+      "syntax": {
+        "files": 194,
+        "errors": 0,
+        "imports_tested": false
+      },
+      "confidence_rescaling": {
+        "scale": 0.7407407407407407,
+        "original_score": 0.81,
+        "score_after_original_assignment": 1.4762250000000001
+      },
+      "tracklet_extract": {
+        "source_features": 2,
+        "extracted_features": 0,
+        "extracted_role_item_type": "ndarray",
+        "extracted_jerseys": []
+      },
+      "identity_split": {
+        "continuous_identity_change": [
+          [
+            0,
+            4
+          ]
+        ],
+        "gap_identity_change": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "homography_empty_keypoints": {
+        "exception": "ValueError",
+        "message": "need at least one array to stack"
+      },
+      "homography_four_points_lm": {
+        "residuals": 4,
+        "variables": 8,
+        "exception": "Method 'lm' doesn't work when the number of residuals is less than the number of variables."
+      },
+      "homography_unused_confidences": {
+        "line_confidence_and_circle_intensity_changes_leave_residuals_identical": true
+      },
+      "strack_update_kalman": {
+        "mean_unchanged": true,
+        "last_bbox_x": 110.0,
+        "kalman_bbox_x": 10.0
+      }
+    },
+    "source_hashes": {
+      "inference_soccernetGSR.py": "b72adb9c0976aef645b630651879bb405549448cc8ec9e6745b2b5e88f1616b4",
+      "kpts.py": "6362501bdc23f83263af1aa16784761013b975efb18e8b9755aa86587c2c899f",
+      "IDATR/refine_tracklets.py": "70c032513e8c2abeaf22df339b8bfa8bd461f11ead7450ecd212eec4619393fe",
+      "configs/config.yaml": "562c137040af224b0c3ec40dbad637af15a8ec983436344f2aa50ea20b4281fe"
+    }
+  },
+  "geometry_and_local_inputs": {
+    "python": "3.11.17",
+    "executable": "/opt/anaconda3/envs/mtah2027/bin/python",
+    "upstream_sha": "dbfb65c05c847e8e50baa47aa91ace960cc5e600",
+    "scope": "isolated functions and synthetic geometry; NOT neural inference or tracking benchmark",
+    "probes": {
+      "syntax": {
+        "files": 194,
+        "errors": 0,
+        "imports_tested": false
+      },
+      "confidence_rescaling": {
+        "scale": 0.7407407407407407,
+        "original_score": 0.81,
+        "score_after_original_assignment": 1.4762250000000001
+      },
+      "tracklet_extract": {
+        "source_features": 2,
+        "extracted_features": 0,
+        "extracted_role_item_type": "ndarray",
+        "extracted_jerseys": []
+      },
+      "identity_split": {
+        "continuous_identity_change": [
+          [
+            0,
+            4
+          ]
+        ],
+        "gap_identity_change": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "synthetic_four_point_projection": {
+        "image_to_template_max_error": 5.684341886080802e-14,
+        "inverse_max_pixel_error": 5.684341886080801e-13,
+        "upstream_center_subtraction_max_error": 5.684341886080802e-14,
+        "mtah_normalized_corners": [
+          [
+            4.736951571734001e-16,
+            -1.1755302613678128e-16
+          ],
+          [
+            0.9999999999999998,
+            -1.436759208338438e-16
+          ],
+          [
+            0.9999999999999994,
+            1.0
+          ],
+          [
+            4.567774729886358e-16,
+            1.0000000000000002
+          ]
+        ],
+        "mtah_meter_corners": [
+          [
+            4.988010005035903e-14,
+            -7.993605777301127e-15
+          ],
+          [
+            105.29999999999997,
+            -9.769962616701378e-15
+          ],
+          [
+            105.29999999999994,
+            68.0
+          ],
+          [
+            4.8098667905703346e-14,
+            68.00000000000001
+          ]
+        ],
+        "neural_homography_validated": false
+      }
+    },
+    "checkpoint_presence": {
+      "TRACKER": false,
+      "REID": false,
+      "SFR": false,
+      "IDATR": false,
+      "LLAMA": false,
+      "CLIP": false
+    },
+    "template_dimensions": {
+      "template/Radar.png": [
+        125,
+        78
+      ],
+      "template/Radar_Dimen.png": [
+        125,
+        78
+      ]
+    },
+    "local_input_metadata": {
+      "broadcast": {
+        "video_path": "data/broadcast/BAR-ATH_broadcast-001.mp4",
+        "video_opened": true,
+        "video_metadata_frames": 164487,
+        "fps": 25.0,
+        "width": 1920,
+        "height": 1080,
+        "full_video_decode_performed": false,
+        "atd_records": 164488,
+        "atd_one_based_contiguous": true,
+        "homography_rows": 164488,
+        "homography_zero_based_contiguous": true,
+        "homography_valid_rows": 108248
+      },
+      "tactical": {
+        "video_path": "data/tactical/BAR-ATH_tactical-001.mp4",
+        "video_opened": true,
+        "video_metadata_frames": 199319,
+        "fps": 25.0,
+        "width": 1920,
+        "height": 1080,
+        "full_video_decode_performed": false,
+        "atd_records": 199319,
+        "atd_one_based_contiguous": true,
+        "homography_rows": 199319,
+        "homography_zero_based_contiguous": true,
+        "homography_valid_rows": 199319
+      }
+    },
+    "source_hashes": {
+      "inference_soccernetGSR.py": "b72adb9c0976aef645b630651879bb405549448cc8ec9e6745b2b5e88f1616b4",
+      "kpts.py": "6362501bdc23f83263af1aa16784761013b975efb18e8b9755aa86587c2c899f",
+      "IDATR/refine_tracklets.py": "70c032513e8c2abeaf22df339b8bfa8bd461f11ead7450ecd212eec4619393fe",
+      "configs/config.yaml": "562c137040af224b0c3ec40dbad637af15a8ec983436344f2aa50ea20b4281fe"
+    }
+  },
+  "adapter_tests": {
+    "tests": 15,
+    "passed": 15,
+    "skipped": 0,
+    "platform": "macOS arm64",
+    "python": "3.11.17",
+    "log": "test_actual_tracker_keeps_detection_indices_after_reordering_and_empty_frames (test_core.AssociationTests.test_actual_tracker_keeps_detection_indices_after_reordering_and_empty_frames) ... ok\ntest_gated_lap_and_empty_frames (test_core.AssociationTests.test_gated_lap_and_empty_frames) ... ok\ntest_inclusive_pixel_iou (test_core.AssociationTests.test_inclusive_pixel_iou) ... ok\ntest_lap_minimizes_cost_including_unmatched (test_core.AssociationTests.test_lap_minimizes_cost_including_unmatched) ... ok\ntest_existing_output_is_preserved (test_core.ContractTests.test_existing_output_is_preserved) ... ok\ntest_output_cannot_contain_source_inputs (test_core.ContractTests.test_output_cannot_contain_source_inputs) ... ok\ntest_refinement_preserves_observations_and_sorts_a_merge (test_core.ContractTests.test_refinement_preserves_observations_and_sorts_a_merge) ... ok\ntest_replay_is_explicit_and_malformed_features_fail (test_core.ContractTests.test_replay_is_explicit_and_malformed_features_fail) ... ok\ntest_split_uses_gaps_and_unknown_attributes_abstain (test_core.ContractTests.test_split_uses_gaps_and_unknown_attributes_abstain) ... ok\ntest_calibration_uses_explicit_frame_key_and_rejects_identity (test_core.GeometryTests.test_calibration_uses_explicit_frame_key_and_rejects_identity) ... ok\ntest_fixed_lm_accepts_four_correspondences (test_core.GeometryTests.test_fixed_lm_accepts_four_correspondences) ... ok\ntest_four_point_direction_and_mtah_dimensions (test_core.GeometryTests.test_four_point_direction_and_mtah_dimensions) ... ok\ntest_projection_at_infinity_is_missing (test_core.GeometryTests.test_projection_at_infinity_is_missing) ... ok\ntest_comparison_reports_disagreement_and_unmatched (test_core.IntegrationTests.test_comparison_reports_disagreement_and_unmatched) ... ok\ntest_synthetic_video_full_pipeline_is_labeled_synthetic (test_core.IntegrationTests.test_synthetic_video_full_pipeline_is_labeled_synthetic) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 0.274s\n\nOK\nSaved comparison: /var/folders/h_/4b_t3fnn13q2dg4gtl_8p0lc0000gn/T/tmpvdxq8du3/result\nSaved: /private/var/folders/h_/4b_t3fnn13q2dg4gtl_8p0lc0000gn/T/tmppu3sfzfx/smoke/runs/run_20261113T113256_371823Z\n",
+    "neural_inference_tested": false,
+    "windows_executed": false,
+    "cuda_inference_tested": false
+  },
+  "existing_tracked_diff_unchanged": true,
+  "models_downloaded_separately": false,
+  "match_accuracy_benchmark_performed": false,
+  "source_files_added": [
+    "broadcast_gsr/.gitignore",
+    "broadcast_gsr/README.md",
+    "broadcast_gsr/__init__.py",
+    "broadcast_gsr/__main__.py",
+    "broadcast_gsr/calibration.py",
+    "broadcast_gsr/cli.py",
+    "broadcast_gsr/compare.py",
+    "broadcast_gsr/configs/mtah_broadcast.json",
+    "broadcast_gsr/geometry.py",
+    "broadcast_gsr/io.py",
+    "broadcast_gsr/matching.py",
+    "broadcast_gsr/models.py",
+    "broadcast_gsr/pipeline.py",
+    "broadcast_gsr/refinement.py",
+    "broadcast_gsr/requirements-core.txt",
+    "broadcast_gsr/requirements-models.txt",
+    "broadcast_gsr/run_windows.cmd",
+    "broadcast_gsr/setup_windows.cmd",
+    "broadcast_gsr/smoke.py",
+    "broadcast_gsr/tests/test_core.py",
+    "broadcast_gsr/upstream.py"
+  ],
+  "existing_git_status_preserved_excluding_new_directories": true,
+  "new_source_hashes": {
+    "broadcast_gsr/models.py": "a00566fd062cb813badf6c073b0cc5836fb35290fbcd720f3458f566e9608d82",
+    "broadcast_gsr/requirements-core.txt": "d6592df467f541071e189b68bbcf581dc1a937fd45c552399802761324e24a0d",
+    "broadcast_gsr/requirements-models.txt": "a70b9c28643090b292db8bb77ca1aae2ddca911926c1b8b5cd779104b0326d8d",
+    "broadcast_gsr/io.py": "7cc68e3b46f13f54622103ddce8c8dc0a5355b62eecf2a4489598eb793faef26",
+    "broadcast_gsr/__init__.py": "1c7dbe2bdd017c6f0761dc387e2a48438966d05d063da57b2511c19c144158df",
+    "broadcast_gsr/refinement.py": "eb0dbefccc95ba1c54063dee145ec36f339f210f6eadbdb9694492f73687935e",
+    "broadcast_gsr/matching.py": "5618cd68e538099ab130be1dcd14f1adfe57a10526024e7d1df43e0b2b3b8b6c",
+    "broadcast_gsr/README.md": "d397d136c2ce876a9c7a38f323a0d2368885906cc1bd5a367419234fcdb98874",
+    "broadcast_gsr/run_windows.cmd": "aa5c9d53804f5e114e9bfa1a16a5e638813ac45989e61dc2f38b6fc2c5710c05",
+    "broadcast_gsr/cli.py": "a5527340360d6222dbaaa86d32f50a401343cf688d428cc4f4ca46b736b73082",
+    "broadcast_gsr/.gitignore": "88053916c0d528c0fd7bc253c07cf215506f58adc48846c45809c80b2cfe812b",
+    "broadcast_gsr/pipeline.py": "3c9d60e021c585a3a4a2f4db31a0fa11322d79648014980c4f7f9ede78c396b9",
+    "broadcast_gsr/geometry.py": "3e73149887be7eb6eaf028f520f6a99621493922fd815a75b76651ecfd355ac7",
+    "broadcast_gsr/upstream.py": "b42789148b080479ff1be145ba854102c87260e9763ddad997ac644c42a2af18",
+    "broadcast_gsr/setup_windows.cmd": "50832aa3db1d9e64524f34df4e718ff15279a2f20e7b52c69ae314d46aaaf3f5",
+    "broadcast_gsr/compare.py": "a38818ee3a223bc61411edcdcf2676124ff0c5d0b84c6134389e5938064fdbb8",
+    "broadcast_gsr/__main__.py": "bd045ddd5242d002f692dac452be9afba38deef5cde541a5fc074bfef5987b91",
+    "broadcast_gsr/calibration.py": "934d29b0f1823fc1408f522af43c864f0db31c5c4ab918e40344b55ee5df55ea",
+    "broadcast_gsr/smoke.py": "17fa89c2eb763ea831cf22f10107460dfbddaf768a0560117d36ca1f358d86a0",
+    "broadcast_gsr/tests/test_core.py": "728342674970f5e8dafa3c67d9922ad47af40efdede01c53a94c2d52c3720523",
+    "broadcast_gsr/configs/mtah_broadcast.json": "5882fec36ff4c7ffb4e9a6fe9d267cdb0a3eb24cf9ea91e0198b7e73609c2ffc"
+  }
+}
