@@ -1,0 +1,7 @@
+# Preserve recorded SHA256 bytes even with Windows core.autocrlf=true.
+competition_judgement/** -text
+MTAH_Relational_Starter/** -text
+starter/view_team_extents.py -text
+starter/team_extents.py -text
+tests/*.py -text
+contest_detection/** text eol=lf

@@ -1,0 +1,1047 @@
+{
+  "date": "2026-11-15",
+  "path_base": "original repository root",
+  "uploaded_artifact_contents": false,
+  "files": [
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/alternative_evidence_diagnostic.csv",
+      "bytes": 5631,
+      "sha256": "4354bd12ba82c9b3ec4f1507d9c802578ba0d3a023e6a44be82b0dcc3615ab44"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/candidate_distribution.csv",
+      "bytes": 2375,
+      "sha256": "0eab7ea5e38d61ccd1d440d8a0d053a768961202399e319fd0f2cee8b1fcad41"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/candidate_reason_summary.csv",
+      "bytes": 5686,
+      "sha256": "6020877931fbcf4990eb22c6e072b4b66b292222cf84c608bb8d1596e10b269c"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/candidate_support_summary.csv",
+      "bytes": 13395,
+      "sha256": "9b676d5a2096552156c497572cd3d11780aefcf696033ff1b8b9fe7432782959"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/cluster_candidate_decisions.csv.gz",
+      "bytes": 5181630,
+      "sha256": "5520157fbbf8daa36eb35630c80c1c690d876ffcc43ad7733602d6b7d7977918"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/consecutive_frame_runs.csv",
+      "bytes": 622,
+      "sha256": "7a7eb8ce31bb135d9b8a7d4eb3188a616abcc39ec8915104f854d2fb89a1d834"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/data_dictionary.json",
+      "bytes": 7023,
+      "sha256": "65d0cb4043dbb407ec4de367ce0fd46daa97903f64d5f83abc78724e646fe7ea"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/frame_candidate_decisions.csv.gz",
+      "bytes": 1316841,
+      "sha256": "82aae8e7dcd20f52db78194324d9941c6fd767d7d21b274a69b538dde9ecece6"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/legacy_input_preservation.json",
+      "bytes": 910,
+      "sha256": "ab82710ad837e3a4867c59bdd15ec6a98189225d23b6e23979007911b640b61b"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/masking_conditions.csv",
+      "bytes": 7190,
+      "sha256": "aef971a9544afa7f9740aa9808f10ed252b2dbe90793cd4ca6b51e3f988a9f1e"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/masking_robustness.csv",
+      "bytes": 175304,
+      "sha256": "1b0692de361ddac489207fdfabf6e642b2692f59501d7c63400bf9476ddf8d22"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/preregistered_config.json",
+      "bytes": 2982,
+      "sha256": "40fe4a954ed8bedfd86e107cc7f5f693d00337e517be53d3c3393faf9fbab7a0"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/preservation_start.json",
+      "bytes": 882013,
+      "sha256": "fefe921a503b5f41b9f7e163b880a629727a843ab9a1b9768070faac24359180"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/radius_overlap_diagnostic.csv",
+      "bytes": 1806,
+      "sha256": "0c156ea01a60c14b9be1ad123f8d1b4641f93c1fa6b206304487b388dbd00c19"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/summary.json",
+      "bytes": 1478,
+      "sha256": "8ec6f37325f091d1a20b92722e0407a085a2f94487771435d03aee0489223d16"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/tracking_probe_correspondence.csv",
+      "bytes": 307,
+      "sha256": "508e4a36699c4089328e95438bb170d072438a229347a5566685fde3fa692a30"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/tracking_robustness.csv",
+      "bytes": 20951,
+      "sha256": "03cad8b19a7cb12aca6e7000b591b7c9474b259a4e191706964f4de4d51274b7"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/upstream_unknown_reason_summary.csv",
+      "bytes": 4270,
+      "sha256": "099c92dc54342875d50b32bacb33a6ba9ad90ff306136a71d4a3a03f5a8d1530"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/v1_agreement.csv",
+      "bytes": 745,
+      "sha256": "8a630b052e2ca32d159c2b3224107d7fa8447402feae333a98223d386a6dde1e"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_final_20261110/verification.json",
+      "bytes": 1336,
+      "sha256": "6c48ad220f476ac36df3f74e1d9fefb441a855cef6b11ae1bc6ce924da146363"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/alternative_evidence_diagnostic.csv",
+      "bytes": 5631,
+      "sha256": "4354bd12ba82c9b3ec4f1507d9c802578ba0d3a023e6a44be82b0dcc3615ab44"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/candidate_distribution.csv",
+      "bytes": 2375,
+      "sha256": "0eab7ea5e38d61ccd1d440d8a0d053a768961202399e319fd0f2cee8b1fcad41"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/candidate_reason_summary.csv",
+      "bytes": 5686,
+      "sha256": "6020877931fbcf4990eb22c6e072b4b66b292222cf84c608bb8d1596e10b269c"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/candidate_support_summary.csv",
+      "bytes": 13395,
+      "sha256": "9b676d5a2096552156c497572cd3d11780aefcf696033ff1b8b9fe7432782959"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/cluster_candidate_decisions.csv.gz",
+      "bytes": 5181630,
+      "sha256": "91de9dfb436c75e07b11b70c15696a5a04c0585943b58bc6c13e4a21fb0a1ddd"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/consecutive_frame_runs.csv",
+      "bytes": 622,
+      "sha256": "7a7eb8ce31bb135d9b8a7d4eb3188a616abcc39ec8915104f854d2fb89a1d834"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/frame_candidate_decisions.csv.gz",
+      "bytes": 1316841,
+      "sha256": "09d01171657b1164372b13f6b066a2a6bc70b76c82457839c2be422a7d3b91d8"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/preregistered_config.json",
+      "bytes": 2982,
+      "sha256": "40fe4a954ed8bedfd86e107cc7f5f693d00337e517be53d3c3393faf9fbab7a0"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/upstream_unknown_reason_summary.csv",
+      "bytes": 4270,
+      "sha256": "099c92dc54342875d50b32bacb33a6ba9ad90ff306136a71d4a3a03f5a8d1530"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_v23_incomplete_radius_join_20261110/v1_agreement.csv",
+      "bytes": 745,
+      "sha256": "8a630b052e2ca32d159c2b3224107d7fa8447402feae333a98223d386a6dde1e"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_video_debug/candidate_preview.json",
+      "bytes": 236,
+      "sha256": "e1332353b3b79039637eed461ee6b9c61d3111952faa5ab56cea88a7090e1371"
+    },
+    {
+      "path": "data/derived/competition_judgement/candidate_video_debug/video_debug_verification.json",
+      "bytes": 447,
+      "sha256": "18d923ae84efe167d738afa6fcadfdfdf3579ca5145028318e07d78f6e0ef46f"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/alternative_evidence_diagnostic.json",
+      "bytes": 221,
+      "sha256": "038e4f14df9585ed09b641d04bd7d0d43388a8ac425cb23bcf81e008c3f4573d"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/cluster_pattern_profiles.csv.gz",
+      "bytes": 126845160,
+      "sha256": "6f229aad8f2cfa715c22955bb1f86647acb38840ee735c550abe94a39b40d451"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/data_dictionary.json",
+      "bytes": 6403,
+      "sha256": "cf27fed1a52b8d52dbe0f55d8c48e64b0692ba091396de5711129cef7a37836b"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/data_dictionary_initial.json",
+      "bytes": 6332,
+      "sha256": "b17b5ed52f3149516fdd00a0c9c6d4b9a0c171098248943b7fe77e1c35c0e251"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/evidence_value_equality.csv",
+      "bytes": 324,
+      "sha256": "4392cd8cdab93acb7e1b6621c003fc94bebc2982472549fdc5290387d4f2c8fa"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/feature_support_summary.csv",
+      "bytes": 3529,
+      "sha256": "3f5b2b8d3ddeb467ed445eeae2689745329c6b2c705f4c739f4cfb3451c7aa88"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/frame_multilabel_summary.json",
+      "bytes": 301,
+      "sha256": "aa28db93a451577c62e646e1b864ca1981bdaba8bb0f4a5466a8c5eee0c924e5"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/frame_pattern_profiles.csv.gz",
+      "bytes": 1275932,
+      "sha256": "bf98a72d10b48c00e6147facab63cc71bd56f38baa950361926079778d9a37f0"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/legacy_comparison.csv",
+      "bytes": 677,
+      "sha256": "0b3c1bd2c43c3c17acf50c0bf85b4d598f89506ef28e061d50252daa5749be58"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/legacy_diagnostics.csv.gz",
+      "bytes": 10681813,
+      "sha256": "34ae0379e2a8e99af7534acf2f5942436b0a5311b59c470b1302066bada28fdb"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/masking_conditions.csv",
+      "bytes": 6608,
+      "sha256": "5813b9eb3bec84198349cfd0f74d97f94f2bb63bd9f0bcd25fe8030eff25e913"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/masking_conditions_initial.csv",
+      "bytes": 6608,
+      "sha256": "5813b9eb3bec84198349cfd0f74d97f94f2bb63bd9f0bcd25fe8030eff25e913"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/masking_robustness.csv",
+      "bytes": 126214,
+      "sha256": "efdf7ccb93ae79729c520877d53c9d23f3826d36255e6e76f9b00c5af71c8283"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/masking_robustness_initial.csv",
+      "bytes": 116555,
+      "sha256": "f6611368a2b14b0c63fed01b7d994717011f08d881278e9ca1aa74434bc0c008"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/pattern_availability.csv",
+      "bytes": 906,
+      "sha256": "2183aa236ef6e8bb13b32bd765f854375af0588fede9ab9418b2a23ae2115d53"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/pattern_findings.json",
+      "bytes": 3689,
+      "sha256": "b007bb34fc194aba9f96cbad54acb9d9b5424935de3e837dbf7fc760b9103633"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/pattern_overlap.csv",
+      "bytes": 90,
+      "sha256": "9858e58ad1a695a17639c08c012b05d74f81d208c5290afef38dc670d2ae01be"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/preregistered_config.json",
+      "bytes": 2130,
+      "sha256": "c3b90dca8bae63e4ca88e4d5cf065ea5cb81115bc1c7513f8fd40e8f38e6df47"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/preservation_start.json",
+      "bytes": 1561172,
+      "sha256": "e578bdd7020cd418205ac2faa0b02c2cb5a1346b4ffd0807eb717fab2031a48e"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/summary.json",
+      "bytes": 774,
+      "sha256": "c7159e63308a0f4642f92478e58a4647c04a61f55237373fa68eb3fb9872e950"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/temporal_sequence_validation.csv",
+      "bytes": 3728,
+      "sha256": "ccdb19a669c7a4bf53b4bb2208b17897878ac7a0abb06b9aee50cd9fbc9da670"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/test_results.json",
+      "bytes": 88,
+      "sha256": "499c993ca8650bb8b793575b31ff19c54585029dd3d3a65a42402c3439dfc18a"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/test_results_initial.json",
+      "bytes": 88,
+      "sha256": "a5c315eada5b28d07bca18d4183729212f5261ee4abad768a33578c8108b811c"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/tracking_probe_correspondence.csv",
+      "bytes": 239,
+      "sha256": "28b4fe95c630469d614dddd2a3b4e3590a2159a43f3e98e27801f8e7d8d46f3a"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/tracking_probe_correspondence_initial.csv",
+      "bytes": 239,
+      "sha256": "28b4fe95c630469d614dddd2a3b4e3590a2159a43f3e98e27801f8e7d8d46f3a"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/tracking_robustness.csv",
+      "bytes": 10339,
+      "sha256": "b488f4b98999811fca7dc762b05be889af50afe3dd445b7977598d28e61a046d"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/tracking_robustness_initial.csv",
+      "bytes": 9482,
+      "sha256": "c5a58c71cda354b375e9c85fd5f4ad8bda4592349bc1d1fb8017c3ef1d456236"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/verification.json",
+      "bytes": 2959,
+      "sha256": "6549154973bb648e40cd6a660f2753446044454cce25497074b9c00469cd6f17"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_pattern_b1_final_20261110/verification_initial.json",
+      "bytes": 2959,
+      "sha256": "8de22d5f1f16ef1ec08bce9363bf6305942b9316077dd1950c64cb9db935f1a9"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_20261109/cluster_evidence.csv.gz",
+      "bytes": 71620999,
+      "sha256": "55e72c161fdbc20109c2a4492b8a5589da005796dda9bb308b4c7a00d8e8173b"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_20261109/preregistered_config.json",
+      "bytes": 2953,
+      "sha256": "a6a779a78e3e650f992d956115a97f27a4b40af10f0bcc6a946b2a5c76e68a20"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/cluster_evidence.csv.gz",
+      "bytes": 155695837,
+      "sha256": "ccf75b95928126ebbec8187c052919e6b594e22ae62f76a4537e1a6a1122196f"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/final_manifest.json",
+      "bytes": 2437,
+      "sha256": "d78a6bba35ce450a399730b7255eccad1d51409f983eabb77c8cf78c55da7afa"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/frame_evidence.csv.gz",
+      "bytes": 9534409,
+      "sha256": "5b4f77783ac4aa8ad6836bfbec604d473a514fa0610a77aa5dd78f5f0198e0f8"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/frame_evidence_with_spatial.csv.gz",
+      "bytes": 19346808,
+      "sha256": "e8c31dd88938b8187324036257b77e9fa804543ff8a3988e3a91b57a9f33646f"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_conditions.csv",
+      "bytes": 8559,
+      "sha256": "0d1bddcf24eb28558ef1948f7192e03145f0a53991b66bc0c2cf9fb3eb18ff49"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_distortion.csv",
+      "bytes": 378892,
+      "sha256": "80e92abef403239c3b2a25c1241280e8a9f7f8e03c6c812eebfad44cef944495"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_final/masking_conditions.csv",
+      "bytes": 8559,
+      "sha256": "0d1bddcf24eb28558ef1948f7192e03145f0a53991b66bc0c2cf9fb3eb18ff49"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_final/masking_distortion.csv",
+      "bytes": 378892,
+      "sha256": "80e92abef403239c3b2a25c1241280e8a9f7f8e03c6c812eebfad44cef944495"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_final/masking_paired_block_comparisons.csv",
+      "bytes": 4712,
+      "sha256": "2119be7354c10b0722407dee2785590af1dedac33c656a44b31757ebcb6132fc"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_final/masking_reference_evidence.csv.gz",
+      "bytes": 388139,
+      "sha256": "01859cdf5505a9a946d20d50e17eecac878e7066d1a0e0bf20190c755e28efc0"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_final/masking_reference_keys.csv",
+      "bytes": 38243,
+      "sha256": "bd0bbcfe49df1a0d0a36958d2fa7271923e313cfa8eb957f337d215424f10a26"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_final/summary.json",
+      "bytes": 323,
+      "sha256": "1d4f2816a80a0717071689acb06b2db22805093cb343f35c2a74c362d97bb7f1"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_paired_block_comparisons.csv",
+      "bytes": 4712,
+      "sha256": "2119be7354c10b0722407dee2785590af1dedac33c656a44b31757ebcb6132fc"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_reference_evidence.csv.gz",
+      "bytes": 388139,
+      "sha256": "43f4b243d97201893a5460ef200ced0517ca6f744fc2f0d8f22d08188f2193ed"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/masking_reference_keys.csv",
+      "bytes": 38243,
+      "sha256": "bd0bbcfe49df1a0d0a36958d2fa7271923e313cfa8eb957f337d215424f10a26"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/preregistered_config.json",
+      "bytes": 2953,
+      "sha256": "a6a779a78e3e650f992d956115a97f27a4b40af10f0bcc6a946b2a5c76e68a20"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/preservation_start.json",
+      "bytes": 1551512,
+      "sha256": "3b20ab25c52539425dd32781b1fc335faeb14c8074d2286d4af61abad3c20c8d"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/stage_a_reference_equality.csv",
+      "bytes": 110,
+      "sha256": "e8bfee761666a275dfc0a2526d980115666f31cb492015b20d74d4b14cb67e0c"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/stage_b_findings.json",
+      "bytes": 1465,
+      "sha256": "bb710bd1f86bec1c19219260a6ef491a897ce2b01791fd037a478112c4714d52"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/summary.json",
+      "bytes": 1941,
+      "sha256": "49dda4bbc91de94e5c43466cfcd92e6e22eee55cb355aad3d906503a325394ac"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/test_results.json",
+      "bytes": 220,
+      "sha256": "93f3233698c41a9996bd497393ac854d069a3d584a1695f97143e4fddf85dce5"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/validation_correlations.csv",
+      "bytes": 30988,
+      "sha256": "4ecb8fe40515377563849b4eeb8e83aa17336fc1eff9316a3549042aa10d6795"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/validation_distributions.csv",
+      "bytes": 12647,
+      "sha256": "f5f9961b11e80831223949df060de60943c08db1b0a8507e4116f4fd1deb7d1c"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/validation_evidence.csv.gz",
+      "bytes": 23293747,
+      "sha256": "76ba1343920228b27385c7311d525cc4648ab0a274e025818aaae4f190a70cf0"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/validation_frame_joint_summary.json",
+      "bytes": 589,
+      "sha256": "225d15d34afcef6a34fdc89e60546c547b65b81a9b1f634b53d95cd05211462c"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/validation_joint_summary.json",
+      "bytes": 968,
+      "sha256": "a5be6ecda341d457839bb7e1571c5bb25c17b3d1cb6334945d010ce89460f3b0"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/validation_reason_counts.csv",
+      "bytes": 2278,
+      "sha256": "76646d5534b7c15bcc6f3e684b5810395b9f0eb79563cad3892ea49273432df1"
+    },
+    {
+      "path": "data/derived/competition_judgement/evidence_stage_b_final_20261109/verification.json",
+      "bytes": 1503,
+      "sha256": "e5a7045af671ad4053ff3e7c0874d22c41fed4d2a7b10cd3576306f52dcf4986"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/cluster_local_temporal.csv.gz",
+      "bytes": 119149140,
+      "sha256": "849ff724503fb82be4a147f11e76488f1855a4e4f43d5682767cd7a1a7f0206d"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/data_dictionary.json",
+      "bytes": 12808,
+      "sha256": "37c8c5abfdda61c7fc7e8b9c5f0dd6bb5f93431cf6ddd3f6983c11088f7d26e3"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/frame_local_temporal.csv.gz",
+      "bytes": 1849460,
+      "sha256": "fa7f548e3f71021677f3545047f0688609c33df84909f7de9fc59b3415ed930b"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/legacy_pattern_preservation.json",
+      "bytes": 1994,
+      "sha256": "089541d15a2112c8e228e5bbb9dd9d14315f9bf2a70cac03438e24c23fb71650"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/local_coverage_summary.csv",
+      "bytes": 9117,
+      "sha256": "50d49bc4d6863614d9cc4e7dc1c5d61c9cddb0e525f23567d16a1840867aa332"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/masking_conditions.csv",
+      "bytes": 7230,
+      "sha256": "f48f9fc5a127bf3cd4891ac9140b935f365b772eff352abe3ea45ea63766e380"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/masking_robustness.csv",
+      "bytes": 474432,
+      "sha256": "b553b598ae3cde8fb779d70eafcca933d3b7f1f24f5b0382b67d1090ffc447ff"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/pattern_unknown_recovery.csv",
+      "bytes": 10572,
+      "sha256": "ebfaf29e2a00faf8af8caf6da9a527617098e1146209c8f9a885da630d72ae6c"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/preregistered_config.json",
+      "bytes": 2592,
+      "sha256": "f6fe987833e4caa30327f259df5b00071a7727f2287957777f998bfa86d3303b"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/preservation_start.json",
+      "bytes": 878753,
+      "sha256": "306bc3eed9b506531f1854e859b37d4e7ebe99e8baeffc1bd3eb4ffbead2a189"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/summary.json",
+      "bytes": 865,
+      "sha256": "34b05500209d048d141d141078f53370c5610c16fefedb02b8857dfaf11cd8a3"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/tracking_probe_correspondence.csv",
+      "bytes": 239,
+      "sha256": "28b4fe95c630469d614dddd2a3b4e3590a2159a43f3e98e27801f8e7d8d46f3a"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/tracking_robustness.csv",
+      "bytes": 38966,
+      "sha256": "9cb67ff42543fa889c3780e870025681fcdf1321026d9c4e8608a7e6334a3f1e"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_temporal_b2_final_20261110/verification.json",
+      "bytes": 1413,
+      "sha256": "ef7c790277bfb2f360d2a4ad5f69f3f3ae5d11b8bdd7c25747cea1fc2624bd3f"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/equal_support_robustness.json",
+      "bytes": 9499,
+      "sha256": "ebc27e144761e6fe857213ff1f4295796d761000190a20dc079f2fced888ede1"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/local_cluster_report.json",
+      "bytes": 104046,
+      "sha256": "38a5ee22c25ae7b0c3bf63f4f50f23176a34bbd6cc7729b5351ed5b9ae43dc15"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/local_clusters.csv",
+      "bytes": 218687159,
+      "sha256": "696dc1d3d04a42f3ff925a930759232e860337853729ab905658e8fb45123e66"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/local_frame_features.csv",
+      "bytes": 78509500,
+      "sha256": "caf696bf4cc3308148b986aa8525778572000aa7ead1ceabcb077d436ac0fc6d"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/output_validation.json",
+      "bytes": 2089,
+      "sha256": "bdc8458770fb68d7719679c2b37f67a3922ff73a421ee45af6e2c520100ac9cc"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/preregistered_config.json",
+      "bytes": 629,
+      "sha256": "d1a9fcfd0564e9817a69ad007bb0ae100e87898ecd122a58d0c54f805b6b5b11"
+    },
+    {
+      "path": "data/derived/competition_judgement/local_v2_1_20261109/verification.json",
+      "bytes": 1887,
+      "sha256": "d72b0dc69c8006c80b1097e71841b4643b373648fc949bd339913c3a6e371c92"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/actual_policy_coverage.csv",
+      "bytes": 48870,
+      "sha256": "98d01c9b65f668177d75dfd9489e9689392009c9b62109515cd78453df30f505"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/controlled_conditions.csv",
+      "bytes": 50368,
+      "sha256": "0b0de45e550bdd3ed7128d4217cf91af79d03f7b734914422e0a85ff9d0ab1ec"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/controlled_feature_errors.csv",
+      "bytes": 4987206,
+      "sha256": "da70c53e1333a5932b78f0c8e7a989af541d12420dacd388f308e7f2932d2a5a"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/empirical_support_errors.csv",
+      "bytes": 86856,
+      "sha256": "6f88f2db7998abaedf8c8d1eea7d8e7152086e8fd129d8b150543ea712241e6a"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/experiment_summary.json",
+      "bytes": 9713,
+      "sha256": "851d0a07169bedd9e8c73a9006356a6f332c0315ff62bef76768856061251138"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/frame_missingness_summary.csv",
+      "bytes": 5940547,
+      "sha256": "65c1063b928c8b93893239724ea9d93845dc429560b9ea0c18b5c34d54ebceb5"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/missingness_summary.json",
+      "bytes": 3596538,
+      "sha256": "764b6dbc98f4830b14bf8e92087a80ae5de4e0fe682e14a3b723b54d2b91a7d1"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/one_run_location_sensitivity.csv",
+      "bytes": 28401,
+      "sha256": "38ec16bbbfdadc2c5d588c097dbe0176e2e1e86f2b9af9bd4aa0a105f762f435"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/paired_block_comparisons.csv",
+      "bytes": 24671,
+      "sha256": "b338b90a46ccad33c33042d13a77f35b8d08c93435cace816fbf67d3efa839a3"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/preregistered_diagnostic_config.json",
+      "bytes": 936,
+      "sha256": "760ca8c96320cd2b366d9d0bfc42e9b6e86589063a6693bb3f4c8aaac69763d4"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/reference_keys.csv",
+      "bytes": 38243,
+      "sha256": "bd0bbcfe49df1a0d0a36958d2fa7271923e313cfa8eb957f337d215424f10a26"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/reference_temporal_arrays.npz",
+      "bytes": 280208,
+      "sha256": "76f0f42c32fddd85e40ca756fe5f274ed1a9cf2850f018e509bf5b2d3ab80010"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/summary.json",
+      "bytes": 11718,
+      "sha256": "d32c5cdd5100b3460a30108e636419c5e971e6fc6a8ee44ce7860542b4fafb93"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/synthetic_policy_comparison.csv",
+      "bytes": 3145987,
+      "sha256": "aa02cb5cd5ee95a70577b62b37a23d432fbb0c69926544239b527b39d6cfaff8"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_20261109/train_pattern_library.npz",
+      "bytes": 166711,
+      "sha256": "450055663a0c8dacc01845bb0eef5b065af5fbd7295cfd03675bc65476148ecf"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/actual_policy_coverage.csv",
+      "bytes": 48870,
+      "sha256": "98d01c9b65f668177d75dfd9489e9689392009c9b62109515cd78453df30f505"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/cause_overlap.csv",
+      "bytes": 142419,
+      "sha256": "7a69de59ed113a69d31cbe555698b653009f5e143fba28a9b42421190221013b"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/cause_summary.csv",
+      "bytes": 16345,
+      "sha256": "f995171d9807ebc71dcc80fac705720f3bf5c4f1ed86685740e0708d5c4e3dcb"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/controlled_conditions.csv",
+      "bytes": 50368,
+      "sha256": "0b0de45e550bdd3ed7128d4217cf91af79d03f7b734914422e0a85ff9d0ab1ec"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/controlled_feature_comparison.csv",
+      "bytes": 5384174,
+      "sha256": "cc2a3f1383fa47418d8c0848adb7d09132d31b23bf0e835f701b3eabac6e2590"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/controlled_feature_errors.csv",
+      "bytes": 4986903,
+      "sha256": "e0353d93da47e596e0c596b1fed1c4f690f735a69a873c443ab6fbd4a3d14561"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/empirical_support_errors.csv",
+      "bytes": 86856,
+      "sha256": "6f88f2db7998abaedf8c8d1eea7d8e7152086e8fd129d8b150543ea712241e6a"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/experiment_summary.json",
+      "bytes": 9713,
+      "sha256": "851d0a07169bedd9e8c73a9006356a6f332c0315ff62bef76768856061251138"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/frame_missingness_summary.csv",
+      "bytes": 5940547,
+      "sha256": "65c1063b928c8b93893239724ea9d93845dc429560b9ea0c18b5c34d54ebceb5"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/missing_run_summary.csv",
+      "bytes": 11116,
+      "sha256": "e0655a67cb149ad8b1d02e836e058b963ff6c29012d3f53a602c13454e66a32d"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/missingness_summary.json",
+      "bytes": 3689697,
+      "sha256": "20080919bfed714bf67c848df48720c74c748ad9d015fbd662e8a326a31da122"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/one_run_location_sensitivity.csv",
+      "bytes": 28401,
+      "sha256": "38ec16bbbfdadc2c5d588c097dbe0176e2e1e86f2b9af9bd4aa0a105f762f435"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/paired_block_comparisons.csv",
+      "bytes": 24671,
+      "sha256": "b338b90a46ccad33c33042d13a77f35b8d08c93435cace816fbf67d3efa839a3"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/preregistered_diagnostic_config.json",
+      "bytes": 936,
+      "sha256": "760ca8c96320cd2b366d9d0bfc42e9b6e86589063a6693bb3f4c8aaac69763d4"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/preservation_start.json",
+      "bytes": 1539932,
+      "sha256": "2e93fcb748a7137aa4e055efe63ba20a73358d142f682f749d7720cf12f5d2c4"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/reference_keys.csv",
+      "bytes": 38243,
+      "sha256": "bd0bbcfe49df1a0d0a36958d2fa7271923e313cfa8eb957f337d215424f10a26"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/reference_temporal_arrays.npz",
+      "bytes": 280208,
+      "sha256": "76f0f42c32fddd85e40ca756fe5f274ed1a9cf2850f018e509bf5b2d3ab80010"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/same_side_location_sensitivity.csv",
+      "bytes": 15379,
+      "sha256": "c8981f900145dad46ec2468e7431aabe798b7e83814d66c45d1bfede863aa25f"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/stage_a_findings.json",
+      "bytes": 1516,
+      "sha256": "134ad966a6ec601b5d71c2dc23f936cf7a77a0efa7a49360a32828ee822418a9"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/summary.json",
+      "bytes": 11719,
+      "sha256": "4700c791e4cf25e49f65319a88b8da97232a2a2a097fd244ee419819133a6021"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/synthetic_policy_comparison.csv",
+      "bytes": 3145987,
+      "sha256": "aa02cb5cd5ee95a70577b62b37a23d432fbb0c69926544239b527b39d6cfaff8"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/temporal_region_summary.csv",
+      "bytes": 33363,
+      "sha256": "929c37da4624a28697152fe354d00303973969e75692a23862685f10455df9b3"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/test_results.json",
+      "bytes": 282,
+      "sha256": "79ec2d10e937882058627fda78587f9212f72d2e979e5566c070e39dc2a9073c"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/train_pattern_library.npz",
+      "bytes": 166711,
+      "sha256": "450055663a0c8dacc01845bb0eef5b065af5fbd7295cfd03675bc65476148ecf"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/train_region_cooccurrence.csv",
+      "bytes": 10033,
+      "sha256": "f54d79637f3b4a0c22bfa68dc68ddf76d1535f82cf711a4102143d51f1b72eb3"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/verification.json",
+      "bytes": 2083,
+      "sha256": "3a226a7b15402465dfc35fd2dad9d05e68b3327ef7a1e9742e773ea868d685c2"
+    },
+    {
+      "path": "data/derived/competition_judgement/missingness_stage_a_final_20261109/verification_initial.json",
+      "bytes": 2053,
+      "sha256": "04ac356d9acbaa78347111ce8e3fed8c26b07f398429d9406d03b894c2e88b85"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/candidate_frames.csv",
+      "bytes": 231171422,
+      "sha256": "01920f8fd5195ba67b40cc98655ae0d0a671b3f82c50a534f8c996fdb848daf5"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/candidate_segments.csv",
+      "bytes": 128510,
+      "sha256": "553badc7842945e90bbaa76a3fa3a208109a34f5eaed209c6a82ab5c42db66f5"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/output_validation.json",
+      "bytes": 518,
+      "sha256": "0fec0809efac59e3daf44b15cc3f679077863360e465ba578e8ba5f770869cb2"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/policy_resolved.json",
+      "bytes": 3696,
+      "sha256": "6d92ee8b20f417fd8f984f631536ac2eb848552b7eacc8de8a8cc291a5a469c6"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/preregistered_policy.json",
+      "bytes": 1609,
+      "sha256": "3d20e339a083bf84b639e5121c4016dc29185969128bcfd451d491ce8b58a21d"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/quality_and_sensitivity.json",
+      "bytes": 44386,
+      "sha256": "e340a4296cb0d0e9e1f9978c90b06ea96b4b0696a151e5fa5aae80a968be63b7"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_20261109/verification.json",
+      "bytes": 1851,
+      "sha256": "81aa5a7f36b5eb9b371c264d7d792c860724551641a6a48d9f5aa28636208fb9"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/candidate_frames.csv",
+      "bytes": 231304872,
+      "sha256": "8d85cca6d408ef14ab127d41e5eef3c14ef14a08a08f0b36bfde020494faa6c2"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/candidate_segments.csv",
+      "bytes": 128510,
+      "sha256": "553badc7842945e90bbaa76a3fa3a208109a34f5eaed209c6a82ab5c42db66f5"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/output_validation.json",
+      "bytes": 771,
+      "sha256": "1c2eea7e3f77f617654d0276cf174946cae39eb0d530516274043cb283ca82d1"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/policy_resolved.json",
+      "bytes": 3696,
+      "sha256": "6d92ee8b20f417fd8f984f631536ac2eb848552b7eacc8de8a8cc291a5a469c6"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/preregistered_policy.json",
+      "bytes": 1609,
+      "sha256": "3d20e339a083bf84b639e5121c4016dc29185969128bcfd451d491ce8b58a21d"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/quality_and_sensitivity.json",
+      "bytes": 44386,
+      "sha256": "68792e0acdab42ddd9fe249f8da3fd68f7234ae6b95ec9d014664323b5cfa196"
+    },
+    {
+      "path": "data/derived/competition_judgement/stage1_v1_final_20261109/verification.json",
+      "bytes": 1851,
+      "sha256": "a20b2afbabbae2340dc0289ce1982ecac43480085003fc4a82bd863e7f24118a"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/cluster_temporal_features.csv",
+      "bytes": 866677918,
+      "sha256": "7c11690880e3619c254e8c32955e0ad1c9de54a8e54ef4e9d024de17e37c8a17"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/frame_temporal_features.csv",
+      "bytes": 57127939,
+      "sha256": "0246fe9eb7def7b6770f531a04c4cfa22a1286abc3420123284d47f76db44264"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/pair_cache/pair_3m.npy",
+      "bytes": 105240560,
+      "sha256": "15102350cf9efaa6f906934fac5b5b24bdeea07a93948ec0bb38f263f76ef4ab"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/pair_cache/pair_5m.npy",
+      "bytes": 105240560,
+      "sha256": "f74da17a208fcca5aa4b9e61a6ebc301255e66eeb9568fd9e622847cfc6c4606"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/pair_cache/pair_kernel.npy",
+      "bytes": 420961856,
+      "sha256": "710a9187e6baa522d970f4688611d834b631bc44d89e5ecee86e21a11c7a05c9"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/preregistered_config.json",
+      "bytes": 549,
+      "sha256": "238e22cce955e356a64f5cfe787870ef382883218f9e971bb669d9f036385e1d"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/temporal_report.json",
+      "bytes": 31080,
+      "sha256": "24f92a6ccfb5ee28d8c2d62f46be20c4c40776124a9f3bf2e733fef03a22acba"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/temporal_robustness.json",
+      "bytes": 29207,
+      "sha256": "25e8763157b12f9b06e0b21440253b5541d8c0dcf1092d764d7d75b85c74ecd3"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_20261109/verification.json",
+      "bytes": 2643,
+      "sha256": "f102bb8fb9c0b94a40fd2370f0991cf61ad1df3e83c3cbcae4bec8f012f5ec92"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/cluster_temporal_features.csv",
+      "bytes": 866677918,
+      "sha256": "7c11690880e3619c254e8c32955e0ad1c9de54a8e54ef4e9d024de17e37c8a17"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/frame_coverage.json",
+      "bytes": 86,
+      "sha256": "08a2a9fa0cd3bf16c630eae455856794e2f8f1e015e080d2c09e13bcecb19a10"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/frame_temporal_features.csv",
+      "bytes": 57127939,
+      "sha256": "0246fe9eb7def7b6770f531a04c4cfa22a1286abc3420123284d47f76db44264"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/output_validation.json",
+      "bytes": 1859,
+      "sha256": "039434e820f29ac9f1f9573431e30ef020da6ca737aed229589c163c4b51d9ec"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/pair_cache/pair_3m.npy",
+      "bytes": 105240560,
+      "sha256": "15102350cf9efaa6f906934fac5b5b24bdeea07a93948ec0bb38f263f76ef4ab"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/pair_cache/pair_5m.npy",
+      "bytes": 105240560,
+      "sha256": "f74da17a208fcca5aa4b9e61a6ebc301255e66eeb9568fd9e622847cfc6c4606"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/pair_cache/pair_kernel.npy",
+      "bytes": 420961856,
+      "sha256": "710a9187e6baa522d970f4688611d834b631bc44d89e5ecee86e21a11c7a05c9"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/pattern_descriptions.json",
+      "bytes": 487,
+      "sha256": "cfd343b86f53a98dd4395456ad3e51b01c962506682278007bac8daf88148d16"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/preregistered_config.json",
+      "bytes": 549,
+      "sha256": "238e22cce955e356a64f5cfe787870ef382883218f9e971bb669d9f036385e1d"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/synthetic_scenarios.json",
+      "bytes": 2941,
+      "sha256": "f046b8172ab323c9e7cfcd00cdb9041ee34a1c6cec7f7364ac6df8e9f9ac6432"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/temporal_report.json",
+      "bytes": 31079,
+      "sha256": "1172ba98bad23ee7bb93fa6fda2a83504a3a4c319af27584cec2a8e660887986"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/temporal_robustness.json",
+      "bytes": 29209,
+      "sha256": "f5a5de33aaad51fe991415ff093344e6dc06771eb71d5ff0061b5b659c7bcf52"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/validation_comparison.json",
+      "bytes": 9506,
+      "sha256": "8833fac01d733fee3e83682794ffc2660902bb695226a04d6538844a5787d9e8"
+    },
+    {
+      "path": "data/derived/competition_judgement/temporal_v2_2_final_20261109/verification.json",
+      "bytes": 2643,
+      "sha256": "68f59f76e8f378f7039ba5369cded39a79e2d9f10739546aa9118aa28e5f3832"
+    },
+    {
+      "path": "data/derived/relational_phase1_v1_20261109/features.csv",
+      "bytes": 134873083,
+      "sha256": "7ca48ce2535a87b7fc6ac7e71e3ff1b1d39d8e62e0c308e5d2a2ae993339e852"
+    },
+    {
+      "path": "data/derived/relational_phase1_v1_20261109/output_validation.json",
+      "bytes": 387,
+      "sha256": "8fcf7fcaffba3f51bcd13d2274e218d5aa99faacc9ebdeda51b8eeeda2e2c50f"
+    },
+    {
+      "path": "data/derived/relational_phase1_v1_20261109/quality_report.json",
+      "bytes": 14001,
+      "sha256": "f3681db04f668dbd9b62fc296fe2c50a16fd63e7fa4d11504527229333071ca2"
+    },
+    {
+      "path": "data/derived/relational_phase1_v1_20261109/schema.json",
+      "bytes": 1317,
+      "sha256": "9d01e380e068e4fb734af9d5986939588920758cd8f93aa8aac8c6b975c2b4d6"
+    },
+    {
+      "path": "data/derived/relational_phase1_v1_20261109/symmetric_features.csv",
+      "bytes": 108454766,
+      "sha256": "34598b45c905984d60d8b40e1f35f325ad936ea140c2f76ce43ac4962227f10f"
+    },
+    {
+      "path": "data/derived/relational_phase1_v1_20261109/zones_48.csv",
+      "bytes": 15699719,
+      "sha256": "8907cf192a9016df4d84d1ff5c4efbefdee0bd84ac493919927a787329a0f41b"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/cache.json",
+      "bytes": 668,
+      "sha256": "d5af0cfdec9613aa6c69aaeacc8888339c747fbc5c3d552dd78d53e69a9108e4"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/frame_ids.npy",
+      "bytes": 1594680,
+      "sha256": "9e5e216ab498a484f23ae5f6cdee81c1e5f838cdd8a1371fd169666cf88059c9"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/parse_invalid.npy",
+      "bytes": 9168802,
+      "sha256": "5243490f0223747e749cf3053c9d9b2bb2d48e92eb90846bc50edb9bb6d24170"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/parse_missing.npy",
+      "bytes": 9168802,
+      "sha256": "534660df0223a93add570a1d5823cabd0474b97cb14682a242378623db2721ab"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/parse_partial.npy",
+      "bytes": 9168802,
+      "sha256": "5243490f0223747e749cf3053c9d9b2bb2d48e92eb90846bc50edb9bb6d24170"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/periods.npy",
+      "bytes": 199447,
+      "sha256": "08a2ee96d5e9ae44d855f6eaca8b0af89aca99e535a059271168ede02625d955"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/team_codes.npy",
+      "bytes": 174,
+      "sha256": "9ff998820d43a6b875957bbef35323693ae5b11d9d3f28fd0e0e802023d6dc39"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/raw_cache/xy_m.npy",
+      "bytes": 146698912,
+      "sha256": "b380898ffcfee8a5b96b3cc59f7c94af52c32a6b79359046e29b2dcd35d28574"
+    },
+    {
+      "path": "data/derived/relational_temporal_v1_20261109/split_manifest.json",
+      "bytes": 805,
+      "sha256": "75c28379183a0f61b7f8547210793ecd2fde10f57b303301ab487f2a2420c5a4"
+    },
+    {
+      "path": "data/tactical/BAR-ATH_tactical_atd.txt",
+      "bytes": 195714285,
+      "sha256": "f130e350d2bfdf734b7e32f072931fccc6d015c1e837d082064875fe0a700431"
+    },
+    {
+      "path": "data/tactical/BAR-ATH_tactical_atd.xml",
+      "bytes": 59057,
+      "sha256": "327e35e32e46a647389b88f883d4f9a2ab931e3e6148aef2fcf8f22b1e93c43a"
+    }
+  ]
+}

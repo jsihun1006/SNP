@@ -1,0 +1,141 @@
+{
+  "schema_version": "0.1.0",
+  "primary_file": "candidate_frames.csv",
+  "number_of_rows": 199319,
+  "frame_range_inclusive": [
+    0,
+    199318
+  ],
+  "columns": [
+    {
+      "name": "frame",
+      "dtype": "int64",
+      "meaning": "official 0-based video frame",
+      "required": true
+    },
+    {
+      "name": "period",
+      "dtype": "int8",
+      "meaning": "official period / routing",
+      "required": true
+    },
+    {
+      "name": "in_official_block",
+      "dtype": "bool",
+      "meaning": "membership in official 2 graded half blocks",
+      "required": true
+    },
+    {
+      "name": "n_home",
+      "dtype": "int16",
+      "meaning": "observed home player count",
+      "required": true
+    },
+    {
+      "name": "n_away",
+      "dtype": "int16",
+      "meaning": "observed away player count",
+      "required": true
+    },
+    {
+      "name": "strict_quality_valid",
+      "dtype": "bool",
+      "meaning": "existing frame quality policy",
+      "required": true
+    },
+    {
+      "name": "metric_valid",
+      "dtype": "bool",
+      "meaning": "ability to calculate needed candidate metrics",
+      "required": true
+    },
+    {
+      "name": "temporal_available",
+      "dtype": "bool",
+      "meaning": "25-frame history available without crossing gaps",
+      "required": true
+    },
+    {
+      "name": "contact_player_fraction",
+      "dtype": "float64",
+      "meaning": "fraction of observed players with one opposing neighbor within 3m",
+      "required": true
+    },
+    {
+      "name": "cross_pairs_3m",
+      "dtype": "float64",
+      "meaning": "opposing player pairs <=3m",
+      "required": true
+    },
+    {
+      "name": "cross_pairs_5m",
+      "dtype": "float64",
+      "meaning": "opposing player pairs <=5m",
+      "required": true
+    },
+    {
+      "name": "cross_pairs_10m",
+      "dtype": "float64",
+      "meaning": "opposing player pairs <=10m",
+      "required": true
+    },
+    {
+      "name": "cross_min_m",
+      "dtype": "float64",
+      "meaning": "minimum observed H-A separation in meters",
+      "required": true
+    },
+    {
+      "name": "cross_cluster_fraction",
+      "dtype": "float64",
+      "meaning": "largest H-A 3m component size / observed players",
+      "required": true
+    },
+    {
+      "name": "spatial_contact_index",
+      "dtype": "float64",
+      "meaning": "existing baseline spatial evidence; not probability",
+      "required": true
+    },
+    {
+      "name": "approach_change_index",
+      "dtype": "float64",
+      "meaning": "existing causal 25-frame approach evidence, NaN if unavailable",
+      "required": true
+    },
+    {
+      "name": "candidate_score",
+      "dtype": "float64",
+      "meaning": "existing baseline score or documented spatial fallback; not probability",
+      "required": true
+    },
+    {
+      "name": "candidate_state",
+      "dtype": "string",
+      "allowed": [
+        "candidate",
+        "not_candidate",
+        "insufficient_observation"
+      ],
+      "required": true
+    },
+    {
+      "name": "quality_tier",
+      "dtype": "string",
+      "meaning": "explicit reliability tier",
+      "required": true
+    },
+    {
+      "name": "reason_codes",
+      "dtype": "string",
+      "meaning": "pipe-separated reproducible detector/quality codes",
+      "required": true
+    }
+  ],
+  "required_secondary_files": [
+    "candidate_segments.csv",
+    "quality_and_sensitivity.json",
+    "policy_resolved.json"
+  ],
+  "note": "Schema is an implementation contract. Codex must adapt if actual source API requires more fields and document changes. NaN is not false/negative."
+}

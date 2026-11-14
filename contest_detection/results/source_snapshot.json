@@ -1,0 +1,932 @@
+{
+  "captured_date": "2026-11-15",
+  "base_commit": "17f527eb31c4bc2a8f9dc61d0c08e93cd1173808",
+  "note": "Current local source snapshot; not historical Git commits. All copied bytes unchanged.",
+  "files": [
+    {
+      "path": "competition_judgement/README.md",
+      "sha256": "0eaffc29974b768afc04f75da6b40a64d47eff38450df6f5ccb664bcb51caf15",
+      "bytes": 3914
+    },
+    {
+      "path": "competition_judgement/configs/candidate_v23.json",
+      "sha256": "dc0b6cd80781584a4c2a30a4cd6c5d32d7f32c412e37a420d125dda7050ff73e",
+      "bytes": 2578
+    },
+    {
+      "path": "competition_judgement/configs/evidence_stage_b.json",
+      "sha256": "6b9875e7d4017cc49bab915d270474304da83e66a17097b0c3300d25f414514d",
+      "bytes": 2185
+    },
+    {
+      "path": "competition_judgement/configs/initial_policy.json",
+      "sha256": "3d20e339a083bf84b639e5121c4016dc29185969128bcfd451d491ce8b58a21d",
+      "bytes": 1609
+    },
+    {
+      "path": "competition_judgement/configs/local_clusters_v2_1.json",
+      "sha256": "0021c44d8b8b95e5a45fd183b01b6b33700d1a088570fb0d13a02391b4f21705",
+      "bytes": 617
+    },
+    {
+      "path": "competition_judgement/configs/local_temporal_b2.json",
+      "sha256": "fc417aae1f7d1cd8ee864652d5edcaeaa6d33c57174a6ae9da5dbfdb9c987160",
+      "bytes": 2171
+    },
+    {
+      "path": "competition_judgement/configs/missingness_stage_a.json",
+      "sha256": "cf1fb99c887d66fb9b99c25b1b58fe13a5aa34746f0496d5a97537ad12e92d0e",
+      "bytes": 869
+    },
+    {
+      "path": "competition_judgement/configs/pattern_b1.json",
+      "sha256": "3e17f6b2464ae6cadd68c9bb97ce32bf548dc4e0dd2d5ac7361e521fe1cb11ae",
+      "bytes": 1465
+    },
+    {
+      "path": "competition_judgement/configs/temporal_relations_v2_2.json",
+      "sha256": "238e22cce955e356a64f5cfe787870ef382883218f9e971bb669d9f036385e1d",
+      "bytes": 549
+    },
+    {
+      "path": "competition_judgement/docs/00_OBJECTIVE_AND_ROUTING.md",
+      "sha256": "fcbd9be8eee1012b7d6f3fea2cd26d06b8562a46c436e074154c88a9cce887e6",
+      "bytes": 2990
+    },
+    {
+      "path": "competition_judgement/docs/01_DATA_AND_RULES.md",
+      "sha256": "de0b233b64c36c9311ac9f7be1d9e31c0123fa0c314a479e1c6d0a43f6051c9e",
+      "bytes": 4805
+    },
+    {
+      "path": "competition_judgement/docs/02_CANDIDATE_ALGORITHM.md",
+      "sha256": "7605da935b5255ff9aa4183df9713d81a777d7a94bf00cc28b83eae0af1d9055",
+      "bytes": 5757
+    },
+    {
+      "path": "competition_judgement/docs/03_TEST_AND_DIAGNOSTICS.md",
+      "sha256": "28ed69a1786c751234c6933cb72589b54d2952e92527d01e86184e80b569d253",
+      "bytes": 3692
+    },
+    {
+      "path": "competition_judgement/docs/04_IMPLEMENTATION_ROADMAP.md",
+      "sha256": "b04e4d08a6368a657dd850771d19b665fbfe678410ab22a35366b0126952e76f",
+      "bytes": 3358
+    },
+    {
+      "path": "competition_judgement/docs/05_EXISTING_ASSETS.md",
+      "sha256": "f3852697efc3a7135a5226de48483e8456907d1995227bae90a44dcb45857c27",
+      "bytes": 2504
+    },
+    {
+      "path": "competition_judgement/docs/CANDIDATE_VIDEO_DEBUGGER.md",
+      "sha256": "357dc7d5574d40ae087cba51239c452b79a6e7711ee3f88856ca92600c16359e",
+      "bytes": 5766
+    },
+    {
+      "path": "competition_judgement/docs/STAGE0_AUDIT.md",
+      "sha256": "02c72aa74ead40ebc47290789bc210b70c9ca038b74dd8561c8bcd05deede65a",
+      "bytes": 4059
+    },
+    {
+      "path": "competition_judgement/docs/STAGE1_EXECUTION_REPORT.md",
+      "sha256": "5e8a59a651ee9e72a4bbeee416bb05444f32844a5459c3c28dd5ee0d2c6ab7c1",
+      "bytes": 22662
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_1_DESIGN_AUDIT.md",
+      "sha256": "060280ea24d57bda1e298bbaea2e9cf248088f7782e72d8fb8b341767122e542",
+      "bytes": 4823
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_1_LOCAL_CLUSTER_REPORT.md",
+      "sha256": "5e73c4d1b0acdd546641423740090e5ff66c747406626f0669c9f6c37c839740",
+      "bytes": 27449
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_2_5_EVIDENCE_REPORT.md",
+      "sha256": "4be34f030e03afcd9710fa4f42665f4cfe4eeb729e418acdddbef4e28c738048",
+      "bytes": 34955
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_2_DESIGN_AUDIT.md",
+      "sha256": "e6d743ad696c63431dca469f03caabc5f447fa854c0c35f8d7fbcbacba33f11b",
+      "bytes": 5044
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_2_MISSINGNESS_DIAGNOSTIC.md",
+      "sha256": "992021afe125885e50e5ecbf282ad6a3ee82d401046d76d7bbe219312b2fa29f",
+      "bytes": 39667
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_2_TEMPORAL_RELATIONS_REPORT.md",
+      "sha256": "4236fea34268f99557b9458a45fef72936bf3fc88bf5c4cebb47dda0d048d4ce",
+      "bytes": 30520
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_3_CANDIDATE_DECISION_REPORT.md",
+      "sha256": "db2182a53c50509dd3551cc60da4d12395a545ea8e485e06ed99b4b766747aa7",
+      "bytes": 23282
+    },
+    {
+      "path": "competition_judgement/docs/STAGE2_3_DECISION_DESIGN_AUDIT.md",
+      "sha256": "404621d8f2252fab0fd700253e83d9143410a273aacc37aa09f8a638e1ba39fc",
+      "bytes": 7267
+    },
+    {
+      "path": "competition_judgement/docs/STAGE_B_1_DATA_DICTIONARY.md",
+      "sha256": "68814233bd8fb0de4502c4fb97d729d3c63e39c5d513a3f671557da704ec2a9b",
+      "bytes": 8664
+    },
+    {
+      "path": "competition_judgement/docs/STAGE_B_1_PATTERN_ARCHITECTURE_REPORT.md",
+      "sha256": "05648e5c0449bcf56d32c3e6ea18cc37dedb0ab23bf3d5b56937ca9484b91073",
+      "bytes": 28002
+    },
+    {
+      "path": "competition_judgement/docs/STAGE_B_1_PATTERN_DESIGN_AUDIT.md",
+      "sha256": "44dcb98c181fc1b20ab10f5ed88f96215f759ad70675506b03c29ffb99aa7cd0",
+      "bytes": 6624
+    },
+    {
+      "path": "competition_judgement/docs/STAGE_B_2_DESIGN_AUDIT.md",
+      "sha256": "7087b8dcc62e94f3a7475c63fd41e786b99bdbc9faaccfca0856c8758023b5f4",
+      "bytes": 5133
+    },
+    {
+      "path": "competition_judgement/docs/STAGE_B_2_LOCAL_TEMPORAL_REPORT.md",
+      "sha256": "698cfdc87ee4c812cc28d84fc849ee3571970a9cfb1ff14583bbd3d30ee6a5e7",
+      "bytes": 22270
+    },
+    {
+      "path": "competition_judgement/docs/STAGE_B_DESIGN_AUDIT.md",
+      "sha256": "664374465b9229bc64c90cf811f69663b251e42c258e454f703d0b9df3788fcb",
+      "bytes": 4678
+    },
+    {
+      "path": "competition_judgement/schemas/candidate_frame_columns.json",
+      "sha256": "7e9364e2c403b75398377251cf13b28cfac2f9e42190733831f48f234ea29170",
+      "bytes": 3593
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/__init__.py",
+      "sha256": "e351967d9a0f7e0734ddc1652419c1ecef7243fd6bfadc051270680d8ae3f3e6",
+      "bytes": 108
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/analyze_local_clusters.py",
+      "sha256": "4117fe4bc3181a5077504391df9b8bd2ec42cccf5a0bb9b149e89f7827cb0283",
+      "bytes": 14225
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/analyze_temporal_relations.py",
+      "sha256": "4599ece0165d0c2ddd454f5595b4295d777577d5b0f1fe42a481ef59a5ac0f9c",
+      "bytes": 11981
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/artifacts.py",
+      "sha256": "b0828d30c7995f5450ddbbcc27aaca5ad4bf2789ebddd2a80d2a87f31512b3d8",
+      "bytes": 4335
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/audit_evidence_delivery.py",
+      "sha256": "b4584ef9693ac9fd4ec35a330769f241784369e2a8eea1b92df37c60ea9b8783",
+      "bytes": 4388
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/candidate_decision_v23.py",
+      "sha256": "f446f7a316fdcf68ce6016f519c7912435aaa200059377ae783cf041e5aa4aac",
+      "bytes": 10455
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/candidate_diagnostics_v23.py",
+      "sha256": "f7ccef3de49d7c9654822159e54b9e8334929a365089f0bede721279e49678c6",
+      "bytes": 17036
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/candidate_frames_v23.py",
+      "sha256": "a2bf0691624d0acd600aca5a65edae99baddea4ebbf32a13f06064c0c932a762",
+      "bytes": 5453
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/cli.py",
+      "sha256": "3028228da38f3c156d230ce51734e23c26fd67f1c61fccde7daafa36ed0f37c6",
+      "bytes": 13633
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/compare_local_robustness.py",
+      "sha256": "15a3ed20bd84d189ed8ada8f554c9f95060c56d7c6dc0553b5e19643b2545923",
+      "bytes": 3826
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/controlled_temporal_masking.py",
+      "sha256": "5f1a1e55bff496c90478fc8711cc5ccc6cedf1ce6882d702d343b393126ebfde",
+      "bytes": 8065
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/detector.py",
+      "sha256": "99070f09d6dbe46c9cb2f5cb0eaba2c3807c659985dd8e9273b452354e4664de",
+      "bytes": 7744
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/diagnose_evidence_masks.py",
+      "sha256": "5fadaea959d8aada3abeb6016bb0f2af33e2e235e483ccf819542f86e22fcee0",
+      "bytes": 1848
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/diagnostics.py",
+      "sha256": "ce77ab1381d3510c6674f3ea0d85bcb0041a9e4541eccf7fdc3d79a46a9356f2",
+      "bytes": 5107
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/evidence_diagnostics.py",
+      "sha256": "ce76629a3b6172666fc03cc065f11c38435053133d749d49fc477aeb2e5fe90b",
+      "bytes": 11607
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/evidence_features.py",
+      "sha256": "cbd01253985f8666e9872702a063fadce9830676c9728bf850ba8fcd978e18d8",
+      "bytes": 12976
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/evidence_frames.py",
+      "sha256": "f201128db201682d68ea1ed3beafef046622393d6fca42c16c482e90526b97ce",
+      "bytes": 3157
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/evidence_source.py",
+      "sha256": "650d5eb10c98d753c53e1a313400814b0a5646781bafe37b5c07b3e1310f07a3",
+      "bytes": 6961
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_clusters.py",
+      "sha256": "206fb28623eb9e1b72beda5cbfdd2a3e0f9f749fdaf271466877d70b2bcb9b56",
+      "bytes": 3570
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_diagnostics.py",
+      "sha256": "4eafb471ea3223cd603c84559aa8013bbc491a6ea73b2bf6ef315d2260336acf",
+      "bytes": 6885
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_features.py",
+      "sha256": "0d41c3bf5270fa466ef412a0b5a46a33fabc2f1497a94a6952146921040af532",
+      "bytes": 5981
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_temporal_diagnostics.py",
+      "sha256": "8cc5ee5e2a8f6350bf10200ae80852cc62e3d49155caedb10618b3282e79bfec",
+      "bytes": 12469
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_temporal_features.py",
+      "sha256": "a046657fce2ffa9feaa7a439f065b7ee00d74fabebee5b8bd4f4015c20f1a9c0",
+      "bytes": 11070
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_temporal_frames.py",
+      "sha256": "6b5669cfd41cbc43a0cb10b60e631046f8f299902b768468e7c8efa494e895d6",
+      "bytes": 3317
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/local_temporal_source.py",
+      "sha256": "d30145ed15ff1fdd735bcec0c6cac01f720056510f33e7f88296999737605835",
+      "bytes": 2447
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/missingness_cache.py",
+      "sha256": "337cf3d6af3e9213cbbce21092f833ef4e22c521cea20da90057795138373f84",
+      "bytes": 3087
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/missingness_diagnostics.py",
+      "sha256": "ff551962caad363fb4a81f0da79b88ae8d9f7b1fda80eb4cdfd8a37ebc3c8854",
+      "bytes": 13584
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/missingness_experiments.py",
+      "sha256": "5a2f6efb8b26b81d494831d4ed9829506b53827801ed6a7c37323400e61b5268",
+      "bytes": 11913
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/partial_window_diagnostics.py",
+      "sha256": "e4f8bcaa94b252a20652468376f424aec3b12e484b6f8a8b23b5d955d36800bb",
+      "bytes": 1688
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/pattern_diagnostics.py",
+      "sha256": "bab94b508ca8b1bb4fc1384a2c7f7065174d49196c16209cda3a7ab4bc9ab52a",
+      "bytes": 14010
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/pattern_frames.py",
+      "sha256": "68d708f4cce340f5e88ac3f94c2bc7407fdbb0e545d0d97bb90aacab34c21494",
+      "bytes": 3168
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/pattern_profiles.py",
+      "sha256": "7b768f4608fe9159f6e4561b62ecfbf5fe3ad7c9a7be4749986e5c06d26a3a20",
+      "bytes": 7976
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/pattern_source.py",
+      "sha256": "ed119d42b8e980b8e0ff4a2e8d9342dac1f3085a64edb1840b63bb4ee5bbdef8",
+      "bytes": 5174
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/pattern_values.py",
+      "sha256": "ea041a6a56b81921403bf2efd4c73b0ca5fe32af57cc644fd0263391bce4f6f4",
+      "bytes": 6475
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/quality.py",
+      "sha256": "7860304b63b8c1274b0c4ebe133a2f97cfbef2e7ffd82bedf14746b11805e5fe",
+      "bytes": 4101
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/resume_evidence_diagnostics.py",
+      "sha256": "a20a0d8dbeed7a6b5aab73270b908261e30680492952e16e5f6121a72d9f4417",
+      "bytes": 3424
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/run_candidate_v23.py",
+      "sha256": "a7e2d48e4bff2434b5c2dd43032d542f3d3149368c2d2c476ad29a954a8b5806",
+      "bytes": 10048
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/run_evidence_stage_b.py",
+      "sha256": "b73ff52f2cb3d65f7aba36a55d0bdf9f5f63e50e790e1eedb09545d38e109e30",
+      "bytes": 5060
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/run_local_temporal_b2.py",
+      "sha256": "3a7b564aaceaf7fec4df529209586fb15c9698c7157ec6cadd0171dae6b130ad",
+      "bytes": 10395
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/run_missingness_stage_a.py",
+      "sha256": "2a5f9b0e00da8f8e5161a321b10bf13e27f9179bdf6be37a53b7de9545163761",
+      "bytes": 4000
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/run_pattern_b1.py",
+      "sha256": "2b6fb12853b9b69c017953dfb3bc8347df66799d37e3917f3f879274cd981ac6",
+      "bytes": 6349
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/summarize_missingness_stage_a.py",
+      "sha256": "ffbd909360c2260d39eeb7f11e9a503dc00f0bde218398945ae3cc0a6882e700",
+      "bytes": 7922
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/temporal_features.py",
+      "sha256": "9119f97c763c929f7d00c670b0273d047349ce1e9d62a142aeac355b4e27e210",
+      "bytes": 8519
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/temporal_matching.py",
+      "sha256": "7e23a8b029364dcccd7361cc25b101dda6e7de71b04993a17550def50e21eace",
+      "bytes": 3747
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/temporal_robustness.py",
+      "sha256": "a1e2f953bd65e4f48b76df5f948a01e945e8bcf9b87bfec48223774aa2ea408f",
+      "bytes": 6056
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/temporal_source.py",
+      "sha256": "06e1af6585b08c5684a568724c9381d54f4a1a0cd3a2d2a879f17fc7d561c44d",
+      "bytes": 6022
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/verify_candidate_v23.py",
+      "sha256": "508e446d26c719b716753f97bd53e1d5aad4bf9e7dab9d64d46e8b7b7fb49d01",
+      "bytes": 5227
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/verify_evidence_stage_b.py",
+      "sha256": "eb04b621d00fa659d4e68aa42c8cf1ddcc04bbad820301fc4991fe1e24997f69",
+      "bytes": 7981
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/verify_local_temporal_b2.py",
+      "sha256": "51f4b7195249c1fac18ccea7988082345e5c65f18b70ca5d71821175d38a715b",
+      "bytes": 6082
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/verify_missingness_stage_a.py",
+      "sha256": "c6b06ed74f11285a66a9e1c62b3b09a1ddd0f558a75458555854f3f784b1ec45",
+      "bytes": 4472
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/verify_pattern_b1.py",
+      "sha256": "6a7e1ce98c5899fde99eb4aa336785907b93d2754d4dfa8182be914cec7e0e60",
+      "bytes": 9069
+    },
+    {
+      "path": "competition_judgement/src/competition_judgement/view_candidate_video.py",
+      "sha256": "ab7f6350a5d4be2842e42c544b501ace77e62ff4adda35f7d6cdfee1a8229f4d",
+      "bytes": 14504
+    },
+    {
+      "path": "competition_judgement/tests/README.md",
+      "sha256": "1ed2bd90b120b96ed8d42ad9b668e77b52eeff39aad89e4d78742cb409caaff3",
+      "bytes": 698
+    },
+    {
+      "path": "competition_judgement/tests/test_candidate_v23.py",
+      "sha256": "041e4d9560156123633acb31f742c54a87a74b33f0dfc3e3a0cf36f073d17dbb",
+      "bytes": 14120
+    },
+    {
+      "path": "competition_judgement/tests/test_candidate_video.py",
+      "sha256": "ef038def57415b2a676927b15f8fa830cc8a8433372046e2903cb239f88a0f32",
+      "bytes": 3675
+    },
+    {
+      "path": "competition_judgement/tests/test_evidence_stage_b.py",
+      "sha256": "9a27d0c5d08f27314f1d4563b5c6c18eff2e49663f5b6460c0ac8f27524274d7",
+      "bytes": 14649
+    },
+    {
+      "path": "competition_judgement/tests/test_local_clusters.py",
+      "sha256": "6e457c83395161e9bcf301140a926756ec984440dec56cb05a0b6636fb05159d",
+      "bytes": 12990
+    },
+    {
+      "path": "competition_judgement/tests/test_local_temporal_b2.py",
+      "sha256": "7833710f62c2a8dfee1fd40c210939a2b1e57435ed8754efe8ab90ff340d8427",
+      "bytes": 12218
+    },
+    {
+      "path": "competition_judgement/tests/test_missingness_stage_a.py",
+      "sha256": "0dcacb06d985a89e66abf5ad2a6b3df6dcf67d31cde3049999aa57b6b7493b29",
+      "bytes": 7615
+    },
+    {
+      "path": "competition_judgement/tests/test_pattern_b1.py",
+      "sha256": "71e06877f70e86af59a1987ee5aa800a028564488ca3337694b4a0b558df9b7c",
+      "bytes": 11483
+    },
+    {
+      "path": "competition_judgement/tests/test_stage1.py",
+      "sha256": "1cd2dd828d29849267baad783dfdc99595ce5e128860d2e41ae9c9f66f92bacd",
+      "bytes": 11737
+    },
+    {
+      "path": "competition_judgement/tests/test_temporal_relations.py",
+      "sha256": "18659c0522b334894b08ece377c5ecac2b77921fa9e8bec3954e13083b61d024",
+      "bytes": 10906
+    },
+    {
+      "path": "competition_judgement/view_candidate_video.py",
+      "sha256": "bd388921c7fa55574c50757ad607b8dc6da71f284eb49cb432006eee3fe27aef",
+      "bytes": 332
+    },
+    {
+      "path": "MTAH_Relational_Starter/CODEX_REFERENCE_STUDY_PROMPT.md",
+      "sha256": "083b0e24b8aef3b6b8912ef61bc785b0baec515447919a59525977b3236dcc19",
+      "bytes": 5317
+    },
+    {
+      "path": "MTAH_Relational_Starter/README.md",
+      "sha256": "81f9eec127c68a5c40f14b7370698a02640f90a4145fe43e76d1b643e5b25dfe",
+      "bytes": 11093
+    },
+    {
+      "path": "MTAH_Relational_Starter/configs/a_diagnostic_once.json",
+      "sha256": "9ee70b29c1ae82e5b37af9c431d9d01175f9768613ad0478ee113a256497ac46",
+      "bytes": 721
+    },
+    {
+      "path": "MTAH_Relational_Starter/configs/b_same_frame_diagnostic.json",
+      "sha256": "0e18329d7ccb4659a285c4c956c76f02114e05ad41fffd7a52c07434b57d10d3",
+      "bytes": 641
+    },
+    {
+      "path": "MTAH_Relational_Starter/configs/model_a_small.json",
+      "sha256": "11d49a39a6c361f6c7d964bdbb987c5a5c4544ae2f1cc8ce85c7a82e1bf95532",
+      "bytes": 391
+    },
+    {
+      "path": "MTAH_Relational_Starter/configs/model_b_robustness.json",
+      "sha256": "414b4ef4adebbc3dc0d8df3a69f9143e668043bd6cd571e385632ad7602222c2",
+      "bytes": 488
+    },
+    {
+      "path": "MTAH_Relational_Starter/configs/model_b_small.json",
+      "sha256": "9f4cbcd0aafbdb6539dc4f8446889bdb7cd3860a0ab3129e91c94798c2bcf2c2",
+      "bytes": 679
+    },
+    {
+      "path": "MTAH_Relational_Starter/docs/EXTERNAL_CODE_STUDY_GUIDE.md",
+      "sha256": "f711a83ee7ca03609b1b91a8c87750b679d4d92612db7bc5498161c97dba338c",
+      "bytes": 21420
+    },
+    {
+      "path": "MTAH_Relational_Starter/docs/IMPLEMENTATION_PLAN.md",
+      "sha256": "c1b0902acdc464ff08750dc4c21b4cd7c27eaac1df03d4b7d48e230f7806c0d2",
+      "bytes": 4587
+    },
+    {
+      "path": "MTAH_Relational_Starter/docs/PROJECT_SPEC.md",
+      "sha256": "2e5c95b8d851237560cdeebcd12bc63681a155a59ab40e9ef146d643d65feec8",
+      "bytes": 12865
+    },
+    {
+      "path": "MTAH_Relational_Starter/docs/REFERENCE_REVIEW.md",
+      "sha256": "40a4e48ab6433bd2158631b5300669c067d7b89837e161970b66082d333f50e2",
+      "bytes": 7808
+    },
+    {
+      "path": "MTAH_Relational_Starter/docs/REFERENCE_TO_MODEL_BLUEPRINT.md",
+      "sha256": "3585df3165079ae92215842e4027b4c6d9fab00814ac762c44fc0d31818d4dc9",
+      "bytes": 14511
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/__init__.py",
+      "sha256": "e16023eee722f909cc443e66a3e8faa56a4cb2c0fa1b4fd17ee06bd4a983a224",
+      "bytes": 108
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/a_diagnostic_models.py",
+      "sha256": "6b3ee2469ad5bbb3e541ff6b80ae29be37c79b7a29f6f6871660c6cb71f18a0d",
+      "bytes": 4770
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/analyze_b_same_frame.py",
+      "sha256": "3a71f7ef2fac3f2e8a7585d23a779642f3a39f38a30c05d2cbc82c921fabfd27",
+      "bytes": 10863
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/analyze_model_b.py",
+      "sha256": "4c845dacffb5dd0b63af4c40f60c2414d97cd2ae05746fff8d45dc2567fd4d62",
+      "bytes": 8319
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/candidate_baseline.py",
+      "sha256": "e5815236711755e34b2e236c58e7d05bdf2733ac8bc852d8798776da97479e6b",
+      "bytes": 2579
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/cli.py",
+      "sha256": "b5c3166e467d8dfe9bed78dd5ecaf2500ec30c9c41b692a5c6bb209e6a15fb0a",
+      "bytes": 8137
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/corruption.py",
+      "sha256": "bcfc5de449eee625fbddf370185192923355f0f60c1d42a750475a9527a9671d",
+      "bytes": 1259
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/data_quality.py",
+      "sha256": "14e0f848491c36d3f31b5cb1422b592cd2e3753fe5faf010fdc9d0105023500e",
+      "bytes": 10540
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/diagnose_a_representation.py",
+      "sha256": "eb090d1d8dc27bf0b054f4141865ad651d61491cf7145291d19db9fa3af20ffd",
+      "bytes": 12814
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/diagnose_a_scaling.py",
+      "sha256": "f78c6fa1bf458e190e900ce45bc6cfd2ff179f37da820c11045dee0fc5b0e9c3",
+      "bytes": 2791
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/diagnose_a_training.py",
+      "sha256": "738809f422f2baa06f807cb08cc5b033006c8e5ccc4371635b1d4dabd44925ac",
+      "bytes": 12102
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/diagnose_b_same_frame.py",
+      "sha256": "4b0d70459d616ced4bad383c07f03fae4988d20f93cfe16e230b2b097d22b3ba",
+      "bytes": 22010
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/dynamic_graph.py",
+      "sha256": "2b24ef7328e0412160e45c6cb4a0f447facf1417b4afdc48ae7f55bc1b0788f6",
+      "bytes": 2460
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/features.py",
+      "sha256": "94c5b22346864bf9a40da003f342372595bb43655f5a44868427326daa94845d",
+      "bytes": 6951
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/frame_store.py",
+      "sha256": "ad658efee3fd9f74f95781a302f06910ea8f4095d1ac7e8ddffa7df50ad6b9b4",
+      "bytes": 8286
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/graph_robustness.py",
+      "sha256": "cf62094f9d9c2cf21cceb1078423f17fcc02672e6e9404ab905be596915309b8",
+      "bytes": 12002
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/graph_windows.py",
+      "sha256": "88df200ead450a420de705a9f7f3592cd08515efdfff748da7ecfe85658bda2d",
+      "bytes": 5389
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/model_a.py",
+      "sha256": "3fc55979935370e648959a0b07ad30d9e91622a0f6bd40b134140c97163efc6b",
+      "bytes": 3193
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/model_a_data.py",
+      "sha256": "2b720ac7a0c96ab5f64ada90e0c1a1aa87813b38f0904ee8468c69f7fc48c128",
+      "bytes": 7464
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/model_b.py",
+      "sha256": "ae3165c5af1645a016efe16e0dcaae3a0f2dbc02ccc0a3fa20895ff97ab23e4f",
+      "bytes": 7438
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/normalization.py",
+      "sha256": "3c43f8b02eaf88e9258dd1839fc9f45e9da5cf51e77a5fd2b843b4d90385efc8",
+      "bytes": 5897
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/phase1.py",
+      "sha256": "780a7fbd1cca012c6b88966915e2bafe12b6cd0344c2a232f43bb6e7ca9635f2",
+      "bytes": 10610
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/plot_model_a.py",
+      "sha256": "a0ee77acd15c5ecefe3af81101062da042eed156b88dc98487d8e0ff14462a2a",
+      "bytes": 3429
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/preprocessing.py",
+      "sha256": "5e831828c0a77bd147c61d968c1d7605efd29c1c1fc9b68358bab0d52f8d7f84",
+      "bytes": 2630
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/reconstruction.py",
+      "sha256": "9bdff34059fa3898b6bb3c277bcb41c095d01d90196bd3e5f9d3e56ef7cca650",
+      "bytes": 4012
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/reconstruction_baselines.py",
+      "sha256": "1a21a600982389230f420a98b50501be02b5091d930c8f32973a6e28b5f6c2ec",
+      "bytes": 1329
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/same_frame_graph.py",
+      "sha256": "f18c317635d661a437ede3cd236674033715565d8fa15020ab8c147e1eda8aaa",
+      "bytes": 6240
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/spatial_schema.py",
+      "sha256": "e4d1033dadf88cae2200d995f44516313b6520576770c8fa934915b69c550ab7",
+      "bytes": 2689
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/splits.py",
+      "sha256": "8f48a7e02b2114e5bd7d3b89f76550aba6fab692a76780742240184bb4cf5766",
+      "bytes": 5145
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/temporal_cli.py",
+      "sha256": "08bb7fbd4dcfac7ef02a591d4400816bef419220debe35dd538d070d57443c4b",
+      "bytes": 12834
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/train_model_a.py",
+      "sha256": "db6f006508ee4d13f323d895ebb783f21009618d67c55734e98ac381b6a8565a",
+      "bytes": 18386
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/train_model_b.py",
+      "sha256": "532d2c3256ded85d0e3572f1b12d9fa0ea46303cdcf0079567470a3766112a06",
+      "bytes": 11772
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/windows.py",
+      "sha256": "64fa841a4ef35f6d8c92df29c87204a2b675a33f7909a658b47bfe77108ed96b",
+      "bytes": 16502
+    },
+    {
+      "path": "MTAH_Relational_Starter/mtah_relational/zones.py",
+      "sha256": "446df2769563f0385f8da1b3149a463ab1b9ecd9f0ec7769f68b1aa145908ad7",
+      "bytes": 1647
+    },
+    {
+      "path": "MTAH_Relational_Starter/requirements-model-a.txt",
+      "sha256": "dcb88fcf1b3f573e21e9f67f39703085a8837d1929f4f2e469883ed274ee2515",
+      "bytes": 123
+    },
+    {
+      "path": "MTAH_Relational_Starter/requirements-model-b.txt",
+      "sha256": "922a388650958df2620ac49fc0e994db0ac09f3adc0678a25b1c5850bb6a85ac",
+      "bytes": 52
+    },
+    {
+      "path": "MTAH_Relational_Starter/requirements-relational.txt",
+      "sha256": "c6d4e080c64dda170120f67b8d30e757c8bb1846537757c31e1aab6078a3b066",
+      "bytes": 176
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/conftest.py",
+      "sha256": "b607eee2359354ea29ab6bb5dff542f2962c3a8bdee66caa3a4ce3fee33cd535",
+      "bytes": 2609
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_a_diagnostics.py",
+      "sha256": "c2d801d75ae3ec226360b6595b1731eb2ebf81fe1963aebc5ab327d9f23b126a",
+      "bytes": 4487
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_atd_parser.py",
+      "sha256": "4d1083c515f7186213f92a284d1c685d399a93b666781eb4fcd63371c103dbcf",
+      "bytes": 320
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_b_same_frame.py",
+      "sha256": "fc1223f035a4a6d99f677d2bf4b9762d2ce278a0e738aedec369a82f981994cf",
+      "bytes": 6401
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_cli_integration.py",
+      "sha256": "3f0b08c0297df770457b50fefba84184e3e3234ec89fa1aa464ab354ee38ecd0",
+      "bytes": 1317
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_features.py",
+      "sha256": "6b5e288070ada606621fc38b50ba9f5e59ab4b6b78278a3034bad3c7c54f5b07",
+      "bytes": 1588
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_model_a.py",
+      "sha256": "e5df7f8d3924243fe2d5847f2ee10dda5cf798a63075b58cb6e4d4d1382491a5",
+      "bytes": 11712
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_model_b.py",
+      "sha256": "76748814caaf77f1517716a66169919091d76230794a85e2f9cba1e86b86899c",
+      "bytes": 12929
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_phase1_integrity.py",
+      "sha256": "3d37f546e9413dd728a83b5f30cf36a8c95868a65229e92eaddbcd7f881ba2f1",
+      "bytes": 5227
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_phase1_pipeline.py",
+      "sha256": "c967ea63dc962853f3e22a1278a1171f607c0224a6b55cd27fe63ca5155b24e0",
+      "bytes": 3511
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_phase1_relations.py",
+      "sha256": "9f2e7a842f7c1e7dfe0c639b532d516d5db4ee89bdcd7462604b5a164020da56",
+      "bytes": 3607
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_phase1_temporal_and_leakage.py",
+      "sha256": "6090a63c4eda6bc9ff12beeb8d580dd0bf4ddd9632386a7da4d0c8b1f8a59320",
+      "bytes": 4753
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_temporal_cache_and_pipeline.py",
+      "sha256": "9cdccfb511613e56d3554f97f94db27ada78df61bffd1d78e29edb0cf1780b6a",
+      "bytes": 4550
+    },
+    {
+      "path": "MTAH_Relational_Starter/tests/test_temporal_windows.py",
+      "sha256": "baa4c8caae6fcb722c9dd221de655fe6badc898c578f1f7739021af61dee6522",
+      "bytes": 10743
+    },
+    {
+      "path": "tests/test_final_tracking_alignment.py",
+      "sha256": "5be7b153b3469b902976ac9aa83bb43332c088cd73c37e998ee1d49c8aa1ecce",
+      "bytes": 9560
+    },
+    {
+      "path": "tests/test_tryolabs_classification_v2.py",
+      "sha256": "80fce718045e825be3502c9a68c6d18ad22e67b9de66bdc3f3e8c5c5170b7875",
+      "bytes": 7893
+    },
+    {
+      "path": "tests/test_tryolabs_full_match_v2.py",
+      "sha256": "46bc449ba79bad1fbba68454238dea777d270b6a9822b182ddcb23085e44a3a7",
+      "bytes": 5286
+    },
+    {
+      "path": "tests/test_tracking_disagreement_ball.py",
+      "sha256": "43f27eaed80205be52afc15508dcb9c15ef07e3521a82812ccbe5a59f1ea4789",
+      "bytes": 6850
+    },
+    {
+      "path": "tests/test_tracking_disagreement.py",
+      "sha256": "ea7314588e86a833afc7e7c050e6cf568a131d3d9667bc4a8e25735e081c9479",
+      "bytes": 5481
+    },
+    {
+      "path": "tests/test_compare_tracking_player.py",
+      "sha256": "3e23257c846f36c64a78d4f01852bfe1d9fefa3553dba6068c3647fbd8856df3",
+      "bytes": 10035
+    },
+    {
+      "path": "tests/test_tryolabs_classification_v3.py",
+      "sha256": "9f70dbd9404fc2d9a61a5351ac6245db6845e20f88664d31856f6e24bf4fbd2c",
+      "bytes": 10650
+    },
+    {
+      "path": "tests/test_tracking_utils.py",
+      "sha256": "b9a5c962b5f185d0125f48e5444406a82bafe799b6b3ad13968cae44caa88a63",
+      "bytes": 4492
+    },
+    {
+      "path": "tests/test_tryolabs_v4_streaming.py",
+      "sha256": "d23f06b75e6a1fd0cd2d492a2e604e2a0641a428da747ba13a128667c666ba98",
+      "bytes": 12968
+    },
+    {
+      "path": "tests/test_all_movement_vectors.py",
+      "sha256": "7ed341dc66982936b305e1906cc0770e855a999a6dc73044bb880e635abc0fb6",
+      "bytes": 3452
+    },
+    {
+      "path": "tests/test_tryolabs_v4_windows_handoff.py",
+      "sha256": "43bc193389cd4c2614964971fd3b56e879e81ad51a203fee5a854c57c0eecdf4",
+      "bytes": 9074
+    },
+    {
+      "path": "tests/test_find_joint_tracking_match.py",
+      "sha256": "bf9b3365d6e3f036c8467ed8e424e2b43a3e69db79d7b2ce1c9c7f769234805e",
+      "bytes": 3570
+    },
+    {
+      "path": "tests/test_tryolabs_windows.py",
+      "sha256": "2d95a975d82060082ca47b4801eab0feabdf0231e7dc2a9f5e6204ecff8f2fda",
+      "bytes": 11961
+    },
+    {
+      "path": "tests/test_tracking_match_clock.py",
+      "sha256": "784e941656d09aee795f036607e6328c1e75db3472ff9a6b0680556d574db41e",
+      "bytes": 5332
+    },
+    {
+      "path": "tests/test_tryolabs_classification_v4.py",
+      "sha256": "1614edf03ef18c465ff3ab8fba76be7d32370f9f3cd2f9332a1a49c2b8e6b700",
+      "bytes": 10643
+    },
+    {
+      "path": "tests/test_team_motion_metrics.py",
+      "sha256": "29ac8c223a67433638076b9ca04f06d82122a35177f277cd3cf1e865da680c09",
+      "bytes": 5042
+    },
+    {
+      "path": "tests/test_find_layout_match.py",
+      "sha256": "263aada604e43e82093e66719dc23e97911ded9549cd092a1339f11d67347e97",
+      "bytes": 3180
+    },
+    {
+      "path": "starter/view_team_extents.py",
+      "sha256": "83936f0d10d4fc620865a866ca26d866e329ed7d6b45f30b13f374367822e754",
+      "bytes": 15019
+    },
+    {
+      "path": "starter/team_extents.py",
+      "sha256": "eaa6cca44d94482c959d47a47dbbee001f5ce676123e1c945aee14c0b35c12e1",
+      "bytes": 8589
+    },
+    {
+      "path": "competition_judgement/references/A_MODEL_DIAGNOSTIC.md",
+      "bytes": 27862,
+      "sha256": "d0c85ef9a2affbc1cb7231b68b764cc5947501c4ffe1f85a3826a0ddd35d3b1a"
+    },
+    {
+      "path": "competition_judgement/references/CODEX_RESEARCH_OUTPUT.md",
+      "bytes": 40560,
+      "sha256": "4d00dd31be08b70335985c3f4986c32f4abfc2e5ac8552ceb3e1b6a1b4cb6a25"
+    },
+    {
+      "path": "competition_judgement/references/MODEL_IMPLEMENTATION_PLAN.md",
+      "bytes": 38688,
+      "sha256": "70453abece1a011c409e246641c63548986aeb376b304fe9b8ea1f44b368a55b"
+    },
+    {
+      "path": "competition_judgement/references/PHASE1_DATA_RELATIONS.md",
+      "bytes": 18450,
+      "sha256": "b1a0973ab7bd2a5aca46d364e6fdbc06d0b8ec86a7dc6f6358e815e2b58fa868"
+    },
+    {
+      "path": "competition_judgement/references/PHASE2_TEMPORAL_DATA.md",
+      "bytes": 18586,
+      "sha256": "6c2a6de4ab922e6fe8ef406e67eefb9c1f0f2865c98cdfd913ead5ef6da0fa4e"
+    },
+    {
+      "path": "competition_judgement/references/PHASE4_MODEL_A.md",
+      "bytes": 26196,
+      "sha256": "0567b944ed1787440fe7a3b1bcfa11368c4ba7e3743156413f6d6542a5b356cf"
+    },
+    {
+      "path": "competition_judgement/references/PHASE5_MODEL_B.md",
+      "bytes": 33138,
+      "sha256": "afa4f3a1e5486c7775cccb3443f715b2fe535a6cf2bef5d0e2452f949c5af1d7"
+    }
+  ]
+}

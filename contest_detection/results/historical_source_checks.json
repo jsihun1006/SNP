@@ -1,0 +1,96 @@
+{
+  "candidate_v23_final_20261110": {
+    "checked": 5,
+    "matches": 5,
+    "mismatches": []
+  },
+  "evidence_pattern_b1_final_20261110": {
+    "checked": 7,
+    "matches": 7,
+    "mismatches": []
+  },
+  "evidence_stage_b_final_20261109": {
+    "checked": 14,
+    "matches": 10,
+    "mismatches": [
+      {
+        "path": "competition_judgement/src/competition_judgement/evidence_diagnostics.py",
+        "recorded_in": "verification.json",
+        "expected": "af394f26825eb9ac5f98fa8ddee100f9123c981a8a1625f3792c65c8fa2e0080",
+        "actual": "ce76629a3b6172666fc03cc065f11c38435053133d749d49fc477aeb2e5fe90b"
+      },
+      {
+        "path": "competition_judgement/src/competition_judgement/evidence_diagnostics.py",
+        "recorded_in": "summary.json",
+        "expected": "af394f26825eb9ac5f98fa8ddee100f9123c981a8a1625f3792c65c8fa2e0080",
+        "actual": "ce76629a3b6172666fc03cc065f11c38435053133d749d49fc477aeb2e5fe90b"
+      },
+      {
+        "path": "competition_judgement/src/competition_judgement/resume_evidence_diagnostics.py",
+        "recorded_in": "summary.json",
+        "expected": "d43ba0de80f2ef2ec1bc45bc9ed3e35efe82407185284e74c7ce1c6c9fdc77ce",
+        "actual": "a20a0d8dbeed7a6b5aab73270b908261e30680492952e16e5f6121a72d9f4417"
+      },
+      {
+        "path": "competition_judgement/src/competition_judgement/verify_evidence_stage_b.py",
+        "recorded_in": "summary.json",
+        "expected": "85c6f27b9c6456f996c67fbd82f9a5908ba40cce454829407c47fa4506106681",
+        "actual": "eb04b621d00fa659d4e68aa42c8cf1ddcc04bbad820301fc4991fe1e24997f69"
+      }
+    ]
+  },
+  "local_temporal_b2_final_20261110": {
+    "checked": 6,
+    "matches": 6,
+    "mismatches": []
+  },
+  "local_v2_1_20261109": {
+    "checked": 21,
+    "matches": 21,
+    "mismatches": []
+  },
+  "missingness_stage_a_20261109": {
+    "checked": 4,
+    "matches": 4,
+    "mismatches": []
+  },
+  "missingness_stage_a_final_20261109": {
+    "checked": 12,
+    "matches": 12,
+    "mismatches": []
+  },
+  "stage1_v1_20261109": {
+    "checked": 6,
+    "matches": 5,
+    "mismatches": [
+      {
+        "path": "competition_judgement/src/competition_judgement/detector.py",
+        "recorded_in": "verification.json",
+        "expected": "e2c9e0e6cd9a65bb36f50752283a05a3775c401cafee7571e304268290bed833",
+        "actual": "99070f09d6dbe46c9cb2f5cb0eaba2c3807c659985dd8e9273b452354e4664de"
+      }
+    ]
+  },
+  "stage1_v1_final_20261109": {
+    "checked": 6,
+    "matches": 6,
+    "mismatches": []
+  },
+  "temporal_v2_2_20261109": {
+    "checked": 16,
+    "matches": 15,
+    "mismatches": [
+      {
+        "path": "competition_judgement/src/competition_judgement/temporal_features.py",
+        "recorded_in": "verification.json",
+        "expected": "14fe4f932d264e1df8cd07e163e42fd20a433419adb3cf0327642296f78a687e",
+        "actual": "9119f97c763c929f7d00c670b0273d047349ce1e9d62a142aeac355b4e27e210"
+      }
+    ]
+  },
+  "temporal_v2_2_final_20261109": {
+    "checked": 16,
+    "matches": 16,
+    "mismatches": []
+  }
+}

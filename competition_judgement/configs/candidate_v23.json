@@ -1,0 +1,35 @@
+{
+  "version": "candidate-v2-3-v1",
+  "fps": 25,
+  "seed": 2027,
+  "chunk_rows": 10000,
+  "mode": "offline",
+  "pattern_config": "competition_judgement/configs/pattern_b1.json",
+  "local_config": "competition_judgement/configs/local_temporal_b2.json",
+  "evidence_config": "competition_judgement/configs/evidence_stage_b.json",
+  "spatial_gate": ["official_record", "current_strict", "mapped_current_cluster", "mixed_home_away", "actual_radius_cross_edge", "finite_consistent_geometry", "observed_current_anchor"],
+  "cluster_rules": {
+    "PATTERN_CANDIDATE": "spatial gate AND (frozen A or B SUPPORTED)",
+    "LOCAL_CANDIDATE": "spatial gate AND no A/B SUPPORTED AND frozen same-anchor short or near LOCAL_RISE_THEN_FALL with complete scope metadata",
+    "REVIEW": "spatial gate, neither candidate condition, and insufficient dynamic support or individual local/evidence observations",
+    "NO_DETECTED_SIGNAL": "spatial gate AND A/B NOT_OBSERVED with COMPLETE support AND all four short/near Rise/Fall NOT_OBSERVED with complete local support",
+    "INSUFFICIENT": "current spatial/record/QC/geometry/probe mapping gate fails"
+  },
+  "frame_priority": ["PATTERN_CANDIDATE", "LOCAL_CANDIDATE", "REVIEW", "INSUFFICIENT", "NO_DETECTED_SIGNAL"],
+  "frame_tie_break": "state priority then smaller radius then cluster_id; never evidence score",
+  "empty_frame": "official+strict+both teams observed+no mixed components at either radius -> NO_DETECTED_SIGNAL, spatial absence with temporal NOT_APPLICABLE; otherwise INSUFFICIENT",
+  "alternative_evidence_veto": false,
+  "aggregate_score": false,
+  "probability": false,
+  "fit_required": false,
+  "future_frames_by_basis": {"A": 0, "B": 50, "short": 10, "near": 25},
+  "future_metadata": "max dependency among all recorded candidate bases; REVIEW/NO_DETECTED_SIGNAL assessment budget 50; spatial failure/known empty frame 0",
+  "radius_overlap": "frozen 3m-to-5m same-frame component family; same-node-set indicator; centroid separation diagnostic only",
+  "robustness": {
+    "mask_counts": [1, 5, 10, 20, 30],
+    "conditions": [["jitter",0.1],["jitter",0.5],["jitter",1.0],["dropout",0.1],["dropout",0.2],["dropout",0.3],["composition",0.2],["permutation",0.0],["team_swap",0.0]],
+    "support": "frozen Stage A 1778 Validation windows and Train donors; B.1/B.2 12x151 Validation support"
+  },
+  "numeric_tolerance": 1e-12,
+  "note": "Fixed before v2-3 implementation and Validation candidate counts. No new physical/score threshold; no tuning, labels, Test selection, episodes or possession. UNKNOWN is not negative truth."
+}

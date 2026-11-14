@@ -1,0 +1,17 @@
+{
+  "version": "stage-b1-pattern-v1",
+  "fps": 25,
+  "window_radius_frames": 50,
+  "batch_anchors": 64,
+  "seed": 2027,
+  "legacy_config": "competition_judgement/configs/evidence_stage_b.json",
+  "dependencies": {"P1": [-50,0], "P2": [-25,0], "P3": [-25,25], "P4": [0,50], "N1": [-50,50], "N2": [-10,10], "N3": [-50,50]},
+  "required_evidence": {"A": ["P1","P2"], "B": ["P1","P3","P4"], "C": ["N1","N3"], "D": ["N2"]},
+  "sequence": {"smoothing": "trailing_median", "smoothing_frames": 5, "change_lag_frames": 5, "soft_deadband": 0.02, "distance_deadband_m": 0.1, "contraction_deadband_m": 0.1, "count_growth": 1, "peak_center_radius_frames": 5, "stable_soft_range": 0.02, "stable_distance_range_m": 0.1, "numeric_tolerance": 1e-12, "require_complete_dependency": true, "D_require_inside_seed_anchor": true},
+  "robustness": {"conditions": [["jitter",0.1],["jitter",0.5],["jitter",1.0],["dropout",0.1],["dropout",0.2],["dropout",0.3],["composition",0.2],["permutation",0.0],["team_swap",0.0]], "support": "legacy_12x151_validation_center51", "mask_counts": [1,5,10,20,30]},
+  "aggregate_evidence": false,
+  "score_bounds": false,
+  "fit_required": false,
+  "candidate_decision": false,
+  "note": "Frozen before implementation/Validation. No Evidence high/low thresholds. Sequence uses existing Stage A 0.02/0.1m deadbands and Stage B physical motion/shape scales. Median/lag5 are experimental 0.2s geometric rules, not calibrated error bounds or contest labels."
+}

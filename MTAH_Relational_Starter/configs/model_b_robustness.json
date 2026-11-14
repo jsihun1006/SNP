@@ -1,0 +1,12 @@
+{
+  "seed": 9127,
+  "validation_window_stride": 16,
+  "coordinate_noise_sd_m": [0.1, 0.5, 1.0],
+  "player_dropout_probability": [0.1, 0.2, 0.3],
+  "composition_remove_fraction": 0.2,
+  "physical_team_shift_m": 1.0,
+  "affected_temporal_span": [65, 86],
+  "mask_evaluation": "existing fixed 8-13; noise on visible frames only; targets remain original",
+  "embedding_evaluation": "unmasked, same fixed Validation windows; no graph regenerated at artificial times",
+  "test_access": false
+}

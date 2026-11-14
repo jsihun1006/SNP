@@ -1,0 +1,16 @@
+{
+  "version": "local-spatial-v2-1",
+  "radii_m": [3.0, 5.0],
+  "primary_radius_m": 3.0,
+  "proximity_decay_m": 3.0,
+  "small_max_players": 3,
+  "compact_max_diameter_over_radius": 2.0,
+  "compact_max_mean_radius_over_radius": 1.0,
+  "descriptive_strong_contact_min": 0.5,
+  "case4_size_jump_min": 2,
+  "case4_edge_jump_min": 2,
+  "seed": 2027,
+  "interpretation": "Fixed physical descriptors and diagnostic cases only; no new candidate decisions or probabilities",
+  "radius_comparison": "Keep scales separate. 3m components map into 5m families; never add counts across radii as events.",
+  "fit_required": false
+}
