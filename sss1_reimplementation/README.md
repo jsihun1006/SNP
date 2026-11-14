@@ -5,7 +5,9 @@
 
 기존 MTAH·ATD·모델을 변경하지 않는 별도 프로젝트입니다. 논문 알고리즘을 구현하고,
 공식 YOLO26-Large 사전학습 추론, BAAT·기하·공식 평가 어댑터를 검증합니다.
-현재 호스트는 **macOS ARM64**입니다. Windows/GPU 학습 성공이나 논문 성능 재현을 주장하지 않습니다.
+개발 호스트는 **macOS ARM64**이며, Windows CPU 첫 설치·테스트·샘플 추론은
+[깨끗한 Windows runner에서 통과](https://github.com/jsihun1006/SNP/actions/runs/43567391206)했습니다.
+GPU 학습 성공이나 논문 성능 재현을 주장하지 않습니다.
 실행 증거와 제약은 [environment_report.md](environment_report.md),
 [reproduction_report.md](reproduction_report.md)에 구분했습니다.
 
@@ -41,7 +43,8 @@ MMCV 소스 빌드로 자동 전환하지 않으며 설치 실패 원인을 그�
 `mmcv-lite`는 전체 MMPose import에서 필요한 `mmcv._ext`를 제공하지 않습니다.
 `requirements.txt`와 `configs/constraints-windows.txt`를 함께 사용하여 의도치 않은 torch 업그레이드를 방지합니다.
 Conda를 선호하면 `configs/environment-windows.yml`의 Python 3.10 사양으로 별도 sss1 환경을 만들 수 있습니다.
-Windows에서 직접 실행한 환경 보고서는 아직 없습니다.
+Windows 실행 환경·테스트·샘플 결과는 위 Actions의 `sss-windows-cpu-first-run` artifact에 있습니다.
+검증 범위는 [WINDOWS_RELEASE_REPORT.md](WINDOWS_RELEASE_REPORT.md)에 기록했습니다.
 
 모듈은 다음처럼 분리했습니다.
 

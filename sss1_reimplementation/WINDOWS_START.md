@@ -59,5 +59,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_windows.ps
 설치기를 다시 실행해 이어갈 수 있으며, 기존 환경에 다른 Python 버전이 설치되어 있어도 그대로 둡니다.
 
 자동 Windows 검증은 GitHub의 **Actions → SSS Windows first run**에서 확인할 수 있습니다.
-이 문서 작성 호스트는 macOS이므로 Windows 실행 성공 여부는 실제 Windows 실행 로그 또는 Actions 결과로 구분합니다.
+[첫 Windows 실행 검증](https://github.com/jsihun1006/SNP/actions/runs/43567391206)은
+깨끗한 Windows Server 2025 x64 runner에서 CPU 테스트 42개와 실제 BAAT 샘플 추론을 통과했습니다.
+설치 로그와 결과 이미지는 해당 실행의 `sss-windows-cpu-first-run` artifact에서 내려받을 수 있습니다.
+CUDA 프로필·일반 PC의 Python 자동 winget 설치 분기는 별도 실기 검증 대상입니다.
+`WinError 126` 등 DLL 로딩 오류가 나면 [Microsoft Visual C++ x64 런타임](https://aka.ms/vs/17/release/vc_redist.x64.exe)을
+설치하고 다시 실행하십시오. 경로 길이 오류는 `C:\work\SNP-SSS`처럼 짧은 위치에 받아 확인하십시오.
 데이터 준비·학습·정량 평가는 [README.md](README.md), 재현 범위는 [reproduction_report.md](reproduction_report.md)를 참조하십시오.

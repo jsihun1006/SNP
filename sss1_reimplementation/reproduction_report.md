@@ -93,9 +93,14 @@ SAHI의 잘린 신체 조각이 IoU NMS 이후에도 남을 수 있음을 관찰
 경고는 Matplotlib/pyparsing·pkg_resources의 deprecation과 공식 sskit의 빈 예측 F1 분모 0 경고입니다.
 빈 예측의 AP=0은 검증했으며, 정의되지 않은 값은 CLI JSON에서 null로 저장합니다.
 
-최종 미실행 항목은 Windows 실기 실행, CUDA/GPU 학습, SynLoc train/val/test 실데이터 검증,
+초기 작업(2026-11-13)의 미실행 항목은 Windows 실기 실행, CUDA/GPU 학습, SynLoc train/val/test 실데이터 검증,
 학습 완료 2점 체크포인트를 쓴 통합 위치 추정, 논문 ablation 정량 재현입니다.
 미구현 항목과 실행 불가능한 검증 항목을 서로 구분한 상태입니다.
+
+2026-11-14 후속 배포에서는 로컬 전체 테스트 45개 및 실제 Windows CPU 테스트 42개,
+깨끗한 sss1 설치와 실제 YOLO26 BAAT 샘플 추론을 통과했습니다.
+근거: [Windows CI](https://github.com/jsihun1006/SNP/actions/runs/43567391206), `WINDOWS_RELEASE_REPORT.md`.
+CUDA/GPU 학습과 SynLoc 실데이터 성능 재현은 여전히 미실행입니다.
 
 미구현 확장 기능: tracking, team classification, GSR 연결, 동적 프레임 보정,
 장면 전환 탐지, ATD 정렬, H/A/D 점유 판정. `interfaces.py`의 계약만 제공합니다.

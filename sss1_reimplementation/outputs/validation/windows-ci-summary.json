@@ -1,0 +1,20 @@
+{
+  "run_id": 43567391206,
+  "job_id": 132364094325,
+  "code_commit": "7c1aa9dc1e8a6aa6f9a2eff07486783c102606c1",
+  "conclusion": "success",
+  "runner_os": "Windows Server 2025 x64",
+  "python": "3.10.11",
+  "torch": "2.1.0+cpu",
+  "torchvision": "0.16.0+cpu",
+  "tests": {
+    "passed": 42,
+    "deselected": 3
+  },
+  "installation": "fresh separate sss1 environment; pip check passed",
+  "sample": "official yolo26l.pt SHA256 verified; real BAAT image inference and CSV/JSON/visualization saved",
+  "workflow_url": "https://github.com/jsihun1006/SNP/actions/runs/43567391206",
+  "artifact_url": "https://github.com/jsihun1006/SNP/actions/runs/43567391206/artifacts/14102642540",
+  "gpu_validated": false,
+  "winget_python_install_branch_validated": false
+}

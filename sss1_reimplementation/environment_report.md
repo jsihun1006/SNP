@@ -60,3 +60,9 @@ Head는 미학습이므로 선수 위치 정확도나 학습된 모델 추론 �
 최종 probe에서 torchvision CPU NMS와 MMPose 전체 모델 import가 모두 통과했습니다.
 
 원본 ATD·모델·다른 Python 환경은 변경하지 않았습니다. 프로젝트의 가상환경·가중치·샘플 데이터는 Git에서 제외합니다.
+
+2026-11-14 후속 검증: [Windows Server 2025 x64의 깨끗한 runner](https://github.com/jsihun1006/SNP/actions/runs/43567391206)에서
+Python 3.10.11, torch 2.1.0+cpu, torchvision 0.16.0+cpu 설치와 `pip check`,
+CPU 테스트 42개, YOLO26-Large 실제 BAAT 추론이 통과했습니다.
+위 macOS 조사 및 초기 Windows 미실행 표기는 2026-11-13의 기록입니다.
+현재 Windows CPU 검증 범위와 다운로드 가능한 증거는 `WINDOWS_RELEASE_REPORT.md`를 기준으로 합니다.
