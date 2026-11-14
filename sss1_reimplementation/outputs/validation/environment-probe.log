@@ -1,0 +1,84 @@
+{
+  "timestamp_utc": "2026-11-13T14:13:39.748971+00:00",
+  "project_root": "/Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027/sss1_reimplementation",
+  "repository_root": "/Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "system": "Darwin",
+  "python": "3.11.17 (main, Oct  1 2026, 20:09:52) [Clang 20.1.8 ]",
+  "python_executable": "/Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027/sss1_reimplementation/sss1/bin/python",
+  "architecture": "arm64",
+  "windows_native_verified": false,
+  "conda": {
+    "available": true,
+    "returncode": 0,
+    "stdout": "conda 26.5.3",
+    "stderr": ""
+  },
+  "nvidia": {
+    "available": false
+  },
+  "nvidia_full": {
+    "available": false
+  },
+  "cuda_toolkit": {
+    "available": false
+  },
+  "packages": {
+    "numpy": {
+      "import_ok": true,
+      "version": "1.26.4"
+    },
+    "torch": {
+      "import_ok": true,
+      "version": "2.2.2"
+    },
+    "torchvision": {
+      "import_ok": true,
+      "version": "0.17.2"
+    },
+    "ultralytics": {
+      "import_ok": true,
+      "version": "8.4.211"
+    },
+    "mmengine": {
+      "import_ok": true,
+      "version": "0.10.7"
+    },
+    "mmcv": {
+      "import_ok": true,
+      "version": "2.1.0"
+    },
+    "mmpose": {
+      "import_ok": true,
+      "version": "1.3.2"
+    },
+    "mmdet": {
+      "import_ok": true,
+      "version": "3.2.0"
+    },
+    "cv2": {
+      "import_ok": true,
+      "version": "4.10.0"
+    },
+    "sahi": {
+      "import_ok": true,
+      "version": "0.11.22"
+    },
+    "sskit": {
+      "import_ok": true,
+      "version": "0.6.0"
+    },
+    "xtcocotools": {
+      "import_ok": true,
+      "version": "unknown"
+    }
+  },
+  "cuda": {
+    "available": false,
+    "gpu_training_allowed": false,
+    "torch_cuda": null,
+    "compiled_arches": []
+  },
+  "torchvision_nms_cpu": "passed",
+  "mmpose_model_import": "passed"
+}

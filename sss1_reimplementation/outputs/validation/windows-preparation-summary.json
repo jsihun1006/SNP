@@ -1,0 +1,36 @@
+{
+  "host": "macOS ARM64; Windows runtime is verified separately by GitHub Actions",
+  "clean_checkout_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "45",
+    "time": "9.857",
+    "timestamp": "2026-11-14T15:35:38.255934+09:00",
+    "hostname": "gimgyujin-ui-MacBookAir.local"
+  },
+  "first_run": {
+    "profile": "CoreCPU",
+    "completed": true,
+    "steps": [
+      "sss1_reimplementation.scripts.probe_environment",
+      "environment",
+      "pytest",
+      "sss1_reimplementation.scripts.download_weights",
+      "sss1_reimplementation.scripts.infer"
+    ],
+    "note": "Public non-soccer detector sample only. No trained two-point pose model or SynLoc scores."
+  },
+  "first_run_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "42",
+    "time": "1.889",
+    "timestamp": "2026-11-14T15:34:18.192017+09:00",
+    "hostname": "gimgyujin-ui-MacBookAir.local"
+  },
+  "powershell_parser": "PowerShell 7.4.6; setup_windows.ps1 and run_windows.ps1 passed"
+}

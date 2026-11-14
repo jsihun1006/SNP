@@ -1,0 +1,8 @@
+name: sss1
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+# Use scripts/setup_windows.ps1 to install the exact PyTorch/MMCV wheel tuple.
+# This file alone does not promise a working CUDA installation.

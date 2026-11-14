@@ -1,0 +1,78 @@
+{
+  "input": "/Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027/sss1_reimplementation/data/bus.jpg",
+  "image_shape": [
+    1080,
+    810,
+    3
+  ],
+  "ground_truth_available": false,
+  "purpose": "pretrained detector smoke test, not SynLoc performance reproduction",
+  "modes": {
+    "full": {
+      "detections": 4,
+      "seconds": 1.5420554580632597,
+      "fps": 0.6484851078287076,
+      "detection_seconds": 1.5420044590719044,
+      "tiles": 0,
+      "coarse_detections": 0
+    },
+    "sahi": {
+      "detections": 4,
+      "seconds": 0.9537370000034571,
+      "fps": 1.0485070831857999,
+      "detection_seconds": 0.9536805420648307,
+      "tiles": 1,
+      "coarse_detections": 0
+    },
+    "baat": {
+      "detections": 4,
+      "seconds": 1.8659237921237946,
+      "fps": 0.5359275680073728,
+      "detection_seconds": 1.8658090841490775,
+      "tiles": 1,
+      "coarse_detections": 37
+    },
+    "official_sahi": {
+      "detections": 4,
+      "seconds": 0.8849746251944453,
+      "boxes": [
+        {
+          "bbox": [
+            51.09737014770508,
+            444.7583312988281,
+            246.72271728515625,
+            900.4860229492188
+          ],
+          "confidence": 0.9102870225906372
+        },
+        {
+          "bbox": [
+            224.64993286132812,
+            403.5292053222656,
+            344.27435302734375,
+            862.0894775390625
+          ],
+          "confidence": 0.8977033495903015
+        },
+        {
+          "bbox": [
+            668.5026245117188,
+            449.7723083496094,
+            809.7488403320312,
+            878.9841918945312
+          ],
+          "confidence": 0.8476606011390686
+        },
+        {
+          "bbox": [
+            0.14594650268554688,
+            550.7350463867188,
+            79.09562683105469,
+            872.4660034179688
+          ],
+          "confidence": 0.8420575857162476
+        }
+      ]
+    }
+  }
+}

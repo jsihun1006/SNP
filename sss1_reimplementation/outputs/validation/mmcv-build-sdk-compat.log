@@ -1,0 +1,17 @@
+Collecting mmcv==2.1.0
+  Using cached mmcv-2.1.0.tar.gz (471 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Building wheels for collected packages: mmcv
+  Building wheel for mmcv (setup.py): started
+  Building wheel for mmcv (setup.py): still running...
+  Building wheel for mmcv (setup.py): still running...
+  Building wheel for mmcv (setup.py): finished with status 'done'
+  Created wheel for mmcv: filename=mmcv-2.1.0-cp311-cp311-macosx_12_0_arm64.whl size=1502153 sha256=028e1fb1b4c99247963d4a9388822eba0c7b5974006a94a4b9c4176730887bb0
+  Stored in directory: /Users/kkj_1120/Library/Caches/pip/wheels/57/22/96/9bcbfeaa838c1b705a4b2ac082539767fbcc79fa07ec01abcd
+Successfully built mmcv
+Installing collected packages: mmcv
+Successfully installed mmcv-2.1.0
+
+[notice] A new release of pip is available: 24.0 -> 26.3
+[notice] To update, run: /Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027/sss1_reimplementation/sss1/bin/python -m pip install --upgrade pip

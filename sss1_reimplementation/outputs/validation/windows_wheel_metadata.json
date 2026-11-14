@@ -1,0 +1,32 @@
+{
+  "torch": {
+    "version": "2.1.0",
+    "windows_cp310_or_universal_wheels": [
+      "torch-2.1.0-cp310-cp310-win_amd64.whl"
+    ]
+  },
+  "torchvision": {
+    "version": "0.16.0",
+    "windows_cp310_or_universal_wheels": [
+      "torchvision-0.16.0-cp310-cp310-win_amd64.whl"
+    ]
+  },
+  "xtcocotools": {
+    "version": "1.14.3",
+    "windows_cp310_or_universal_wheels": [
+      "xtcocotools-1.14.3-cp310-cp310-win_amd64.whl"
+    ]
+  },
+  "pycocotools": {
+    "version": "2.0.10",
+    "windows_cp310_or_universal_wheels": [
+      "pycocotools-2.0.10-cp310-cp310-win_amd64.whl"
+    ]
+  },
+  "mmpose": {
+    "version": "1.3.2",
+    "windows_cp310_or_universal_wheels": [
+      "mmpose-1.3.2-py2.py3-none-any.whl"
+    ]
+  }
+}

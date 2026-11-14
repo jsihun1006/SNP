@@ -1,0 +1,5 @@
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.csv text eol=crlf
+# Preserve third-party command logs verbatim; whitespace there is not source code.
+outputs/validation/*.log -whitespace

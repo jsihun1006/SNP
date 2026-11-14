@@ -1,0 +1,35 @@
+/Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027/sss1_reimplementation/sss1/lib/python3.11/site-packages/mmpose/datasets/transforms/common_transforms.py:656: UserWarning: CoarseDropout is not pixel-level transformations. Please use with caution.
+  warnings.warn(
+{
+  "purpose": "architecture and official Body-7 initialization only; two-point head UNTRAINED",
+  "device": "cpu",
+  "checkpoint_sha256": "d28b58e620a6b1da09427c1c0e21ec419d9a71602379eebcee48ca32bd6f0667",
+  "matched_backbone_tensors": 566,
+  "source_backbone_tensors": 566,
+  "simcc_x_shape": [
+    1,
+    2,
+    576
+  ],
+  "simcc_y_shape": [
+    1,
+    2,
+    768
+  ],
+  "pipeline_input_shape": [
+    3,
+    384,
+    288
+  ],
+  "target_fields": [
+    "keypoint_x_labels",
+    "keypoint_y_labels",
+    "keypoint_weights"
+  ],
+  "trained_inference_verified": false,
+  "untrained_head_topdown_decode_shape": [
+    1,
+    2,
+    2
+  ]
+}

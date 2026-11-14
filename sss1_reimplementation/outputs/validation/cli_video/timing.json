@@ -1,0 +1,30 @@
+{
+  "mode": "full",
+  "pose_available": false,
+  "temporal_tracking": false,
+  "frames": 2,
+  "total_io_inference_seconds": 2.7000329170841724,
+  "total_fps": 0.740731710100722,
+  "model_initialization_excluded": true,
+  "warmup_included": true,
+  "timings": [
+    {
+      "image_id": 0,
+      "frame": 0,
+      "seconds": 1.6354303748812526,
+      "fps": 0.6114598428396008,
+      "detection_seconds": 1.6353586248587817,
+      "tiles": 0,
+      "coarse_detections": 0
+    },
+    {
+      "image_id": 1,
+      "frame": 1,
+      "seconds": 1.0459184581413865,
+      "fps": 0.9560974779783652,
+      "detection_seconds": 1.0458655001129955,
+      "tiles": 0,
+      "coarse_detections": 0
+    }
+  ]
+}

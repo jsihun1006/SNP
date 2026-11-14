@@ -1,0 +1,21 @@
+{
+  "mode": "baat",
+  "pose_available": false,
+  "temporal_tracking": false,
+  "frames": 1,
+  "total_io_inference_seconds": 3.641013083048165,
+  "total_fps": 0.27464883459381173,
+  "model_initialization_excluded": true,
+  "warmup_included": true,
+  "timings": [
+    {
+      "image_id": 1,
+      "frame": 0,
+      "seconds": 3.632850332884118,
+      "fps": 0.27526595052598835,
+      "detection_seconds": 3.6326755420304835,
+      "tiles": 1,
+      "coarse_detections": 37
+    }
+  ]
+}
