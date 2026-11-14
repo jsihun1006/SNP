@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-15",
+  "suites": [
+    "tests",
+    "MTAH_Relational_Starter/tests",
+    "competition_judgement/tests",
+    "contest_detection/tests"
+  ],
+  "passed": 604,
+  "failed": 14,
+  "subtests_passed": 2,
+  "runtime_s": 25.63,
+  "failure_nodeids": [
+    "FAILED tests/test_tryolabs_classification_v2.py::UniformTests::test_upstream_match_empty_guard_and_isolated_accumulation",
+    "FAILED tests/test_tryolabs_classification_v4.py::V4RoleTests::test_goal_geometry_is_weak_not_verified_pitch_or_play",
+    "FAILED tests/test_tryolabs_full_match_v2.py::FullMatchTests::test_crop_copy_adapter_preserves_pixels_even_at_image_boundaries",
+    "FAILED tests/test_tryolabs_full_match_v2.py::FullMatchTests::test_engine_resets_on_frame_gap_and_cut",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_cache_resume_preserves_20_frames_and_original_db_wal_shm",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_commit_survives_crash_before_global_checkpoint",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_corrupt_output_is_not_overwritten_or_accepted",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_duplicate_source_frame_reports_exact_failed_frame",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_full_completion_gate_requires_assembled_video",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_mid_chunk_interruption_discards_only_uncommitted_tail",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_scene_resets_but_chunk_boundaries_do_not",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_source_gap_and_resume_config_or_input_changes_are_rejected",
+    "FAILED tests/test_tryolabs_v4_streaming.py::StreamingTests::test_video_assembly_and_completion_do_not_claim_full_match_for_sample",
+    "FAILED tests/test_tryolabs_windows.py::CpuResumeTests::test_real_cpu_video_checkpoint_resume_matches_continuous_run"
+  ],
+  "causes": {
+    "missing_norfair": 1,
+    "missing_external_inference_module": 3,
+    "missing_imageio_ffmpeg": 9,
+    "existing_opencv_hough_shape_type_error": 1
+  },
+  "contest_failures": 0,
+  "algorithm_modified_to_fix_failures": false
+}

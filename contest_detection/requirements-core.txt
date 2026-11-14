@@ -1,0 +1,5 @@
+# Observed original environment: Python 3.11.17, macOS arm64 CPU.
+# Windows wheels and behavior still require Windows verification.
+numpy==2.4.6
+pandas==3.1.0
+pytest==9.2.0

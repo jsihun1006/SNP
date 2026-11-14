@@ -1,5 +1,8 @@
 # More than a Hack 2027 — Phase 1: Ball Possession
 
+**transition 브랜치:** [경합 탐지 개발 이력·v2-3 재현·Windows 11 실행 안내](contest_detection/README.md).
+기존 규칙 기반 판정은 향후 TranSPORTmer의 정답 라벨이 아니며, 이 브랜치에서는 모델 구현·학습을 수행하지 않습니다.
+
 **Organised by [Metrica Sports](https://metrica-sports.com), [FC Barcelona](https://www.fcbarcelona.com)
 and the [Mobile World Capital Barcelona](https://www.mwcbarcelona.com)**, at the Talent Arena in Barcelona.
 
