@@ -87,6 +87,9 @@ CONFIG = {
     "smooth_min_s": [0.0, 1.0, 2.0, 3.0],
     # 고른 설정: 2상태 비터비, 전환 벌점 40. DFL에서 다른 6경기로 고르기를 7번 해서 7번 모두 같은 값.
     "smooth_choice": {"method": "viterbi", "penalty": 40.0, "bias": 0.0, "min_s": 0.0},
+    # 느린 빌드업 보정(src/slow_buildup.py, JSH 노트북 ⑤): 패스·수신·공 동행 구간은 데드 진입을 어렵게.
+    # 값은 JSH 노트북의 COMPETITION_RULES 그대로(DFL 학습 쪽 내부 검증 경기로 선택).
+    "slow_buildup": {"margin": 0.0, "strength": 1.0, "bonus": 0.85},
 
     # --- 대회 데이터 적용 (src/apply_competition.py, src/final_dead_balls.py) ---------------------
     # 스마트 태깅 SET PIECES 태그 창을 앞뒤로 이만큼(초) 넓혀 겹치는지 본다. 결과 보고(참고용 지표)에만 쓴다.

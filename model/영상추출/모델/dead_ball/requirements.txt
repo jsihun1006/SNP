@@ -3,5 +3,7 @@ numpy==2.4.6
 pandas==3.1.0
 lightgbm==4.7.0
 pyarrow==26.0.1
+# 느린 빌드업 보정(src/slow_buildup.py)의 1차원 필터와 logit
+scipy==1.17.1
 # DFL 원본 XML을 parquet로 바꿀 때만 필요(src/dfl_load.py). 대회 데이터 적용에는 필요 없다.
 kloppy==3.18.0

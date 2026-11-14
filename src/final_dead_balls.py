@@ -14,6 +14,8 @@
 
 순서:
   1. 모델 확률의 2상태 비터비(벌점 40). 진짜 라인 아웃이 보인 프레임에서는 인플레이 → 데드 전환 벌점이 0이다.
+     느린 빌드업 보정(slow_buildup.py, JSH ⑤): 패스·수신이나 공과 선수의 동행이 보이는 구간은 데드 진입 비용을
+     높이고 데드 쪽 점수를 낮춘다. Metrica 3경기 0.809 → 0.820, SkillCorner 20경기 0.729 → 0.748.
   2. 확실한 라인 아웃은 무조건 데드볼: 모델이 인플레이로 본 라인 아웃 프레임부터, 공이 경기장 안에서 다시 보이고
      모델이 인플레이로 볼 때까지(force_line_outs).
   3. 시작 보정: 데드볼 시작 앞뒤 out_start_window_s 안에 라인 아웃이 보이면 그 프레임을 시작으로 한다.
@@ -243,14 +245,16 @@ def main():
     tag_spans = [(a - pad, b + pad) for a, b in tags]
 
     # 1. 모델 확률로 비터비를 다시 돌린다. 진짜 라인 아웃 프레임에서는 데드로 들어가는 전환 벌점이 없다.
-    import smoothing
     score = pd.read_csv(os.path.join(model_dir, "frames.csv"), usecols=["score"])["score"].to_numpy(np.float64)
-    choice = CONFIG["smooth_choice"]
     free = np.zeros(n, dtype=bool)
     free[crossings[crossings < n]] = True
-    state = smoothing.viterbi(score, match.period, choice["penalty"], choice["bias"], free_entry=free).astype(bool)
+    # 1b. 느린 빌드업 보정(slow_buildup.py, JSH ⑤): 패스·수신·공 동행 구간은 데드로 들어가기 어렵게 한다.
+    import slow_buildup
+    cross_in = crossings[(crossings > 0) & (crossings < n)]
+    cross_in = cross_in[match.period[cross_in] == match.period[cross_in - 1]]
+    state = slow_buildup.decode(score, match.players, match.ball, match.pitch, match.period, cross_in)
     # 2. 확실한 라인 아웃은 무조건 데드볼
-    state, forced = force_line_outs(state, crossings[crossings < n], sig, score, match.period)
+    state, forced = force_line_outs(state, cross_in, sig, score, match.period)
     state &= graded
     model_segments = [(a0 + a, a0 + b) for a0, b0 in blocks for a, b in runs_of(state[a0:b0])]
     baseline_count = len(pd.read_csv(os.path.join(model_dir, "segments.csv")))
