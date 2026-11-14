@@ -4,10 +4,9 @@
     python src/dfl_load.py all             # 7경기 전부
 
 출처: Bassek et al. (2025), Scientific Data 12, 195 (doi 10.1038/s41597-025-04505-y). CC-BY 4.0, DFL 표기.
-원본: figshare doi 10.6084/m9.figshare.28196177. figshare가 스크립트 내려받기를 막으므로(HTTP 202/403)
-경기마다 XML 세 개(DFL_02_01_matchinformation, DFL_03_02_events_raw, DFL_04_03_positions_raw_observed)를
-브라우저로 받아 config의 dfl_raw 폴더(기본 data/external/dfl/raw, 하위 폴더 허용)에 둔다.
-로컬 XML이 없으면 kloppy가 figshare에서 직접 받기를 시도한다.
+원본: figshare doi 10.6084/m9.figshare.28196177. 경기마다 경기 정보, 이벤트, 트래킹 XML을 제공한다.
+config의 dfl_raw 폴더(기본 data/external/dfl/raw, 하위 폴더 허용)에 있는 .xml.gz 또는 .xml을 읽는다.
+로컬 파일이 없으면 kloppy가 공개 데이터 다운로드를 시도한다.
 변환한 parquet는 config의 dfl_cache 폴더(기본 data/external/dfl, 커밋 안 함)에 둔다. 대회 데이터와 섞지 않는다.
 
 트래킹은 only_alive=False로 읽어 데드볼 프레임도 포함한다. 프레임별 ball_state(ALIVE/DEAD)는
@@ -36,7 +35,7 @@ def cache_paths(match_id):
 
 
 def raw_files(match_id):
-    """{'meta', 'event', 'tracking'} 로컬 원본 XML 경로. dfl_raw 폴더(하위 폴더 포함)에 셋 다 있을 때만."""
+    """경기 정보, 이벤트, 트래킹 XML의 로컬 경로. 둘 다 있으면 비압축 XML을 우선한다."""
     folder = CONFIG["dfl_raw"]
     if not os.path.isdir(folder):
         return None
@@ -45,8 +44,10 @@ def raw_files(match_id):
     found = {}
     for root, _, names in os.walk(folder):
         for name in names:
+            if not name.endswith((".xml", ".xml.gz")) or f"DFL-MAT-{match_id}" not in name:
+                continue
             for key, prefix in prefixes.items():
-                if name.startswith(prefix) and "DFL-MAT-{}".format(match_id) in name and name.endswith(".xml"):
+                if name.startswith(prefix) and (key not in found or name.endswith(".xml")):
                     found[key] = os.path.join(root, name)
     return found if len(found) == 3 else None
 

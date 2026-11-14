@@ -27,10 +27,17 @@ evaluation/reports/
 evaluation/scoreboard.csv
 
 # -- gated data --------------------------------------------------------------------------------
-# data/ is committed empty, with only its README, so the folder participants are told to unpack
-# into actually exists in a fresh clone. Everything they put in it stays out of git.
+# Keep the gated match and generated data local. Share only the listed public DFL assets.
 data/*
 !data/README.md
+!data/external/
+/data/external/*
+!/data/external/dfl/
+/data/external/dfl/*
+!/data/external/dfl/model_all_v2.txt
+!/data/external/dfl/raw/
+/data/external/dfl/raw/*
+!/data/external/dfl/raw/DFL_*.xml.gz
 
 *.mp4
 *.gzip
