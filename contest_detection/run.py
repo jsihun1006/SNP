@@ -8,6 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 STAGES = {
+    "prepare_v1": "contest_detection.prepare_v1_inputs",
     "v1": "competition_judgement.cli",
     "v2_1": "competition_judgement.analyze_local_clusters",
     "v2_2": "competition_judgement.analyze_temporal_relations",

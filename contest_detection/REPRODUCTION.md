@@ -61,6 +61,8 @@ $runName = 'candidate_v23_reproduction_' + (Get-Date -Format 'yyyyMMdd_HHmmss')
 
 ## 기존 자료가 없는 새 로컬 환경의 생성 순서
 
+**v1만 준비할 때**는 [입력 생성 안내](V1_INPUT_GENERATION.md)의 `python contest_detection/run.py prepare_v1`을 사용한다. 기존 `build_frame_cache`, `make_split_manifest`, `run_phase1`을 호출해 v1의 필수 캐시·분할·특징만 준비한다. 원본 ATD 두 파일은 별도 입력이다.
+
 아래는 **전체 재현용 참고 명령**이며 이번에 실행하지 않았다. 라이선스 ATD가 있는 별도의 새 clone/데이터 작업 공간에서만 실행한다. 날짜 폴더가 이미 있으면 기존 자료를 보존하고 새 작업 공간을 사용한다. 현재 runner의 고정 상대 경로 때문에 중간 폴더 이름을 임의 변경하면 다음 단계가 찾지 못한다.
 
 먼저 FEATURE_REUSE.md의 PowerShell PYTHONPATH를 설정한다.

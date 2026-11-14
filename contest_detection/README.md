@@ -4,6 +4,7 @@
 
 - [개발 이력](DEVELOPMENT_HISTORY.md): v1 → v2-1 → v2-2 → Missingness → Evidence → B.1 → B.2 → v2-3.
 - [버전별 경로·복원 한계](VERSION_MANIFEST.md), [Windows 호환성](WINDOWS_COMPATIBILITY.md), [입출력·재현](REPRODUCTION.md), [특징 재사용](FEATURE_REUSE.md).
+- [v1 입력 파일 생성 코드·실행법](V1_INPUT_GENERATION.md): 원본 ATD에서 캐시·분할·기하 특징을 생성한다. `python contest_detection/run.py prepare_v1`로 실행한다.
 - [최종 작업 보고](FINAL_REPORT.md), [검증 결과](VALIDATION.md), [원본 산출물 경로·SHA256](results/artifact_manifest.json), [원본 소스 SHA256](results/source_snapshot.json).
 
 기준은 `origin/KKJ`의 `17f527eb31c4bc2a8f9dc61d0c08e93cd1173808`이다. fetch 후 접근 가능한 Git log/reflog에서 이 경합 패키지의 과거 커밋은 발견되지 않았다. 현재 로컬의 단계별 모듈·설정·테스트와 11월 9–10일 산출물의 hash 기록을 연결했다. `versions/`는 증거와 경로를 안내하며, 존재하지 않는 과거 소스나 커밋을 만들어내지 않는다. 신규 커밋은 11월 15일의 보존·호환성 작업이다.
