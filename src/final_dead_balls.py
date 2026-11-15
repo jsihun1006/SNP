@@ -23,6 +23,9 @@
      다음 라인 아웃까지, 아니면 0.6초. 공개 30경기(src/eval_penalty_split.py, 차는 순간 = 배치 깨짐):
      DFL 3경기 +0.0016~+0.0059, Metrica game2 +0.0039(공 없으면 −0.0003), SkillCorner 1874553 −0.0035
      (그 라벨은 킥 6.4초 전부터 인플레이로 봐서 정의가 다름), 나머지 변화 없음.
+  2c. 페널티킥 뒤 92.7초 안에 킥오프(선수 배치, src/kickoff.py)가 감지되면 골로 보고, 킥 직후 인플레이(최대 3초)
+     뒤부터 킥오프까지 데드(kickoff.hold_after_penalty_goals). 공을 쓰지 않는다. 공개 30경기(src/eval_penalty_goal_hold.py):
+     나빠진 경기 0(공 있음·없음), SkillCorner 1874553 +0.0019, 나머지 변화 없음(모델이 세리머니를 이미 데드로 봄).
   3. 시작 보정: 데드볼 시작 앞뒤 out_start_window_s 안에 라인 아웃이 보이면 그 프레임을 시작으로 한다.
   4. 공개 킥오프(FAQ.md): 후반 채점 시작~킥오프는 D이고 킥오프에서 끝난다. 전반 킥오프 프레임에서 시작하는 구간은 뺀다.
 라인 아웃 = 공이 경기장 안(보임)에서 밖(보임)으로 넘고, 넘기 직전 1초 안에 굴러가고 있었으며, 넘은 뒤
@@ -409,6 +412,11 @@ def main():
     # 2b. 페널티킥 순간 데드볼 끊기(차는 순간은 재개). 공이 보이면 다음 라인 아웃까지, 아니면 0.6초 인플레이.
     pen_kicks = [(k, m) for k, m in penalty_kicks(match) if graded[k]]
     state, pen_split = split_at_penalty_kicks(state, [k for k, _ in pen_kicks], match.period, cross_in)
+    # 2c. 페널티킥 뒤 킥오프가 감지되면 골: 킥 직후 인플레이 뒤부터 킥오프까지 데드(세리머니 중 끊김 방지, 공 안 씀)
+    import kickoff
+    state, pen_goals = kickoff.hold_after_penalty_goals(state, [k for k, _ in pen_kicks], kickoff.kickoffs(match),
+                                                        match.period)
+    state &= graded
     model_segments = [(a0 + a, a0 + b) for a0, b0 in blocks for a, b in runs_of(state[a0:b0])]
     baseline_count = len(pd.read_csv(os.path.join(model_dir, "segments.csv")))
     # 3. 시작을 라인 아웃 프레임에 맞춤, 4. 공개 킥오프
@@ -430,7 +438,8 @@ def main():
              "start moved to a visible line crossing: {} (shift s p10/p50/p90 {})".format(
                  len(shifts), " / ".join("{:.1f}".format(v) for v in np.percentile(shifts, [10, 50, 90]))
                  if shifts else "-"),
-             "penalty kicks detected {}, dead ball split at the kick {}".format(len(pen_kicks), len(pen_split)),
+             "penalty kicks detected {}, dead ball split at the kick {}, held dead until the kickoff after a "
+             "penalty goal {}".format(len(pen_kicks), len(pen_split), len(pen_goals)),
              "public kickoffs: segments replaced or dropped {}".format(before - len(final) + 1),
              "clear line-outs in graded halves still outside a final dead segment: {}".format(
                  int(sum(1 for c in crossings if c < n and graded[c] and not mask[c]))),
