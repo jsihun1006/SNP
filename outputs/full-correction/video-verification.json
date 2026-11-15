@@ -1,0 +1,66 @@
+{
+  "status": "complete",
+  "source_frame_range": [
+    7171,
+    86638
+  ],
+  "source_decisions_sha256": "3bf2cc41f2bffa96180767963bc6bc953e4cd1902d1a7243d5ce2aa0d18375ee",
+  "full_video": {
+    "frames": 79467,
+    "fps": 25.0,
+    "duration_seconds": 3178.68,
+    "width": 1920,
+    "height": 720,
+    "bytes": 1641887284,
+    "first_middle_last_decode": "passed"
+  },
+  "highlight_video": {
+    "frames": 649,
+    "fps": 25.0,
+    "duration_seconds": 25.96,
+    "width": 1920,
+    "height": 720,
+    "bytes": 12783947,
+    "first_middle_last_decode": "passed"
+  },
+  "highlight_source_intervals": [
+    [
+      9000,
+      9100,
+      9042
+    ],
+    [
+      30360,
+      30449,
+      30442
+    ],
+    [
+      33150,
+      33200,
+      33172
+    ],
+    [
+      33310,
+      33370,
+      33329
+    ],
+    [
+      45690,
+      45790,
+      45711
+    ]
+  ],
+  "highlight_extra_pause_frames_per_key": 50,
+  "highlight_audio": false,
+  "original_candidate_observations": 244334,
+  "elapsed_seconds": 399.86051130000124,
+  "snapshots": [
+    "comparison-video-frame-7171.jpg",
+    "comparison-video-frame-9042.jpg",
+    "comparison-video-frame-30442.jpg",
+    "comparison-video-frame-33172.jpg",
+    "comparison-video-frame-33329.jpg",
+    "comparison-video-frame-45711.jpg"
+  ],
+  "legend": "Before original-only candidates, thick=max score; after green=selected, amber circle=selected but flagged, amber diamond=provisional, no marker=unresolved. Automated selection is not confirmed truth."
+}

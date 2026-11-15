@@ -1,0 +1,30 @@
+{
+  "version": "first_half_high_recall_observed_only_v1",
+  "start": 7171,
+  "end": 86638,
+  "chunk_frames": 1000,
+  "halo": 50,
+  "recovery": {
+    "confidence": 0.08,
+    "crop_size": 512,
+    "imgsz": 1280,
+    "batch_size": 4,
+    "max_jobs_per_frame": 2,
+    "full_frame_fallback": true
+  },
+  "input_sha256": {
+    "H:\\data\\broadcast\\BAR-ATH_broadcast.mp4": "3dc2a7d952302d33df69a26e3d8935648015f8d7e1b86bf614436b7009abf9f8",
+    "H:\\data\\ball-tracking-results\\first_half\\candidates.jsonl": "674df05eb1df2410beec24c6f4392f128a5b440545ae93d6c822b48a079767a7",
+    "H:\\data\\broadcast\\BAR-ATH_broadcast_homography.csv": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+    "H:\\data\\broadcast\\BAR-ATH_broadcast_atd.txt": "a71c1c9391e564032446be91ffbd7564205b47966060181532d80a338685e458",
+    "C:\\Users\\Administrator\\Documents\\Codex\\2026-11-15\\git-x20\\work\\source\\SNP-ball-tracking\\ball_only\\weights\\yolo26x.pt": "9fdd44a31c504547ffb81d2c6d9e6dac3493c8eaa8b0398d3f43bae6c7003e92"
+  },
+  "code_sha256": {
+    "run_full_ball_correction.py": "c0ce45a111945b192897f944b18f12c76f63a7628d11f353200824dd8fbea4eb",
+    "full_ball_tracking.py": "1d274fdc391e2cf346d96cd597d622fceeb8843e611363b8461696242a98e943",
+    "full_ball_recovery.py": "7d9f5151a02dc52f8fe5eb5c5840f4ef9fcb6fb88c7d765e4cb44ffdbd882bae"
+  },
+  "no_atd_coordinate_copy": true,
+  "ground_truth_accuracy_validated": false,
+  "fingerprint": "9bc5d7da2f26597d7844657cbeee3841e667ab5edaeed4ab570409067c53024d"
+}

@@ -1,3 +1,4 @@
 *.csv.gz filter=lfs diff=lfs merge=lfs -text
 frame_decisions.jsonl filter=lfs diff=lfs merge=lfs -text
+*.jsonl.gz filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text

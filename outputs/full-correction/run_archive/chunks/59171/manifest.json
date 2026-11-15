@@ -1,0 +1,40 @@
+{
+  "fingerprint": "9bc5d7da2f26597d7844657cbeee3841e667ab5edaeed4ab570409067c53024d",
+  "start_frame": 59171,
+  "end_frame_exclusive": 60171,
+  "frames": 1000,
+  "sha256": "e5ba81d95bcb4660fd0d5521de4b0988088a0beb74f8973d50a680b5daf1e907",
+  "status_counts": {
+    "selected_observation": 796,
+    "review_candidate": 116,
+    "unresolved": 88
+  },
+  "recovery": {
+    "target_frames": 421,
+    "planned_jobs": 488,
+    "processed_jobs": 488,
+    "processed_frames": 421,
+    "new_candidates": 420,
+    "frames_with_new_candidates": 232,
+    "frames_previously_without_candidates_now_with_candidates": 2,
+    "duplicate_lower_confidence_skipped": 202,
+    "crop_jobs": 394,
+    "full_frame_jobs": 94,
+    "hint_counts": {
+      "atd": 298,
+      "temporal": 92,
+      "full_frame": 94,
+      "existing_candidate": 4
+    },
+    "model_precision": "FP32",
+    "crop_size": 512,
+    "input_size": 1280,
+    "confidence_threshold": 0.08,
+    "batch_size": 4,
+    "full_frame_fallback": true,
+    "full_input_size": 1536,
+    "elapsed_seconds": 46.42477449999933
+  },
+  "created_unix": 1794717811.0712464,
+  "camera_cut_events": 2
+}

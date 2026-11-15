@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "method": "Three 3-second mono audio windows matched to source; correlation over +/-250ms; <=100ms lag and >=0.8 normalized correlation required.",
+  "source_offset_seconds": 286.84,
+  "checks": [
+    {
+      "output_start_seconds": 2.0,
+      "source_start_seconds": 288.84,
+      "sample_rate": 8000,
+      "compared_samples": 24000,
+      "lag_seconds": 0.0,
+      "normalized_correlation": 0.9989771841156776
+    },
+    {
+      "output_start_seconds": 1589.0,
+      "source_start_seconds": 1875.84,
+      "sample_rate": 8000,
+      "compared_samples": 24000,
+      "lag_seconds": 0.0,
+      "normalized_correlation": 0.9981775992146844
+    },
+    {
+      "output_start_seconds": 3173.0,
+      "source_start_seconds": 3459.84,
+      "sample_rate": 8000,
+      "compared_samples": 24000,
+      "lag_seconds": 0.0,
+      "normalized_correlation": 0.9995046407314911
+    }
+  ]
+}

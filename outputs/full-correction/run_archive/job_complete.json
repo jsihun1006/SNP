@@ -1,0 +1,16 @@
+{
+  "frames": 79467,
+  "statuses": {
+    "review_candidate": 16205,
+    "selected_observation": 49616,
+    "unresolved": 13646
+  },
+  "original_candidate_observations": 244334,
+  "new_candidate_observations": 28144,
+  "csv_sha256": "6261beb142c3055c10d8693d0bb02e7c85118006f60dc6e89c581a211286b5bd",
+  "decisions_sha256": "ca286f253e36464e0b2c676f807cbb456b50d4d1dd81bcbdbf0e57498ae44cf9",
+  "observed_coordinates_verified": true,
+  "accuracy_validated": false,
+  "finished_unix": 1794719652.0021281,
+  "elapsed_seconds": 5371.8326944
+}

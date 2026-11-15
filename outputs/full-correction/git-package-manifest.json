@@ -1,0 +1,1064 @@
+{
+  "status": "verified",
+  "source_frame_range": [
+    7171,
+    86638
+  ],
+  "frames": 79467,
+  "archived_chunk_count": 80,
+  "source_to_repository_mapping": [
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\qa_adjusted\\frame_decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/frame_decisions.jsonl.gz",
+      "bytes": 43001808,
+      "sha256": "3bf2cc41f2bffa96180767963bc6bc953e4cd1902d1a7243d5ce2aa0d18375ee"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\qa_adjusted\\corrected_ball_coordinates.csv",
+      "repository_path": "outputs/full-correction/corrected_ball_coordinates.csv",
+      "bytes": 13348454,
+      "sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\qa_adjusted\\job_complete.json",
+      "repository_path": "outputs/full-correction/completion_report.json",
+      "bytes": 2783,
+      "sha256": "534c3a06de96db7ea8604b7f16012a884e53b1954fe56fe4eb9ee7a32d92e64b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\run_config.json",
+      "repository_path": "outputs/full-correction/run_archive/run_config.json",
+      "bytes": 1543,
+      "sha256": "665d6a3993d90ee3f57620f3cadb65284b754c1f56a6aab6096ace0d404ec842"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\job_complete.json",
+      "repository_path": "outputs/full-correction/run_archive/job_complete.json",
+      "bytes": 551,
+      "sha256": "e1447a017ea2ffd2e7a446f8364a2d5c070eb1db253dd4b854fb10b716cbfeb7"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\corrected_ball_coordinates.csv",
+      "repository_path": "outputs/full-correction/run_archive/corrected_ball_coordinates.csv",
+      "bytes": 12367295,
+      "sha256": "6261beb142c3055c10d8693d0bb02e7c85118006f60dc6e89c581a211286b5bd"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\frame_decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/frame_decisions.jsonl.gz",
+      "bytes": 42657666,
+      "sha256": "ca286f253e36464e0b2c676f807cbb456b50d4d1dd81bcbdbf0e57498ae44cf9"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\7171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/7171/manifest.json",
+      "bytes": 1139,
+      "sha256": "be04da5a93084e466ae3985fcaba5a9d448449f59a6049b68716a7f6ee11df5a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\7171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/7171/decisions.jsonl.gz",
+      "bytes": 707781,
+      "sha256": "73a9199257dfe974c1753f3f02b2b0e399b4610dd7631bbd354501de7b19af83"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/8171/manifest.json",
+      "bytes": 1168,
+      "sha256": "a08c9a7d6b2850640539c27732d72c8b9374f815c7ba0cb96653ec52aa49b388"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/8171/decisions.jsonl.gz",
+      "bytes": 668158,
+      "sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\9171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/9171/manifest.json",
+      "bytes": 1164,
+      "sha256": "5206d20cf14e6aded47ab6346297de653f17141421b76b205a0fafc048dfe2f1"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\9171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/9171/decisions.jsonl.gz",
+      "bytes": 791004,
+      "sha256": "2428dbeedeba1977acafcdb728cf12e2faeae901a828449831e99861a8c6c36a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\10171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/10171/manifest.json",
+      "bytes": 1086,
+      "sha256": "d160aaec947abf77d9acaa14ebd265f903b2c4b1a0df3e32af0cb238452714f5"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\10171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/10171/decisions.jsonl.gz",
+      "bytes": 744880,
+      "sha256": "3ff199b28f8c6007ea3a009ecad982b2fda485858134e662f5f546151be9bad4"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\11171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/11171/manifest.json",
+      "bytes": 1172,
+      "sha256": "6de7a5a962be941e26a79de8b4ef837a56c61faf54df0810838e2a5898db1e3c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\11171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/11171/decisions.jsonl.gz",
+      "bytes": 589325,
+      "sha256": "99a3152d3dba97a696092301f191f033b926a672fed4c74315dd59b596f62baa"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\12171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/12171/manifest.json",
+      "bytes": 1169,
+      "sha256": "ca5cd951098709714e0104709ee6f292b7e3b9975be9098a051dc1b247babf94"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\12171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/12171/decisions.jsonl.gz",
+      "bytes": 573407,
+      "sha256": "3b7f593a15b99a052c6b30c49b082fe0788d5dc4ba772289ec0a38cf8072bfc7"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\13171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/13171/manifest.json",
+      "bytes": 1172,
+      "sha256": "2286bf0ade5c96f211a1c731a75bbf7a21d3771914e4216565189214c1704d45"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\13171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/13171/decisions.jsonl.gz",
+      "bytes": 398021,
+      "sha256": "d7ffce2ade4b3d2b8cc76a953f7541c24ba220bfded1e9a6ad9cdc51d584a641"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\14171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/14171/manifest.json",
+      "bytes": 1170,
+      "sha256": "23f6657e9d4d773a8bdc8e504c9706e53ad3b49714cc223f60da63e71d140aad"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\14171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/14171/decisions.jsonl.gz",
+      "bytes": 572849,
+      "sha256": "d938264e0c9caf3d3de0a95b3e9a4cbd48eb7759a71b372a49a00396d9c2cb8c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\15171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/15171/manifest.json",
+      "bytes": 1172,
+      "sha256": "1db946532b3789d50dd5f0909001a7d34966df10982d7d759fdb9d9831bf5529"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\15171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/15171/decisions.jsonl.gz",
+      "bytes": 478510,
+      "sha256": "7e9c66ab5c9655ae71145d463664420287d7887ddd4de84acebcb571eb7e513e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\16171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/16171/manifest.json",
+      "bytes": 1084,
+      "sha256": "70075f5cc9e79a1b0db55de0878b28de08bdd6a3d83cf99d276ead712f66cc85"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\16171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/16171/decisions.jsonl.gz",
+      "bytes": 737716,
+      "sha256": "4a0671d40523c099907fd997a3f231339d4c92a9d00fc1f35ecb70ce98b1ce25"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\17171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/17171/manifest.json",
+      "bytes": 1108,
+      "sha256": "5d32efb608220e91b9f1a9b3c0b2571e616df51996ce34d4507f047c895e884c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\17171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/17171/decisions.jsonl.gz",
+      "bytes": 731342,
+      "sha256": "b4dac891f2282095de8c75dc28fc81e4464c6a4d9b169b29712524f6de6000e9"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\18171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/18171/manifest.json",
+      "bytes": 1110,
+      "sha256": "9894dcf86e410138295ec109f6fb6d19805a58b7035b9aafd7973714bb118d20"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\18171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/18171/decisions.jsonl.gz",
+      "bytes": 716488,
+      "sha256": "991c1d1a120cf179107916538d241fa7cd89dcc078210078a245314a1187bbe4"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\19171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/19171/manifest.json",
+      "bytes": 1173,
+      "sha256": "cadc5703c8fb98ddc74238004ad3aded37fed5f74ffc4858b5fd610cb8822585"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\19171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/19171/decisions.jsonl.gz",
+      "bytes": 585078,
+      "sha256": "afadbbc1de8e6c1d78b9cfbf78fe32db0a69cfc6766a0920faf4b56d97216d3b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\20171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/20171/manifest.json",
+      "bytes": 1164,
+      "sha256": "0f4ad8c4e5dc169ead916d8d6cade787992819b56ae79ed3cf3eb71a05764752"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\20171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/20171/decisions.jsonl.gz",
+      "bytes": 806326,
+      "sha256": "99336704b4cc1c22ec2c7d0502c4dc33f46db6369cc8ccd99ca541e210ddbf84"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\21171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/21171/manifest.json",
+      "bytes": 1167,
+      "sha256": "5f51d60c02f18b1f38dcf689df3befe1fe5f9370fd59ad5c77873fde67146c32"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\21171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/21171/decisions.jsonl.gz",
+      "bytes": 625489,
+      "sha256": "966e88cadc0c199f8a13bf7d5d9471f159cd985ec5995597cb5f13a001be1fb1"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\22171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/22171/manifest.json",
+      "bytes": 1172,
+      "sha256": "7ee6eab81bc0736766d8a5ebe91542d2adab33e1ba1e6d4d83f817888df4837d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\22171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/22171/decisions.jsonl.gz",
+      "bytes": 579369,
+      "sha256": "4952e3469d286e9d32fa8d30ba7cdaaae6953fcf2c01d9d8e009c0c9bdfb8aff"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\23171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/23171/manifest.json",
+      "bytes": 1170,
+      "sha256": "dad8b1955fb4e9252815f52b4779aaa7e8a1c7fe1654aa86035bad416d03cedc"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\23171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/23171/decisions.jsonl.gz",
+      "bytes": 708178,
+      "sha256": "61ac17dcc9d142d0cec0022f2d59afead822773ddf6e6f5a558396ce098a2e7f"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\24171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/24171/manifest.json",
+      "bytes": 1171,
+      "sha256": "1c6637d888e1b6a5ebb6ffd288a64811a800e7bc712eb9a7c4dfd2690acf79d2"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\24171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/24171/decisions.jsonl.gz",
+      "bytes": 620217,
+      "sha256": "bc1202f1f28513030e3fcc1560f9fe73b85114a22282cec0e1f28c28ec8c6570"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\25171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/25171/manifest.json",
+      "bytes": 1173,
+      "sha256": "287b9595b9f6370b3c16da0375c867ceab8c834c3231322dccfaa9ca7edc8523"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\25171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/25171/decisions.jsonl.gz",
+      "bytes": 293618,
+      "sha256": "5d0d163530a8eff41daa6dc08f86d8381bad3725958f41508d005637f17e0603"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\26171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/26171/manifest.json",
+      "bytes": 1119,
+      "sha256": "2e4243edf240ebf159125ff35c5064f16128d68272c33791cd4eb8cfbccd8936"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\26171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/26171/decisions.jsonl.gz",
+      "bytes": 756933,
+      "sha256": "48c19f3554a0916f038c704a9d22a9d1971bd280f72318146409f65d0013525a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\27171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/27171/manifest.json",
+      "bytes": 1171,
+      "sha256": "6b6465157fcef8c76b3134b479055120e6c863f61c7b48c933f90259caa9064d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\27171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/27171/decisions.jsonl.gz",
+      "bytes": 445396,
+      "sha256": "c699562ed4c18c0eca6bad112febbb246da93f0eed30242d6cbd41cd1552aebd"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\28171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/28171/manifest.json",
+      "bytes": 1110,
+      "sha256": "117a33dadc573a3574cc92c4f6ef53df2403dec120f64dabc298416112e5f2b2"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\28171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/28171/decisions.jsonl.gz",
+      "bytes": 778080,
+      "sha256": "c1615e8787970e331f8e99ea71a1bd278c6b7f46915993e8c03e8b3850bdae34"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\29171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/29171/manifest.json",
+      "bytes": 1170,
+      "sha256": "1bdb12890da8b6c74dc8dd32720379e68d95d09e5cca3b01055d6ab25882fe66"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\29171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/29171/decisions.jsonl.gz",
+      "bytes": 327149,
+      "sha256": "1e394e4edbfc996ccaec295b7991fa56b7ba8f18ab02fb090831cf7248deaeef"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\30171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/30171/manifest.json",
+      "bytes": 1174,
+      "sha256": "34acad71f3f81cbdaabb70532f9010db6a5c207d83773e4b322d0e77e808e166"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\30171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/30171/decisions.jsonl.gz",
+      "bytes": 420060,
+      "sha256": "a61799b490da6d3b28e1dd5bbd3f3b053853958a9412ebdb893f667b2c40323a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\31171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/31171/manifest.json",
+      "bytes": 1119,
+      "sha256": "5c9e2e406bc69758dd676c557f192a01606f34d0983754cc1a7ad102723262b4"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\31171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/31171/decisions.jsonl.gz",
+      "bytes": 775546,
+      "sha256": "3bc0fc5c037898cbf6d2e8a51ddbc4153fa3d51c4c03de83784f9d811151a3e5"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\32171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/32171/manifest.json",
+      "bytes": 1174,
+      "sha256": "7434bd40e197ac6867533d0e4b56799a525541f657ec9f332053125602452d9d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\32171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/32171/decisions.jsonl.gz",
+      "bytes": 488359,
+      "sha256": "6508864a6e6ca5d8c7f0eafc9c4808272c76cc4cfdda1fcf00b97fa39cf68e32"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\33171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/33171/manifest.json",
+      "bytes": 1173,
+      "sha256": "620abce6d7000d8b9b5fd46f0d33d352445a8c2f5d004e530d051e4b834ba29c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\33171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/33171/decisions.jsonl.gz",
+      "bytes": 545223,
+      "sha256": "968df2d119eeff0144a94a5a8c75a22d47b17b124be5051191b23dbea447af82"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\34171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/34171/manifest.json",
+      "bytes": 1109,
+      "sha256": "c654129371294962a71da24ac85b2f2bd8f7a0b5910a4b14ef2512cf69149840"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\34171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/34171/decisions.jsonl.gz",
+      "bytes": 696297,
+      "sha256": "9da5d8f4edcd21d3678661d411ab5a82ed38371f014af67b5a20b56730e63c59"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\35171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/35171/manifest.json",
+      "bytes": 1087,
+      "sha256": "eaa9e6ebab3d16cbf1c41986831d4810d6168dae90b5ce417190d0df2510be2e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\35171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/35171/decisions.jsonl.gz",
+      "bytes": 672308,
+      "sha256": "6c0246835676123d25c7d9bdab1ce67dea92b3a59f8024a7ec3a121e260482b4"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\36171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/36171/manifest.json",
+      "bytes": 1169,
+      "sha256": "827103242744dcf0ff0809eacae17191eaf6848e7774a191a25178d054b28b82"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\36171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/36171/decisions.jsonl.gz",
+      "bytes": 692538,
+      "sha256": "aaed29c49f9892b764fba70b30ce85ec45d17bf91c428e2caec8580370d907cd"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\37171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/37171/manifest.json",
+      "bytes": 1172,
+      "sha256": "4b993ecb35fab97742a52991d6fadc4d31f6e4d3ff603e51c6544656310a3464"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\37171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/37171/decisions.jsonl.gz",
+      "bytes": 455541,
+      "sha256": "d3b9cf59f6fbe55c6d4747456fa1b60d0352368ae8eabf095ac09bf989325f6a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\38171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/38171/manifest.json",
+      "bytes": 1174,
+      "sha256": "2a212097a18a4ee8561e296b8b1d7c9acb7cc66dd5a917dc172350b678a5aeaf"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\38171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/38171/decisions.jsonl.gz",
+      "bytes": 403907,
+      "sha256": "00cd466398d1060225c0e6cfdfe2a65a48b12ed1372304c8f7f4f68c800fd4bb"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\39171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/39171/manifest.json",
+      "bytes": 1170,
+      "sha256": "4b420ac0e906293da931fc5e2ef66bddcb30178db460395eceb5338af3681e4e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\39171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/39171/decisions.jsonl.gz",
+      "bytes": 523672,
+      "sha256": "0e36ffeef9614e56bf47700939e928c4797af2ad818b2f7f344831f318387a12"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\40171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/40171/manifest.json",
+      "bytes": 1171,
+      "sha256": "bbba7ad47b740156388daf1138d1ddfe0d1adf291d472531288859239597e40f"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\40171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/40171/decisions.jsonl.gz",
+      "bytes": 484848,
+      "sha256": "7e09e295f7ad0efafeeb18d3548c31bf310c837a66eea16740a2415166afcd2b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\41171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/41171/manifest.json",
+      "bytes": 1169,
+      "sha256": "21a546940500e0bb037c1962cd4e95e395d874be0ab532175b19bd36e5f4b021"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\41171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/41171/decisions.jsonl.gz",
+      "bytes": 399340,
+      "sha256": "251f50529ff1002f9e7902fbd9a963d525b520a6a871623c40121ffc2b502a7d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\42171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/42171/manifest.json",
+      "bytes": 1173,
+      "sha256": "8975c0eedb77e93173724516990f0e204dd54d3d2a586e503ae4221ba13544c3"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\42171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/42171/decisions.jsonl.gz",
+      "bytes": 426271,
+      "sha256": "5a0536e4c099945e0b6df9aa60f9422b35ce30a26e77540177884bc274934352"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\43171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/43171/manifest.json",
+      "bytes": 1154,
+      "sha256": "8554a99d497a91d6f6972cf6bb803ff21abf8e761252f5ec30ed2fcb31b99d63"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\43171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/43171/decisions.jsonl.gz",
+      "bytes": 224316,
+      "sha256": "11b02d2a104927ea327343785e4b338a98ed6049d67c985f2e263c6fef545926"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\44171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/44171/manifest.json",
+      "bytes": 1154,
+      "sha256": "7fc775d961a0d854b5fa544a23504248aaad22b57fe4c14900d8178ea2ced91b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\44171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/44171/decisions.jsonl.gz",
+      "bytes": 141002,
+      "sha256": "7432c449ee82b669c67b5cc4367d0532df8a86004026216adc2a76c944d4b775"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\45171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/45171/manifest.json",
+      "bytes": 1172,
+      "sha256": "971b8be904ac5e002b91d5456eb74209690fc224a870d9fb9a04684b96969f4b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\45171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/45171/decisions.jsonl.gz",
+      "bytes": 446414,
+      "sha256": "28e5fbb0a5454035b1f74d84a38421f8d99e78f3e49de490a0c58dbd60142000"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\46171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/46171/manifest.json",
+      "bytes": 1170,
+      "sha256": "16d1bc86c1619337b91b9294ea361ae99c715ee45dd759694638fe9bb0e58a8c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\46171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/46171/decisions.jsonl.gz",
+      "bytes": 268769,
+      "sha256": "443d0d9cdb0b49e12201bf1176517d66822125d45bb4b689985c83f575f0a595"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\47171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/47171/manifest.json",
+      "bytes": 1144,
+      "sha256": "51d1a38eb7946329a3d1aa627fff90226adf8a67c150301d9134c4c17d6c40cf"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\47171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/47171/decisions.jsonl.gz",
+      "bytes": 812948,
+      "sha256": "74b89e713b99520d3e4a3cb3b7753a04ce4094f9a7a72979f19276a52080dc8e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\48171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/48171/manifest.json",
+      "bytes": 1169,
+      "sha256": "a010182238e34f5ac5d1349b5005870c7e11074c9f6aa909794930e7f9cabeec"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\48171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/48171/decisions.jsonl.gz",
+      "bytes": 546093,
+      "sha256": "f7f7fb536ecb10c7fa159c1d4f902fb5b40ff08e893c37d8eff1e796fe861e97"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\49171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/49171/manifest.json",
+      "bytes": 1173,
+      "sha256": "2ee861a895e528cb354aec61335dc65c2079eeab4c6c8c59407d0e7d0e8ffc4b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\49171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/49171/decisions.jsonl.gz",
+      "bytes": 453947,
+      "sha256": "51a170d78595241f060a9b1b4655f3da39168116de3cccbae53a615deffd3fae"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\50171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/50171/manifest.json",
+      "bytes": 1143,
+      "sha256": "028c0405ac26bd2082ba13f70e73ddb25e3ec1458e26e1714196f1d94b48654f"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\50171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/50171/decisions.jsonl.gz",
+      "bytes": 761930,
+      "sha256": "1a3bd7864c78dbf242f0b89426f1f995a936d8b0f210cb8063e2a14f3226394b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\51171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/51171/manifest.json",
+      "bytes": 1169,
+      "sha256": "8b9dd636bdda1308392c5a16dd85d78713b7497d77239b69b25d92d671d92ee2"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\51171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/51171/decisions.jsonl.gz",
+      "bytes": 720446,
+      "sha256": "106e58f796ca7b2ed41fb48ab6e7dcd3e924ddadc36f99f532f21118ed795f2c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\52171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/52171/manifest.json",
+      "bytes": 1173,
+      "sha256": "2ae238dc058ae8e9ef26c78b025070687946153a0fe5d31d5b8492b2a2ebe80e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\52171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/52171/decisions.jsonl.gz",
+      "bytes": 537613,
+      "sha256": "2bf08ac27ed36bef3281b613735376b307c9bf31cc345bc46b8e6210c0996f3d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\53171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/53171/manifest.json",
+      "bytes": 1172,
+      "sha256": "49e1a285760ff630710b8da5d59264fbd9e774584c72a91746d620ef09adc868"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\53171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/53171/decisions.jsonl.gz",
+      "bytes": 552627,
+      "sha256": "8ae8d6c6f0fb4cb1d3a655ce6f682464c494c3a565a528bf45eee23d4f8e0f25"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\54171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/54171/manifest.json",
+      "bytes": 1175,
+      "sha256": "a6a97efee2a059d86e7cc5c4f040fcbe8796bdeacc98d50f2047dcfb59363f5f"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\54171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/54171/decisions.jsonl.gz",
+      "bytes": 306924,
+      "sha256": "5af4acbfa81cde3c1fc4f8270aa3e7d917496d480de893153b0bae5ca67f55ac"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\55171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/55171/manifest.json",
+      "bytes": 1149,
+      "sha256": "64c9b55cc8fe9cb9253164a3ae46a559baa36bc72c790bc21871c64f13ee1c7c"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\55171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/55171/decisions.jsonl.gz",
+      "bytes": 81441,
+      "sha256": "493673d9e84a25e5ff7450dfa83b6c34baafdd59c206254915480525d4396d57"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\56171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/56171/manifest.json",
+      "bytes": 1171,
+      "sha256": "924cd6b38cbe419ef83d7b67bf8a8f3faf227f113484548c0be6d922e98ca631"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\56171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/56171/decisions.jsonl.gz",
+      "bytes": 458663,
+      "sha256": "001f3cf8d3d8db35d7de10b225e20fd5ed9afda2e913e589eb76e404d8ad3445"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\57171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/57171/manifest.json",
+      "bytes": 1169,
+      "sha256": "6f7175f210787bdd623e9d66c66470b18fa8e995d94262f274e26e7aa9b57cd8"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\57171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/57171/decisions.jsonl.gz",
+      "bytes": 126998,
+      "sha256": "82c5d070e40d0f860280cef6f69a68148ef82212cfc4f59e6dc33953a175f641"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\58171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/58171/manifest.json",
+      "bytes": 1169,
+      "sha256": "521654d65da1cccf63efb2d5e6dba973a12ad8fdc14f9df25f64af4e991978d7"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\58171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/58171/decisions.jsonl.gz",
+      "bytes": 732967,
+      "sha256": "5cea54f7a73b8e77caedb4680bb851c0a6d19a03a4fd23fd66aef81e865b36a2"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\59171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/59171/manifest.json",
+      "bytes": 1167,
+      "sha256": "a64b0be577660aa059856c00b4d65d80ae10089fbe115997cbbb210c701c45c2"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\59171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/59171/decisions.jsonl.gz",
+      "bytes": 756574,
+      "sha256": "e5ba81d95bcb4660fd0d5521de4b0988088a0beb74f8973d50a680b5daf1e907"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\60171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/60171/manifest.json",
+      "bytes": 1166,
+      "sha256": "ea0b429c5db31e6f7bfb54ba7583b0ebf6f3656a8976809c728cf7c159c2da23"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\60171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/60171/decisions.jsonl.gz",
+      "bytes": 891112,
+      "sha256": "93db53a2be39d1a4e9a51a771b1c5625428c096f37230aa27ec0808c6dbc03a0"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\61171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/61171/manifest.json",
+      "bytes": 1169,
+      "sha256": "4575d44384a04f272cbb75031c6b6ca876e7410fa97cc0124e1fcfcb86c16177"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\61171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/61171/decisions.jsonl.gz",
+      "bytes": 473008,
+      "sha256": "015b3b0937dfeb92b9b0725ca03320d0a890e2dc6a8f67e49f8bf062b5e1b9d7"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\62171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/62171/manifest.json",
+      "bytes": 1085,
+      "sha256": "8d0515213acc0e42dea9401f8656489cd4ae00880f51283687bf554948677430"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\62171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/62171/decisions.jsonl.gz",
+      "bytes": 857236,
+      "sha256": "f924609c5fb3fd3c67bc0d173481329a849815ecec0615260f145b3565ce887d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\63171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/63171/manifest.json",
+      "bytes": 1171,
+      "sha256": "e6cf1d746e877c76194967fab50f958942baac6333b100c845f193b97f67fc08"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\63171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/63171/decisions.jsonl.gz",
+      "bytes": 473286,
+      "sha256": "b3167cf63753b4256083511b2fab8c7369ad47bc96ef7d7c59806d63a5d945ac"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\64171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/64171/manifest.json",
+      "bytes": 1172,
+      "sha256": "c5c67f2b623075b6432072b55b61195ed5fea884885080df616e14f4d8091080"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\64171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/64171/decisions.jsonl.gz",
+      "bytes": 656185,
+      "sha256": "d2bfe4e189c41e2e196f38e08cf851048cc69e66846de9391edd945283f01adb"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\65171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/65171/manifest.json",
+      "bytes": 1173,
+      "sha256": "1ee64b1053460b88466d6db875cdec5d218144dc322c23681d75584f34459857"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\65171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/65171/decisions.jsonl.gz",
+      "bytes": 481497,
+      "sha256": "1bb91c85c99148d8653d3a2f25c3eb29ce0b19ad5d7af28ca63d9b68e6293484"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\66171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/66171/manifest.json",
+      "bytes": 1174,
+      "sha256": "a9b9e49ad0832851f32d1fdbca6aeb247416f8afb05a65890783fe3ba0cfd9e9"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\66171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/66171/decisions.jsonl.gz",
+      "bytes": 329438,
+      "sha256": "4491e55b6bf75e5b5afeeb6336ac66c20cf7abfc7c1ade1464aec0f3534848f3"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\67171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/67171/manifest.json",
+      "bytes": 1154,
+      "sha256": "3d907d3f42e7cb1fe3c2bb4cb09254eb29ddd99c1da6d3e8f1682e293738856e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\67171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/67171/decisions.jsonl.gz",
+      "bytes": 247460,
+      "sha256": "280a0e09ddd458d50e60961daef48a6c7bed9d4317c68efe2c9c9dffd8a98ff8"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\68171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/68171/manifest.json",
+      "bytes": 1153,
+      "sha256": "66efe280de01b1b545d3bb5e34f3a4c04e904af431cc41d3505b29da14a61fdb"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\68171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/68171/decisions.jsonl.gz",
+      "bytes": 189249,
+      "sha256": "ca667265a770e8b8d7422f24f7a2cc71ea065ed65a8adc4292ab763c8dae24c9"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\69171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/69171/manifest.json",
+      "bytes": 1152,
+      "sha256": "e7a5b491c195b8b0583cd6ecfed3a6988d6aac9faa915329231ceadf2d013cdf"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\69171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/69171/decisions.jsonl.gz",
+      "bytes": 267579,
+      "sha256": "156637d36e0e982aa5f6d229e785d02f4a32c28f0871f1ea917ef16a779a40ca"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\70171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/70171/manifest.json",
+      "bytes": 1150,
+      "sha256": "d43d38dd6708a9fa7086dccf00f5945d4c9673675482613b8bdd28e1eec5b1e1"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\70171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/70171/decisions.jsonl.gz",
+      "bytes": 169655,
+      "sha256": "6a335f57dfd77a46bcadff3e7bbe2a3b9acd77e440a21840be52b34c69e00026"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\71171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/71171/manifest.json",
+      "bytes": 1170,
+      "sha256": "b71448e84b7d41af3683bd34f13a3567c7836300df38d47bb318f1e5bc18abce"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\71171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/71171/decisions.jsonl.gz",
+      "bytes": 684133,
+      "sha256": "4b09e8b4249cf696b768a9ce2a1fff5a2336f8e1e7f2abfd42ad656033d186cd"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\72171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/72171/manifest.json",
+      "bytes": 1166,
+      "sha256": "64c53669d77b9216bea2652826050fd8d5c6a37d4d27306c5504bc2221891e44"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\72171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/72171/decisions.jsonl.gz",
+      "bytes": 784689,
+      "sha256": "8c27f8675b59ad34999cd176f2d7b5a118fd965ac71187d8fd7762eb9a1dd2f2"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\73171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/73171/manifest.json",
+      "bytes": 1170,
+      "sha256": "9de095474edac57b21b8ee64bb3fbd041bdaac77506105a6b1a5edab0f9f1838"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\73171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/73171/decisions.jsonl.gz",
+      "bytes": 649992,
+      "sha256": "78c8f96188e4851aeb4945a878caa011ff5a667153c9b4b3a485edf1ab71c217"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\74171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/74171/manifest.json",
+      "bytes": 1121,
+      "sha256": "07b182a8c2a6d3c4ec29994585f8561ee3103c33801e57c1897365bbf4413a29"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\74171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/74171/decisions.jsonl.gz",
+      "bytes": 690983,
+      "sha256": "1886fce4e6fe8daf71f715f80a22f5360f3d2c5adeb4bc0737a838f3d0175b1d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\75171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/75171/manifest.json",
+      "bytes": 1173,
+      "sha256": "5eaaf0b7d4bc39491cdb229fd3ec885f3b38392230e65a3fcd9ed5d56722bd49"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\75171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/75171/decisions.jsonl.gz",
+      "bytes": 624654,
+      "sha256": "8a2fbbbe8956d28e91efcd79996cdda48ab8309e87b43953be9a75353baef79a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\76171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/76171/manifest.json",
+      "bytes": 1171,
+      "sha256": "1edf057e015f7eafe8a5d7b37600d207d88ee0cef28938bf094605e7830b438e"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\76171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/76171/decisions.jsonl.gz",
+      "bytes": 486639,
+      "sha256": "dfd48a166cf81dfb21823ca8830b2da135ebccdef56d6b4d90ff8c0d74e9f883"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\77171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/77171/manifest.json",
+      "bytes": 1168,
+      "sha256": "2b4b9461bb7ab1c0aa24565b3efb9fbe6d217b098358906f0cf8f984b1db7991"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\77171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/77171/decisions.jsonl.gz",
+      "bytes": 753086,
+      "sha256": "7544764259fd375e002f2041d46faeca7e7a4ceae663ac72f4564be4996ec1ae"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\78171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/78171/manifest.json",
+      "bytes": 1167,
+      "sha256": "622a2b91a95493a0ab75658350e61bb11ac6a11037da36f4bc34ed0f8cd02bb0"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\78171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/78171/decisions.jsonl.gz",
+      "bytes": 615204,
+      "sha256": "c3c855ed37069c163e73281d55294759a17f847dd25d3713c34be3a035bb0f0d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\79171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/79171/manifest.json",
+      "bytes": 1146,
+      "sha256": "02554b0172c85e563af9635692cd267998a76eac5fa3a5ee452f812a62f8bfc5"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\79171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/79171/decisions.jsonl.gz",
+      "bytes": 774825,
+      "sha256": "a64305418d8e35c1f74db421293f578e5053b42a17f40e1a5f71e5eb9399bd32"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\80171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/80171/manifest.json",
+      "bytes": 1177,
+      "sha256": "97b1bede4d784cb6f1f8d9d847965d284c4cc1f893360ccc6e5ee8fef433d423"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\80171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/80171/decisions.jsonl.gz",
+      "bytes": 478825,
+      "sha256": "ba2422412f5ebd4cb9178b595b063ce0f8e7480354a24d77caf6741d627a9ac8"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\81171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/81171/manifest.json",
+      "bytes": 1171,
+      "sha256": "09a37e56d80347991188cc2f42ef6bc04ea505665186f238bfc3154a89b5863f"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\81171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/81171/decisions.jsonl.gz",
+      "bytes": 716503,
+      "sha256": "381b4ba78e0bf85344b122ae92c078b344161de0b0e88e8f313e3e607ca2fe8d"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\82171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/82171/manifest.json",
+      "bytes": 1171,
+      "sha256": "8f6ace296e48c3e9e55f0dba55fbea7e72521430e6d69e07400cc70f97f77acf"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\82171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/82171/decisions.jsonl.gz",
+      "bytes": 536729,
+      "sha256": "44622f858a134202e67f9fe677d9092de32efa795307d460f05ead238279b11b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\83171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/83171/manifest.json",
+      "bytes": 1152,
+      "sha256": "d523228e29620615f79945e778ab4b96f63399f065c5154ee689a61557676dbb"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\83171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/83171/decisions.jsonl.gz",
+      "bytes": 301130,
+      "sha256": "bbda3631695bfb114e404d555d4d8d55c5c01312bcb24cb6b44d3ac119b4baf6"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\84171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/84171/manifest.json",
+      "bytes": 1171,
+      "sha256": "c690dc7c7ae1984870e678be74ad0b81d5b91b830fcb0473ce659cd61cb5e4ee"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\84171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/84171/decisions.jsonl.gz",
+      "bytes": 273519,
+      "sha256": "33576b6475ec4c600dec4a120a21ba32a27b19b3dbdc3732d1785b62bdf7b372"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\85171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/85171/manifest.json",
+      "bytes": 1150,
+      "sha256": "8bf55a2fd4e034945634f2e05ae4834e562dc9a1537472b19bcf62b81d1d2db0"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\85171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/85171/decisions.jsonl.gz",
+      "bytes": 66433,
+      "sha256": "e72417a1df3fa5aff2661fa6041143f45a3d21e344a36c26ef997b42e868426a"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\86171\\manifest.json",
+      "repository_path": "outputs/full-correction/run_archive/chunks/86171/manifest.json",
+      "bytes": 1149,
+      "sha256": "82d986d6fb3447ee5daeab13eecaf5dd999f0b5f605d26b2590f455cfb6b5a0b"
+    },
+    {
+      "source_path": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\86171\\decisions.jsonl.gz",
+      "repository_path": "outputs/full-correction/run_archive/chunks/86171/decisions.jsonl.gz",
+      "bytes": 123295,
+      "sha256": "b8a4ad25a4af761b56971580d631f30125b485d9493f4bf6154437d6f42fc6c1"
+    }
+  ],
+  "core_code": [
+    {
+      "repository_path": "work/run_full_ball_correction.py",
+      "sha256": "c0ce45a111945b192897f944b18f12c76f63a7628d11f353200824dd8fbea4eb"
+    },
+    {
+      "repository_path": "work/full_ball_tracking.py",
+      "sha256": "1d274fdc391e2cf346d96cd597d622fceeb8843e611363b8461696242a98e943"
+    },
+    {
+      "repository_path": "work/full_ball_recovery.py",
+      "sha256": "7d9f5151a02dc52f8fe5eb5c5840f4ef9fcb6fb88c7d765e4cb44ffdbd882bae"
+    },
+    {
+      "repository_path": "work/finalize_full_ball_correction.py",
+      "sha256": "f334445f2a538acbc087df11b8fdde1200f33af3885ef804954e846b4fd8ae1c"
+    },
+    {
+      "repository_path": "work/full-run-adjudications.json",
+      "sha256": "bdc07ad6bef5743f30aef047362479356e7b91f5e447962305a62a6789621827"
+    },
+    {
+      "repository_path": "work/render_full_correction_examples.py",
+      "sha256": "0d479126099a97ef58bcfaf37f1954075835a3c592b979ae31872d6258e4558b"
+    },
+    {
+      "repository_path": "work/render_full_comparison_video.py",
+      "sha256": "ea78b1ffd85304e5394f3c9c32f94d100ab91861b90ec32f86f625018863acf0"
+    },
+    {
+      "repository_path": "work/verify_comparison_audio.py",
+      "sha256": "419226ef30e197e729c9c3bcc4593f34819a1b168b7190e4a4041a52891f68eb"
+    },
+    {
+      "repository_path": "work/package_full_correction.py",
+      "sha256": "ad0bc552b4c0e71586aa8471f16d476da9b68c32d08ef72682c3a040234007bb"
+    }
+  ],
+  "total_archived_data_bytes": 154217953,
+  "transient_files_excluded": [
+    "run.lock",
+    "progress.json",
+    "recovery_progress.json"
+  ],
+  "external_inputs": [
+    "Original source video",
+    "Detector model weights",
+    "Original detection input JSONL",
+    "Homography and ATD source datasets"
+  ],
+  "notes": "Final results are at outputs/full-correction; run_archive preserves the automatic phase and all completed chunks. Absolute paths in frozen metadata identify the original run; source_to_repository_mapping locates identical archived bytes."
+}
