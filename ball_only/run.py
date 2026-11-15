@@ -1,5 +1,6 @@
 """Portable, resumable ball candidate generation for explicit source-video ranges."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
 from decimal import Decimal, InvalidOperation
 import hashlib
@@ -126,6 +127,16 @@ def consolidate(out,config):
     os.replace(tmp,target);return target,digest.hexdigest(),count
 
 
+def decode_chunk(cap, first, last, height, width):
+    images = []
+    for source_frame in range(first, last):
+        ok, image = cap.read()
+        if not ok or image.shape[:2] != (height, width):
+            raise RuntimeError(f'Source decode failed at frame {source_frame}')
+        images.append(image)
+    return images
+
+
 def run(video,weights,out,*,start,end,part_id,chunk_frames=32,full_batch=1,roi_batch=4,tile_batch=8,max_rois=2,
         gpu_target_low=98.,gpu_target_high=99.5,device=0,detector_factory=None,controller_factory=None,expected_video_sha256=None):
     base=environment()
@@ -160,6 +171,7 @@ def run(video,weights,out,*,start,end,part_id,chunk_frames=32,full_batch=1,roi_b
         if not prior.exists():atomic(prior,config)
         else:config=read(prior)
         position=resume_at(out,config);resumed=position;started=time.perf_counter();last_report=time.monotonic();cap=None
+        decoder = None
         protected={p:(p.stat().st_size,p.stat().st_mtime_ns) for p in (video,weights)}
         controller=(controller_factory or RuntimeController)(gpu_index=device,target_low=gpu_target_low,target_high=gpu_target_high)
         def publish(status='running',force=False):
@@ -181,13 +193,14 @@ def run(video,weights,out,*,start,end,part_id,chunk_frames=32,full_batch=1,roi_b
                 cap=cv2.VideoCapture(str(video))
                 if not cap.set(cv2.CAP_PROP_POS_FRAMES,position):raise RuntimeError('Cannot seek exact source checkpoint')
                 started=time.perf_counter()
+                decoder = ThreadPoolExecutor(max_workers=1, thread_name_prefix='video-decode')
+                pending = decoder.submit(decode_chunk, cap, position, min(last, position + chunk_frames), height, width)
                 while position<last:
                     if (out/'STOP').exists():publish('stopped',True);atomic(out/'job_stopped.json',dict(status='stopped',next_source_frame=position));return False
-                    end_chunk=min(last,position+chunk_frames);images=[]
-                    for source_frame in range(position,end_chunk):
-                        ok,image=cap.read()
-                        if not ok or image.shape[:2]!=(height,width):raise RuntimeError(f'Source decode failed at frame {source_frame}')
-                        images.append(image)
+                    end_chunk = min(last, position + chunk_frames)
+                    images = pending.result()
+                    if end_chunk < last:
+                        pending = decoder.submit(decode_chunk, cap, end_chunk, min(last, end_chunk + chunk_frames), height, width)
                     results=model.run_chunk(images,full_batch=full_batch,roi_batch=roi_batch,tile_batch=tile_batch,max_rois=max_rois)
                     if len(results)!=len(images):raise ValueError('Detector output frame count mismatch')
                     folder=out/'chunks'/f'{position:09d}';folder.mkdir(parents=True,exist_ok=True);target=folder/'detections.jsonl';tmp=target.with_name(target.name+'.tmp-'+uuid.uuid4().hex);digest=hashlib.sha256()
@@ -199,6 +212,8 @@ def run(video,weights,out,*,start,end,part_id,chunk_frames=32,full_batch=1,roi_b
                     os.replace(tmp,target)
                     atomic(folder/'manifest.json',dict(status='complete',fingerprint=fingerprint,start_frame=position,end_frame=end_chunk,frames=end_chunk-position,sha256=digest.hexdigest(),completed_unix=time.time()))
                     position=end_chunk;publish()
+                decoder.shutdown()
+                decoder = None
                 cap.release();cap=None
             target,digest,count=consolidate(out,config)
             if any((p.stat().st_size,p.stat().st_mtime_ns)!=stamp for p,stamp in protected.items()):raise ValueError('A protected input changed while running')
@@ -212,6 +227,8 @@ def run(video,weights,out,*,start,end,part_id,chunk_frames=32,full_batch=1,roi_b
         except BaseException as exc:
             atomic(out/'job_error.json',dict(status='failed',error=repr(exc),traceback=traceback.format_exc(),next_source_frame=position,updated_unix=time.time()));raise
         finally:
+            if decoder is not None:
+                decoder.shutdown(cancel_futures=True)
             if cap is not None:cap.release()
 
 
