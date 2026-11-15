@@ -1,0 +1,21 @@
+{
+  "reviewed_exact_frames": 19,
+  "reviewed_same_as_original_max": 19,
+  "reviewed_max_coordinate_difference_px": 0.0,
+  "descriptive_counts": {
+    "accepted": 3130,
+    "original_max_exactly_same": 2748,
+    "original_max_different": 381,
+    "no_original_candidate": 1,
+    "targeted_selected": 155,
+    "targeted_with_no_original_candidate": 1,
+    "targeted_nearest_original_over_10px": 20
+  },
+  "precision_before": null,
+  "precision_after": null,
+  "recall_before": null,
+  "recall_after": null,
+  "accuracy_gain": null,
+  "reason": "No independent localization/visibility ground truth. Reviewed samples do not cover changed/recovered choices.",
+  "warning": "Coordinate changes, acceptance coverage, and use of recovered candidates are not accuracy measurements."
+}

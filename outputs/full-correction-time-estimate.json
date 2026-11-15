@@ -1,0 +1,68 @@
+{
+  "basis": "Artifact creation/modification timestamps, not instrumented per-stage timers; coding, inspection and waiting excluded.",
+  "pilot_frames": 4500,
+  "pilot_source_seconds": 180,
+  "pilot_automatic_seconds_rough": 150.39999999999998,
+  "phase_seconds_rough": {
+    "prepare_estimated_from_script_creation_to_output": 20.7,
+    "first_selection_estimate": 12.0,
+    "targeted_redetection_estimate": 61.9,
+    "final_selection_upper_estimate": 19.5,
+    "export_and_master_video_estimate": 30.6,
+    "preview_encoding_and_verification_estimate": 5.7
+  },
+  "pilot_targeted_redetection_fraction": 0.24266666666666667,
+  "first_half": {
+    "frames": 79467,
+    "source_minutes": 52.977999999999994,
+    "existing_candidates": true,
+    "linear_automatic_minutes": 44.26606222222222,
+    "planning_range_minutes": [
+      40,
+      70
+    ]
+  },
+  "two_halves": {
+    "frames": 155923,
+    "source_minutes": 103.94866666666667,
+    "linear_correction_minutes": 86.8548859259259,
+    "planning_correction_hours": [
+      1.3,
+      2.3
+    ],
+    "second_half_missing_candidate_detection_hours_at_7fps": 3.0339682539682538,
+    "total_including_missing_second_half_detection_hours": [
+      4.3,
+      5.4
+    ]
+  },
+  "entire_mp4": {
+    "frames": 164487,
+    "source_minutes": 109.65799999999999,
+    "linear_correction_minutes": 91.6253511111111,
+    "additional_frames_without_original_candidates": 85020,
+    "additional_detection_hours_at_7fps": 3.373809523809524
+  },
+  "accuracy": {
+    "measured_precision_or_recall_gain": null,
+    "accepted_frame_fraction": 0.6955555555555556,
+    "accepted_recovered_frames": 155,
+    "independently_labeled_recovered_frames": 0,
+    "visually_reviewed_frames": 19,
+    "reviewed_frames_same_as_original_highest_confidence_candidate": 19,
+    "remaining_review_or_unresolved": 1370,
+    "interpretation": "No supported numerical accuracy uplift. All19reviewed coordinates already equal original highest-score candidates.69.56% is acceptance coverage, notaccuracy."
+  },
+  "manual_review": {
+    "first_half_real_time_viewing_minimum_minutes": 52.977999999999994,
+    "estimate": "At least source playback duration to see every frame once; pauses/zoom/labels can require several hours. No measured annotation rate."
+  },
+  "assumptions_and_risks": [
+    "Do not launch current pilot scripts onfullmatch unchanged: range,output paths and one-frame audit override are hardcoded.",
+    "Generalize and process shot-wise or bounded chunks; large Python candidate dictionaries can raise RAM use.",
+    "Recovery ratio24.27% and candidate density may differ across otherclips; hardest-window sample is biased.",
+    "No automatic interpolation/copying ATD into observed positions.",
+    "Manual review time and further model training are outsideautomaticruntime estimate.",
+    "Held-out, temporally separate labeledclips are required to measure precision,visible-ball recall,localization error and false tracks perminute before/after on identicalframes."
+  ]
+}
