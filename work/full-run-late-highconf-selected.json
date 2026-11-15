@@ -1,0 +1,68 @@
+[
+  {
+    "frame": 44826,
+    "score": 0.6015311479568481,
+    "green": 0.0,
+    "point": [
+      1293.5874938964844,
+      746.7840118408203
+    ],
+    "origin": "original_detector",
+    "review": false
+  },
+  {
+    "frame": 40451,
+    "score": 0.6019589900970459,
+    "green": 0.0,
+    "point": [
+      827.240592956543,
+      848.8621215820312
+    ],
+    "origin": "original_detector",
+    "review": false
+  },
+  {
+    "frame": 44110,
+    "score": 0.6029301881790161,
+    "green": 0.0,
+    "point": [
+      480.6597900390625,
+      492.4614562988281
+    ],
+    "origin": "original_detector",
+    "review": false
+  },
+  {
+    "frame": 30442,
+    "score": 0.8044258952140808,
+    "green": 0.0,
+    "point": [
+      630.0406188964844,
+      761.5791015625
+    ],
+    "origin": "original_detector",
+    "review": false
+  },
+  {
+    "frame": 33172,
+    "score": 0.8056490421295166,
+    "green": 0.0,
+    "point": [
+      233.5436553955078,
+      812.3873901367188
+    ],
+    "origin": "original_detector",
+    "review": true
+  },
+  {
+    "frame": 42971,
+    "score": 0.8111671209335327,
+    "green": 0.0,
+    "point": [
+      1805.2919311523438,
+      388.3418273925781
+    ],
+    "origin": "original_detector",
+    "review": false
+  }
+]

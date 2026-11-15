@@ -1,0 +1,1753 @@
+{
+  "chunks_snapshot": [
+    {
+      "start": 7171,
+      "end": 8171,
+      "frames": 1000
+    },
+    {
+      "start": 8171,
+      "end": 9171,
+      "frames": 1000
+    },
+    {
+      "start": 9171,
+      "end": 10171,
+      "frames": 1000
+    },
+    {
+      "start": 10171,
+      "end": 11171,
+      "frames": 1000
+    },
+    {
+      "start": 11171,
+      "end": 12171,
+      "frames": 1000
+    },
+    {
+      "start": 12171,
+      "end": 13171,
+      "frames": 1000
+    },
+    {
+      "start": 13171,
+      "end": 14171,
+      "frames": 1000
+    },
+    {
+      "start": 14171,
+      "end": 15171,
+      "frames": 1000
+    }
+  ],
+  "frames_in_snapshot": 8000,
+  "status_counts": {
+    "review_candidate": 1509,
+    "selected_observation": 5691,
+    "selected_needs_review": 183,
+    "selected_recovered": 621,
+    "unresolved": 800
+  },
+  "accepted_coordinates_match_candidate": true,
+  "sampling": "Twelve risk-biased selections: conflict, low confidence, recovery and review flags; at least50sourceframes apart.",
+  "samples": [
+    {
+      "source_frame": 7808,
+      "sampling_reason": "prior_conflict",
+      "decision": {
+        "source_frame": 7808,
+        "local_frame": 637,
+        "candidate_index": 8,
+        "status": "selected_observation",
+        "pixel_x": 619.09814453125,
+        "pixel_y": 689.9163131713867,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8072848916053772,
+        "evidence": {
+          "prior_support": 1.9532023198548306e-05,
+          "atd_distance_px": 181.85497852431706,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 8.16148641110993e-132,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 5.338248015629045,
+          "observed_vs_unknown_path_gap": 2.367737702355538,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 8,
+            "pixel_x": 619.09814453125,
+            "pixel_y": 689.9163131713867,
+            "confidence": 0.8072848916053772,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 619.1716613769531,
+            "pixel_y": 689.762939453125,
+            "confidence": 0.7901891469955444,
+            "path_score_gap": 0.04792682244225199,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1867.0809326171875,
+            "pixel_y": 597.393798828125,
+            "confidence": 0.5836828947067261,
+            "path_score_gap": 5.338248015629045,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1435.4627990722656,
+            "pixel_y": 184.18466186523438,
+            "confidence": 0.46650996804237366,
+            "path_score_gap": 5.670137204343928,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 4,
+            "pixel_x": 1433.9096069335938,
+            "pixel_y": 465.25381088256836,
+            "confidence": 0.1744457185268402,
+            "path_score_gap": 6.484112108932725,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 9,
+        "part_frame": 637
+      },
+      "selected_candidate": {
+        "point": [
+          619.09814453125,
+          689.9163131713867
+        ],
+        "bbox_xyxy": [
+          612.2606506347656,
+          682.947998046875,
+          625.9356384277344,
+          696.8846282958984
+        ],
+        "confidence": 0.8072848916053772,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8072848916053772
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "temporal",
+          "center": [
+            619.5969959929429,
+            710.7941382747542
+          ],
+          "anchor_frame": 7798
+        },
+        "recovery_window_xyxy": [
+          364,
+          455,
+          876,
+          967
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 181.85497852431706,
+        "pitch": [
+          0.19472801895030423,
+          0.7939163203777949
+        ],
+        "penalty_spot_distance_m": 22.131311528847263,
+        "green_fraction": 0.7205707491082045
+      },
+      "raw_highest": {
+        "point": [
+          619.1716613769531,
+          689.762939453125
+        ],
+        "bbox_xyxy": [
+          612.1118316650391,
+          682.9192199707031,
+          626.2314910888672,
+          696.6066589355469
+        ],
+        "confidence": 0.7901891469955444,
+        "source": "YOLO26x_TILE",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 181.7301437128884,
+        "pitch": [
+          0.19469940290023308,
+          0.793790576075562
+        ],
+        "penalty_spot_distance_m": 22.122295549383583,
+        "green_fraction": 0.7205707491082045
+      },
+      "selected_raw_distance_px": 0.1700829916704259,
+      "visual_assessment": "plausible_ball",
+      "visual_note": "Patterned ball is visible beside a player; ATD disagreement remains flagged.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 8633,
+      "sampling_reason": "prior_conflict",
+      "decision": {
+        "source_frame": 8633,
+        "local_frame": 1462,
+        "candidate_index": 4,
+        "status": "selected_observation",
+        "pixel_x": 1153.8291625976562,
+        "pixel_y": 658.7538604736328,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8027777075767517,
+        "evidence": {
+          "prior_support": 6.778501936313432e-11,
+          "atd_distance_px": 222.11933994885456,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.927106668051639,
+          "observed_vs_unknown_path_gap": 2.0358018434071723,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 4,
+            "pixel_x": 1153.8291625976562,
+            "pixel_y": 658.7538604736328,
+            "confidence": 0.8027777075767517,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1153.9158630371094,
+            "pixel_y": 658.9149169921875,
+            "confidence": 0.7964138388633728,
+            "path_score_gap": 0.006754808213383701,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 1149.697998046875,
+            "pixel_y": 658.5946350097656,
+            "confidence": 0.27975142002105713,
+            "path_score_gap": 1.5067369117931178,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 327.6184844970703,
+            "pixel_y": 212.51956939697266,
+            "confidence": 0.5294002294540405,
+            "path_score_gap": 3.927106668051639,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1548.7357177734375,
+            "pixel_y": 995.51220703125,
+            "confidence": 0.1958039402961731,
+            "path_score_gap": 5.325134149885626,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 6,
+        "part_frame": 1462
+      },
+      "selected_candidate": {
+        "point": [
+          1153.8291625976562,
+          658.7538604736328
+        ],
+        "bbox_xyxy": [
+          1148.1303405761719,
+          652.977165222168,
+          1159.5279846191406,
+          664.5305557250977
+        ],
+        "confidence": 0.8027777075767517,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8027777075767517
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1009.3144415953053,
+            827.4325390104517
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          753,
+          568,
+          1265,
+          1080
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 222.11933994885456,
+        "pitch": [
+          0.5788522233583081,
+          0.7674441479763948
+        ],
+        "penalty_spot_distance_m": 37.983563235023325,
+        "green_fraction": 0.9072532699167658
+      },
+      "raw_highest": {
+        "point": [
+          1153.9158630371094,
+          658.9149169921875
+        ],
+        "bbox_xyxy": [
+          1148.0357055664062,
+          652.955810546875,
+          1159.7960205078125,
+          664.8740234375
+        ],
+        "confidence": 0.7964138388633728,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 222.0535070961069,
+        "pitch": [
+          0.5788573134529393,
+          0.7676014284507185
+        ],
+        "penalty_spot_distance_m": 37.988214609606835,
+        "green_fraction": 0.9072532699167658
+      },
+      "selected_raw_distance_px": 0.1829102740972234,
+      "visual_assessment": "plausible_ball",
+      "visual_note": "Round patterned ball in active play; prior disagreement alone is not disqualifying.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 8797,
+      "sampling_reason": "needs_review",
+      "decision": {
+        "source_frame": 8797,
+        "local_frame": 1626,
+        "candidate_index": 6,
+        "status": "selected_observation",
+        "pixel_x": 480.70518493652344,
+        "pixel_y": 601.797700881958,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8044182062149048,
+        "evidence": {
+          "prior_support": 0.0002159434759338587,
+          "atd_distance_px": 198.0918893633199,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 1.650085801955109e-126,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 5.423093244695764,
+          "observed_vs_unknown_path_gap": 2.1764707302877992,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 6,
+            "pixel_x": 480.70518493652344,
+            "pixel_y": 601.797700881958,
+            "confidence": 0.8044182062149048,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 480.6578063964844,
+            "pixel_y": 602.0682983398438,
+            "confidence": 0.7689262628555298,
+            "path_score_gap": 0.10047718363062952,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1094.81103515625,
+            "pixel_y": 409.9801025390625,
+            "confidence": 0.42845475673675537,
+            "path_score_gap": 5.423093244695764,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 626.038818359375,
+            "pixel_y": 144.96839141845703,
+            "confidence": 0.34789225459098816,
+            "path_score_gap": 5.648668250703912,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 1396.7891845703125,
+            "pixel_y": 172.19459533691406,
+            "confidence": 0.12402419745922089,
+            "path_score_gap": 6.27549881067286,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 7,
+        "part_frame": 1626
+      },
+      "selected_candidate": {
+        "point": [
+          480.70518493652344,
+          601.797700881958
+        ],
+        "bbox_xyxy": [
+          472.273193359375,
+          593.184642791748,
+          489.1371765136719,
+          610.410758972168
+        ],
+        "confidence": 0.8044182062149048,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8044182062149048
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            480.94092826403244,
+            799.8894499696303
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          225,
+          544,
+          737,
+          1056
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 198.0918893633199,
+        "pitch": [
+          0.28733243106582435,
+          0.6464735822711682
+        ],
+        "penalty_spot_distance_m": 21.679558000014836,
+        "green_fraction": 0.7681331747919143
+      },
+      "raw_highest": {
+        "point": [
+          480.6578063964844,
+          602.0682983398438
+        ],
+        "bbox_xyxy": [
+          472.21002197265625,
+          593.5471801757812,
+          489.1055908203125,
+          610.5894165039062
+        ],
+        "confidence": 0.7689262628555298,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 197.8213542318596,
+        "pitch": [
+          0.28737484333133706,
+          0.6467234161630321
+        ],
+        "penalty_spot_distance_m": 21.691333788553703,
+        "green_fraction": 0.7681331747919143
+      },
+      "selected_raw_distance_px": 0.274713869818142,
+      "visual_assessment": "plausible_ball",
+      "visual_note": "Ball-like object beside player in active play.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 9041,
+      "sampling_reason": "prior_conflict",
+      "decision": {
+        "source_frame": 9041,
+        "local_frame": 1870,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 1614.9425964355469,
+        "pixel_y": 1050.8046569824219,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8168636560440063,
+        "evidence": {
+          "prior_support": 0.001048749021675939,
+          "atd_distance_px": 167.9473263953719,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.17407847800237813,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": true,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.215185109975554,
+          "observed_vs_unknown_path_gap": 2.22218764332953,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 1614.9425964355469,
+            "pixel_y": 1050.8046569824219,
+            "confidence": 0.8168636560440063,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1495.490421295166,
+            "pixel_y": 1028.5882263183594,
+            "confidence": 0.258465975522995,
+            "path_score_gap": 3.215185109975554,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 600.9046630859375,
+            "pixel_y": 284.46087646484375,
+            "confidence": 0.20672260224819183,
+            "path_score_gap": 3.264943507612298,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 5,
+            "pixel_x": 1476.4788360595703,
+            "pixel_y": 651.0401382446289,
+            "confidence": 0.12872983515262604,
+            "path_score_gap": 3.4833232554798825,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 1650.0147552490234,
+            "pixel_y": 955.1585998535156,
+            "confidence": 0.16099612414836884,
+            "path_score_gap": 3.503206346311065,
+            "origin": "targeted_redetection"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 7,
+        "part_frame": 1870
+      },
+      "selected_candidate": {
+        "point": [
+          1614.9425964355469,
+          1050.8046569824219
+        ],
+        "bbox_xyxy": [
+          1606.7417602539062,
+          1042.9794311523438,
+          1623.1434326171875,
+          1058.6298828125
+        ],
+        "confidence": 0.8168636560440063,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 167.9473263953719,
+        "pitch": [
+          0.49760770551014993,
+          1.0844123173974503
+        ],
+        "penalty_spot_distance_m": 57.38529914406019,
+        "green_fraction": 0.7824019024970273
+      },
+      "raw_highest": {
+        "point": [
+          1614.9425964355469,
+          1050.8046569824219
+        ],
+        "bbox_xyxy": [
+          1606.7417602539062,
+          1042.9794311523438,
+          1623.1434326171875,
+          1058.6298828125
+        ],
+        "confidence": 0.8168636560440063,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 167.9473263953719,
+        "pitch": [
+          0.49760770551014993,
+          1.0844123173974503
+        ],
+        "penalty_spot_distance_m": 57.38529914406019,
+        "green_fraction": 0.7824019024970273
+      },
+      "selected_raw_distance_px": 0.0,
+      "visual_assessment": "clear_false_match_ball",
+      "visual_note": "Selected ball-like object is at technical sideline while active match ball remains inside field; adjacent9031/9051 confirm identity switch.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 11532,
+      "sampling_reason": "low_confidence",
+      "decision": {
+        "source_frame": 11532,
+        "local_frame": 4361,
+        "candidate_index": 3,
+        "status": "selected_observation",
+        "pixel_x": 1704.3399505615234,
+        "pixel_y": 697.2250518798828,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.18324166536331177,
+        "evidence": {
+          "prior_support": 0.9186185588042236,
+          "atd_distance_px": 15.436079045467611,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 2.021749183412151e-205,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": false,
+          "temporal_right": true,
+          "bidirectional_geometry": false,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 1.8276335479333201,
+          "observed_vs_unknown_path_gap": 0.4508480099163147,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 3,
+            "pixel_x": 1704.3399505615234,
+            "pixel_y": 697.2250518798828,
+            "confidence": 0.18324166536331177,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 291.72947692871094,
+            "pixel_y": 188.33114624023438,
+            "confidence": 0.2788395881652832,
+            "path_score_gap": 1.8276335479333201,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1593.174560546875,
+            "pixel_y": 166.80274963378906,
+            "confidence": 0.20646950602531433,
+            "path_score_gap": 3.201864685742996,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1553.3469848632812,
+            "pixel_y": 624.6485137939453,
+            "confidence": 0.1245209202170372,
+            "path_score_gap": 3.418954495325039,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 4,
+        "part_frame": 4361
+      },
+      "selected_candidate": {
+        "point": [
+          1704.3399505615234,
+          697.2250518798828
+        ],
+        "bbox_xyxy": [
+          1697.140625,
+          691.2342834472656,
+          1711.5392761230469,
+          703.2158203125
+        ],
+        "confidence": 0.18324166536331177,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.18324166536331177
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1714.9728731684131,
+            708.4149353973203
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          1408,
+          452,
+          1920,
+          964
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 15.436079045467611,
+        "pitch": [
+          0.6914565549987582,
+          0.7540721244914254
+        ],
+        "penalty_spot_distance_m": 27.573454628934314,
+        "green_fraction": 0.4637336504161712
+      },
+      "raw_highest": {
+        "point": [
+          291.72947692871094,
+          188.33114624023438
+        ],
+        "bbox_xyxy": [
+          287.9919128417969,
+          183.4334716796875,
+          295.467041015625,
+          193.22882080078125
+        ],
+        "confidence": 0.2788395881652832,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1515.2916922770723,
+        "pitch": [
+          0.4081533197668192,
+          -0.0576134598958298
+        ],
+        "penalty_spot_distance_m": 49.60222217225677,
+        "green_fraction": 0.985731272294887
+      },
+      "selected_raw_distance_px": 1501.479722611762,
+      "visual_assessment": "uncertain_localization",
+      "visual_note": "Low-confidence point overlaps white player footwear/partially occluded ball; single crop is insufficient for exact localization.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 12511,
+      "sampling_reason": "low_confidence",
+      "decision": {
+        "source_frame": 12511,
+        "local_frame": 5340,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 1561.5054321289062,
+        "pixel_y": 751.3902893066406,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.1814618557691574,
+        "evidence": {
+          "prior_support": 0.8433527040615739,
+          "atd_distance_px": 22.905198698771038,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": false,
+          "bidirectional_geometry": false,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.2839597499264443,
+          "observed_vs_unknown_path_gap": 0.9120388389322045,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 1561.5054321289062,
+            "pixel_y": 751.3902893066406,
+            "confidence": 0.1814618557691574,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 864.4581756591797,
+            "pixel_y": 152.0871124267578,
+            "confidence": 0.12534719705581665,
+            "path_score_gap": 3.2839597499264443,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 2,
+        "part_frame": 5340
+      },
+      "selected_candidate": {
+        "point": [
+          1561.5054321289062,
+          751.3902893066406
+        ],
+        "bbox_xyxy": [
+          1555.6549072265625,
+          743.5159912109375,
+          1567.35595703125,
+          759.2645874023438
+        ],
+        "confidence": 0.1814618557691574,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 22.905198698771038,
+        "pitch": [
+          0.5709469042988341,
+          0.8060945817610626
+        ],
+        "penalty_spot_distance_m": 40.018301973831825,
+        "green_fraction": 0.47324613555291317
+      },
+      "raw_highest": {
+        "point": [
+          1561.5054321289062,
+          751.3902893066406
+        ],
+        "bbox_xyxy": [
+          1555.6549072265625,
+          743.5159912109375,
+          1567.35595703125,
+          759.2645874023438
+        ],
+        "confidence": 0.1814618557691574,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 22.905198698771038,
+        "pitch": [
+          0.5709469042988341,
+          0.8060945817610626
+        ],
+        "penalty_spot_distance_m": 40.018301973831825,
+        "green_fraction": 0.47324613555291317
+      },
+      "selected_raw_distance_px": 0.0,
+      "visual_assessment": "plausible_partly_occluded_ball",
+      "visual_note": "Ball-like round object beside player boot; limited precision from contact image.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 12692,
+      "sampling_reason": "needs_review",
+      "decision": {
+        "source_frame": 12692,
+        "local_frame": 5521,
+        "candidate_index": 3,
+        "status": "selected_observation",
+        "pixel_x": 1358.897533416748,
+        "pixel_y": 401.18357849121094,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8004080057144165,
+        "evidence": {
+          "prior_support": 0.0031932321324317694,
+          "atd_distance_px": 136.20859149903774,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 4.346187461589659,
+          "observed_vs_unknown_path_gap": 2.3264219393006984,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 3,
+            "pixel_x": 1358.897533416748,
+            "pixel_y": 401.18357849121094,
+            "confidence": 0.8004080057144165,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1358.9114379882812,
+            "pixel_y": 401.4329528808594,
+            "confidence": 0.7831157445907593,
+            "path_score_gap": 0.0480872581660301,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1364.2453002929688,
+            "pixel_y": 358.8706970214844,
+            "confidence": 0.5277769565582275,
+            "path_score_gap": 4.346187461589659,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 173.47715759277344,
+            "pixel_y": 321.1567687988281,
+            "confidence": 0.8013405799865723,
+            "path_score_gap": 4.650936279422318,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 4,
+        "part_frame": 5521
+      },
+      "selected_candidate": {
+        "point": [
+          1358.897533416748,
+          401.18357849121094
+        ],
+        "bbox_xyxy": [
+          1352.078514099121,
+          393.80870056152344,
+          1365.716552734375,
+          408.55845642089844
+        ],
+        "confidence": 0.8004080057144165,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8004080057144165
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1490.9913390025351,
+            434.4101781369167
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          1235,
+          178,
+          1747,
+          690
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 136.20859149903774,
+        "pitch": [
+          0.41142382618254864,
+          0.01989015493549513
+        ],
+        "penalty_spot_distance_m": 45.94158241625991,
+        "green_fraction": 0.7954815695600476
+      },
+      "raw_highest": {
+        "point": [
+          173.47715759277344,
+          321.1567687988281
+        ],
+        "bbox_xyxy": [
+          166.54302978515625,
+          315.2123718261719,
+          180.41128540039062,
+          327.1011657714844
+        ],
+        "confidence": 0.8013405799865723,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1322.3728494424465,
+        "pitch": [
+          0.18429020085718048,
+          -0.05028058897617358
+        ],
+        "penalty_spot_distance_m": 38.35158825782073,
+        "green_fraction": 0.925089179548157
+      },
+      "selected_raw_distance_px": 1188.1185789676863,
+      "visual_assessment": "plausible_ball",
+      "visual_note": "Patterned round ball is visible at players foot.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 12978,
+      "sampling_reason": "low_confidence",
+      "decision": {
+        "source_frame": 12978,
+        "local_frame": 5807,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 1065.2828826904297,
+        "pixel_y": 836.7859191894531,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.187064066529274,
+        "evidence": {
+          "prior_support": 0.7282102889551737,
+          "atd_distance_px": 30.518589951942655,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 5.516693464863476,
+          "observed_vs_unknown_path_gap": 1.4341499639669597,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 1065.2828826904297,
+            "pixel_y": 836.7859191894531,
+            "confidence": 0.187064066529274,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 639.4207954406738,
+            "pixel_y": 1071.6784362792969,
+            "confidence": 0.10732915252447128,
+            "path_score_gap": 5.516693464863476,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 798.6422460079193,
+            "pixel_y": 1068.4834442138672,
+            "confidence": 0.08964097499847412,
+            "path_score_gap": 5.56622019206583,
+            "origin": "targeted_redetection"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 3,
+        "part_frame": 5807
+      },
+      "selected_candidate": {
+        "point": [
+          1065.2828826904297,
+          836.7859191894531
+        ],
+        "bbox_xyxy": [
+          1058.0259704589844,
+          830.532470703125,
+          1072.539794921875,
+          843.0393676757812
+        ],
+        "confidence": 0.187064066529274,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 30.518589951942655,
+        "pitch": [
+          0.42830783288642554,
+          0.886121423291001
+        ],
+        "penalty_spot_distance_m": 43.03785067264244,
+        "green_fraction": 0.7098692033293698
+      },
+      "raw_highest": {
+        "point": [
+          1065.2828826904297,
+          836.7859191894531
+        ],
+        "bbox_xyxy": [
+          1058.0259704589844,
+          830.532470703125,
+          1072.539794921875,
+          843.0393676757812
+        ],
+        "confidence": 0.187064066529274,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 30.518589951942655,
+        "pitch": [
+          0.42830783288642554,
+          0.886121423291001
+        ],
+        "penalty_spot_distance_m": 43.03785067264244,
+        "green_fraction": 0.7098692033293698
+      },
+      "selected_raw_distance_px": 0.0,
+      "visual_assessment": "plausible_partly_occluded_ball",
+      "visual_note": "Round ball-like object touches boot; no clear false positive.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 13388,
+      "sampling_reason": "needs_review",
+      "decision": {
+        "source_frame": 13388,
+        "local_frame": 6217,
+        "candidate_index": 4,
+        "status": "selected_observation",
+        "pixel_x": 1342.3655853271484,
+        "pixel_y": 735.0615921020508,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8582295179367065,
+        "evidence": {
+          "prior_support": 1.1364169143049297e-130,
+          "atd_distance_px": 1072.0402795084424,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 1.6935101304741666e-131,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 6.280545001951328,
+          "observed_vs_unknown_path_gap": 2.5070790963278498,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 4,
+            "pixel_x": 1342.3655853271484,
+            "pixel_y": 735.0615921020508,
+            "confidence": 0.8582295179367065,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1342.4040222167969,
+            "pixel_y": 734.8459777832031,
+            "confidence": 0.7904319167137146,
+            "path_score_gap": 0.19003965245940235,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 256.44313049316406,
+            "pixel_y": 863.6061401367188,
+            "confidence": 0.21988685429096222,
+            "path_score_gap": 6.280545001951328,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 496.51963806152344,
+            "pixel_y": 970.5004119873047,
+            "confidence": 0.10434462130069733,
+            "path_score_gap": 6.604073226445164,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1483.912841796875,
+            "pixel_y": 177.90045166015625,
+            "confidence": 0.10534311830997467,
+            "path_score_gap": 6.631717387256779,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 5,
+        "part_frame": 6217
+      },
+      "selected_candidate": {
+        "point": [
+          1342.3655853271484,
+          735.0615921020508
+        ],
+        "bbox_xyxy": [
+          1334.485595703125,
+          727.4498748779297,
+          1350.2455749511719,
+          742.6733093261719
+        ],
+        "confidence": 0.8582295179367065,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8582295179367065
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "temporal",
+          "center": [
+            1342.9845721915644,
+            733.3999503055734
+          ],
+          "anchor_frame": 13387
+        },
+        "recovery_window_xyxy": [
+          1087,
+          477,
+          1599,
+          989
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 1072.0402795084424,
+        "pitch": [
+          0.20817381803427001,
+          0.782624979269945
+        ],
+        "penalty_spot_distance_m": 22.10457968235854,
+        "green_fraction": 0.8145065398335315
+      },
+      "raw_highest": {
+        "point": [
+          1342.4040222167969,
+          734.8459777832031
+        ],
+        "bbox_xyxy": [
+          1334.4079818725586,
+          727.1197814941406,
+          1350.4000625610352,
+          742.5721740722656
+        ],
+        "confidence": 0.7904319167137146,
+        "source": "YOLO26x_TILE",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1072.144284132244,
+        "pitch": [
+          0.20812312618745854,
+          0.7824533179019109
+        ],
+        "penalty_spot_distance_m": 22.091793668053946,
+        "green_fraction": 0.8145065398335315
+      },
+      "selected_raw_distance_px": 0.21901353606109586,
+      "visual_assessment": "plausible_ball",
+      "visual_note": "Visible patterned ball beside player despite large ATD disagreement.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 13604,
+      "sampling_reason": "new_recovery",
+      "decision": {
+        "source_frame": 13604,
+        "local_frame": 6433,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 1769.2025451660156,
+        "pixel_y": 614.5539016723633,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.27926531434059143,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": null,
+          "observed_vs_unknown_path_gap": 0.8835975146345008,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 1769.2025451660156,
+            "pixel_y": 614.5539016723633,
+            "confidence": 0.27926531434059143,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 1,
+        "part_frame": 6433
+      },
+      "selected_candidate": {
+        "point": [
+          1769.2025451660156,
+          614.5539016723633
+        ],
+        "bbox_xyxy": [
+          1755.2382507324219,
+          600.8042449951172,
+          1783.1668395996094,
+          628.3035583496094
+        ],
+        "confidence": 0.27926531434059143,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.27926531434059143
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "temporal",
+          "center": [
+            1769.7033378332,
+            609.4716344120454
+          ],
+          "anchor_frame": 13602
+        },
+        "recovery_window_xyxy": [
+          1408,
+          353,
+          1920,
+          865
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": null,
+        "green_fraction": 0.2925089179548157
+      },
+      "raw_highest": null,
+      "selected_raw_distance_px": 1920.0,
+      "visual_assessment": "uncertain_blur",
+      "visual_note": "Blurred object near corner restart without ATD; neighboring13594 is ball-like, but13604 localization not confirmed.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 14623,
+      "sampling_reason": "new_recovery",
+      "decision": {
+        "source_frame": 14623,
+        "local_frame": 7452,
+        "candidate_index": 7,
+        "status": "selected_observation",
+        "pixel_x": 188.0946807861328,
+        "pixel_y": 425.2660446166992,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.5419931411743164,
+        "evidence": {
+          "prior_support": 0.892531315278558,
+          "atd_distance_px": 19.062176048055832,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 2.079136868889128e-21,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 5.896391493320389,
+          "observed_vs_unknown_path_gap": 2.5981783261969875,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 7,
+            "pixel_x": 188.0946807861328,
+            "pixel_y": 425.2660446166992,
+            "confidence": 0.5419931411743164,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 188.1232452392578,
+            "pixel_y": 425.1641845703125,
+            "confidence": 0.44443926215171814,
+            "path_score_gap": 0.2676281070249833,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1841.2840576171875,
+            "pixel_y": 268.6587219238281,
+            "confidence": 0.4686550199985504,
+            "path_score_gap": 5.896391493320389,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 8,
+            "pixel_x": 232.57996368408203,
+            "pixel_y": 199.3056764602661,
+            "confidence": 0.3224128186702728,
+            "path_score_gap": 6.264014701918838,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 10,
+            "pixel_x": 1.407415175344795,
+            "pixel_y": 405.9723205566406,
+            "confidence": 0.27964556217193604,
+            "path_score_gap": 6.383763040633243,
+            "origin": "targeted_redetection"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 11,
+        "part_frame": 7452
+      },
+      "selected_candidate": {
+        "point": [
+          188.0946807861328,
+          425.2660446166992
+        ],
+        "bbox_xyxy": [
+          180.3246307373047,
+          418.9810028076172,
+          195.86473083496094,
+          431.55108642578125
+        ],
+        "confidence": 0.5419931411743164,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.5419931411743164
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            206.5187860452658,
+            420.37534925842334
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          0,
+          164,
+          512,
+          676
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 19.062176048055832,
+        "pitch": [
+          0.09625929893193831,
+          0.3738379097094534
+        ],
+        "penalty_spot_distance_m": 8.622408994388946,
+        "green_fraction": 0.7122473246135553
+      },
+      "raw_highest": {
+        "point": [
+          1841.2840576171875,
+          268.6587219238281
+        ],
+        "bbox_xyxy": [
+          1837.3509521484375,
+          263.532958984375,
+          1845.2171630859375,
+          273.78448486328125
+        ],
+        "confidence": 0.4686550199985504,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1641.7903118691506,
+        "pitch": [
+          0.41050704926209275,
+          -0.07023820871579518
+        ],
+        "penalty_spot_distance_m": 50.419578599313816,
+        "green_fraction": 0.9476813317479191
+      },
+      "selected_raw_distance_px": 1660.5905483255287,
+      "visual_assessment": "plausible_ball",
+      "visual_note": "White ball at goalkeepers foot.",
+      "manual_localization_ground_truth": false
+    },
+    {
+      "source_frame": 14793,
+      "sampling_reason": "new_recovery",
+      "decision": {
+        "source_frame": 14793,
+        "local_frame": 7622,
+        "candidate_index": 1,
+        "status": "selected_observation",
+        "pixel_x": 195.69329833984375,
+        "pixel_y": 469.0298080444336,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.3881441354751587,
+        "evidence": {
+          "prior_support": 0.9858293539676873,
+          "atd_distance_px": 5.204787067214192,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 1.7830044705161323e-25,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 5.58179725030767,
+          "observed_vs_unknown_path_gap": 2.251387597810162,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 1,
+            "pixel_x": 195.69329833984375,
+            "pixel_y": 469.0298080444336,
+            "confidence": 0.3881441354751587,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1878.4267883300781,
+            "pixel_y": 257.10011291503906,
+            "confidence": 0.30385929346084595,
+            "path_score_gap": 5.58179725030767,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 2,
+        "part_frame": 7622
+      },
+      "selected_candidate": {
+        "point": [
+          195.69329833984375,
+          469.0298080444336
+        ],
+        "bbox_xyxy": [
+          190.1978759765625,
+          463.6338653564453,
+          201.188720703125,
+          474.4257507324219
+        ],
+        "confidence": 0.3881441354751587,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.3881441354751587
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            193.50032082876547,
+            473.7500472386848
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          0,
+          218,
+          512,
+          730
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 5.204787067214192,
+        "pitch": [
+          0.19045216473177043,
+          0.4696922253547487
+        ],
+        "penalty_spot_distance_m": 9.286196347996787,
+        "green_fraction": 0.8513674197384067
+      },
+      "raw_highest": {
+        "point": [
+          1878.4267883300781,
+          257.10011291503906
+        ],
+        "bbox_xyxy": [
+          1873.8539428710938,
+          250.97470092773438,
+          1882.9996337890625,
+          263.22552490234375
+        ],
+        "confidence": 0.30385929346084595,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1698.7979264553192,
+        "pitch": [
+          0.5933252481895681,
+          -0.06290051591313844
+        ],
+        "penalty_spot_distance_m": 49.77791271808573,
+        "green_fraction": 0.995243757431629
+      },
+      "selected_raw_distance_px": 1696.0265900074658,
+      "visual_assessment": "plausible_ball_temporal_support",
+      "visual_note": "Adjacent14783/14803 show ball moving toward goalkeeper/foot, supporting ball rather than painted arc.",
+      "manual_localization_ground_truth": false
+    }
+  ],
+  "limitations": "Risk-biased sparse visual QA is not an accuracy estimate or all-frame ground truth.",
+  "visual_findings": {
+    "clear_false_match_ball_exact_frames": [
+      9041
+    ],
+    "uncertain_exact_frames": [
+      11532,
+      13604
+    ],
+    "additional_review_interval_inclusive": [
+      9039,
+      9053
+    ],
+    "additional_review_reason": "Selected source points follow same secondary-ball track; only sampled9041 explicitly visually rejected.",
+    "main_run_not_modified": true,
+    "core_modules_not_modified": true,
+    "all_frame_accuracy_claim": false
+  }
+}

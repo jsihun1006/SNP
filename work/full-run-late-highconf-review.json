@@ -1,0 +1,530 @@
+{
+  "samples": [
+    {
+      "source_frame": 30442,
+      "selection": {
+        "source_frame": 30442,
+        "local_frame": 23271,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 630.0406188964844,
+        "pixel_y": 761.5791015625,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8044258952140808,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": null,
+          "observed_vs_unknown_path_gap": 2.3523653916824974,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 630.0406188964844,
+            "pixel_y": 761.5791015625,
+            "confidence": 0.8044258952140808,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 1,
+        "part_frame": 23271
+      },
+      "candidate": {
+        "point": [
+          630.0406188964844,
+          761.5791015625
+        ],
+        "bbox_xyxy": [
+          483.77008056640625,
+          625.2388916015625,
+          776.3111572265625,
+          897.9193115234375
+        ],
+        "confidence": 0.8044258952140808,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": null,
+        "green_fraction": 0.0
+      },
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\30171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "a61799b490da6d3b28e1dd5bbd3f3b053853958a9412ebdb893f667b2c40323a",
+      "visual_assessment": "visible_ball_existing_point_approved",
+      "visual_note": "The exact source frame visibly shows a patterned match ball held against the Barcelona players upper body. Preserve this existing saved detection center despite missing H and zero green context; no manual position or interpolation is supplied."
+    },
+    {
+      "source_frame": 33172,
+      "selection": {
+        "source_frame": 33172,
+        "local_frame": 26001,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 233.5436553955078,
+        "pixel_y": 812.3873901367188,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8056490421295166,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": false,
+          "temporal_right": false,
+          "bidirectional_geometry": false,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": true,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 2.847201970210887,
+          "observed_vs_unknown_path_gap": 1.9637525050154994,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 233.5436553955078,
+            "pixel_y": 812.3873901367188,
+            "confidence": 0.8056490421295166,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 227.71751403808594,
+            "pixel_y": 647.2864837646484,
+            "confidence": 0.14357072114944458,
+            "path_score_gap": 2.847201970210887,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 2,
+        "part_frame": 26001
+      },
+      "candidate": {
+        "point": [
+          233.5436553955078,
+          812.3873901367188
+        ],
+        "bbox_xyxy": [
+          160.79592895507812,
+          744.8095092773438,
+          306.2913818359375,
+          879.9652709960938
+        ],
+        "confidence": 0.8056490421295166,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": null,
+        "green_fraction": 0.0
+      },
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\33171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "968df2d119eeff0144a94a5a8c75a22d47b17b124be5051191b23dbea447af82",
+      "visual_assessment": "clear_false_ball",
+      "visual_note": "Selected center is the circular yellow Spotify sponsor on the Barcelona players shirt, not a ball, despite modelconfidence.806."
+    },
+    {
+      "source_frame": 40451,
+      "selection": {
+        "source_frame": 40451,
+        "local_frame": 33280,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 827.240592956543,
+        "pixel_y": 848.8621215820312,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.6019589900970459,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": false,
+          "bidirectional_geometry": false,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.6974338052360336,
+          "observed_vs_unknown_path_gap": 1.03565626617241,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 827.240592956543,
+            "pixel_y": 848.8621215820312,
+            "confidence": 0.6019589900970459,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 859.0494995117188,
+            "pixel_y": 847.7628631591797,
+            "confidence": 0.268677294254303,
+            "path_score_gap": 1.1852018399165853,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 845.7685546875,
+            "pixel_y": 880.5810546875,
+            "confidence": 0.1645871251821518,
+            "path_score_gap": 1.687745194377529,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1837.6500244140625,
+            "pixel_y": 459.27008628845215,
+            "confidence": 0.13966992497444153,
+            "path_score_gap": 3.6974338052360336,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 4,
+        "part_frame": 33280
+      },
+      "candidate": {
+        "point": [
+          827.240592956543,
+          848.8621215820312
+        ],
+        "bbox_xyxy": [
+          755.7936248779297,
+          796.285888671875,
+          898.6875610351562,
+          901.4383544921875
+        ],
+        "confidence": 0.6019589900970459,
+        "source": "YOLO26x_TILE",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": null,
+        "green_fraction": 0.0
+      },
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\40171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "7e09e295f7ad0efafeeb18d3548c31bf310c837a66eea16740a2415166afcd2b",
+      "visual_assessment": "uncertain_ball_boot_localization",
+      "visual_note": "The selected center overlaps the boot/ball contact region and appears offset toward the boot. The match ball is visible, but the exact selected center cannot be confirmed as the ball center from this contact view; retain localization uncertainty rather than invent a replacement."
+    },
+    {
+      "source_frame": 42971,
+      "selection": {
+        "source_frame": 42971,
+        "local_frame": 35800,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 1805.2919311523438,
+        "pixel_y": 388.3418273925781,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8111671209335327,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": false,
+          "temporal_right": true,
+          "bidirectional_geometry": false,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.3207381283906265,
+          "observed_vs_unknown_path_gap": 1.3844667995944997,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 1805.2919311523438,
+            "pixel_y": 388.3418273925781,
+            "confidence": 0.8111671209335327,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1805.5584564208984,
+            "pixel_y": 444.75726556777954,
+            "confidence": 0.21880659461021423,
+            "path_score_gap": 1.4298648728495957,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1231.3479309082031,
+            "pixel_y": 752.0211181640625,
+            "confidence": 0.11650028824806213,
+            "path_score_gap": 3.3207381283906265,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 3,
+        "part_frame": 35800
+      },
+      "candidate": {
+        "point": [
+          1805.2919311523438,
+          388.3418273925781
+        ],
+        "bbox_xyxy": [
+          1756.359130859375,
+          326.81866455078125,
+          1854.2247314453125,
+          449.864990234375
+        ],
+        "confidence": 0.8111671209335327,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": null,
+        "green_fraction": 0.0
+      },
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\42171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5a0536e4c099945e0b6df9aa60f9422b35ce30a26e77540177884bc274934352",
+      "visual_assessment": "clear_false_ball",
+      "visual_note": "Selected center is the circular yellow Spotify sponsor on the standing Barcelona players shirt during the celebration, not a ball, despite modelconfidence.811."
+    },
+    {
+      "source_frame": 44110,
+      "selection": {
+        "source_frame": 44110,
+        "local_frame": 36939,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 480.6597900390625,
+        "pixel_y": 492.4614562988281,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.6029301881790161,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": null,
+          "observed_vs_unknown_path_gap": 1.783219955799207,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 480.6597900390625,
+            "pixel_y": 492.4614562988281,
+            "confidence": 0.6029301881790161,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 1,
+        "part_frame": 36939
+      },
+      "candidate": {
+        "point": [
+          480.6597900390625,
+          492.4614562988281
+        ],
+        "bbox_xyxy": [
+          411.8685302734375,
+          440.1409378051758,
+          549.4510498046875,
+          544.7819747924805
+        ],
+        "confidence": 0.6029301881790161,
+        "source": "YOLO26x_TILE",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": null,
+        "green_fraction": 0.0
+      },
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\43171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "11b02d2a104927ea327343785e4b338a98ed6049d67c985f2e263c6fef545926",
+      "visual_assessment": "clear_false_ball",
+      "visual_note": "Selected center is bright lettering/LED structure on the advertising board behind the goal, not a ball."
+    },
+    {
+      "source_frame": 44826,
+      "selection": {
+        "source_frame": 44826,
+        "local_frame": 37655,
+        "candidate_index": 0,
+        "status": "selected_observation",
+        "pixel_x": 1293.5874938964844,
+        "pixel_y": 746.7840118408203,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.6015311479568481,
+        "evidence": {
+          "prior_support": 0.0,
+          "atd_distance_px": null,
+          "prior_quality_usable": false,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.8830396066836013,
+          "observed_vs_unknown_path_gap": 1.7940550335141858,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 0,
+            "pixel_x": 1293.5874938964844,
+            "pixel_y": 746.7840118408203,
+            "confidence": 0.6015311479568481,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 232.35293579101562,
+            "pixel_y": 714.8598327636719,
+            "confidence": 0.33162155747413635,
+            "path_score_gap": 3.8830396066836013,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 229.16336059570312,
+            "pixel_y": 728.140869140625,
+            "confidence": 0.11928784847259521,
+            "path_score_gap": 4.477573991887917,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 3,
+        "part_frame": 37655
+      },
+      "candidate": {
+        "point": [
+          1293.5874938964844,
+          746.7840118408203
+        ],
+        "bbox_xyxy": [
+          1249.7838745117188,
+          717.0684204101562,
+          1337.39111328125,
+          776.4996032714844
+        ],
+        "confidence": 0.6015311479568481,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": null,
+        "green_fraction": 0.0
+      },
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\44171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "7432c449ee82b669c67b5cc4367d0532df8a86004026216adc2a76c944d4b775",
+      "visual_assessment": "clear_false_ball",
+      "visual_note": "Selected center is a gray equipment/folding-seat structure beside the technical sideline, not a clearly visible match ball."
+    }
+  ],
+  "sampling": "Six risk-biased no-H nongreen selections: three confidence.60-.80 and three>=.80, separate1000-frame chunks and not within100frames of first12late samples.",
+  "limitations": "Risk-biased visual inspection only; no representative global accuracy claim.",
+  "visual_findings": {
+    "clear_false_ball_frames": [
+      33172,
+      42971,
+      44110,
+      44826
+    ],
+    "uncertain_frames": [
+      40451
+    ],
+    "visible_ball_keep_existing_frames": [
+      30442
+    ],
+    "all_frame_accuracy_claim": false,
+    "main_run_unchanged": true
+  }
+}

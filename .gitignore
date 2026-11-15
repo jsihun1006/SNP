@@ -18,6 +18,7 @@ work/pitch-preview-*.png
 work/ranked-window-contact-sheet.jpg
 outputs/*.log
 outputs/pc1-process.json
+outputs/*-process.json
 
 # Native source assets are external on H:, never copy them into this repository.
 *.crdownload

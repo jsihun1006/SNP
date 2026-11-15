@@ -1,0 +1,164 @@
+[
+  {
+    "source_frame": 15352,
+    "confidence": 0.38171371817588806,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 104.95434642614569,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 23808,
+    "confidence": 0.22255653142929077,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 185.54215423702195,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 25153,
+    "confidence": 0.2808416783809662,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 164.74778711132723,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 27431,
+    "confidence": 0.3262016177177429,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 61.61434043620234,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 29366,
+    "confidence": 0.33509010076522827,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 178.571723836134,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 29793,
+    "confidence": 0.3639850318431854,
+    "green_fraction": 0.0023781212841854932,
+    "box_diagonal_pixels": 71.20203742981002,
+    "no_pitch": true,
+    "origin": "targeted_redetection",
+    "candidate_index": 1
+  },
+  {
+    "source_frame": 32805,
+    "confidence": 0.29913556575775146,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 130.51846024499167,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 32963,
+    "confidence": 0.24377954006195068,
+    "green_fraction": 0.04875148632580262,
+    "box_diagonal_pixels": 27.073432073872198,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 33329,
+    "confidence": 0.2383844554424286,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 103.59467225040036,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 1
+  },
+  {
+    "source_frame": 38232,
+    "confidence": 0.23896777629852295,
+    "green_fraction": 0.08323424494649227,
+    "box_diagonal_pixels": 49.844447100640984,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 38342,
+    "confidence": 0.2927852272987366,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 80.85776968021848,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 38573,
+    "confidence": 0.32654044032096863,
+    "green_fraction": 0.12841854934601665,
+    "box_diagonal_pixels": 50.53483378247081,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 1
+  },
+  {
+    "source_frame": 30442,
+    "confidence": 0.8044258952140808,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 399.9186078969738,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 33172,
+    "confidence": 0.8056490421295166,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 198.58501135478957,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 40451,
+    "confidence": 0.6019589900970459,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 177.41397368470592,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 42971,
+    "confidence": 0.8111671209335327,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 157.21982712838502,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 44110,
+    "confidence": 0.6029301881790161,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 172.85455244900336,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  },
+  {
+    "source_frame": 44826,
+    "confidence": 0.6015311479568481,
+    "green_fraction": 0.0,
+    "box_diagonal_pixels": 105.86356210291756,
+    "no_pitch": true,
+    "origin": "original_detector",
+    "candidate_index": 0
+  }
+]

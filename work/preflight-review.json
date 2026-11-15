@@ -1,0 +1,1159 @@
+{
+  "stats": {
+    "selected_observation": 650,
+    "selected_original_detector": 593,
+    "selected_needs_review": 70,
+    "selected_targeted_redetection": 57,
+    "review_candidate": 305,
+    "unresolved": 45
+  },
+  "checked_all_rows": 1000,
+  "no_manual_overrides": true,
+  "accepted_points_exactly_match_candidates": true,
+  "known_ad_examples_review_only": true,
+  "sample_method": "Eight risk-biased recovered or changed-highest selections; not an accuracy sample.",
+  "samples": [
+    {
+      "frame": 18972,
+      "selection": {
+        "source_frame": 18972,
+        "local_frame": 53,
+        "candidate_index": 4,
+        "status": "selected_observation",
+        "pixel_x": 1520.892578125,
+        "pixel_y": 485.9250717163086,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.32702237367630005,
+        "evidence": {
+          "prior_support": 0.7778757214016517,
+          "atd_distance_px": 30.66576540118419,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 2.5786783375870968e-89,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 2.349100165921583,
+          "observed_vs_unknown_path_gap": 1.2406864796285235,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 4,
+            "pixel_x": 1520.892578125,
+            "pixel_y": 485.9250717163086,
+            "confidence": 0.32702237367630005,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1520.9115447998047,
+            "pixel_y": 486.1719665527344,
+            "confidence": 0.281791627407074,
+            "path_score_gap": 0.11834346033713117,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1440.7527313232422,
+            "pixel_y": 732.3238220214844,
+            "confidence": 0.48143312335014343,
+            "path_score_gap": 2.349100165921583,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1706.4431762695312,
+            "pixel_y": 278.73748779296875,
+            "confidence": 0.35760805010795593,
+            "path_score_gap": 3.4624389708733725,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 883.7623901367188,
+            "pixel_y": 233.79940795898438,
+            "confidence": 0.1271754801273346,
+            "path_score_gap": 4.90064354738634,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 5,
+        "part_frame": 53
+      },
+      "candidate": {
+        "point": [
+          1520.892578125,
+          485.9250717163086
+        ],
+        "bbox_xyxy": [
+          1512.37744140625,
+          479.25537109375,
+          1529.40771484375,
+          492.5947723388672
+        ],
+        "confidence": 0.32702237367630005,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.32702237367630005
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1497.1275318291032,
+            505.3057771264413
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          1241,
+          249,
+          1753,
+          761
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 30.66576540118419,
+        "pitch": [
+          0.21794218690336073,
+          0.2994169385664434
+        ],
+        "penalty_spot_distance_m": 18.13356187825553,
+        "green_fraction": 0.7645659928656362
+      },
+      "raw_highest": {
+        "point": [
+          1440.7527313232422,
+          732.3238220214844
+        ],
+        "bbox_xyxy": [
+          1435.6903076171875,
+          727.17822265625,
+          1445.8151550292969,
+          737.4694213867188
+        ],
+        "confidence": 0.48143312335014343,
+        "source": "YOLO26x_TILE",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 233.91304119275486,
+        "pitch": [
+          0.26062005083995454,
+          0.5701043514797222
+        ],
+        "penalty_spot_distance_m": 17.120368975581993,
+        "green_fraction": 0.7193816884661117
+      },
+      "selected_raw_distance": 259.10372285507896
+    },
+    {
+      "frame": 19222,
+      "selection": {
+        "source_frame": 19222,
+        "local_frame": 303,
+        "candidate_index": 8,
+        "status": "selected_observation",
+        "pixel_x": 1461.523193359375,
+        "pixel_y": 300.6057069301605,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8073888421058655,
+        "evidence": {
+          "prior_support": 1.32979013504738e-06,
+          "atd_distance_px": 244.33531355096608,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 9.088191687795095e-210,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 2.191915514272489,
+          "observed_vs_unknown_path_gap": 1.3758133247572177,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 8,
+            "pixel_x": 1461.523193359375,
+            "pixel_y": 300.6057069301605,
+            "confidence": 0.8073888421058655,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1461.5109252929688,
+            "pixel_y": 300.7604217529297,
+            "confidence": 0.6140963435173035,
+            "path_score_gap": 0.5334902236056713,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 5,
+            "pixel_x": 1486.5095825195312,
+            "pixel_y": 579.0523681640625,
+            "confidence": 0.1578269749879837,
+            "path_score_gap": 2.191915514272489,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 9,
+            "pixel_x": 1467.8010864257812,
+            "pixel_y": 581.3050079345703,
+            "confidence": 0.11073683202266693,
+            "path_score_gap": 2.300218716200519,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 922.4900054931641,
+            "pixel_y": 193.5785140991211,
+            "confidence": 0.3927350342273712,
+            "path_score_gap": 2.3151708657712256,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 10,
+        "part_frame": 303
+      },
+      "candidate": {
+        "point": [
+          1461.523193359375,
+          300.6057069301605
+        ],
+        "bbox_xyxy": [
+          1452.7574157714844,
+          292.79266691207886,
+          1470.2889709472656,
+          308.4187469482422
+        ],
+        "confidence": 0.8073888421058655,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8073888421058655
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1435.1084942742455,
+            543.5089986334451
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          1179,
+          288,
+          1691,
+          800
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 244.33531355096608,
+        "pitch": [
+          0.15979547332313163,
+          0.0981692720845965
+        ],
+        "penalty_spot_distance_m": 27.93877952600984,
+        "green_fraction": 0.8275862068965517
+      },
+      "raw_highest": {
+        "point": [
+          1461.5109252929688,
+          300.7604217529297
+        ],
+        "bbox_xyxy": [
+          1452.6768798828125,
+          292.8857116699219,
+          1470.344970703125,
+          308.6351318359375
+        ],
+        "confidence": 0.6140963435173035,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 244.18017925543003,
+        "pitch": [
+          0.15985356180547336,
+          0.0984479709936553
+        ],
+        "penalty_spot_distance_m": 27.921522059125493,
+        "green_fraction": 0.8335315101070154
+      },
+      "selected_raw_distance": 0.15520045695113888
+    },
+    {
+      "frame": 19233,
+      "selection": {
+        "source_frame": 19233,
+        "local_frame": 314,
+        "candidate_index": 5,
+        "status": "selected_observation",
+        "pixel_x": 1535.8828659057617,
+        "pixel_y": 281.83548069000244,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.8121694326400757,
+        "evidence": {
+          "prior_support": 2.1615191779302783e-08,
+          "atd_distance_px": 218.82826330432428,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 4.2047755e-316,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": true,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.989961826810526,
+          "observed_vs_unknown_path_gap": 1.5310953274049788,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": true,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 5,
+            "pixel_x": 1535.8828659057617,
+            "pixel_y": 281.83548069000244,
+            "confidence": 0.8121694326400757,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1535.9090270996094,
+            "pixel_y": 282.10545349121094,
+            "confidence": 0.7948061227798462,
+            "path_score_gap": 0.056235076184595556,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 6,
+            "pixel_x": 1485.78564453125,
+            "pixel_y": 236.64128875732422,
+            "confidence": 0.5326367020606995,
+            "path_score_gap": 3.989961826810526,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1639.2196502685547,
+            "pixel_y": 421.9379577636719,
+            "confidence": 0.3712939918041229,
+            "path_score_gap": 4.536599935176013,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1485.6468658447266,
+            "pixel_y": 236.85254669189453,
+            "confidence": 0.33238446712493896,
+            "path_score_gap": 4.550786529768923,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 7,
+        "part_frame": 314
+      },
+      "candidate": {
+        "point": [
+          1535.8828659057617,
+          281.83548069000244
+        ],
+        "bbox_xyxy": [
+          1529.3074798583984,
+          275.38966178894043,
+          1542.458251953125,
+          288.28129959106445
+        ],
+        "confidence": 0.8121694326400757,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.8121694326400757
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1539.2603286970261,
+            500.6376780415837
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          1283,
+          245,
+          1795,
+          757
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 218.82826330432428,
+        "pitch": [
+          0.21623134012714842,
+          0.026043577387615185
+        ],
+        "penalty_spot_distance_m": 34.310697149110005,
+        "green_fraction": 0.8894173602853745
+      },
+      "raw_highest": {
+        "point": [
+          1535.9090270996094,
+          282.10545349121094
+        ],
+        "bbox_xyxy": [
+          1529.2560424804688,
+          275.8647766113281,
+          1542.56201171875,
+          288.34613037109375
+        ],
+        "confidence": 0.7948061227798462,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 218.5579199876577,
+        "pitch": [
+          0.2163360932413988,
+          0.02660121067017977
+        ],
+        "penalty_spot_distance_m": 34.27887028670569,
+        "green_fraction": 0.8894173602853745
+      },
+      "selected_raw_distance": 0.27123738948732123
+    },
+    {
+      "frame": 19574,
+      "selection": {
+        "source_frame": 19574,
+        "local_frame": 655,
+        "candidate_index": 5,
+        "status": "selected_observation",
+        "pixel_x": 1329.758644104004,
+        "pixel_y": 513.8081588745117,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.3867643475532532,
+        "evidence": {
+          "prior_support": 0.622386430699665,
+          "atd_distance_px": 52.37455047379504,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 2.4637161137090759e-290,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 3.2600722970953067,
+          "observed_vs_unknown_path_gap": 1.1661789540562637,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 5,
+            "pixel_x": 1329.758644104004,
+            "pixel_y": 513.8081588745117,
+            "confidence": 0.3867643475532532,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 4,
+            "pixel_x": 1329.7919464111328,
+            "pixel_y": 513.6910171508789,
+            "confidence": 0.26529935002326965,
+            "path_score_gap": 0.3345206693213054,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1330.0547485351562,
+            "pixel_y": 513.5517883300781,
+            "confidence": 0.2007129192352295,
+            "path_score_gap": 0.5308935165924886,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 558.8013153076172,
+            "pixel_y": 145.07666778564453,
+            "confidence": 0.4131244719028473,
+            "path_score_gap": 3.2600722970953067,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1452.0535583496094,
+            "pixel_y": 176.41577911376953,
+            "confidence": 0.5098918676376343,
+            "path_score_gap": 3.5387178969630435,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 9,
+        "part_frame": 655
+      },
+      "candidate": {
+        "point": [
+          1329.758644104004,
+          513.8081588745117
+        ],
+        "bbox_xyxy": [
+          1319.1981964111328,
+          505.4864807128906,
+          1340.319091796875,
+          522.1298370361328
+        ],
+        "confidence": 0.3867643475532532,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.3867643475532532
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "temporal",
+          "center": [
+            1359.1094889657313,
+            523.062191486831
+          ],
+          "anchor_frame": 19573
+        },
+        "recovery_window_xyxy": [
+          1103,
+          267,
+          1615,
+          779
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 52.37455047379504,
+        "pitch": [
+          0.41527787771426616,
+          0.4574911758810604
+        ],
+        "penalty_spot_distance_m": 32.85616127888461,
+        "green_fraction": 0.7824019024970273
+      },
+      "raw_highest": {
+        "point": [
+          1452.0535583496094,
+          176.41577911376953
+        ],
+        "bbox_xyxy": [
+          1447.7176208496094,
+          171.1206512451172,
+          1456.3894958496094,
+          181.71090698242188
+        ],
+        "confidence": 0.5098918676376343,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 408.5209090528842,
+        "pitch": [
+          0.40660531662516625,
+          -0.03697776775461539
+        ],
+        "penalty_spot_distance_m": 48.43073842502071,
+        "green_fraction": 0.9429250891795482
+      },
+      "selected_raw_distance": 358.8727685001425
+    },
+    {
+      "frame": 19064,
+      "selection": {
+        "source_frame": 19064,
+        "local_frame": 145,
+        "candidate_index": 1,
+        "status": "selected_observation",
+        "pixel_x": 1643.83544921875,
+        "pixel_y": 476.5699462890625,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.6374247670173645,
+        "evidence": {
+          "prior_support": 0.9607365861472511,
+          "atd_distance_px": 10.670152770409436,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 9.714901307858552e-182,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 6.270605115334787,
+          "observed_vs_unknown_path_gap": 2.878913589952905,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 1,
+            "pixel_x": 1643.83544921875,
+            "pixel_y": 476.5699462890625,
+            "confidence": 0.6374247670173645,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 1439.7649841308594,
+            "pixel_y": 298.9512481689453,
+            "confidence": 0.6588528156280518,
+            "path_score_gap": 6.270605115334787,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 171.71730041503906,
+            "pixel_y": 465.7550811767578,
+            "confidence": 0.21098533272743225,
+            "path_score_gap": 7.5227315704291735,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 745.3756713867188,
+            "pixel_y": 262.24253845214844,
+            "confidence": 0.21671684086322784,
+            "path_score_gap": 7.540928294141216,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 4,
+            "pixel_x": 1123.525696516037,
+            "pixel_y": 404.5975799560547,
+            "confidence": 0.1184573695063591,
+            "path_score_gap": 7.781809867448177,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 6,
+        "part_frame": 145
+      },
+      "candidate": {
+        "point": [
+          1643.83544921875,
+          476.5699462890625
+        ],
+        "bbox_xyxy": [
+          1636.79736328125,
+          470.3017578125,
+          1650.87353515625,
+          482.838134765625
+        ],
+        "confidence": 0.6374247670173645,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 1,
+        "atd_distance_px": 10.670152770409436,
+        "pitch": [
+          0.2922070541882188,
+          0.2539463119303901
+        ],
+        "penalty_spot_distance_m": 25.899371139523346,
+        "green_fraction": 0.9036860879904876
+      },
+      "raw_highest": {
+        "point": [
+          1439.7649841308594,
+          298.9512481689453
+        ],
+        "bbox_xyxy": [
+          1433.9277954101562,
+          294.31719970703125,
+          1445.6021728515625,
+          303.5852966308594
+        ],
+        "confidence": 0.6588528156280518,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 280.41481306412135,
+        "pitch": [
+          0.18674161689183005,
+          -0.06557580239506768
+        ],
+        "penalty_spot_distance_m": 39.42295776271535,
+        "green_fraction": 0.9976218787158145
+      },
+      "selected_raw_distance": 270.5423379862629
+    },
+    {
+      "frame": 19353,
+      "selection": {
+        "source_frame": 19353,
+        "local_frame": 434,
+        "candidate_index": 3,
+        "status": "selected_observation",
+        "pixel_x": 1453.3731689453125,
+        "pixel_y": 577.5761413574219,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.27575457096099854,
+        "evidence": {
+          "prior_support": 0.8617356817886115,
+          "atd_distance_px": 21.688222338141326,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 2.4652870505286297e-260,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 2.427596836195182,
+          "observed_vs_unknown_path_gap": 0.9812119329464142,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 3,
+            "pixel_x": 1453.3731689453125,
+            "pixel_y": 577.5761413574219,
+            "confidence": 0.27575457096099854,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 854.3275756835938,
+            "pixel_y": 177.3894500732422,
+            "confidence": 0.6434043645858765,
+            "path_score_gap": 2.427596836195182,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 790.7234191894531,
+            "pixel_y": 453.47627806663513,
+            "confidence": 0.7206999063491821,
+            "path_score_gap": 3.0445436109899724,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1698.39599609375,
+            "pixel_y": 210.85678100585938,
+            "confidence": 0.4241222143173218,
+            "path_score_gap": 3.890181124897968,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 4,
+        "part_frame": 434
+      },
+      "candidate": {
+        "point": [
+          1453.3731689453125,
+          577.5761413574219
+        ],
+        "bbox_xyxy": [
+          1446.515869140625,
+          570.3817749023438,
+          1460.23046875,
+          584.7705078125
+        ],
+        "confidence": 0.27575457096099854,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 3,
+        "atd_distance_px": 21.688222338141326,
+        "pitch": [
+          0.39953089288764465,
+          0.51149199540762
+        ],
+        "penalty_spot_distance_m": 31.080428650273277,
+        "green_fraction": 0.7265160523186682
+      },
+      "raw_highest": {
+        "point": [
+          790.7234191894531,
+          453.47627806663513
+        ],
+        "bbox_xyxy": [
+          785.4581909179688,
+          446.8239359855652,
+          795.9886474609375,
+          460.1286201477051
+        ],
+        "confidence": 0.7206999063491821,
+        "source": "YOLO26x_TILE",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 658.0322131114037,
+        "pitch": [
+          0.2594216554786808,
+          0.42441383913740094
+        ],
+        "penalty_spot_distance_m": 17.10748119462373,
+        "green_fraction": 0.7419738406658739
+      },
+      "selected_raw_distance": 674.1702061944706
+    },
+    {
+      "frame": 19488,
+      "selection": {
+        "source_frame": 19488,
+        "local_frame": 569,
+        "candidate_index": 2,
+        "status": "selected_observation",
+        "pixel_x": 1456.8716430664062,
+        "pixel_y": 492.6686096191406,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.3505079746246338,
+        "evidence": {
+          "prior_support": 0.847348240661136,
+          "atd_distance_px": 22.243022399881365,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 4.947852093087237,
+          "observed_vs_unknown_path_gap": 2.016779578590211,
+          "path_selected_observation": true
+        },
+        "origin": "original_detector",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 2,
+            "pixel_x": 1456.8716430664062,
+            "pixel_y": 492.6686096191406,
+            "confidence": 0.3505079746246338,
+            "path_score_gap": -0.0,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 123.46105194091797,
+            "pixel_y": 274.8733825683594,
+            "confidence": 0.6834803819656372,
+            "path_score_gap": 4.947852093087237,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 1088.861572265625,
+            "pixel_y": 301.742919921875,
+            "confidence": 0.6082141995429993,
+            "path_score_gap": 5.151938664274903,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 3,
+            "pixel_x": 1917.5164794921875,
+            "pixel_y": 311.19464111328125,
+            "confidence": 0.220818430185318,
+            "path_score_gap": 6.229036830367018,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 4,
+        "part_frame": 569
+      },
+      "candidate": {
+        "point": [
+          1456.8716430664062,
+          492.6686096191406
+        ],
+        "bbox_xyxy": [
+          1450.306884765625,
+          485.58038330078125,
+          1463.4364013671875,
+          499.7568359375
+        ],
+        "confidence": 0.3505079746246338,
+        "source": "YOLO26x_FULL",
+        "origin": "original_detector",
+        "original_candidate_index": 2,
+        "atd_distance_px": 22.243022399881365,
+        "pitch": [
+          0.4929759151166196,
+          0.24691544015285957
+        ],
+        "penalty_spot_distance_m": 44.38280487713149,
+        "green_fraction": 0.7015457788347206
+      },
+      "raw_highest": {
+        "point": [
+          123.46105194091797,
+          274.8733825683594
+        ],
+        "bbox_xyxy": [
+          117.706298828125,
+          269.74658203125,
+          129.21580505371094,
+          280.00018310546875
+        ],
+        "confidence": 0.6834803819656372,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1332.7086521276842,
+        "pitch": [
+          0.1810110824245544,
+          -0.05726186604244982
+        ],
+        "penalty_spot_distance_m": 38.74160203977476,
+        "green_fraction": 0.9821640903686087
+      },
+      "selected_raw_distance": 1351.080517753004
+    },
+    {
+      "frame": 19383,
+      "selection": {
+        "source_frame": 19383,
+        "local_frame": 464,
+        "candidate_index": 7,
+        "status": "selected_observation",
+        "pixel_x": 1751.634765625,
+        "pixel_y": 640.3727569580078,
+        "provisional_pixel_x": null,
+        "provisional_pixel_y": null,
+        "candidate_confidence": 0.571171760559082,
+        "evidence": {
+          "prior_support": 0.9971361628806503,
+          "atd_distance_px": 3.0725673599911647,
+          "prior_quality_usable": true,
+          "soft_field_mark_penalty": 0.0,
+          "background_penalty": 0.0,
+          "nonfield_suspected": false,
+          "off_field_ground_projection": false,
+          "invalid_candidate": false,
+          "temporal_left": true,
+          "temporal_right": true,
+          "bidirectional_geometry": true,
+          "near_camera_cut": false,
+          "camera_motion_uncertain": false,
+          "atd_conflict": false,
+          "competing_candidate": false,
+          "alternative_path_gap": 6.586025543637247,
+          "observed_vs_unknown_path_gap": 2.070856932735948,
+          "path_selected_observation": true
+        },
+        "origin": "targeted_redetection",
+        "needs_review": false,
+        "visual_reviewed": false,
+        "manually_verified": false,
+        "algorithm_version": "full_half_observed_ball_v1",
+        "review_candidates": [
+          {
+            "candidate_index": 7,
+            "pixel_x": 1751.634765625,
+            "pixel_y": 640.3727569580078,
+            "confidence": 0.571171760559082,
+            "path_score_gap": -0.0,
+            "origin": "targeted_redetection"
+          },
+          {
+            "candidate_index": 2,
+            "pixel_x": 1751.6439819335938,
+            "pixel_y": 640.5494689941406,
+            "confidence": 0.26338323950767517,
+            "path_score_gap": 0.8584423575854581,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 6,
+            "pixel_x": 1751.8576049804688,
+            "pixel_y": 636.6272583007812,
+            "confidence": 0.13377229869365692,
+            "path_score_gap": 1.4686792349088547,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 0,
+            "pixel_x": 732.3142967224121,
+            "pixel_y": 203.69052124023438,
+            "confidence": 0.5775288939476013,
+            "path_score_gap": 6.586025543637247,
+            "origin": "original_detector"
+          },
+          {
+            "candidate_index": 1,
+            "pixel_x": 973.1917114257812,
+            "pixel_y": 223.37957763671875,
+            "confidence": 0.39207223057746887,
+            "path_score_gap": 7.1053042010736185,
+            "origin": "original_detector"
+          }
+        ],
+        "near_camera_cut": false,
+        "alternative_candidates_total": 8,
+        "part_frame": 464
+      },
+      "candidate": {
+        "point": [
+          1751.634765625,
+          640.3727569580078
+        ],
+        "bbox_xyxy": [
+          1744.4115295410156,
+          633.2528381347656,
+          1758.8580017089844,
+          647.49267578125
+        ],
+        "confidence": 0.571171760559082,
+        "source": "YOLO26x_RECOVERY_512_1280",
+        "sources": {
+          "YOLO26x_RECOVERY_512_1280": 0.571171760559082
+        },
+        "source_observations": [],
+        "origin": "targeted_redetection",
+        "detector_family": "YOLO26x",
+        "coordinate_provenance": "unchanged_real_detection_bbox_center",
+        "recovery_hint": {
+          "kind": "atd",
+          "center": [
+            1751.06067310352,
+            637.354299080471
+          ],
+          "anchor_frame": null
+        },
+        "recovery_window_xyxy": [
+          1408,
+          381,
+          1920,
+          893
+        ],
+        "recovery_input_size": 1280,
+        "recovery_confidence_threshold": 0.08,
+        "truncated_at_window_edge": false,
+        "atd_distance_px": 3.0725673599911647,
+        "pitch": [
+          0.49953656493813403,
+          0.5863211323131293
+        ],
+        "penalty_spot_distance_m": 42.013269948623055,
+        "green_fraction": 0.7051129607609988
+      },
+      "raw_highest": {
+        "point": [
+          732.3142967224121,
+          203.69052124023438
+        ],
+        "bbox_xyxy": [
+          728.1797180175781,
+          199.82699584960938,
+          736.4488754272461,
+          207.55404663085938
+        ],
+        "confidence": 0.5775288939476013,
+        "source": "YOLO26x_ROI",
+        "origin": "original_detector",
+        "original_candidate_index": 0,
+        "atd_distance_px": 1107.2075016004471,
+        "pitch": [
+          0.19239143743976686,
+          -0.029750428115228787
+        ],
+        "penalty_spot_distance_m": 37.19387508529066,
+        "green_fraction": 1.0
+      },
+      "selected_raw_distance": 1108.920913913731
+    }
+  ]
+}

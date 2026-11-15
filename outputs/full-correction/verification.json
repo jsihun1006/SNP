@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "frames": 79467,
+  "frame_coverage_contiguous": true,
+  "duplicate_or_missing_frames": 0,
+  "explicit_visual_actions_verified": 45,
+  "real_reviewed_airborne_and_held_balls_preserved": true,
+  "csv_sha256_matches": true,
+  "accuracy_validated": false
+}

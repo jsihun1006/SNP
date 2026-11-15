@@ -1,0 +1,850 @@
+{
+  "decisions": [
+    {
+      "source_frame": 9039,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "review_candidate",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1169.4620361328125,
+        405.6230163574219
+      ],
+      "pixel_x": 1169.4620361328125,
+      "pixel_y": 405.6230163574219,
+      "candidate_confidence": 0.47655797004699707,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the active match ball beside the players right shoulder. This saved candidate localizes that ball rather than the secondary sideline ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9040,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "review_candidate",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "demote_to_review",
+      "reason": "The current selection follows the secondary ball at the technical sideline. The only candidate near the active-ball region (index7) overlaps the players arm and is not a clearly visible ball; no existing point is approved as the active ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9041,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "demote_to_review",
+      "reason": "The selected observation is the secondary ball at the technical sideline while the active match ball is infield. No saved candidate visibly localizes the active ball on this exact frame, so accepted coordinates must be removed.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9042,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "review_candidate",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1161.9154205322266,
+        395.2528076171875
+      ],
+      "pixel_x": 1161.9154205322266,
+      "pixel_y": 395.2528076171875,
+      "candidate_confidence": 0.1894991099834442,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9043,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1158.1776123046875,
+        387.7504425048828
+      ],
+      "pixel_x": 1158.1776123046875,
+      "pixel_y": 387.7504425048828,
+      "candidate_confidence": 0.5385407209396362,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9044,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1154.9442749023438,
+        381.1667938232422
+      ],
+      "pixel_x": 1154.9442749023438,
+      "pixel_y": 381.1667938232422,
+      "candidate_confidence": 0.6333703994750977,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9045,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1151.5281219482422,
+        375.1134948730469
+      ],
+      "pixel_x": 1151.5281219482422,
+      "pixel_y": 375.1134948730469,
+      "candidate_confidence": 0.6712612509727478,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9046,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        1147.7558898925781,
+        369.05535888671875
+      ],
+      "pixel_x": 1147.7558898925781,
+      "pixel_y": 369.05535888671875,
+      "candidate_confidence": 0.7949090600013733,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9047,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        1145.1302185058594,
+        363.52008056640625
+      ],
+      "pixel_x": 1145.1302185058594,
+      "pixel_y": 363.52008056640625,
+      "candidate_confidence": 0.7020931839942932,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9048,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        1141.8198623657227,
+        358.7774658203125
+      ],
+      "pixel_x": 1141.8198623657227,
+      "pixel_y": 358.7774658203125,
+      "candidate_confidence": 0.7752408385276794,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9049,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1138.3213348388672,
+        354.7713317871094
+      ],
+      "pixel_x": 1138.3213348388672,
+      "pixel_y": 354.7713317871094,
+      "candidate_confidence": 0.6129521727561951,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9050,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        1134.9623718261719,
+        350.6070556640625
+      ],
+      "pixel_x": 1134.9623718261719,
+      "pixel_y": 350.6070556640625,
+      "candidate_confidence": 0.7129611372947693,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9051,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 13,
+      "previous_status": "review_candidate",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        1131.7408447265625,
+        347.2166442871094
+      ],
+      "pixel_x": 1131.7408447265625,
+      "pixel_y": 347.2166442871094,
+      "candidate_confidence": 0.7109960317611694,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9052,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "review_candidate",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        1127.9608154296875,
+        344.19403076171875
+      ],
+      "pixel_x": 1127.9608154296875,
+      "pixel_y": 344.19403076171875,
+      "candidate_confidence": 0.7423403859138489,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 9053,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "review_candidate",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\8171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5ef7a7e45b24aad24fa9331cf40c3a34b1e8e5dd555603a315f907e037342a65",
+      "manual_localization_ground_truth": false,
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1123.802490234375,
+        341.35536193847656
+      ],
+      "pixel_x": 1123.802490234375,
+      "pixel_y": 341.35536193847656,
+      "candidate_confidence": 0.6202081441879272,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source-frame crop visibly shows the round active match ball above/in front of the players, following the infield ball across the9031/9054 context anchors. This existing candidate localizes that ball; the sideline candidate is a different ball.",
+      "evidence_artifacts": [
+        "work/secondary-ball-active-crops-15.jpg",
+        "work/secondary-ball-full-context.jpg"
+      ]
+    },
+    {
+      "source_frame": 11532,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 3,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\11171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "99a3152d3dba97a696092301f191f033b926a672fed4c74315dd59b596f62baa",
+      "manual_localization_ground_truth": false,
+      "action": "demote_to_review",
+      "reason": "The low-confidence localization overlaps white footwear/partly occluded ball; the existing contact image does not resolve the exact ball center. Preserve this candidate for review without an accepted coordinate.",
+      "evidence_artifacts": [
+        "work/full-run-early-review-2.jpg",
+        "work/full-run-early-temporal.jpg"
+      ]
+    },
+    {
+      "source_frame": 13604,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\13171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "d7ffce2ade4b3d2b8cc76a953f7541c24ba220bfded1e9a6ad9cdc51d584a641",
+      "manual_localization_ground_truth": false,
+      "action": "demote_to_review",
+      "reason": "The low-confidence blurred object near the corner restart cannot be localized confidently from the exact-frame crop and adjacent13594/13614 views; preserve as provisional without an accepted coordinate.",
+      "evidence_artifacts": [
+        "work/full-run-early-review-3.jpg",
+        "work/full-run-early-temporal.jpg"
+      ]
+    },
+    {
+      "source_frame": 15352,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\15171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "7e9c66ab5c9655ae71145d463664420287d7887ddd4de84acebcb571eb7e513e",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-1.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the coachs hand at his hip, not a ball."
+    },
+    {
+      "source_frame": 23808,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\23171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "61ac17dcc9d142d0cec0022f2d59afead822773ddf6e6f5a558396ce098a2e7f",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-1.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the yellow Spotify shirt sponsor on the Barcelona players torso, not a ball."
+    },
+    {
+      "source_frame": 25153,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\24171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "bc1202f1f28513030e3fcc1560f9fe73b85114a22282cec0e1f28c28ec8c6570",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-1.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is a partially obscured yellow shirt sponsor beside another players arm, not a ball."
+    },
+    {
+      "source_frame": 27431,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\27171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "c699562ed4c18c0eca6bad112febbb246da93f0eed30242d6cbd41cd1552aebd",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-1.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the circular Spotify shirt sponsor on the Barcelona players chest, not a ball."
+    },
+    {
+      "source_frame": 29366,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\29171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "1e394e4edbfc996ccaec295b7991fa56b7ba8f18ab02fb090831cf7248deaeef",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is a blurred yellow crowd/background patch behind the player, not the active match ball."
+    },
+    {
+      "source_frame": 29793,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\29171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "1e394e4edbfc996ccaec295b7991fa56b7ba8f18ab02fb090831cf7248deaeef",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected recovered center is a bright camera-equipment/background spot behind the player, not the active match ball."
+    },
+    {
+      "source_frame": 30442,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\30171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "a61799b490da6d3b28e1dd5bbd3f3b053853958a9412ebdb893f667b2c40323a",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-highconf-review.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        630.0406188964844,
+        761.5791015625
+      ],
+      "pixel_x": 630.0406188964844,
+      "pixel_y": 761.5791015625,
+      "candidate_confidence": 0.8044258952140808,
+      "candidate_origin": "original_detector",
+      "reason": "The exact source frame visibly shows a patterned match ball held against the Barcelona players upper body. Preserve this existing saved detection center despite missing H and zero green context; no manual position or interpolation is supplied."
+    },
+    {
+      "source_frame": 32805,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\32171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "6508864a6e6ca5d8c7f0eafc9c4808272c76cc4cfdda1fcf00b97fa39cf68e32",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the close-up players chin/neck area at the right image edge, not a ball."
+    },
+    {
+      "source_frame": 32963,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\32171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "6508864a6e6ca5d8c7f0eafc9c4808272c76cc4cfdda1fcf00b97fa39cf68e32",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is bright stadium advertising text beyond the goal net, not a ball."
+    },
+    {
+      "source_frame": 33172,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\33171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "968df2d119eeff0144a94a5a8c75a22d47b17b124be5051191b23dbea447af82",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-highconf-review.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the circular yellow Spotify sponsor on the Barcelona players shirt, not a ball, despite modelconfidence.806."
+    },
+    {
+      "source_frame": 33329,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\33171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "968df2d119eeff0144a94a5a8c75a22d47b17b124be5051191b23dbea447af82",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-3.jpg",
+        "work/full-run-late-ambiguous-sequences.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1195.6497192382812,
+        688.2292785644531
+      ],
+      "pixel_x": 1195.6497192382812,
+      "pixel_y": 688.2292785644531,
+      "candidate_confidence": 0.2383844554424286,
+      "candidate_origin": "original_detector",
+      "reason": "The exact-frame view and33319/33324/33334/33339 sequence show a real patterned airborne match ball passing behind Barcelona player2. Preserve existingcandidate1 center, even though confidence is.238 and H/green context are unavailable; no manual center or interpolation is supplied."
+    },
+    {
+      "source_frame": 38232,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\38171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "00cd466398d1060225c0e6cfdfe2a65a48b12ed1372304c8f7f4f68c800fd4bb",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-3.jpg",
+        "work/full-run-late-ambiguous-sequences.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Exact selected20x45pixel region overlaps the raised players leg/white goalpost. Adjacent38227/38237 show the real ball approaching then reappearing, but the ball is not confidently separable/localizable on38232; retain uncertainty."
+    },
+    {
+      "source_frame": 38342,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\38171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "00cd466398d1060225c0e6cfdfe2a65a48b12ed1372304c8f7f4f68c800fd4bb",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-3.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is a bright patterned region on the LED advertising board, not a ball."
+    },
+    {
+      "source_frame": 38573,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\38171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "00cd466398d1060225c0e6cfdfe2a65a48b12ed1372304c8f7f4f68c800fd4bb",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-review-3.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the pointing players hand, not a ball."
+    },
+    {
+      "source_frame": 40451,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\40171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "7e09e295f7ad0efafeeb18d3548c31bf310c837a66eea16740a2415166afcd2b",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-highconf-review.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "The selected center overlaps the boot/ball contact region and appears offset toward the boot. The match ball is visible, but the exact selected center cannot be confirmed as the ball center from this contact view; retain localization uncertainty rather than invent a replacement."
+    },
+    {
+      "source_frame": 42971,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\42171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5a0536e4c099945e0b6df9aa60f9422b35ce30a26e77540177884bc274934352",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-highconf-review.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is the circular yellow Spotify sponsor on the standing Barcelona players shirt during the celebration, not a ball, despite modelconfidence.811."
+    },
+    {
+      "source_frame": 44110,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\43171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "11b02d2a104927ea327343785e4b338a98ed6049d67c985f2e263c6fef545926",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-highconf-review.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is bright lettering/LED structure on the advertising board behind the goal, not a ball."
+    },
+    {
+      "source_frame": 44826,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\44171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "7432c449ee82b669c67b5cc4367d0532df8a86004026216adc2a76c944d4b775",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-late-highconf-review.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "Selected center is a gray equipment/folding-seat structure beside the technical sideline, not a clearly visible match ball."
+    },
+    {
+      "source_frame": 45711,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 6,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\45171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "28e5fbb0a5454035b1f74d84a38421f8d99e78f3e49de490a0c58dbd60142000",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-1.jpg",
+        "work/full-run-pitch-temporal.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 1,
+      "candidate_point": [
+        1116.9507446289062,
+        515.0774841308594
+      ],
+      "pixel_x": 1116.9507446289062,
+      "pixel_y": 515.0774841308594,
+      "candidate_confidence": 0.31251588463783264,
+      "candidate_origin": "original_detector",
+      "reason": "The exact-frame center-circle crop visibly shows the active match ball after the restart pass; existingcandidate1 center(1116.95,515.08) localizes it. Currentcandidate6 is the secondary football in the technical area. Replace with the existing active-ball detection, not an interpolated point."
+    },
+    {
+      "source_frame": 46249,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\46171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "443d0d9cdb0b49e12201bf1176517d66822125d45bb4b689985c83f575f0a595",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-1.jpg",
+        "work/full-run-pitch-temporal.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        836.1117553710938,
+        344.897705078125
+      ],
+      "pixel_x": 836.1117553710938,
+      "pixel_y": 344.897705078125,
+      "candidate_confidence": 0.4841209650039673,
+      "candidate_origin": "original_detector",
+      "reason": "The exact-frame crop visibly shows a football in the goal-area aerial action/cross. Preserve its existing observed pixel center. Its inverse-H ground-plane projection outside the pitch does not prove a false detection and does not recover true airborne3D position."
+    },
+    {
+      "source_frame": 47422,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\47171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "74b89e713b99520d3e4a3cb3b7753a04ce4094f9a7a72979f19276a52080dc8e",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-1.jpg",
+        "work/full-run-pitch-temporal.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        285.0699768066406,
+        447.09449768066406
+      ],
+      "pixel_x": 285.0699768066406,
+      "pixel_y": 447.09449768066406,
+      "candidate_confidence": 0.6119879484176636,
+      "candidate_origin": "original_detector",
+      "reason": "A visible round match ball moves across the field in the exact and adjacent source frames near the goalkeeper. It passes near a penalty mark but is not the stationary painted mark; preserve the existing detected pixel center."
+    },
+    {
+      "source_frame": 51596,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\51171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "106e58f796ca7b2ed41fb48ab6e7dcd3e924ddadc36f99f532f21118ed795f2c",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-1.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "A ball-like object is visible beyond the far touchline, but this bounded view does not establish whether it is the current match ball or a perimeter spare. Preserve its detected center provisionally instead of accepting an uncertain identity."
+    },
+    {
+      "source_frame": 52155,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 2,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\51171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "106e58f796ca7b2ed41fb48ab6e7dcd3e924ddadc36f99f532f21118ed795f2c",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "The far-perimeter ball-like object has a similar outside-field ground position to51596 while play develops elsewhere. The exact-frame image does not securely establish active match-ball identity; retain it for review rather than labeling it definitively false."
+    },
+    {
+      "source_frame": 52706,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\52171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "2bf08ac27ed36bef3281b613735376b307c9bf31cc345bc46b8e6210c0996f3d",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "A real ball-like object is visible beyond the endline after goal-area action. It may be the just-out-of-play match ball or another ball; the bounded views do not establish identity. Preserve observed coordinates as provisional without an accepted match-ball identity."
+    },
+    {
+      "source_frame": 52798,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\52171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "2bf08ac27ed36bef3281b613735376b307c9bf31cc345bc46b8e6210c0996f3d",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "The observed ball-like object is beside a player behind the goal. It could be the retrieved out-of-play ball or another ball; this review does not resolve current match-ball identity, so retain it provisionally."
+    },
+    {
+      "source_frame": 53270,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 1,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\53171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "8ae8d6c6f0fb4cb1d3a655ce6f682464c494c3a565a528bf45eee23d4f8e0f25",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-2.jpg"
+      ],
+      "action": "demote_to_review",
+      "reason": "A low-confidence ball-like object is visible near the corner flag while players prepare a restart. The exact crop does not securely resolve active-ball identity/localization versus a nearby perimeter object; retain the existing point for review without inventing a replacement."
+    },
+    {
+      "source_frame": 53505,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\53171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "8ae8d6c6f0fb4cb1d3a655ce6f682464c494c3a565a528bf45eee23d4f8e0f25",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-3.jpg",
+        "work/full-run-pitch-temporal.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        775.8232116699219,
+        340.992431640625
+      ],
+      "pixel_x": 775.8232116699219,
+      "pixel_y": 340.992431640625,
+      "candidate_confidence": 0.777132511138916,
+      "candidate_origin": "original_detector",
+      "reason": "The exact-frame crop visibly shows a football in the goal-area aerial action/cross. Preserve its existing observed pixel center. Its inverse-H ground-plane projection outside the pitch does not prove a false detection and does not recover true airborne3D position."
+    },
+    {
+      "source_frame": 58745,
+      "reviewer": "assistant_visual",
+      "previous_candidate_index": 0,
+      "previous_status": "selected_observation",
+      "source_chunk_decisions": "H:\\data\\ball-tracking-results\\first_half\\correction_recall_v1\\chunks\\58171\\decisions.jsonl.gz",
+      "source_chunk_sha256": "5cea54f7a73b8e77caedb4680bb851c0a6d19a03a4fd23fd66aef81e865b36a2",
+      "manual_localization_ground_truth": false,
+      "evidence_artifacts": [
+        "work/full-run-pitch-review-3.jpg",
+        "work/full-run-pitch-temporal.jpg"
+      ],
+      "action": "replace_with_existing_candidate_index",
+      "candidate_index": 0,
+      "candidate_point": [
+        345.64830017089844,
+        424.5845947265625
+      ],
+      "pixel_x": 345.64830017089844,
+      "pixel_y": 424.5845947265625,
+      "candidate_confidence": 0.5733989477157593,
+      "candidate_origin": "original_detector",
+      "reason": "A visible round match ball moves across the field in the exact and adjacent source frames near the goalkeeper. It passes near a penalty mark but is not the stationary painted mark; preserve the existing detected pixel center."
+    }
+  ],
+  "scope": "Exact-frame visual adjudication9039..9053 plus two individually uncertain early-review frames. Apply to a derived final export only; retain immutable source chunks.",
+  "coordinate_policy": "Every replacement references an existing saved detection and preserves its original pixel center. No interpolated, predicted or ATD-snapped coordinate is approved.",
+  "reviewer": "assistant_visual",
+  "limitations": [
+    "This is a focused visual review, not full-first-half ground truth or a100percent accuracy claim.",
+    "A visible object and existing detection support replacement; model bounding-box centers have not been measured against manual localization ground truth.",
+    "Frames9040/9041 have no clearly approved active-ball detection; uncertainty is preserved rather than filling positions.",
+    "11532 and13604 are demoted for localization uncertainty, not labeled definite false detections.",
+    "Late review found jersey logos, hands and background false selections; lack of H or green context is not itself a false-ball label. Exact33329 is a visually supported real ball despite both being absent.",
+    "Additional risk-biased no-H review found false shirt logos above.80confidence and genuine held ball30442 with zero green context. Neither confidence nor green context alone proves ball identity.",
+    "H-present pitch QA found a secondary-ball identity error45711 with an existing visible active-ball alternative. Perimeter/behind-goal balls may be genuine out-of-play balls; exact demotions51596,52155,52706,52798,53270 represent unresolved identity/localization, not definite false-ball labels."
+  ]
+}

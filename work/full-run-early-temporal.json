@@ -1,0 +1,254 @@
+[
+  {
+    "frame": 9031,
+    "point": [
+      1207.5735626220703,
+      346.9139404296875
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.0,
+      "atd_distance_px": 1273.022242519317,
+      "prior_quality_usable": false,
+      "soft_field_mark_penalty": 0.0,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": 2.1669350834765955,
+      "observed_vs_unknown_path_gap": 1.9298524316754597,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 9041,
+    "point": [
+      1614.9425964355469,
+      1050.8046569824219
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.001048749021675939,
+      "atd_distance_px": 167.9473263953719,
+      "prior_quality_usable": true,
+      "soft_field_mark_penalty": 0.0,
+      "background_penalty": 0.17407847800237813,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": true,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": true,
+      "competing_candidate": false,
+      "alternative_path_gap": 3.215185109975554,
+      "observed_vs_unknown_path_gap": 2.22218764332953,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 9051,
+    "point": [
+      1581.5636672973633,
+      1063.1969909667969
+    ],
+    "status": "review_candidate",
+    "evidence": {
+      "prior_support": 0.2543807250864931,
+      "atd_distance_px": 75.99416397915594,
+      "prior_quality_usable": true,
+      "soft_field_mark_penalty": 0.0,
+      "background_penalty": 0.15885850178359098,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": true,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": true,
+      "alternative_path_gap": 0.25370629212818563,
+      "observed_vs_unknown_path_gap": 0.18894653685519613,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 13594,
+    "point": [
+      1727.673828125,
+      594.7998046875
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.0,
+      "atd_distance_px": null,
+      "prior_quality_usable": false,
+      "soft_field_mark_penalty": 0.0,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": null,
+      "observed_vs_unknown_path_gap": 1.7261310196540787,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 13604,
+    "point": [
+      1769.2025451660156,
+      614.5539016723633
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.0,
+      "atd_distance_px": null,
+      "prior_quality_usable": false,
+      "soft_field_mark_penalty": 0.0,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": null,
+      "observed_vs_unknown_path_gap": 0.8835975146345008,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 13614,
+    "point": [
+      393.5323486328125,
+      893.0213928222656
+    ],
+    "status": "review_candidate",
+    "evidence": {
+      "prior_support": 0.0,
+      "atd_distance_px": null,
+      "prior_quality_usable": false,
+      "soft_field_mark_penalty": 0.0,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": false,
+      "temporal_right": false,
+      "bidirectional_geometry": false,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": 0.38464557438036745,
+      "observed_vs_unknown_path_gap": -0.10769022376495424,
+      "path_selected_observation": false
+    }
+  },
+  {
+    "frame": 14783,
+    "point": [
+      194.51138305664062,
+      497.95880126953125
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.8828884906348388,
+      "atd_distance_px": 18.051763878591146,
+      "prior_quality_usable": true,
+      "soft_field_mark_penalty": 8.049869000127541e-34,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": 7.966851682852909,
+      "observed_vs_unknown_path_gap": 3.095632541887252,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 14793,
+    "point": [
+      195.69329833984375,
+      469.0298080444336
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.9858293539676873,
+      "atd_distance_px": 5.204787067214192,
+      "prior_quality_usable": true,
+      "soft_field_mark_penalty": 1.7830044705161323e-25,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": 5.58179725030767,
+      "observed_vs_unknown_path_gap": 2.251387597810162,
+      "path_selected_observation": true
+    }
+  },
+  {
+    "frame": 14803,
+    "point": [
+      202.3377227783203,
+      465.948486328125
+    ],
+    "status": "selected_observation",
+    "evidence": {
+      "prior_support": 0.9841843628049598,
+      "atd_distance_px": 6.152733149749269,
+      "prior_quality_usable": true,
+      "soft_field_mark_penalty": 8.698703921912139e-26,
+      "background_penalty": 0.0,
+      "nonfield_suspected": false,
+      "off_field_ground_projection": false,
+      "invalid_candidate": false,
+      "temporal_left": true,
+      "temporal_right": true,
+      "bidirectional_geometry": true,
+      "near_camera_cut": false,
+      "camera_motion_uncertain": false,
+      "atd_conflict": false,
+      "competing_candidate": false,
+      "alternative_path_gap": 5.747628545607713,
+      "observed_vs_unknown_path_gap": 2.9915349380896927,
+      "path_selected_observation": true
+    }
+  }
+]
