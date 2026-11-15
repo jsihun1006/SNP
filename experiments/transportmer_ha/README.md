@@ -4,12 +4,20 @@ TranSPORTmer가 인플레이 프레임의 점유 팀을 홈(H) 또는 원정(A)�
 
 ## Colab에서 실행하기
 
-로컬 작업 복사본의 `data/transportmer_ha/`에 준비한 아래 파일 두 개가 필요하다. 두 파일은 별도로 보관한다. 노트북에 실험 코드와 볼 결측률·구간 길이 집계가 포함되어 있다. ZIP은 공개 DFL 7경기의 트래킹·이벤트·메타데이터 Parquet 21개를 담고 있으며 크기는 약 85 MiB다. 노트북 셀 3에서 ZIP의 SHA-256을 확인하므로 함께 준비한 ZIP을 사용한다. [DFL 공개 원본 및 CC BY 4.0](https://doi.org/10.6084/m9.figshare.28196177)
+저장소의 [Colab 노트북](DFL_TranSPORTmer_Colab_로컬캐시.ipynb)을 내려받는다. 노트북에는 실험 코드와 볼 결측률·구간 길이 집계가 들어 있다. 공개 DFL 7경기의 트래킹·이벤트·메타데이터 Parquet 21개는 로컬에서 ZIP으로 묶는다. [DFL 공개 원본 및 CC BY 4.0](https://doi.org/10.6084/m9.figshare.28196177)
+
+저장소 루트에서 Python 3.10 이상 환경에 필요한 패키지를 설치한다. `data/external/dfl/`에 Parquet가 이미 있으면 ZIP 생성 명령부터 실행한다. Parquet가 없으면 `python src/dfl_load.py all`로 준비한다. 로컬에 DFL XML이 있으면 `data/external/dfl/raw/`에 두고 변환한다. 외부 위치의 Parquet를 쓰려면 ZIP 생성 명령에 `--cache /path/to/dfl`을 추가한다.
+
+```sh
+python -m pip install numpy pandas pyarrow kloppy==3.19.1
+python src/dfl_load.py all
+python experiments/transportmer_ha/prepare_colab_cache.py
+```
 
 | 파일 | 사용 위치 |
 | --- | --- |
-| `DFL_TranSPORTmer_Colab_로컬캐시.ipynb` | Colab 노트북 업로드 |
-| `DFL_7matches_Parquet.zip` | 노트북 셀 3의 파일 선택 |
+| `experiments/transportmer_ha/DFL_TranSPORTmer_Colab_로컬캐시.ipynb` | Colab 노트북 업로드 |
+| `data/transportmer_ha/DFL_7matches_Parquet.zip` | 노트북 셀 3의 파일 선택 |
 
 1. Colab에서 노트북을 열고 **런타임 → 런타임 유형 변경 → GPU**를 선택한다.
 2. **런타임 → 모두 실행**을 누르고 Google Drive 연결을 승인한다.
@@ -46,3 +54,17 @@ TranSPORTmer가 인플레이 프레임의 점유 팀을 홈(H) 또는 원정(A)�
 ```sh
 bash /content/drive/MyDrive/DFL_TranSPORTmer/seed2027_local_cache/reproduce.sh
 ```
+
+## 로컬에서 실행하기
+
+실험 진입점은 [`src/run_transportmer_ha.py`](../../src/run_transportmer_ha.py)다. DFL Parquet를 준비한 뒤 저장소 루트에서 실행한다. 기존 Drive 실행과 별도의 출력 폴더를 사용한다.
+
+```sh
+python -m pip install torch
+mkdir -p data/transportmer_ha/dfl_seed2027
+cp experiments/transportmer_ha/ball_profile.json data/transportmer_ha/dfl_seed2027/ball_profile.json
+python src/run_transportmer_ha.py --stage benchmark --output data/transportmer_ha/dfl_seed2027
+python src/run_transportmer_ha.py --stage run --output data/transportmer_ha/dfl_seed2027
+```
+
+장치를 지정하려면 두 명령에 같은 `--device cpu`, `--device mps` 또는 `--device cuda` 옵션을 넣는다. 기존 실험을 재개할 때는 같은 출력 경로와 입력 캐시를 사용한다.
