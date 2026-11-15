@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "start_frame": 86823,
+  "end_frame": 163279,
+  "frames": 76456,
+  "part_id": "second_half",
+  "output_path": "C:\\Users\\Administrator\\Desktop\\SNP-ball-tracking\\SNP-ball-tracking\\ball_only\\outputs\\second_half_prefetch\\candidates.jsonl",
+  "file_sha256": "6037a40077af60b4078a0bfb4335e8a6703b1c5d3ba2b35052785e0897248065",
+  "source_video_sha256": "3dc2a7d952302d33df69a26e3d8935648015f8d7e1b86bf614436b7009abf9f8",
+  "weights_sha256": "9fdd44a31c504547ffb81d2c6d9e6dac3493c8eaa8b0398d3f43bae6c7003e92",
+  "elapsed_seconds": 10667.859344600001,
+  "source_files_modified": false,
+  "player_detection_performed": false,
+  "ball_candidates_only": true,
+  "ground_truth_accuracy_validated": false,
+  "finished_unix": 1794711541.999556
+}

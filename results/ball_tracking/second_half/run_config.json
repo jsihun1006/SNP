@@ -1,0 +1,55 @@
+{
+  "version": "ball_only_original_frame_ranges_v1",
+  "video": {
+    "sha256": "3dc2a7d952302d33df69a26e3d8935648015f8d7e1b86bf614436b7009abf9f8",
+    "bytes": 13962360320,
+    "frames": 164487,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080
+  },
+  "weights": {
+    "sha256": "9fdd44a31c504547ffb81d2c6d9e6dac3493c8eaa8b0398d3f43bae6c7003e92",
+    "bytes": 118667365
+  },
+  "detector": {
+    "version": "portable_ball_full_roi_tile_batched_v1",
+    "model": "YOLO26x",
+    "precision": "FP32",
+    "full_imgsz": 1536,
+    "roi_imgsz": 960,
+    "roi_crop_size": 640,
+    "tile_size": 640,
+    "tile_overlap": 0.2,
+    "confidence": 0.1,
+    "classes": [
+      32
+    ],
+    "rect": true,
+    "max_rois": 2,
+    "full_and_tile_on_every_frame": true,
+    "roi_policy": "full-image candidate centers; image-center fallback",
+    "output_kind": "ball_candidates_not_confirmed_match_ball"
+  },
+  "batches": {
+    "full": 1,
+    "roi": 4,
+    "tile": 8,
+    "max_rois": 2
+  },
+  "start_frame": 86823,
+  "end_frame": 163279,
+  "part_id": "second_half",
+  "chunk_frames": 32,
+  "algorithm_sha256": {
+    "run.py": "341347828d315f948338e5a6fd48753ae7ee9a6589c4f08c0889dc0caebb5c03",
+    "detector.py": "bac2834503f81be436b10f8361f16bd5156d66d2c31634dd32cbedab1c3ff8d9",
+    "runtime_control.py": "8a17a6d7cd8efd90ac8f1763fcf157b116208872dda3b7707baebd541cc2d6ba"
+  },
+  "fingerprint": "d9297c98532a7aa699021e7abd1d880e5dd6c0b68ead16f37803be48d08d7e36",
+  "local_paths": {
+    "video": "H:\\down\\BAR-ATH_broadcast.mp4",
+    "weights": "C:\\Users\\Administrator\\Desktop\\SNP-ball-tracking\\SNP-ball-tracking\\ball_only\\weights\\yolo26x.pt"
+  },
+  "created_unix": 1794700872.6699166
+}
