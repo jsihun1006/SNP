@@ -1,0 +1,21 @@
+{
+  "frames": 76456,
+  "observations_reviewed": 63444,
+  "suspects": {
+    "microphone": 85,
+    "hand": 93
+  },
+  "rejected": {
+    "hand": 61,
+    "microphone": 69
+  },
+  "counts": {
+    "observed": 63323,
+    "interpolated": 1027,
+    "missing": 12106
+  },
+  "hand_crosscheck": {
+    "reviewed": 73,
+    "restored_model_disagreement": 18
+  }
+}
