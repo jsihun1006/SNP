@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "start_frame": 7171,
+  "end_frame": 7173,
+  "frames": 2,
+  "part_id": "smoke",
+  "output_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-11-15\\git-x20\\work\\smoke_pc1\\candidates.jsonl",
+  "file_sha256": "d864b3ea05109b62ae5a340180a2549b12711f5912499f036f09902c6776a508",
+  "source_video_sha256": "3dc2a7d952302d33df69a26e3d8935648015f8d7e1b86bf614436b7009abf9f8",
+  "weights_sha256": "9fdd44a31c504547ffb81d2c6d9e6dac3493c8eaa8b0398d3f43bae6c7003e92",
+  "elapsed_seconds": 17.478613900000028,
+  "source_files_modified": false,
+  "player_detection_performed": false,
+  "ball_candidates_only": true,
+  "ground_truth_accuracy_validated": false,
+  "finished_unix": 1794698928.331226
+}

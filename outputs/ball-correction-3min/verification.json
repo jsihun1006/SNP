@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "rows": 4500,
+  "frame_range": [
+    18919,
+    23419
+  ],
+  "observed_coordinate_source_matches": true,
+  "unresolved_coordinates_blank": true,
+  "known_advertising_conflicts_not_accepted": true,
+  "csv_sha256": "32b579b18a270509ad94cae1c2d7f95d9a18d64e399e8d206c2f05eb22d7cd6d",
+  "preview_bytes": 71027887
+}

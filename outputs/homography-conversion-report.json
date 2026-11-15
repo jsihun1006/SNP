@@ -1,0 +1,30 @@
+{
+  "candidate_counts": {
+    "outside_pitch": 108789,
+    "on_pitch": 106739,
+    "no_valid_homography": 28806
+  },
+  "frame_counts": {
+    "all": 79467,
+    "valid_h": 53407,
+    "no_h": 26060,
+    "h_quality_unknown": 6
+  },
+  "homography_rows": 164488,
+  "actual_video_frames": 164487,
+  "unused_tail_homography_rows": 1,
+  "offset_applied": 0,
+  "direction": "inverse of normalized-pitch-to-image H[source_frame]",
+  "pitch_size_m": [
+    105.3,
+    68.0
+  ],
+  "point": "original-image bounding-box center",
+  "roundtrip_max_error_pixels": 4.4891188081095754e-10,
+  "output_csv": "H:\\data\\ball-tracking-results\\first_half\\homography\\ball_candidates_pitch.csv",
+  "csv_bytes": 47541208,
+  "visualization_sampling_fps": 1,
+  "visualization_samples": 3179,
+  "visualization_exclusions": "No H, nonfinite/infinite projection, outside pitch, or unknown/negative homography error. No interpolation/clipping.",
+  "h_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb"
+}

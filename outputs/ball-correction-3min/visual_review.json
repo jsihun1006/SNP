@@ -1,0 +1,116 @@
+[
+  {
+    "source_frame": 18919,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 19069,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 19369,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 19519,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 19669,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 20269,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 20419,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 20569,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 20719,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 21019,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 21319,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 21619,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 21769,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 21919,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 22069,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 22219,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 22369,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 23269,
+    "assessment": "ball-like selected observation in context and magnified crop",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  },
+  {
+    "source_frame": 20119,
+    "assessment": "visible patterned ball; exact-frame provisional candidate accepted by visual inspection only",
+    "reviewer": "assistant_visual",
+    "localization_ground_truth": false
+  }
+]

@@ -1,0 +1,169 @@
+{
+  "schema_version": 4,
+  "base_v3_hsv_components": {
+    "navy": [
+      {
+        "lower": [
+          111,
+          82,
+          61
+        ],
+        "upper": [
+          135,
+          194,
+          185
+        ]
+      }
+    ],
+    "burgundy": [
+      {
+        "lower": [
+          155,
+          131,
+          88
+        ],
+        "upper": [
+          178,
+          255,
+          245
+        ]
+      },
+      {
+        "lower": [
+          137,
+          106,
+          76
+        ],
+        "upper": [
+          159,
+          216,
+          153
+        ]
+      }
+    ],
+    "lavender": [
+      {
+        "lower": [
+          126,
+          31,
+          133
+        ],
+        "upper": [
+          159,
+          120,
+          255
+        ]
+      },
+      {
+        "lower": [
+          132,
+          30,
+          211
+        ],
+        "upper": [
+          159,
+          59,
+          255
+        ]
+      }
+    ],
+    "pink": [
+      {
+        "lower": [
+          152,
+          33,
+          122
+        ],
+        "upper": [
+          178,
+          102,
+          250
+        ]
+      }
+    ],
+    "yellow": [
+      {
+        "lower": [
+          29,
+          175,
+          175
+        ],
+        "upper": [
+          43,
+          255,
+          255
+        ]
+      }
+    ]
+  },
+  "goalkeeper_kits": {
+    "GK_A": {
+      "enabled": false,
+      "bounds": [],
+      "reason": "Match kit not independently established; orange/green are search hypotheses only"
+    },
+    "GK_B": {
+      "enabled": true,
+      "bounds": [
+        {
+          "lower": [
+            76,
+            58,
+            124
+          ],
+          "upper": [
+            100,
+            251,
+            255
+          ]
+        }
+      ],
+      "color": "teal_appearance_hypothesis",
+      "team_assignment_source": "User-provided Athletic teal hypothesis; person identity not verified"
+    }
+  },
+  "unresolved_search": {
+    "orange": {
+      "lower": [
+        0,
+        100,
+        90
+      ],
+      "upper": [
+        25,
+        255,
+        255
+      ]
+    },
+    "green": {
+      "lower": [
+        35,
+        70,
+        45
+      ],
+      "upper": [
+        74,
+        255,
+        255
+      ]
+    }
+  },
+  "provenance": {
+    "method": "Automatic persistent teal torso+shorts appearance cohort; no manual labels",
+    "observations": 25,
+    "sampled_pixels": 6400,
+    "quantiles": [
+      0.01,
+      0.99
+    ],
+    "hsv_median": [
+      91.0,
+      150.0,
+      196.0
+    ],
+    "candidate_records_sha256": "cc19f5d8de55f2ed0294833d19f406b69e9054901845cc86b811763a97032183",
+    "base_v3_sha256": "e8d82626da017dc445ecb1ac3e2f8ebe053cb5105e1a7ac617c1019d8bb544e6",
+    "role_or_identity_ground_truth": false,
+    "independent_evaluation": false
+  }
+}

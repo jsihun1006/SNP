@@ -1,0 +1,117 @@
+<div id="ball-pitch-view">
+  <style>
+    #ball-pitch-view{display:flex;flex-direction:column;gap:calc(var(--font-size-base)*.8)}
+    #ball-pitch-view .pitch-top{display:flex;flex-wrap:wrap;align-items:center;gap:calc(var(--font-size-base)*.6);padding-right:95px}
+    #ball-pitch-view .pitch-sub{color:var(--muted-foreground)}
+    #ball-pitch-view .pitch-labels{display:flex;justify-content:space-between;gap:calc(var(--font-size-base)*.5);flex-wrap:wrap}
+    #ball-pitch-view .pitch-canvas{display:block;width:100%;overflow:visible}
+    #ball-pitch-view .pitch-structure{stroke:var(--muted-foreground);stroke-width:1;fill:none;opacity:.65;pointer-events:none}
+    #ball-pitch-view .pitch-dot{fill:var(--viz-series-1)}
+    #ball-pitch-view .pitch-grid{fill:var(--viz-series-1)}
+    #ball-pitch-view .pitch-controls{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--font-size-base)*.8)}
+    #ball-pitch-view .pitch-field-control{display:flex;flex-direction:column;gap:calc(var(--font-size-base)*.35)}
+    #ball-pitch-view [hidden]{display:none}
+    #ball-pitch-view .pitch-axis{fill:var(--muted-foreground);font:inherit}
+    #ball-pitch-view .pitch-foot{color:var(--muted-foreground)}
+    @media(max-width:480px){#ball-pitch-view .pitch-controls{grid-template-columns:1fr}}
+  </style>
+  <div>
+    <h3>공 후보의 경기장 위치</h3>
+    <div class="pitch-sub text-small">전반 · 105.3 × 68m · 지면 투영 · 원본 방송 프레임</div>
+  </div>
+  <div class="pitch-top">
+    <button type="button" class="btn" data-mode="frame" aria-pressed="true">시간별 후보</button>
+    <button type="button" class="btn" data-mode="density" aria-pressed="false">전반 누적 분포</button>
+  </div>
+  <div class="pitch-labels tabular-nums">
+    <span data-position></span><span data-count></span>
+  </div>
+  <svg class="pitch-canvas" role="img" aria-label="105.3m × 68m 경기장 위에 표시한 공 후보의 지면 투영 위치">
+    <desc>시간별 보기에서는 1초 간격으로 표본한 한 프레임의 모든 표시 가능 후보를 보여줍니다. 누적 분포는 전체 25fps 관측점의 공간별 개수입니다. 점을 연결하거나 결측 프레임을 보간하지 않습니다.</desc>
+  </svg>
+  <div class="pitch-controls">
+    <label class="pitch-field-control" data-time-control>
+      <span class="form-label">원본 영상 시간 <span data-time-value class="tabular-nums"></span></span>
+      <input class="form-range" data-time type="range" min="0" step="1" value="0" aria-label="원본 영상 시간, 1초 간격 표본">
+    </label>
+    <label class="pitch-field-control">
+      <span class="form-label">후보 신뢰도 ≥ <span data-confidence-value class="tabular-nums">0.1</span></span>
+      <input class="form-range" data-confidence type="range" min="1" max="9" step="1" value="1" aria-label="표시할 후보의 최소 신뢰도">
+    </label>
+  </div>
+  <div data-detail class="text-small" aria-live="polite"></div>
+  <div class="pitch-foot text-small">H 결측 26,060프레임 · 경기장 밖 108,789관측 제외 · 시간별 1fps 표본 / 누적 전체 25fps</div>
+  <script type="application/json" data-pitch-data>__PITCH_DATA__</script>
+</div>
+<script>
+(()=>{
+  const root=document.getElementById('ball-pitch-view');
+  const data=JSON.parse(root.querySelector('[data-pitch-data]').textContent);
+  const samples=data.samples;
+  const svg=root.querySelector('svg');
+  const time=root.querySelector('[data-time]');
+  const confidence=root.querySelector('[data-confidence]');
+  const detail=root.querySelector('[data-detail]');
+  const modes=[...root.querySelectorAll('[data-mode]')];
+  const ns='http://www.w3.org/2000/svg';
+  const saved=window.openai?.widgetState?.privateContent || {};
+  const initial=samples.findIndex(s=>s[0]>=10000 && s[5].some(p=>p[2]>=.5));
+  let state={index:Number.isInteger(saved.index)?Math.max(0,Math.min(samples.length-1,saved.index)):Math.max(0,initial),threshold:Math.max(1,Math.min(9,Number(saved.threshold)||1)),mode:saved.mode==='density'?'density':'frame'};
+  time.max=String(samples.length-1);
+  function el(name,attrs={},parent=svg){const e=document.createElementNS(ns,name);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);parent.append(e);return e;}
+  function clock(f){const t=f/25;return `${String(Math.floor(t/3600)).padStart(2,'0')}:${String(Math.floor(t/60)%60).padStart(2,'0')}:${(t%60).toFixed(2).padStart(5,'0')}`;}
+  function persist(){window.openai?.setWidgetState({modelContent:{source_frame:samples[state.index][0],confidence_min:state.threshold/10,view:state.mode},privateContent:state})?.catch(()=>{});}
+  function render(){
+    time.value=String(state.index);confidence.value=String(state.threshold);
+    for(const b of modes)b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode));
+    const sample=samples[state.index],limit=state.threshold/10;
+    root.querySelector('[data-confidence-value]').textContent=limit.toFixed(1);
+    root.querySelector('[data-time-value]').textContent=clock(sample[0]);
+    root.querySelector('[data-time-control]').hidden=state.mode==='density';
+    const width=Math.max(280,root.clientWidth),pad=24,fieldW=width-2*pad,scale=fieldW/105.3,fieldH=68*scale,height=fieldH+52;
+    svg.setAttribute('height',height);
+    svg.replaceChildren();
+    const x=v=>pad+v*scale,y=v=>pad+v*scale;
+    if(state.mode==='density'){
+      const grid=data.histogram[state.threshold-1];
+      const max=Math.max(...grid.flat()),total=grid.flat().reduce((a,b)=>a+b,0);
+      for(let row=0;row<27;row++)for(let col=0;col<42;col++){
+        const count=grid[row][col];if(!count)continue;
+        el('rect',{x:x(col*105.3/42),y:y(row*68/27),width:fieldW/42+.1,height:fieldH/27+.1,class:'pitch-grid',opacity:.08+.82*Math.log1p(count)/Math.log1p(max),'data-tooltip':`x ${(col*105.3/42).toFixed(1)}–${((col+1)*105.3/42).toFixed(1)}m, y ${(row*68/27).toFixed(1)}–${((row+1)*68/27).toFixed(1)}m · ${count.toLocaleString()}관측`});
+      }
+      root.querySelector('[data-position]').textContent='전반 전체 · 후보 관측의 공간 분포';
+      root.querySelector('[data-count]').textContent=`${total.toLocaleString()}관측`;
+      detail.textContent=`색이 진할수록 관측 수가 많음 · 격자 2.51 × 2.52m · 최대 ${max.toLocaleString()}관측 / 격자`;
+    }
+    const structure=el('g',{class:'pitch-structure'});
+    el('rect',{x:x(0),y:y(0),width:fieldW,height:fieldH},structure);
+    el('line',{x1:x(52.65),y1:y(0),x2:x(52.65),y2:y(68)},structure);
+    el('circle',{cx:x(52.65),cy:y(34),r:9.15*scale},structure);
+    for(const [left,depth,boxW]of [[0,16.5,40.32],[105.3-16.5,16.5,40.32],[0,5.5,18.32],[105.3-5.5,5.5,18.32]]){
+      el('rect',{x:x(left),y:y((68-boxW)/2),width:depth*scale,height:boxW*scale},structure);
+    }
+    for(const xx of [11,52.65,94.3])el('circle',{cx:x(xx),cy:y(34),r:1.5,fill:'var(--muted-foreground)',stroke:'none'},structure);
+    function label(text,xx,yy,anchor='middle'){const t=el('text',{x:xx,y:yy,'text-anchor':anchor,class:'pitch-axis text-small'});t.textContent=text;}
+    label('x 0m',x(0),height-4,'start');label('105.3m',x(105.3),height-4,'end');
+    label('y 0',x(0),y(0)-8,'start');label('68m',x(0)+5,y(68)-6,'start');
+    if(state.mode==='frame'){
+      const points=sample[5].filter(p=>p[2]>=limit);
+      points.forEach((point,i)=>{
+        const cx=x(point[0]),cy=y(point[1]);
+        el('circle',{cx,cy,r:4,class:'pitch-dot',opacity:.55+.45*point[2],'data-tooltip':`프레임 ${sample[0]} · x ${point[0].toFixed(3)}m · y ${point[1].toFixed(3)}m · 신뢰도 ${point[2].toFixed(3)}`});
+      });
+      root.querySelector('[data-position]').textContent=`원본 ${clock(sample[0])} · 프레임 ${sample[0].toLocaleString()}`;
+      root.querySelector('[data-count]').textContent=`${points.length}개 후보 표시`;
+      detail.textContent=!sample[2]?'Homography 없음 · 이 프레임의 경기장 좌표는 표시하지 않음':sample[1]===null?'Homography 품질 지표 미상 · 표시 제외':`H 오차 ${sample[1].toFixed(3)} · 원본 후보 ${sample[3]}개 · 경기장 밖 ${sample[4]}개 · 점은 확정 공이 아닌 후보`;
+    }
+  }
+  time.addEventListener('input',()=>{state.index=Number(time.value);render();});
+  time.addEventListener('change',persist);
+  confidence.addEventListener('input',()=>{state.threshold=Number(confidence.value);render();});
+  confidence.addEventListener('change',persist);
+  modes.forEach(b=>b.addEventListener('click',()=>{state.mode=b.dataset.mode;render();persist();}));
+  window.addEventListener('openai:set_globals',event=>{const s=event.detail?.globals?.widgetState?.privateContent;if(s){state.index=Math.max(0,Math.min(samples.length-1,Number(s.index)||0));state.threshold=Math.max(1,Math.min(9,Number(s.threshold)||1));state.mode=s.mode==='density'?'density':'frame';render();}});
+  new ResizeObserver(render).observe(root);
+  render();
+})();
+</script>

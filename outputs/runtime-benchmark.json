@@ -1,0 +1,331 @@
+{
+  "frames": 32,
+  "frame_starts": [
+    7171,
+    30000,
+    50000,
+    80000
+  ],
+  "configurations": [
+    {
+      "name": "baseline",
+      "cpu_threads": 2,
+      "cudnn_benchmark": false,
+      "tile_batch": 8,
+      "seconds": [
+        4.723786399999881,
+        4.735067099999924,
+        4.702134300000125
+      ],
+      "fps": 6.779188101553232,
+      "comparisons": [
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        }
+      ],
+      "peak_allocated_mib": 1473.2734375,
+      "peak_reserved_mib": 2484.0
+    },
+    {
+      "name": "cpu1",
+      "cpu_threads": 1,
+      "cudnn_benchmark": false,
+      "tile_batch": 8,
+      "seconds": [
+        4.712804200000164,
+        4.712631800000054,
+        4.69906519999995
+      ],
+      "fps": 6.796700190729487,
+      "comparisons": [
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        }
+      ],
+      "peak_allocated_mib": 1473.2734375,
+      "peak_reserved_mib": 2370.0
+    },
+    {
+      "name": "cpu4",
+      "cpu_threads": 4,
+      "cudnn_benchmark": false,
+      "tile_batch": 8,
+      "seconds": [
+        4.716355000000021,
+        4.7003036999999495,
+        4.700483600000098
+      ],
+      "fps": 6.800243134192926,
+      "comparisons": [
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        }
+      ],
+      "peak_allocated_mib": 1473.2734375,
+      "peak_reserved_mib": 2370.0
+    },
+    {
+      "name": "tile16",
+      "cpu_threads": 2,
+      "cudnn_benchmark": false,
+      "tile_batch": 16,
+      "seconds": [
+        4.685381700000107,
+        4.7068470000001525,
+        4.688375400000041
+      ],
+      "fps": 6.81788929780349,
+      "comparisons": [
+        {
+          "passed": false,
+          "failures": [
+            "/2/tile/0/confidence:delta=0.0004473775625228882",
+            "/2/tile/0/source_observations/0/confidence:delta=0.0004473775625228882",
+            "/2/tile/0/max_source_confidence:delta=0.0004473775625228882",
+            "/2/candidates/0/source_observations/2/confidence:delta=0.0004473775625228882",
+            "/3/tile/0/confidence:delta=0.0018475055694580078",
+            "/3/tile/0/source_observations/0/confidence:delta=0.0018475055694580078",
+            "/3/tile/0/max_source_confidence:delta=0.0018475055694580078",
+            "/3/candidates/0/source_observations/2/confidence:delta=0.0018475055694580078",
+            "/4/tile/0/confidence:delta=0.0042906999588012695",
+            "/4/tile/0/source_observations/0/confidence:delta=0.0042906999588012695",
+            "/4/tile/0/source_observations/1/confidence:delta=0.001253768801689148",
+            "/4/tile/0/max_source_confidence:delta=0.0042906999588012695",
+            "/4/tile/1/confidence:delta=0.0009457170963287354",
+            "/4/tile/1/source_observations/0/confidence:delta=0.0009457170963287354",
+            "/4/tile/1/source_observations/1/confidence:delta=0.0011010318994522095",
+            "/4/tile/1/max_source_confidence:delta=0.0009457170963287354",
+            "/4/tile/2/confidence:delta=0.001462981104850769",
+            "/4/tile/2/source_observations/0/confidence:delta=0.001462981104850769",
+            "/4/tile/2/max_source_confidence:delta=0.001462981104850769",
+            "/4/tile/3/confidence:delta=0.0009345635771751404"
+          ],
+          "failure_count": 499,
+          "max_deltas": {
+            "coordinates": 0.21630859375,
+            "confidence": 0.01677614450454712
+          },
+          "exact_without_timing": false
+        },
+        {
+          "passed": false,
+          "failures": [
+            "/2/tile/0/confidence:delta=0.0004473775625228882",
+            "/2/tile/0/source_observations/0/confidence:delta=0.0004473775625228882",
+            "/2/tile/0/max_source_confidence:delta=0.0004473775625228882",
+            "/2/candidates/0/source_observations/2/confidence:delta=0.0004473775625228882",
+            "/3/tile/0/confidence:delta=0.0018475055694580078",
+            "/3/tile/0/source_observations/0/confidence:delta=0.0018475055694580078",
+            "/3/tile/0/max_source_confidence:delta=0.0018475055694580078",
+            "/3/candidates/0/source_observations/2/confidence:delta=0.0018475055694580078",
+            "/4/tile/0/confidence:delta=0.0042906999588012695",
+            "/4/tile/0/source_observations/0/confidence:delta=0.0042906999588012695",
+            "/4/tile/0/source_observations/1/confidence:delta=0.001253768801689148",
+            "/4/tile/0/max_source_confidence:delta=0.0042906999588012695",
+            "/4/tile/1/confidence:delta=0.0009457170963287354",
+            "/4/tile/1/source_observations/0/confidence:delta=0.0009457170963287354",
+            "/4/tile/1/source_observations/1/confidence:delta=0.0011010318994522095",
+            "/4/tile/1/max_source_confidence:delta=0.0009457170963287354",
+            "/4/tile/2/confidence:delta=0.001462981104850769",
+            "/4/tile/2/source_observations/0/confidence:delta=0.001462981104850769",
+            "/4/tile/2/max_source_confidence:delta=0.001462981104850769",
+            "/4/tile/3/confidence:delta=0.0009345635771751404"
+          ],
+          "failure_count": 499,
+          "max_deltas": {
+            "coordinates": 0.21630859375,
+            "confidence": 0.01677614450454712
+          },
+          "exact_without_timing": false
+        },
+        {
+          "passed": false,
+          "failures": [
+            "/2/tile/0/confidence:delta=0.0004473775625228882",
+            "/2/tile/0/source_observations/0/confidence:delta=0.0004473775625228882",
+            "/2/tile/0/max_source_confidence:delta=0.0004473775625228882",
+            "/2/candidates/0/source_observations/2/confidence:delta=0.0004473775625228882",
+            "/3/tile/0/confidence:delta=0.0018475055694580078",
+            "/3/tile/0/source_observations/0/confidence:delta=0.0018475055694580078",
+            "/3/tile/0/max_source_confidence:delta=0.0018475055694580078",
+            "/3/candidates/0/source_observations/2/confidence:delta=0.0018475055694580078",
+            "/4/tile/0/confidence:delta=0.0042906999588012695",
+            "/4/tile/0/source_observations/0/confidence:delta=0.0042906999588012695",
+            "/4/tile/0/source_observations/1/confidence:delta=0.001253768801689148",
+            "/4/tile/0/max_source_confidence:delta=0.0042906999588012695",
+            "/4/tile/1/confidence:delta=0.0009457170963287354",
+            "/4/tile/1/source_observations/0/confidence:delta=0.0009457170963287354",
+            "/4/tile/1/source_observations/1/confidence:delta=0.0011010318994522095",
+            "/4/tile/1/max_source_confidence:delta=0.0009457170963287354",
+            "/4/tile/2/confidence:delta=0.001462981104850769",
+            "/4/tile/2/source_observations/0/confidence:delta=0.001462981104850769",
+            "/4/tile/2/max_source_confidence:delta=0.001462981104850769",
+            "/4/tile/3/confidence:delta=0.0009345635771751404"
+          ],
+          "failure_count": 499,
+          "max_deltas": {
+            "coordinates": 0.21630859375,
+            "confidence": 0.01677614450454712
+          },
+          "exact_without_timing": false
+        }
+      ],
+      "peak_allocated_mib": 2424.2412109375,
+      "peak_reserved_mib": 4328.0
+    },
+    {
+      "name": "autotune",
+      "cpu_threads": 2,
+      "cudnn_benchmark": true,
+      "tile_batch": 8,
+      "seconds": [
+        4.71311639999999,
+        4.711987200000067,
+        4.728641900000184
+      ],
+      "fps": 6.78265692992702,
+      "comparisons": [
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "failure_count": 0,
+          "max_deltas": {
+            "coordinates": 0.0,
+            "confidence": 0.0
+          },
+          "exact_without_timing": true
+        }
+      ],
+      "peak_allocated_mib": 1473.2734375,
+      "peak_reserved_mib": 2370.0
+    }
+  ],
+  "selected": "cpu4",
+  "settings": {
+    "version": "portable_ball_full_roi_tile_batched_v1",
+    "model": "YOLO26x",
+    "weights": "C:\\Users\\Administrator\\Documents\\Codex\\2026-11-15\\git-x20\\work\\source\\SNP-ball-tracking\\ball_only\\weights\\yolo26x.pt",
+    "precision": "FP32",
+    "device": 0,
+    "full_imgsz": 1536,
+    "roi_imgsz": 960,
+    "roi_crop_size": 640,
+    "tile_size": 640,
+    "tile_overlap": 0.2,
+    "confidence": 0.1,
+    "classes": [
+      32
+    ],
+    "rect": true,
+    "detector_families": 1,
+    "full_and_tile_on_every_frame": true,
+    "roi_policy": "full-image candidate centers; image-center fallback",
+    "silent_quality_fallback": false,
+    "ultralytics_version": "8.4.212",
+    "tf32": {
+      "matmul": false,
+      "cudnn": true
+    }
+  }
+}

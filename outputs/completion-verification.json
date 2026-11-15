@@ -1,0 +1,16 @@
+{
+  "verified": true,
+  "frames": 79467,
+  "source_start_inclusive": 7171,
+  "source_end_exclusive": 86638,
+  "frame_coverage_contiguous": true,
+  "file_sha256_matches": true,
+  "sha256": "674df05eb1df2410beec24c6f4392f128a5b440545ae93d6c822b48a079767a7",
+  "total_candidate_observations": 244334,
+  "frames_with_candidates": 65260,
+  "result_file": "H:\\data\\ball-tracking-results\\first_half\\candidates.jsonl",
+  "bytes": 970466733,
+  "completed_at_kst": "2026-11-15T11:45:59.954472+09:00",
+  "source_files_modified": false,
+  "accuracy_validated": false
+}

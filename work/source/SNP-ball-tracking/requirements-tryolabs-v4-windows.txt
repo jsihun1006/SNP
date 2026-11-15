@@ -1,0 +1,7 @@
+# V4 cached-video postprocessing only. Keep the existing CUDA PyTorch build.
+# None of these packages depends on torch / torchvision / torchaudio.
+numpy==1.26.4
+opencv-python==4.10.0.84
+matplotlib==3.9.2
+imageio-ffmpeg==0.6.0
+pytest==8.3.4

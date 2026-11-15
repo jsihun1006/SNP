@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "quality": {
+    "minimum_torso_width": 6,
+    "minimum_torso_height": 6,
+    "minimum_torso_pixels": 64,
+    "maximum_torso_overlap": 0.35,
+    "minimum_secondary_color_fraction": 0.025
+  },
+  "temporal": {
+    "window": 20,
+    "minimum_votes": 3,
+    "majority_fraction": 0.65,
+    "reset_gap_frames": 10
+  },
+  "calibration": {
+    "seed": 20261110,
+    "clusters": 16,
+    "maximum_kmeans_pixels": 120000,
+    "maximum_pixels_per_object_observation": 96,
+    "anchor_minimum_support": 0.15,
+    "anchor_winner_runner_up_ratio": 2.0,
+    "decision_quantile": 0.10,
+    "minimum_decision_margin_floor": 0.02,
+    "minimum_lower_dark_floor": 0.10
+  },
+  "rationale": {
+    "quality": "6x6/64 pixels rejects tiny ROIs; >35% torso overlap abstains. A requires each stripe color to occupy >=2.5% of the torso. These are explicit engineering safeguards, not label-tuned accuracy thresholds.",
+    "temporal": "Retain upstream 20-observation history; require 3 votes and 65% majority. Current unknown/conflicting evidence abstains. Referee veto applies immediately. Reset memory after >10 missing frames.",
+    "calibration": "Final HSV boxes are measured cluster quantiles. Score thresholds are the 10th percentile of automatically dominant appearance anchors; no human object labels. Floors prevent zero-score or exact-tie acceptance. Calibration and demonstration share these frames, so this is not held-out evaluation."
+  }
+}

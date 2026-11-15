@@ -1,0 +1,14 @@
+{
+  "source": "auto",
+  "prepared_candidates": [
+    "data/derived/tryolabs_broadcast/classification_v3/windows_samples_01/input_frames.jsonl",
+    "data/derived/tryolabs_broadcast/classification_v3/windows_samples/input_frames.jsonl",
+    "data/derived/tryolabs_broadcast/classification_v3/validated/input_frames.jsonl"
+  ],
+  "full_cache_candidates": [
+    "data/derived/tryolabs_broadcast/full_match_v2/windows_gtx1660"
+  ],
+  "starts": [600, 1800, 3600],
+  "seconds": 10,
+  "description": "CPU V4 postprocessing of existing detections/tracks; no YOLO or CUDA inference. Relative paths are resolved from the SNP project root."
+}

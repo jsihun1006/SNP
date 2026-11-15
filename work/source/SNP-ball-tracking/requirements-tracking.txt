@@ -1,0 +1,5 @@
+# Tracking alignment and team motion tools; tested with CPython 3.11.17.
+# The synthetic test suite also checks the H.264 encoder required by MP4 exports.
+numpy==2.4.6
+opencv-python==5.0.0.93
+matplotlib==3.11.2

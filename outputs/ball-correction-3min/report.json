@@ -1,0 +1,62 @@
+{
+  "source_range_frames": [
+    18919,
+    23419
+  ],
+  "start_mp4": "00:12:36.76",
+  "end_mp4_exclusive": "00:15:36.76",
+  "duration_seconds": 180,
+  "fps": 25,
+  "total_frames": 4500,
+  "selection_basis": "Rolling 4500-frame soft suspicion score: 2*penalty-mark frames +1.5*penalty-mark>=.3 frames +.75*stationary2m-cell frames +multi>=.3 frames +.5*multi>=.5 frames +.15*frames>=3 candidates; divided by4500",
+  "rank_metrics": {
+    "candidates": 17317,
+    "score_ge_03": 7794,
+    "score_ge_05": 4737,
+    "penalty_mark_candidates": 1025,
+    "penalty_mark_score_ge_03": 137,
+    "good_h_candidates": 8412,
+    "stationary_candidates": 0,
+    "frames_with_candidates": 4076,
+    "multiple_candidate_frames": 3360,
+    "multiple_ge_03_frames": 2507,
+    "multiple_ge_05_frames": 1186,
+    "penalty_mark_frames": 999,
+    "penalty_mark_ge_03_frames": 132,
+    "stationary_cell_frames": 0,
+    "calibrated_candidate_frames": 3839
+  },
+  "original_candidates": 17317,
+  "targeted_redetection": {
+    "target_frames": 1092,
+    "new_candidates": 739,
+    "model": "same official YOLO26x FP32",
+    "crop": 512,
+    "input_size": 1280,
+    "batch": 4,
+    "prior": "provided broadcast ATD; search-region hint only, not truth"
+  },
+  "statuses": {
+    "selected_observation": 3129,
+    "unresolved": 949,
+    "review_candidate": 421,
+    "visually_reviewed_observation": 1
+  },
+  "accepted_observation_frames": 3130,
+  "accepted_recovered_frames": 155,
+  "visually_reviewed_exact_frames": 19,
+  "remaining_review_or_unresolved": 1370,
+  "no_interpolated_or_atd_copied_coordinates": true,
+  "accuracy_measured_against_ground_truth": false,
+  "limitations": [
+    "Window chosen by suspicion score, not known error rate.",
+    "Automatic selections are not all verified.",
+    "ATD is a supplied automatic weak prior, not truth.",
+    "Video examples and 19 exact frames visually checked, not all4500.",
+    "H ground projection does not recover airborne3D positions."
+  ],
+  "video_frames": 4500,
+  "video_fps": 25.0,
+  "video_bytes": 210390162,
+  "csv_sha256": "32b579b18a270509ad94cae1c2d7f95d9a18d64e399e8d206c2f05eb22d7cd6d"
+}

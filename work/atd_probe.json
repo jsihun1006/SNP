@@ -1,0 +1,273 @@
+{
+  "raw_schema": "frame_id:players_x,y,speed;...:ball_x,y,speed",
+  "frame_rule": "ATD id = source_frame + 1; no tactical or per-half offsets",
+  "atd_rows": 164488,
+  "first_half_frames": 79467,
+  "first_half_finite_ball_frames": 42827,
+  "first_half_finite_ball_fraction": 0.5389281085230347,
+  "samples": [
+    {
+      "source_frame": 9999,
+      "atd_frame_id": 10000,
+      "ball_x_norm": 0.76048,
+      "ball_y_norm": 0.97592,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.148059502,
+      "ball_pixel": [
+        1233.221949758552,
+        979.2896463886373
+      ]
+    },
+    {
+      "source_frame": 10000,
+      "atd_frame_id": 10001,
+      "ball_x_norm": 0.7617,
+      "ball_y_norm": 0.97724,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.144241422,
+      "ball_pixel": [
+        1236.9570366180158,
+        977.5401906922428
+      ],
+      "reference_visual_pixel": [
+        1270,
+        960
+      ],
+      "distance_to_reference_pixels": 37.40983451692073
+    },
+    {
+      "source_frame": 10001,
+      "atd_frame_id": 10002,
+      "ball_x_norm": 0.76285,
+      "ball_y_norm": 0.9784,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.177980989,
+      "ball_pixel": [
+        1239.7292199378337,
+        975.8079712413676
+      ]
+    },
+    {
+      "source_frame": 29999,
+      "atd_frame_id": 30000,
+      "ball_x_norm": 0.59693,
+      "ball_y_norm": 0.34797,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.457784951,
+      "ball_pixel": [
+        362.33262612051885,
+        495.2346782403749
+      ]
+    },
+    {
+      "source_frame": 30000,
+      "atd_frame_id": 30001,
+      "ball_x_norm": 0.59687,
+      "ball_y_norm": 0.34412,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.516182601,
+      "ball_pixel": [
+        335.54601242635175,
+        492.27743332804806
+      ],
+      "reference_visual_pixel": [
+        335,
+        495
+      ],
+      "distance_to_reference_pixels": 2.7767785026814757
+    },
+    {
+      "source_frame": 30001,
+      "atd_frame_id": 30002,
+      "ball_x_norm": 0.59683,
+      "ball_y_norm": 0.34049,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.532149673,
+      "ball_pixel": [
+        326.7122303903315,
+        491.5642775849414
+      ]
+    },
+    {
+      "source_frame": 49999,
+      "atd_frame_id": 50000,
+      "ball_x_norm": 0.80135,
+      "ball_y_norm": 0.39276,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.160512045,
+      "ball_pixel": [
+        1629.8554581694027,
+        404.2890204398361
+      ]
+    },
+    {
+      "source_frame": 50000,
+      "atd_frame_id": 50001,
+      "ball_x_norm": 0.80131,
+      "ball_y_norm": 0.39278,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.14667663,
+      "ball_pixel": [
+        1629.5906149336606,
+        404.3762283777347
+      ],
+      "reference_visual_pixel": [
+        1630,
+        405
+      ],
+      "distance_to_reference_pixels": 0.7461147159017576
+    },
+    {
+      "source_frame": 50001,
+      "atd_frame_id": 50002,
+      "ball_x_norm": 0.80127,
+      "ball_y_norm": 0.39282,
+      "speed_kph": null,
+      "h_valid": true,
+      "h_error": 0.147173181,
+      "ball_pixel": [
+        1629.2689013888642,
+        404.36579512807316
+      ]
+    }
+  ],
+  "first_half_joint_stats": {
+    "ball_and_h_finite": 42492,
+    "ball_finite_no_h": 335,
+    "ball_outside_pitch": 1508,
+    "finite_speed": 5099
+  },
+  "candidate_examples": [
+    {
+      "frame": 10000,
+      "atd_pixel": [
+        1236.9570366180158,
+        977.5401906922428
+      ],
+      "candidates": [
+        {
+          "point": [
+            1270.5603332519531,
+            959.6201782226562
+          ],
+          "confidence": 0.6456644535064697,
+          "distance_to_atd_px": 38.08291469384302
+        },
+        {
+          "point": [
+            1071.8218688964844,
+            410.14459228515625
+          ],
+          "confidence": 0.18772642314434052,
+          "distance_to_atd_px": 590.9377198234635
+        },
+        {
+          "point": [
+            911.7444763183594,
+            140.93150329589844
+          ],
+          "confidence": 0.11126761883497238,
+          "distance_to_atd_px": 897.5952903194691
+        }
+      ]
+    },
+    {
+      "frame": 30000,
+      "atd_pixel": [
+        335.54601242635175,
+        492.27743332804806
+      ],
+      "candidates": [
+        {
+          "point": [
+            335.82794189453125,
+            496.0585479736328
+          ],
+          "confidence": 0.7279569506645203,
+          "distance_to_atd_px": 3.791610764316858
+        },
+        {
+          "point": [
+            212.1889877319336,
+            300.68870544433594
+          ],
+          "confidence": 0.13186252117156982,
+          "distance_to_atd_px": 227.8666193051505
+        },
+        {
+          "point": [
+            964.8285827636719,
+            269.5087890625
+          ],
+          "confidence": 0.20344096422195435,
+          "distance_to_atd_px": 667.5495653494611
+        },
+        {
+          "point": [
+            1602.54931640625,
+            244.79930877685547
+          ],
+          "confidence": 0.11297227442264557,
+          "distance_to_atd_px": 1290.9464723323558
+        },
+        {
+          "point": [
+            1760.2056884765625,
+            516.7431030273438
+          ],
+          "confidence": 0.17221005260944366,
+          "distance_to_atd_px": 1424.8697349432775
+        }
+      ]
+    },
+    {
+      "frame": 50000,
+      "atd_pixel": [
+        1629.5906149336606,
+        404.3762283777347
+      ],
+      "candidates": [
+        {
+          "point": [
+            1630.55908203125,
+            406.4909362792969
+          ],
+          "confidence": 0.6487241387367249,
+          "distance_to_atd_px": 2.3259230486072875
+        },
+        {
+          "point": [
+            1399.7853622436523,
+            234.65772247314453
+          ],
+          "confidence": 0.16143420338630676,
+          "distance_to_atd_px": 285.6830856218215
+        },
+        {
+          "point": [
+            1365.3265380859375,
+            1077.71240234375
+          ],
+          "confidence": 0.11114092916250229,
+          "distance_to_atd_px": 723.3374768967603
+        },
+        {
+          "point": [
+            1343.4429016113281,
+            1075.5717163085938
+          ],
+          "confidence": 0.19129447638988495,
+          "distance_to_atd_px": 729.6464190677178
+        }
+      ]
+    }
+  ]
+}

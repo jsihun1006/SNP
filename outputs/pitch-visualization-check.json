@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "initial": "원본 00:06:40.84 · 프레임 10,021",
+  "initialDots": 2,
+  "timeChangedTo": "원본 00:04:47.84 · 프레임 7,196",
+  "densityCount": "106,720관측",
+  "cells": 1112,
+  "filtered": "13,177관측",
+  "geometry": {
+    "width": 308,
+    "scrollWidth": 308,
+    "svgWidth": 308
+  },
+  "browserErrors": []
+}

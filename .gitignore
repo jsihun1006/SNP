@@ -1,0 +1,23 @@
+# Local runtimes and downloaded model files
+work/runtime/
+**/.venv/
+**/.cache/
+**/.tmp/
+**/__pycache__/
+*.py[cod]
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Intermediate pilot caches and temporary browser previews
+work/ball_pilot/
+work/smoke_pc1/
+work/pitch-preview.html
+work/pitch-preview-*.png
+work/ranked-window-contact-sheet.jpg
+outputs/*.log
+outputs/pc1-process.json
+
+# Native source assets are external on H:, never copy them into this repository.
+*.crdownload

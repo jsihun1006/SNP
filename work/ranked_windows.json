@@ -1,0 +1,483 @@
+{
+  "selected": {
+    "start_frame": 18919,
+    "end_frame_exclusive": 23419,
+    "start": "00:12:36.76",
+    "end_exclusive": "00:15:36.76",
+    "duration_seconds": 180,
+    "frames": 4500,
+    "suspicion_score": 1.288888888888889,
+    "metrics": {
+      "candidates": 17317,
+      "score_ge_03": 7794,
+      "score_ge_05": 4737,
+      "penalty_mark_candidates": 1025,
+      "penalty_mark_score_ge_03": 137,
+      "good_h_candidates": 8412,
+      "stationary_candidates": 0,
+      "frames_with_candidates": 4076,
+      "multiple_candidate_frames": 3360,
+      "multiple_ge_03_frames": 2507,
+      "multiple_ge_05_frames": 1186,
+      "penalty_mark_frames": 999,
+      "penalty_mark_ge_03_frames": 132,
+      "stationary_cell_frames": 0,
+      "calibrated_candidate_frames": 3839
+    },
+    "repeated_2m_cells": [
+      {
+        "x_range_m": [
+          94,
+          96
+        ],
+        "y_range_m": [
+          34,
+          36
+        ],
+        "observations": 422
+      },
+      {
+        "x_range_m": [
+          94,
+          96
+        ],
+        "y_range_m": [
+          32,
+          34
+        ],
+        "observations": 357
+      },
+      {
+        "x_range_m": [
+          10,
+          12
+        ],
+        "y_range_m": [
+          32,
+          34
+        ],
+        "observations": 192
+      },
+      {
+        "x_range_m": [
+          94,
+          96
+        ],
+        "y_range_m": [
+          0,
+          2
+        ],
+        "observations": 93
+      },
+      {
+        "x_range_m": [
+          80,
+          82
+        ],
+        "y_range_m": [
+          0,
+          2
+        ],
+        "observations": 66
+      },
+      {
+        "x_range_m": [
+          76,
+          78
+        ],
+        "y_range_m": [
+          2,
+          4
+        ],
+        "observations": 49
+      },
+      {
+        "x_range_m": [
+          78,
+          80
+        ],
+        "y_range_m": [
+          2,
+          4
+        ],
+        "observations": 46
+      },
+      {
+        "x_range_m": [
+          76,
+          78
+        ],
+        "y_range_m": [
+          0,
+          2
+        ],
+        "observations": 41
+      }
+    ]
+  },
+  "top_three_nonoverlapping": [
+    {
+      "start_frame": 18919,
+      "end_frame_exclusive": 23419,
+      "start": "00:12:36.76",
+      "end_exclusive": "00:15:36.76",
+      "duration_seconds": 180,
+      "frames": 4500,
+      "suspicion_score": 1.288888888888889,
+      "metrics": {
+        "candidates": 17317,
+        "score_ge_03": 7794,
+        "score_ge_05": 4737,
+        "penalty_mark_candidates": 1025,
+        "penalty_mark_score_ge_03": 137,
+        "good_h_candidates": 8412,
+        "stationary_candidates": 0,
+        "frames_with_candidates": 4076,
+        "multiple_candidate_frames": 3360,
+        "multiple_ge_03_frames": 2507,
+        "multiple_ge_05_frames": 1186,
+        "penalty_mark_frames": 999,
+        "penalty_mark_ge_03_frames": 132,
+        "stationary_cell_frames": 0,
+        "calibrated_candidate_frames": 3839
+      },
+      "repeated_2m_cells": [
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            34,
+            36
+          ],
+          "observations": 422
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            32,
+            34
+          ],
+          "observations": 357
+        },
+        {
+          "x_range_m": [
+            10,
+            12
+          ],
+          "y_range_m": [
+            32,
+            34
+          ],
+          "observations": 192
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            0,
+            2
+          ],
+          "observations": 93
+        },
+        {
+          "x_range_m": [
+            80,
+            82
+          ],
+          "y_range_m": [
+            0,
+            2
+          ],
+          "observations": 66
+        },
+        {
+          "x_range_m": [
+            76,
+            78
+          ],
+          "y_range_m": [
+            2,
+            4
+          ],
+          "observations": 49
+        },
+        {
+          "x_range_m": [
+            78,
+            80
+          ],
+          "y_range_m": [
+            2,
+            4
+          ],
+          "observations": 46
+        },
+        {
+          "x_range_m": [
+            76,
+            78
+          ],
+          "y_range_m": [
+            0,
+            2
+          ],
+          "observations": 41
+        }
+      ]
+    },
+    {
+      "start_frame": 71659,
+      "end_frame_exclusive": 76159,
+      "start": "00:47:46.36",
+      "end_exclusive": "00:50:46.36",
+      "duration_seconds": 180,
+      "frames": 4500,
+      "suspicion_score": 1.2788000000000002,
+      "metrics": {
+        "candidates": 18642,
+        "score_ge_03": 8114,
+        "score_ge_05": 4548,
+        "penalty_mark_candidates": 784,
+        "penalty_mark_score_ge_03": 139,
+        "good_h_candidates": 8616,
+        "stationary_candidates": 256,
+        "frames_with_candidates": 4218,
+        "multiple_candidate_frames": 3584,
+        "multiple_ge_03_frames": 2731,
+        "multiple_ge_05_frames": 1126,
+        "penalty_mark_frames": 765,
+        "penalty_mark_ge_03_frames": 134,
+        "stationary_cell_frames": 256,
+        "calibrated_candidate_frames": 3831
+      },
+      "repeated_2m_cells": [
+        {
+          "x_range_m": [
+            50,
+            52
+          ],
+          "y_range_m": [
+            62,
+            64
+          ],
+          "observations": 420
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            32,
+            34
+          ],
+          "observations": 256
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            20,
+            22
+          ],
+          "observations": 205
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            34,
+            36
+          ],
+          "observations": 205
+        },
+        {
+          "x_range_m": [
+            78,
+            80
+          ],
+          "y_range_m": [
+            4,
+            6
+          ],
+          "observations": 204
+        },
+        {
+          "x_range_m": [
+            78,
+            80
+          ],
+          "y_range_m": [
+            2,
+            4
+          ],
+          "observations": 180
+        },
+        {
+          "x_range_m": [
+            10,
+            12
+          ],
+          "y_range_m": [
+            32,
+            34
+          ],
+          "observations": 171
+        },
+        {
+          "x_range_m": [
+            78,
+            80
+          ],
+          "y_range_m": [
+            8,
+            10
+          ],
+          "observations": 168
+        }
+      ]
+    },
+    {
+      "start_frame": 58695,
+      "end_frame_exclusive": 63195,
+      "start": "00:39:07.80",
+      "end_exclusive": "00:42:07.80",
+      "duration_seconds": 180,
+      "frames": 4500,
+      "suspicion_score": 1.2035333333333333,
+      "metrics": {
+        "candidates": 20358,
+        "score_ge_03": 8698,
+        "score_ge_05": 5294,
+        "penalty_mark_candidates": 638,
+        "penalty_mark_score_ge_03": 72,
+        "good_h_candidates": 8429,
+        "stationary_candidates": 0,
+        "frames_with_candidates": 4316,
+        "multiple_candidate_frames": 3816,
+        "multiple_ge_03_frames": 2849,
+        "multiple_ge_05_frames": 1252,
+        "penalty_mark_frames": 631,
+        "penalty_mark_ge_03_frames": 71,
+        "stationary_cell_frames": 0,
+        "calibrated_candidate_frames": 3696
+      },
+      "repeated_2m_cells": [
+        {
+          "x_range_m": [
+            10,
+            12
+          ],
+          "y_range_m": [
+            32,
+            34
+          ],
+          "observations": 228
+        },
+        {
+          "x_range_m": [
+            10,
+            12
+          ],
+          "y_range_m": [
+            34,
+            36
+          ],
+          "observations": 155
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            32,
+            34
+          ],
+          "observations": 143
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            34,
+            36
+          ],
+          "observations": 104
+        },
+        {
+          "x_range_m": [
+            94,
+            96
+          ],
+          "y_range_m": [
+            20,
+            22
+          ],
+          "observations": 91
+        },
+        {
+          "x_range_m": [
+            18,
+            20
+          ],
+          "y_range_m": [
+            46,
+            48
+          ],
+          "observations": 43
+        },
+        {
+          "x_range_m": [
+            44,
+            46
+          ],
+          "y_range_m": [
+            12,
+            14
+          ],
+          "observations": 40
+        },
+        {
+          "x_range_m": [
+            52,
+            54
+          ],
+          "y_range_m": [
+            2,
+            4
+          ],
+          "observations": 40
+        }
+      ]
+    }
+  ],
+  "method": "Rolling 4500-frame soft suspicion score: 2*penalty-mark frames +1.5*penalty-mark>=.3 frames +.75*stationary2m-cell frames +multi>=.3 frames +.5*multi>=.5 frames +.15*frames>=3 candidates; divided by4500",
+  "limitations": [
+    "This ranks suspected false positives, not measured false-positive rate.",
+    "A real ball can stop or lie on a penalty mark; none is hard-masked.",
+    "Missing H and outside-pitch points do not incur a false-positive penalty.",
+    "H-error<=2 is a spatial feature gate only, not a correction filter.",
+    "Input CSV has candidate rows only; calibrated_candidate_frames counts frames with candidates and usable H, not all usable-H frames."
+  ],
+  "source": "H:\\data\\ball-tracking-results\\first_half\\homography\\ball_candidates_pitch.csv",
+  "source_range": [
+    7171,
+    86638
+  ],
+  "window_frames": 4500,
+  "fps": 25
+}

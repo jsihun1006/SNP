@@ -1,0 +1,269 @@
+{
+  "schema_version": 3,
+  "hsv_components": {
+    "navy": [
+      {
+        "lower": [
+          111,
+          82,
+          61
+        ],
+        "upper": [
+          135,
+          194,
+          185
+        ]
+      }
+    ],
+    "burgundy": [
+      {
+        "lower": [
+          155,
+          131,
+          88
+        ],
+        "upper": [
+          178,
+          255,
+          245
+        ]
+      },
+      {
+        "lower": [
+          137,
+          106,
+          76
+        ],
+        "upper": [
+          159,
+          216,
+          153
+        ]
+      }
+    ],
+    "lavender": [
+      {
+        "lower": [
+          126,
+          31,
+          133
+        ],
+        "upper": [
+          159,
+          120,
+          255
+        ]
+      },
+      {
+        "lower": [
+          132,
+          30,
+          211
+        ],
+        "upper": [
+          159,
+          59,
+          255
+        ]
+      }
+    ],
+    "pink": [
+      {
+        "lower": [
+          152,
+          33,
+          122
+        ],
+        "upper": [
+          178,
+          102,
+          250
+        ]
+      }
+    ],
+    "yellow": [
+      {
+        "lower": [
+          29,
+          175,
+          175
+        ],
+        "upper": [
+          43,
+          255,
+          255
+        ]
+      }
+    ]
+  },
+  "lower_dark_value_max": 110,
+  "provenance": {
+    "method": "Measured unlabelled appearance-cohort pixel quantiles, not manual team labels",
+    "source_pixel_sha256": "0c0802716727dbce6ff13c96fcb11ff96e3ca86759c20f9e60b7daef6f45c2f7",
+    "source_records_sha256": "2f15c2c9ac5a93d7585938205725d93f80fcb26d9e0853d1a770242dd1eaecf1",
+    "source_frames": 750,
+    "independent_evaluation": false,
+    "anchor_observations": {
+      "TEAM_A": 1432,
+      "TEAM_B": 2154,
+      "REFEREE": 776
+    },
+    "measurements": {
+      "navy": {
+        "pixels": 21778,
+        "quantiles": [
+          0.01,
+          0.99
+        ],
+        "median": [
+          122.0,
+          140.0,
+          127.0
+        ],
+        "lower": [
+          111,
+          82,
+          61
+        ],
+        "upper": [
+          135,
+          194,
+          185
+        ]
+      },
+      "burgundy_lit": {
+        "pixels": 29638,
+        "quantiles": [
+          0.01,
+          0.99
+        ],
+        "median": [
+          166.0,
+          205.0,
+          174.0
+        ],
+        "lower": [
+          155,
+          131,
+          88
+        ],
+        "upper": [
+          178,
+          255,
+          245
+        ]
+      },
+      "burgundy_shadow": {
+        "pixels": 9844,
+        "quantiles": [
+          0.1,
+          0.9
+        ],
+        "median": [
+          149.0,
+          160.0,
+          115.0
+        ],
+        "lower": [
+          137,
+          106,
+          76
+        ],
+        "upper": [
+          159,
+          216,
+          153
+        ]
+      },
+      "lavender": {
+        "pixels": 109412,
+        "quantiles": [
+          0.01,
+          0.99
+        ],
+        "median": [
+          140.0,
+          70.0,
+          238.0
+        ],
+        "lower": [
+          126,
+          31,
+          133
+        ],
+        "upper": [
+          159,
+          120,
+          255
+        ]
+      },
+      "pale_lavender": {
+        "pixels": 41075,
+        "quantiles": [
+          0.05,
+          0.99
+        ],
+        "median": [
+          144.0,
+          43.0,
+          253.0
+        ],
+        "lower": [
+          132,
+          30,
+          211
+        ],
+        "upper": [
+          159,
+          59,
+          255
+        ],
+        "saturation_lower_quantile": 0.25
+      },
+      "pink_auxiliary": {
+        "pixels": 16313,
+        "quantiles": [
+          0.05,
+          0.95
+        ],
+        "median": [
+          162.0,
+          65.0,
+          187.0
+        ],
+        "lower": [
+          152,
+          33,
+          122
+        ],
+        "upper": [
+          178,
+          102,
+          250
+        ]
+      },
+      "fluorescent_yellow": {
+        "pixels": 40433,
+        "quantiles": [
+          0.01,
+          0.99
+        ],
+        "median": [
+          31.0,
+          242.0,
+          255.0
+        ],
+        "lower": [
+          29,
+          175,
+          175
+        ],
+        "upper": [
+          43,
+          255,
+          255
+        ]
+      }
+    }
+  }
+}

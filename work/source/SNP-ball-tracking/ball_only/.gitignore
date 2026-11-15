@@ -1,0 +1,21 @@
+# Only source, scripts, documentation, and tests belong in Git.
+.venv/
+venv/
+.cache/
+.tmp/
+weights/
+outputs/
+__pycache__/
+*.py[cod]
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.pt
+*.pth
+*.pth.tar
+*.onnx
+*.engine
+*.log
+*.err
+jobs.local.json

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "hsv_components": {
+    "navy": [{"lower": [110, 92, 19], "upper": [134, 196, 179], "cluster": 13, "quantiles": [0.02, 0.98]}],
+    "burgundy": [
+      {"lower": [157, 146, 100], "upper": [175, 255, 243], "cluster": 6, "quantiles": [0.02, 0.98]},
+      {"lower": [137, 101, 77], "upper": [157, 192, 146], "cluster": 9, "quantiles": [0.1, 0.9]}
+    ],
+    "lilac": [
+      {"lower": [125, 51, 203], "upper": [151, 118, 255], "cluster": 4, "quantiles": [0.02, 0.98]},
+      {"lower": [127, 36, 140], "upper": [156, 105, 198], "cluster": 14, "quantiles": [0.1, 0.9]}
+    ],
+    "yellow": [{"lower": [30, 182, 182], "upper": [42, 255, 255], "cluster": 12, "quantiles": [0.02, 0.98]}]
+  },
+  "quality": {
+    "minimum_torso_width": 6, "minimum_torso_height": 6, "minimum_torso_pixels": 64,
+    "maximum_torso_overlap": 0.35, "minimum_secondary_color_fraction": 0.025
+  },
+  "temporal": {"window": 20, "minimum_votes": 3, "majority_fraction": 0.65, "reset_gap_frames": 10},
+  "lower_dark_value_max": 110,
+  "minimum_referee_lower_dark_fraction": 0.1,
+  "decision": {
+    "TEAM_A": {"minimum_support": 0.1993659147869674, "minimum_margin": 0.18095264007545664},
+    "TEAM_B": {"minimum_support": 0.19207473999647454, "minimum_margin": 0.18967836257309942},
+    "REFEREE": {"minimum_support": 0.2509381208320281, "minimum_margin": 0.24688169093605233}
+  },
+  "provenance": {
+    "method": "Unlabelled torso-pixel clustering and automatic dominant-color anchors; no accuracy calibration",
+    "policy_sha256": "64df4b0825cefad23761884f2567f11b3441ab4afcffb97aaccfff1f354ef76d",
+    "pixel_samples_sha256": "0c0802716727dbce6ff13c96fcb11ff96e3ca86759c20f9e60b7daef6f45c2f7",
+    "anchors": {"TEAM_A": 1707, "TEAM_B": 2827, "REFEREE": 902},
+    "calibration_frames": 750, "held_out": false
+  }
+}
