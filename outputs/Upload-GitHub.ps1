@@ -2,7 +2,7 @@
 # This uploads existing commits and Git LFS objects. It does not commit or merge.
 [CmdletBinding()]
 param(
-    [string]$RepositoryPath = (Split-Path -Parent $PSScriptRoot),
+    [string]$RepositoryPath = '',
     [string]$RepositoryUrl = 'https://github.com/jsihun1006/SNP.git',
     [string]$RemoteName = 'origin',
     [string]$UploadBranch = 'codex/ball-tracking-correction-20261115',
@@ -14,6 +14,16 @@ param(
 
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
+
+# Resolve after parameter binding; Windows PowerShell 5.1 can leave
+# PSScriptRoot empty while evaluating a parameter's default expression.
+if ([string]::IsNullOrWhiteSpace($RepositoryPath)) {
+    $taskScriptFile = $MyInvocation.MyCommand.Path
+    if ([string]::IsNullOrWhiteSpace($taskScriptFile)) {
+        throw 'Supply -RepositoryPath when running this code without its saved script file.'
+    }
+    $RepositoryPath = Split-Path -Parent (Split-Path -Parent $taskScriptFile)
+}
 
 if ([string]::IsNullOrWhiteSpace($GitExecutable)) {
     $gitCommand = Get-Command git.exe -ErrorAction SilentlyContinue
