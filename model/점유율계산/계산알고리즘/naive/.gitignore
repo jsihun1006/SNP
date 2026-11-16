@@ -1,0 +1,4 @@
+# Local predictions and frame-level diagnostics are generated, not source code.
+validation.json
+run_manifest.json
+logs/

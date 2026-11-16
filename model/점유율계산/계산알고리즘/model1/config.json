@@ -1,0 +1,19 @@
+{
+  "model": "model1",
+  "version": 1,
+  "fps": 25,
+  "long_missing_seconds": 3.0,
+  "opposite_team_cost_per_second": 2.0,
+  "dead_when_observed_cost_per_second": 2.0,
+  "dead_in_short_gap_cost_per_second": 1.0,
+  "alive_in_long_gap_cost_per_second": 0.5,
+  "team_switch_cost": 1.2,
+  "dead_switch_cost": 0.8,
+  "selection_policy": "One fixed configuration, declared before this model's public evaluation. No public-GT fitting, parameter search or score-driven revision.",
+  "rationale": {
+    "short_team_changes": "Require sustained opposing observations instead of accepting every nearest-player flip.",
+    "short_missing": "A short observation gap is ambiguous, so it supplies no H-versus-A evidence and discourages inventing a stoppage.",
+    "long_missing": "Long missing runs supply a weak dead-ball hypothesis, not a confirmed dead-ball label.",
+    "time_units": "Observation costs accumulate per second, not once per correlated video frame. Switch penalties apply once per state change. Values are engineering priors, not measured football constants."
+  }
+}
