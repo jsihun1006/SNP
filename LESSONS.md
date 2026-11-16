@@ -1,7 +1,9 @@
-# 지금까지 확인된 사실 (2026-11-08, 데드볼만)
+# 지금까지 확인된 사실 (2026-11-17, 데드볼만)
 
 범위는 **데드볼(D) 판정만**이다. 점유(H/A)는 팀원이 맡고, 이 저장소의 점유 코드는 모두 지웠다.
-결과물은 `data/dead_balls/final_model/frames.csv`(프레임마다 dead 0/1)이다.
+결과물은 `data/dead_balls/final_model/frames.csv`(프레임마다 dead 0/1)이다. 팀 형식으로는 Phase 1 `dead_ball`
+(`model/영상추출/모델/dead_ball/`)이 내보내고, Phase 2 `model1_dead_ball`(`model/점유율계산/계산알고리즘/model1_dead_ball/`)이
+그 D와 model1의 H/A를 합쳐 제출 형식 예측을 만든다(아래 "팀 구조").
 2026-11-04 초기화 전 코드와 결과는 `C:\Users\seongjin\Desktop\SNP_backup_20261104.zip`에 있다.
 
 ## 지켜야 할 규칙
@@ -52,7 +54,8 @@
 
 ```
 선수 특징(v2) → LightGBM(DFL 7경기, 선수 누락·흔들림 시뮬레이션) → 비터비(벌점 40)
-→ 느린 빌드업 보정 → 라인 아웃 순간은 데드 진입 벌점 0 → 확실한 라인 아웃은 무조건 데드
+→ 느린 빌드업 보정(JSH ⑤ + ① 시작 늦음 + ⑥ 짧은 데드볼) → 라인 아웃 순간은 데드 진입 벌점 0
+→ 확실한 라인 아웃은 무조건 데드 → 데드볼 끝을 5초 안의 재개로 당김
 → 페널티킥 순간 데드볼 끊기 → 페널티 골이면 킥오프까지 데드 → 골키퍼 쥠은 인플레이
 → 시작을 라인 아웃 프레임에 맞춤 → 공개 킥오프
 ```
@@ -71,6 +74,8 @@
 | + 페널티 골이면 킥오프까지 데드(`src/eval_penalty_goal_hold.py`) | 나빠진 경기 0(공 있음·없음), SkillCorner 1874553 +0.0019, 나머지 그대로 |
 | + 페널티킥 순간 데드볼 끊기(`src/eval_penalty_split.py`) | DFL 3경기 +0.0016~+0.0059, Metrica game2 +0.0039(공 없으면 −0.0003), SkillCorner 1874553 −0.0035, 나머지 그대로 |
 
+- JSH 보정 ①⑥(`slow_buildup.decode`의 `case1`, `case6`): ① 공이 라인을 넘거나(인증된 넘음) 공이 끊기고 양 팀이 함께 감속하면 데드 진입 비용을 낮춘다. ⑥ 라인 넘음과 재개가 10초 안에 붙은 짧은 쌍은 진입·이탈 비용을 2.5로 묶고 데드 쪽 점수를 올린다. 노트북과 프레임 단위로 같음을 확인했다(J03WN1, J03WR9 차이 0).
+- 데드볼 끝 당기기(`slow_buildup.snap_dead_ends`, `restart_snap`): 데드 구간 끝 앞 5초 안에 재개(공이 선수 옆에서 빠르게 출발)가 있으면 끝을 가장 늦은 재개로 옮긴다. 구간을 새로 만들거나 합치지 않는다. 양 팀 가속 확인을 붙이면 걸리는 것이 거의 없어 효과가 0이 됐다. SkillCorner에서 옮긴 시간의 25%는 정답상 데드였다(재개 시점 정의 차이로 추정).
 - 느린 빌드업 보정: 패스·수신이나 공과 선수의 동행이 보이는 구간은 데드 진입 비용을 높이고 데드 쪽 점수를 낮춘다. 값(margin 0, strength 1, bonus 0.85)은 JSH 노트북 ⑤의 규칙 그대로이고 DFL 학습 쪽 내부 검증 경기로 골랐다. 공을 쓰는 규칙이라 DFL·Metrica 공 상태 문제로 공정 검증이 어려워, 효과는 공이 데드 중에도 기록되는 SkillCorner와 Metrica 3경기로 확인했다.
 - DFL에서 라인 아웃 직후 데드볼인 비율은 99.6%다. 공이 라인을 넘으면 그때가 데드볼 시작이다.
 - 최종 모델(2026-11-17) DFL 7경기: 인플레이 구간 F1 **0.904**(골키퍼 쥠 공 삭제 0.900, 날아오는 구간부터 공 삭제 0.899), 데드볼 비율 정답 44.9% / 판정 44.6%, 인플레이 구간 수 정답 101.4 / 판정 97.0(짧은 데드볼을 놓쳐 구간이 합쳐짐). Metrica 3경기 0.832, SkillCorner 20경기 0.761.
@@ -146,6 +151,7 @@
 - DFL 숫자는 대회 성능보다 낙관적이다. 데드볼이 끝나는 지점의 정의도 대회와 다를 수 있다.
 - 골 뒤 세리머니 중 데드볼이 잠깐 인플레이로 끊길 수 있다(선수가 몰려 뛰어 경기 중처럼 보임). 페널티 골은 킥오프까지 묶지만, 공이 안 보이는 일반 골은 골 순간의 근거가 없어 아직 못 막는다. 공이 보여도 라인 아웃 강제는 모델이 넘는 순간을 인플레이로 봤을 때만 작동해서, 모델이 이미 데드로 본 골 뒤의 끊김은 남는다.
 - 페널티킥이 공 없이 감지되면 킥 뒤 인플레이를 0.6초로 고정한다. 공이 안 보이면 골 순간은 관찰할 수 없다.
+- 공이 높이 떠 있는 동안 선수들이 멈춰 공을 기다리면 모델이 데드로 볼 때가 있다(사용자가 대회 영상에서 본 성질, 아직 손대지 않음).
 - 느린 빌드업 ⑤는 휘슬 직후 공을 주고받거나 몰고 가는 것도 빌드업으로 보고, 진행 중인 데드볼을 몇 초 끊을 수 있다.
 - 대회 영상을 본 결과로 판단한 경계 사례: 전반 새 공 트랙을 ATD 빈 곳에 채우는 실험은 대회 영상에서 바뀐 곳이 모두 이상해 버렸다(기존 상태 유지). 기술 문서에 그대로 적는다.
 
@@ -153,13 +159,29 @@
 
 - 점유는 마지막으로 공에 힘을 가한 팀 기준이다. 상대가 건드리기 전까지 직전 팀의 점유가 이어진다(점유 담당 팀원 참고용).
 
+## 팀 구조 (main의 `model/README.md`)
+
+```
+src/ (데드볼 판단 로직 전부: final_dead_balls, slow_buildup, keeper_hold, kickoff, config)
+  ↑ 불러서 실행
+Phase 1  model/영상추출/모델/dead_ball/extract.py → model/영상추출/추출csv/dead_ball/<실행ID>/features.csv (dead 0/1)
+  ↑ features.csv만 읽음
+Phase 2  model/점유율계산/계산알고리즘/model1_dead_ball/ → model/모델별결과csv/model1_dead_ball/<실행ID>/prediction.csv (H/A/D)
+```
+
+- 개선은 `src/`만 고치면 된다. Phase 1·2는 다시 실행하면 따라온다. `features.csv` 열을 바꿀 때만 `extract.py`도 고친다.
+- `model1_dead_ball`: model1과 같은 비용(최근접 팀 관측, 전환 비용)을 쓰되 채점 구간에서 dead = 1이면 D만, 아니면 H/A만 허용한다. 새 상수는 없다.
+- `run_manifest.json`에 `slow_buildup`과 골키퍼 규칙 설정이 함께 남는다.
+
 ## 실행 순서
 
 ```
 python src\apply_competition.py      # 데드볼 모델 확률 → data\dead_balls\model_v2\
 python src\final_dead_balls.py       # 최종 데드볼 → data\dead_balls\final_model\
+python model\점유율계산\계산알고리즘\model1_dead_ball\run.py   # Phase 1 추출 → Phase 2 예측 → 형식 검사 → 공개 5분 평가
 ```
 
-학습은 `src\train_dfl.py`, 검증은 `src\eval_crossing.py`(DFL)와 `src\metrica_eval.py`(Metrica)다.
-팀 형식(Phase 1)으로 내보내기: `python model\영상추출\모델\dead_ball\extract.py` → `model\영상추출\추출csv\dead_ball\<실행ID>\features.csv`.
+학습은 `src\train_dfl.py`. 검증: 최종 파이프라인 DFL은 `src\eval_dfl_current.py`(원본·공 삭제 두 조건), 보정 비교는
+`src\eval_jsh_all_corrections.py`, `src\eval_restart_late.py`(DFL·Metrica 3경기·SkillCorner 20경기, 사전 기준 출력).
+`run.py --skip-dead-ball`이면 이미 있는 Phase 1 결과를 쓴다. 공개 5분 점수는 확인용이고 설정 선택에 쓰지 않는다.
 결과를 영상과 함께 보는 뷰어(`dead_ball_viewer.html`)는 저장소에 넣지 않은 로컬 확인용 도구다.

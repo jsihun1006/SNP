@@ -49,6 +49,11 @@ python model/영상추출/모델/dead_ball/extract.py --skip-pipeline  # 이미 
 python model/영상추출/모델/dead_ball/validate.py model/영상추출/추출csv/dead_ball/<실행ID>
 ```
 
+점유 예측(H/A/D)과 채점까지 한 번에 하려면 Phase 2 `model1_dead_ball`을 쓴다:
+`python model/점유율계산/계산알고리즘/model1_dead_ball/run.py` (이 추출을 먼저 돌린다).
+
+판단 로직은 전부 `src/`에 있고 `extract.py`는 그것을 불러 실행만 한다. 로직을 고칠 때는 `src/`만 고치면 된다.
+
 ## 모델 파일 (Git 제외)
 
 | 항목 | 값 |
