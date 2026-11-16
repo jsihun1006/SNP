@@ -55,7 +55,7 @@ def peak_indices(mask, strength, gap):
     return peaks[np.r_[True, np.diff(peaks) >= gap]] if peaks.size else peaks
 
 
-def movement_signals(players, ball, pitch, margin, team=None):
+def movement_signals(players, ball, pitch, margin, team=None, stop_team=None):
     """한 하프의 공 신호(노트북 movement_features 중 ⑤에 쓰는 것): reliable, pass, carry, restart, cross."""
     n = len(ball)
     observed = np.isfinite(ball).all(axis=1)
@@ -112,8 +112,39 @@ def movement_signals(players, ball, pitch, margin, team=None):
     crossing = reliable & (shift(distance, 1) >= -margin) & (distance < -margin)
     crossing &= (before_dist - distance > .15) & (distance - after_dist > -.06)
     cross = peak_indices(crossing, np.nan_to_num(before_dist - distance, nan=0), 10)
+    stop = np.zeros(n, dtype=bool)
+    fallback = np.zeros(n, dtype=bool)
+    accel = np.zeros(n, dtype=bool)
+    if stop_team is not None:
+        # 노트북 movement_features의 stop_hint 그대로(①에 씀): 양 팀이 함께 감속하고(같은 선수의 속도 변화, 팀마다 감속한
+        # 선수 비율의 작은 쪽 > .32) 선수 3 m 안에서 빠르던 공이 갑자기 느려짐. 멈춰 있는 공만으로는 켜지지 않는다.
+        team_arr = np.asarray(stop_team)
+        vv = (shift(players, -3) - shift(players, 3)) * FPS / 6
+        ps = np.linalg.norm(vv, axis=2)
+        pv = shift(vv, 9)
+        old_ps = np.linalg.norm(pv, axis=2)
+        ds = ps - old_ps
+        good = np.isfinite(ds) & (old_ps < 12) & (ps < 12)
+
+        def share(flag, valid):
+            return np.divide((flag & valid).sum(axis=1), valid.sum(axis=1), out=np.zeros(n), where=valid.sum(axis=1) > 0)
+
+        with np.errstate(invalid="ignore"):
+            team_decel = np.column_stack([share(ds[:, team_arr == k] < -.35, good[:, team_arr == k]) for k in (0, 1)])
+            ball_interrupted = reliable & (before > 3.0) & (launch < before * .50) & (near < 3.0)
+            stop = ball_interrupted & (team_decel.min(axis=1) > .32) & (distance > 1)
+            # ③에 쓰는 신호(노트북 그대로): 공이 안 보이면 마지막 공 위치 6 m 안 선수들의 움직임 변화로 재개를 본다
+            last_index = np.maximum.accumulate(np.where(observed, rows, -1))
+            last = ball[np.maximum(last_index, 0)]
+            near_last = np.linalg.norm(players - last[:, None, :], axis=2) < 6
+            change = np.linalg.norm(vv - pv, axis=2)
+            local = share((ds > .4) | ((change > 1.25) & (ps > .7)), near_last & good)
+            fallback = ~reliable & (last_index >= 0) & (rows - last_index <= FPS * 2) & (local > .35)
+            # ③ 개선(2026-11-16): 양 팀이 함께 속도를 올림. ①의 감속 신호를 대칭으로 쓴다(같은 .35·.32, 새 상수 없음).
+            team_accel = np.column_stack([share(ds[:, team_arr == k] > .35, good[:, team_arr == k]) for k in (0, 1)])
+            accel = team_accel.min(axis=1) > .32
     return {"reliable": reliable, "distance": distance, "restart": restart_at, "pass": pass_windows,
-            "carry": carry, "cross": cross}
+            "carry": carry, "cross": cross, "stop": stop, "fallback": fallback, "accel": accel}
 
 
 def viterbi_cost(log_odds, enter, leave):
@@ -135,11 +166,16 @@ def viterbi_cost(log_odds, enter, leave):
     return state
 
 
-def decode(score, players, ball, pitch, period, crossings, setting=None, restarts=(), extra_protect=None, team=None):
+def decode(score, players, ball, pitch, period, crossings, setting=None, restarts=(), extra_protect=None, team=None,
+           support=None):
     """라인 아웃 순간 진입 비용 0(지금 파이프라인 1단계) + ⑤ 보호 구간. force_line_outs 전 상태를 돌려준다.
     restarts: 확실한 재개 프레임(감지된 페널티킥). 그 프레임은 인플레이로 고정하고 데드에서 나오는 비용을 0으로 둔다
     (라인 아웃의 진입 비용 0과 대칭). 킥 뒤 인플레이가 얼마나 이어질지는 모델 확률과 기존 벌점이 정한다(새 상수 없음)."""
     setting = setting or CONFIG["slow_buildup"]
+    if (setting.get("case1", False) or setting.get("case3", False)) and team is None:
+        raise ValueError("slow_buildup.decode: 보정 ①·③은 팀 정보가 필요하다. team=match.team을 넘길 것")
+    if support is not None:
+        support["restart"] = np.zeros(len(score), dtype=bool)
     penalty, bias = CONFIG["smooth_choice"]["penalty"], CONFIG["smooth_choice"]["bias"]
     strength, bonus, margin = setting["strength"], setting["bonus"], setting["margin"]
     period = np.asarray(period)
@@ -148,7 +184,8 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
         p = score[half]
         n = len(p)
         sig = movement_signals(players[half], ball[half], pitch, margin,
-                               team if setting.get("same_team_pass", False) else None)
+                               team if setting.get("same_team_pass", False) else None,
+                               team if (setting.get("case1", False) or setting.get("case3", False)) else None)
         old = crossings[(crossings >= half.start) & (crossings < half.stop)] - half.start
         rs_in = np.asarray([r - half.start for r in restarts if half.start <= r < half.stop], dtype=np.int64)
         if not sig["reliable"].any() and not len(rs_in):
@@ -159,14 +196,42 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
         leave = np.full(n, penalty)
         enter[old] = 0
         restart_ids = np.flatnonzero(sig["restart"])
-        certified = []
+        certified, short_pairs = [], []
         for a in sig["cross"]:
             rs = restart_ids[(restart_ids > a + round(.32 * FPS)) & (restart_ids < a + 25 * FPS)]
             evidence = p[a:min(n, a + 2 * FPS)]
             outside = sig["distance"][a:min(n, a + 8)] < -margin
             if len(rs) and (outside.sum() >= 4) and (evidence.max() >= .40 or np.any(old == a)):
                 certified.append(int(a))
+                if int(rs[0]) - a < 10 * FPS:
+                    short_pairs.append((int(a), int(rs[0])))
         confirmed = np.unique(np.r_[old, np.array(certified, dtype=int)])
+        if setting.get("case1", False):
+            # ① 데드볼 시작 늦음(JSH 노트북 그대로): 공이 밖으로 넘고 재개가 이어진 넘음, 양 팀 감속 + 공 진행 중단(stop)에서
+            # 데드 진입 비용을 낮춘다. 2026-11-16 검증(src/eval_jsh_all_corrections.py): ⑤ 대비 DFL +0.0011(2/0).
+            picks = np.array(certified, dtype=int)
+            enter[picks] *= (1 - .9 * strength)
+            enter[sig["stop"]] *= (1 - .55 * strength)
+        if setting.get("case3", False) or setting.get("restart_snap", False):
+            # ③ 재개 늦음(JSH 노트북 그대로): 모델이 ±1초 안에 데드로 봤던 곳에서 공이 빠르게 출발하면 데드에서 나오는 비용을
+            # 낮추고 출발 뒤 5프레임을 인플레이 쪽으로 민다. 공이 안 보이면 마지막 공 근처 선수 움직임(fallback)으로 약하게.
+            # restart_accel(2026-11-16): 출발 뒤 1초 안에 양 팀이 함께 속도를 올린 재개만 쓴다. 데드볼 중 공을 주고받을 때는
+            # 대부분 선수가 서 있다. 새 상수 없음(1초는 다른 규칙과 같은 창).
+            context = maximum_filter1d(p, 2 * FPS + 1, mode="nearest") >= .5
+            restart3 = sig["restart"] & context
+            fallback3 = sig["fallback"] & (p < .58) & context
+            if setting.get("restart_accel", False):
+                soon = maximum_filter1d(sig["accel"].astype(np.uint8), FPS + 1, mode="constant", origin=-(FPS // 2)) != 0
+                restart3 &= soon
+                fallback3 &= soon
+            if setting.get("case3", False):
+                leave[restart3] *= 1 - .86 * strength
+                after = extend_from(np.flatnonzero(restart3), n, 0, 5)
+                log_odds[after & sig["reliable"]] -= bonus
+                leave[fallback3] *= 1 - .26 * strength
+            if support is not None:
+                # restart_snap: 비용은 바꾸지 않고 재개 위치만 넘긴다(snap_dead_ends가 데드볼 끝만 당긴다)
+                support["restart"][half] |= restart3
         moving = sig["pass"] | sig["carry"]
         if extra_protect is not None:   # 골키퍼 보호 구간(keeper_hold.protect_mask): ⑤와 같은 벌점항으로 다룬다
             moving = moving | np.asarray(extra_protect)[half]
@@ -183,6 +248,13 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
                     protected[a:b] = False
         enter[protected] += 28 * strength
         log_odds[protected] -= 2.5 * bonus
+        if setting.get("case6", False):
+            # ⑥ 짧은 데드볼 누락(JSH 노트북 그대로): 10초 안에 라인 넘음과 재개가 함께 확인되면 두 전환 비용을 낮추고 그 사이를
+            # 데드 쪽으로 민다. 2026-11-16 검증: ⑤ 대비 DFL +0.0008(1/0), Metrica +0.0042.
+            for a, b in short_pairs:
+                enter[a] = min(enter[a], 2.5)
+                leave[b] = min(leave[b], 2.5)
+                log_odds[a:b] += .45 * bonus
         enter[old] = 0
         leave[rs_in] = 0
         log_odds[rs_in] = -1e9
@@ -200,3 +272,66 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
                     decoded[a:b] = True
         result[half] = decoded
     return result
+
+
+def snap_dead_ends(state, restart, period):
+    """③ 재설계(2026-11-16, 사용자 제안 '새 인플레이는 만들지 말고 경계만 당기기'): 데드볼 [s, e)의 끝 e 앞
+    out_start_window_s(5초) 안에 재개(restart, decode의 support)가 있으면 끝을 그 재개로 앞당긴다. 여러 개면 e에 가장
+    가까운 것(가장 적게 옮김). 구간을 새로 만들거나 합치지 않는다. 데드볼 시작을 근처 라인 넘음으로 옮기는
+    final_dead_balls.build와 대칭이고 같은 5초 창을 쓴다. 새 상수 없음. 반환 (새 state, 옮긴 초 목록)."""
+    out = np.asarray(state, dtype=bool).copy()
+    period = np.asarray(period)
+    window = int(CONFIG["final"]["out_start_window_s"] * FPS)
+    rel = np.flatnonzero(restart)
+    moved = []
+    for s, e in runs_of(out):
+        if e >= len(out) or period[e] != period[s]:
+            continue
+        cand = rel[(rel > s) & (rel >= e - window) & (rel < e)]
+        if len(cand):
+            r = int(cand[-1])
+            out[r:e] = False
+            moved.append((e - r) / FPS)
+    return out, moved
+
+
+def release_forced(forced, decoded, restart, crossings, period, ball=None, pitch=None, zone=False):
+    """③의 라인 아웃 강제 해제(JSH 노트북 decode 끝부분 그대로): force_line_outs가 강제로 데드로 둔 구간(decode는 인플레이로
+    봤던 곳)에서 ③의 재개가 감지되면, 그 사이에 다른 라인 넘음이 없을 때 재개부터 인플레이로 돌린다.
+    zone(2026-11-16): 재개 자리가 나간 라인에 맞을 때만 푼다(경기 규칙 15·16·17조). 터치라인으로 나갔으면 그 터치라인
+    RESTART_TOL_M(2 m) 안, 골라인으로 나갔으면 그 쪽 골 에어리어(+2 m)나 코너(1 m 호 +2 m). 새 상수 없음."""
+    out = np.asarray(forced, dtype=bool).copy()
+    period = np.asarray(period)
+    cross_mask = np.zeros(len(out), dtype=bool)
+    c = np.asarray(crossings, dtype=np.int64)
+    cross_mask[c[(c >= 0) & (c < len(out))]] = True
+    import keeper_hold as kh
+    for h in halves(period):
+        rel = np.flatnonzero(restart[h])
+        for a, b in runs_of(out[h] & ~np.asarray(decoded)[h]):
+            chosen = rel[(rel >= max(0, a - 3)) & (rel < b)]
+            if zone and len(chosen):
+                chosen = np.array([r for r in chosen if _restart_fits(h.start + a, h.start + r, ball, pitch, kh)],
+                                  dtype=np.int64)
+            if len(chosen) and not cross_mask[h][max(a, chosen[0]):b].any():
+                out[h.start + max(a, chosen[0]):h.start + b] = False
+    return out
+
+
+def _restart_fits(c, r, ball, pitch, kh):
+    """c(강제 데드 시작 = 라인 넘음 근처)에 나간 라인과 r(재개)의 공 위치가 맞는지."""
+    length, width = pitch
+    tol = kh.RESTART_TOL_M
+    seg = ball[max(c - 3, 0):c + 4]
+    seg = seg[np.isfinite(seg).all(axis=1)]
+    if not len(seg) or not np.isfinite(ball[r]).all():
+        return False
+    ox, oy = seg[-1]
+    rx, ry = ball[r]
+    if ox < 0 or ox > length:                       # 골라인
+        depth = rx if ox < 0 else length - rx
+        goal_area = depth <= kh.GOAL_AREA_DEPTH_M + tol and abs(ry - width / 2) <= kh.GOAL_AREA_HALF_M + tol
+        corner = np.hypot(depth, abs(ry - width / 2) - width / 2) <= 1.0 + tol   # 코너 호 반지름 1 m(1조)
+        return bool(goal_area or corner)
+    edge_y = 0.0 if oy < width / 2 else width        # 터치라인
+    return bool(abs(ry - edge_y) <= tol)

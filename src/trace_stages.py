@@ -61,7 +61,7 @@ def main():
     s1 = sb.decode(score, match.players, match.ball, match.pitch, match.period, cross_in,
                    setting={"margin": 0.0, "strength": 0.0, "bonus": 0.0}) & graded
     stages.append(("1 no_slow_buildup", s1))
-    s2 = sb.decode(score, match.players, match.ball, match.pitch, match.period, cross_in) & graded
+    s2 = sb.decode(score, match.players, match.ball, match.pitch, match.period, cross_in, team=match.team) & graded
     stages.append(("2 slow_buildup", s2))
     # 비교용(파이프라인에는 안 씀): ⑤가 진행 중인 데드볼을 끝내지 못하게 한 것, 같은 팀 패스만 보호한 것
     alt = {"2b no_exit": dict(CONFIG["slow_buildup"], no_exit=True),

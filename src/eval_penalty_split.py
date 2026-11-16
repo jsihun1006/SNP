@@ -42,7 +42,7 @@ def main():
         sig = fd.ball_signals(match)
         cr = fd.line_crossings(sig)
         cr = cr[(cr > 0) & (match.period[cr] == match.period[cr - 1])]
-        base = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr)
+        base = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr, team=match.team)
         base, _ = fd.force_line_outs(base, cr, sig, score, match.period)
         graded = np.asarray(match.period) > 0
         truth = pd.DataFrame({"period": match.period, "dead": np.asarray(label).astype(np.int8)})
@@ -56,7 +56,7 @@ def main():
             new, changed = fd.split_at_penalty_kicks(base, kicks, match.period, cr_m)
             r = cs.score_one((new & graded).astype(np.int8), truth)
             # 4차: 고정 길이 대신 킥 프레임을 인플레이로 고정하고 데드 이탈 비용 0으로 비터비를 다시 푼다
-            vit = sb.decode(score, match.players, m.ball, match.pitch, match.period, cr_m, restarts=kicks)
+            vit = sb.decode(score, match.players, m.ball, match.pitch, match.period, cr_m, restarts=kicks, team=match.team)
             vit, _ = fd.force_line_outs(vit, cr_m, fd.ball_signals(m), score, match.period)
             rv = cs.score_one((vit & graded).astype(np.int8), truth)
             alive_len = []

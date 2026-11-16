@@ -89,7 +89,13 @@ CONFIG = {
     "smooth_choice": {"method": "viterbi", "penalty": 40.0, "bias": 0.0, "min_s": 0.0},
     # 느린 빌드업 보정(src/slow_buildup.py, JSH 노트북 ⑤): 패스·수신·공 동행 구간은 데드 진입을 어렵게.
     # 값은 JSH 노트북의 COMPETITION_RULES 그대로(DFL 학습 쪽 내부 검증 경기로 선택).
-    "slow_buildup": {"margin": 0.0, "strength": 1.0, "bonus": 0.85},
+    # + JSH 노트북 ①(데드볼 시작 늦음)·⑥(짧은 데드볼 누락), 2026-11-16 채택(src/eval_jsh_all_corrections.py): ⑤만 대비
+    #   DFL +0.0011(2/0), Metrica +0.0042, SkillCorner −0.0007. ②·③·④와 ①~⑥ 전부는 불통과. ①은 팀 정보가 필요하다.
+    # + restart_snap(2026-11-17, src/eval_restart_late.py): 데드볼 끝 앞 5초 안의 재개로 끝을 당긴다(새 구간을 만들지 않음).
+    #   ⑤+①+⑥ 대비 DFL +0.0015(4/1), Metrica +0.0049, SkillCorner +0.0068(17/1). 노트북 ③ 그대로(비용 조정)는
+    #   SkillCorner −0.0076, 양 팀 가속 확인을 붙여도 −0.0028로 불통과, 경계 당기기에 가속 확인을 붙이면 효과 0.
+    "slow_buildup": {"margin": 0.0, "strength": 1.0, "bonus": 0.85, "case1": True, "case6": True,
+                     "restart_snap": True},
 
     # --- 대회 데이터 적용 (src/apply_competition.py, src/final_dead_balls.py) ---------------------
     # 스마트 태깅 SET PIECES 태그 창을 앞뒤로 이만큼(초) 넓혀 겹치는지 본다. 결과 보고(참고용 지표)에만 쓴다.

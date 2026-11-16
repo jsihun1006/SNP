@@ -129,6 +129,8 @@ model/
 | Phase 2 | `naive` | 제공 ATD → 최근접 선수 팀과 평활화로 점유 예측 |
 | Phase 2 | `model1` | ATD의 최근접 팀/누락 관측 → 상태 전환 비용으로 점유 예측 |
 | Phase 2 | `video_ball_hybrid` | 영상 공 검출 + ATD 선수/팀 → 최근접 팀 관측 + model1 디코더 |
+| Phase 1 | `dead_ball` | 제공 ATD → 프레임별 데드볼 판정(DFL 학습 LightGBM + 라인 아웃·페널티킥·골키퍼 쥠 규칙) |
+| Phase 2 | `model1_dead_ball` | `dead_ball`의 D + ATD 최근접 팀 관측 → model1 디코더로 H/A만 결정 |
 
 - **기존 호환**: `model.py`, `evaluate.py`, `predictions/<모델명>.csv`, 실행ID 없는 결과 등은 기존 이름을 유지한다. 이번 README 수정으로 파일을 일괄 변경하지 않는다.
 - **기존 연결**: `outputs`, `predictions`, `diagnostics`, `reports`, `scoreboard.csv` 등 일부 경로는 분류된 결과 폴더로 이어지는 상대 심볼릭 링크다.

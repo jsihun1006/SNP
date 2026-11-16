@@ -34,7 +34,7 @@ def pipeline(match, score):
     sig = fd.ball_signals(match)
     cr = fd.line_crossings(sig)
     cr = cr[(cr > 0) & (match.period[cr] == match.period[cr - 1])]
-    state = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr)
+    state = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr, team=match.team)
     state, _ = fd.force_line_outs(state, cr, sig, score, match.period)
     state, _ = fd.split_at_penalty_kicks(state, [k for k, _ in fd.penalty_kicks(match)], match.period, cr)
     return state

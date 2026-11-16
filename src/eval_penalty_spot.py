@@ -37,7 +37,7 @@ def pipeline_state(score, match):
     sig = fd.ball_signals(match)
     cr = fd.line_crossings(sig)
     cr = cr[(cr > 0) & (match.period[cr] == match.period[cr - 1])]
-    state = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr)
+    state = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr, team=match.team)
     state, _ = fd.force_line_outs(state, cr, sig, score, match.period)
     return state & (np.asarray(match.period) > 0), sig
 

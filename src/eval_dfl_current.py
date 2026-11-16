@@ -33,8 +33,11 @@ def run(match, score, keeper=True):
     sig = fd.ball_signals(match)
     cr = fd.line_crossings(sig)
     cr = cr[(cr > 0) & (match.period[cr] == match.period[cr - 1])]
-    st = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr)
+    sup = {}
+    st = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr, team=match.team, support=sup)
     st, _ = fd.force_line_outs(st, cr, sig, score, match.period)
+    if CONFIG["slow_buildup"].get("restart_snap", False):
+        st, _ = sb.snap_dead_ends(st, sup["restart"], match.period)
     st &= graded
     pen = [k for k, _ in fd.penalty_kicks(match) if graded[k]]
     st, _ = fd.split_at_penalty_kicks(st, pen, match.period, cr)

@@ -20,6 +20,7 @@
      높이고 데드 쪽 점수를 낮춘다. Metrica 3경기 0.809 → 0.820, SkillCorner 20경기 0.729 → 0.748.
   2. 확실한 라인 아웃은 무조건 데드볼: 모델이 인플레이로 본 라인 아웃 프레임부터, 공이 경기장 안에서 다시 보이고
      모델이 인플레이로 볼 때까지(force_line_outs).
+  2a. 데드볼 끝 앞 5초 안의 재개로 끝을 당김(slow_buildup.snap_dead_ends, JSH ③을 '경계만 옮기기'로 재설계).
   2b. 페널티킥 순간 데드볼 끊기(split_at_penalty_kicks): 감지된 차는 순간부터 인플레이, 공이 보이면 3초 안의
      다음 라인 아웃까지, 아니면 0.6초. 공개 30경기(src/eval_penalty_split.py, 차는 순간 = 배치 깨짐):
      DFL 3경기 +0.0016~+0.0059, Metrica game2 +0.0039(공 없으면 −0.0003), SkillCorner 1874553 −0.0035
@@ -435,9 +436,16 @@ def main():
     import slow_buildup
     cross_in = crossings[(crossings > 0) & (crossings < n)]
     cross_in = cross_in[match.period[cross_in] == match.period[cross_in - 1]]
-    state = slow_buildup.decode(score, match.players, match.ball, match.pitch, match.period, cross_in)
+    support = {}
+    state = slow_buildup.decode(score, match.players, match.ball, match.pitch, match.period, cross_in, team=match.team,
+                                support=support)
     # 2. 확실한 라인 아웃은 무조건 데드볼
     state, forced = force_line_outs(state, cross_in, sig, score, match.period)
+    # 2a. 데드볼 끝 앞 5초 안에 재개(공이 선수 옆에서 빠르게 출발)가 보이면 끝을 그 재개로 앞당긴다. 새 구간은 만들지 않는다
+    # (slow_buildup.snap_dead_ends, JSH ③ 재설계). DFL +0.0015(4/1), Metrica +0.0049, SkillCorner +0.0068(17/1).
+    snapped = []
+    if CONFIG["slow_buildup"].get("restart_snap", False):
+        state, snapped = slow_buildup.snap_dead_ends(state, support["restart"], match.period)
     state &= graded
     # 2b. 페널티킥 순간 데드볼 끊기(차는 순간은 재개). 공이 보이면 다음 라인 아웃까지, 아니면 0.6초 인플레이.
     pen_kicks = [(k, m) for k, m in penalty_kicks(match) if graded[k]]
@@ -473,6 +481,8 @@ def main():
              "start moved to a visible line crossing: {} (shift s p10/p50/p90 {})".format(
                  len(shifts), " / ".join("{:.1f}".format(v) for v in np.percentile(shifts, [10, 50, 90]))
                  if shifts else "-"),
+             "dead-ball ends moved earlier to a detected restart: {} (median {:.1f} s)".format(
+                 len(snapped), float(np.median(snapped)) if snapped else 0.0),
              "penalty kicks detected {}, dead ball split at the kick {}, held dead until the kickoff after a "
              "penalty goal {}".format(len(pen_kicks), len(pen_split), len(pen_goals)),
              "goalkeeper holds kept in play: {} ({:.1f} s)".format(

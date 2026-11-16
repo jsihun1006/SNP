@@ -32,7 +32,7 @@ def run(name, match, score, label):
     sig = fd.ball_signals(match)
     cr = fd.line_crossings(sig)
     cr = cr[(cr > 0) & (match.period[cr] == match.period[cr - 1])]
-    base = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr)
+    base = sb.decode(score, match.players, match.ball, match.pitch, match.period, cr, team=match.team)
     base, _ = fd.force_line_outs(base, cr, sig, score, match.period)
     new, made, missing = fd.hold_goal_dead(base, cr, sig, match.ball, match.pitch, match.period)
     graded = np.asarray(match.period) > 0

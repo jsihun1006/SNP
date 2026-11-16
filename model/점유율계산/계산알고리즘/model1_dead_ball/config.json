@@ -1,0 +1,17 @@
+{
+  "model": "model1_dead_ball",
+  "version": 1,
+  "fps": 25,
+  "long_missing_seconds": 3.0,
+  "opposite_team_cost_per_second": 2.0,
+  "dead_when_observed_cost_per_second": 2.0,
+  "dead_in_short_gap_cost_per_second": 1.0,
+  "alive_in_long_gap_cost_per_second": 0.5,
+  "team_switch_cost": 1.2,
+  "dead_switch_cost": 0.8,
+  "phase1_input": "dead_ball (model/영상추출/추출csv/dead_ball/<실행ID>/features.csv)",
+  "selection_policy": "model1 config.json 값을 그대로 쓴다. dead_ball 제약 말고는 바꾼 값이 없고, 공개 GT로 고르거나 고치지 않았다.",
+  "rationale": {
+    "dead_constraint": "채점 구간에서 dead_ball이 D로 본 프레임은 D만, 나머지는 H/A만 허용한다. 데드볼 경계는 dead_ball이 정하고 H/A 전환만 model1 비용이 정한다."
+  }
+}

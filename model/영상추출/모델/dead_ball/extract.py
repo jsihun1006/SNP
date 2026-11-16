@@ -83,6 +83,11 @@ def build_tables(model_frames, final_frames, segments, signals, n_frames, blocks
     return features[FEATURE_COLUMNS], status[STATUS_COLUMNS]
 
 
+def keeper_setting():
+    import keeper_hold
+    return dict(keeper_hold.SETTING)
+
+
 def manifest(out_dir, run_id, inputs, fps, n_frames):
     from config import CONFIG
     import train_dfl
@@ -119,7 +124,8 @@ def manifest(out_dir, run_id, inputs, fps, n_frames):
                                      + " (Bassek et al. 2025, CC-BY 4.0); no labels from the competition match"},
         "settings": {"smooth_choice": CONFIG["smooth_choice"], "final": {k: (list(v) if isinstance(v, tuple) else v)
                                                                          for k, v in CONFIG["final"].items()},
-                     "context_offsets_s": CONFIG["context_offsets_s"]},
+                     "context_offsets_s": CONFIG["context_offsets_s"],
+                     "slow_buildup": CONFIG["slow_buildup"], "keeper_hold": keeper_setting()},
         "columns": {
             "graded": "1 inside the two graded halves (games.half_video_blocks), else 0",
             "dead_score": "frame-level dead-ball probability of the DFL-trained model, before smoothing (0-1)",
@@ -129,7 +135,8 @@ def manifest(out_dir, run_id, inputs, fps, n_frames):
             "ball_seen": "1 when the tactical ATD has a ball position in this frame",
         },
         "outputs": outputs,
-        "notes": ["Player-movement model; the ball is used only for visible line-outs.",
+        "notes": ["Player-movement model; the ball is used for line-outs, the slow build-up corrections "
+                  "(src/slow_buildup.py), penalty kicks and goalkeeper holds (src/keeper_hold.py).",
                   "Ball missing is not taken as dead by itself.",
                   "The public 5-minute ground truth was not used for training or tuning."],
     }
