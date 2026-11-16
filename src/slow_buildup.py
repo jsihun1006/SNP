@@ -55,7 +55,7 @@ def peak_indices(mask, strength, gap):
     return peaks[np.r_[True, np.diff(peaks) >= gap]] if peaks.size else peaks
 
 
-def movement_signals(players, ball, pitch, margin):
+def movement_signals(players, ball, pitch, margin, team=None):
     """한 하프의 공 신호(노트북 movement_features 중 ⑤에 쓰는 것): reliable, pass, carry, restart, cross."""
     n = len(ball)
     observed = np.isfinite(ball).all(axis=1)
@@ -93,6 +93,9 @@ def movement_signals(players, ball, pitch, margin):
         b = min(n, a + 51)
         window = np.arange(a + 7, b)
         hits = window[reliable[window] & (near[window] < 1.35) & (owner[window] != owner[a])]
+        if team is not None:
+            # 같은 팀끼리의 패스만(2026-11-16): 휘슬 뒤 상대 골키퍼에게 공을 돌려주는 것은 경기 중 빌드업이 아니다
+            hits = hits[np.asarray(team)[owner[hits]] == np.asarray(team)[owner[a]]]
         if hits.size:
             h = int(hits[0])
             flight = ball[a:h + 1]
@@ -132,7 +135,7 @@ def viterbi_cost(log_odds, enter, leave):
     return state
 
 
-def decode(score, players, ball, pitch, period, crossings, setting=None, restarts=()):
+def decode(score, players, ball, pitch, period, crossings, setting=None, restarts=(), extra_protect=None, team=None):
     """라인 아웃 순간 진입 비용 0(지금 파이프라인 1단계) + ⑤ 보호 구간. force_line_outs 전 상태를 돌려준다.
     restarts: 확실한 재개 프레임(감지된 페널티킥). 그 프레임은 인플레이로 고정하고 데드에서 나오는 비용을 0으로 둔다
     (라인 아웃의 진입 비용 0과 대칭). 킥 뒤 인플레이가 얼마나 이어질지는 모델 확률과 기존 벌점이 정한다(새 상수 없음)."""
@@ -144,7 +147,8 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
     for half in halves(period):
         p = score[half]
         n = len(p)
-        sig = movement_signals(players[half], ball[half], pitch, margin)
+        sig = movement_signals(players[half], ball[half], pitch, margin,
+                               team if setting.get("same_team_pass", False) else None)
         old = crossings[(crossings >= half.start) & (crossings < half.stop)] - half.start
         rs_in = np.asarray([r - half.start for r in restarts if half.start <= r < half.stop], dtype=np.int64)
         if not sig["reliable"].any() and not len(rs_in):
@@ -163,11 +167,36 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
             if len(rs) and (outside.sum() >= 4) and (evidence.max() >= .40 or np.any(old == a)):
                 certified.append(int(a))
         confirmed = np.unique(np.r_[old, np.array(certified, dtype=int)])
-        protected = (sig["pass"] | sig["carry"]) & ~extend_from(confirmed, n, 2, 4)
+        moving = sig["pass"] | sig["carry"]
+        if extra_protect is not None:   # 골키퍼 보호 구간(keeper_hold.protect_mask): ⑤와 같은 벌점항으로 다룬다
+            moving = moving | np.asarray(extra_protect)[half]
+        protected = moving & ~extend_from(confirmed, n, 2, 4)
+        if setting.get("no_exit", False):
+            # ⑤가 진행 중인 데드볼을 끝내지 못하게 한다(2026-11-16, 대회 디버깅: 오프사이드 휘슬 뒤 골키퍼에게 돌려준 공을
+            # 패스로 보고 데드볼을 4.5초 끊었다). ⑤ 없이 푼 판정에서 이미 데드인 프레임에서 시작한 보호 구간은 쓰지 않는다.
+            # 데드로 '들어가는' 것을 막는 효과는 남는다. 새 상수 없음.
+            plain_enter = np.full(n, penalty)
+            plain_enter[old] = 0
+            plain = viterbi_cost(logit(np.clip(p, 1e-6, 1 - 1e-6)), plain_enter, np.full(n, penalty))
+            for a, b in runs_of(protected):
+                if plain[a]:
+                    protected[a:b] = False
         enter[protected] += 28 * strength
         log_odds[protected] -= 2.5 * bonus
         enter[old] = 0
         leave[rs_in] = 0
         log_odds[rs_in] = -1e9
-        result[half] = viterbi_cost(log_odds, enter, leave)
+        decoded = viterbi_cost(log_odds, enter, leave)
+        if setting.get("revert_short_islands", False):
+            # ⑤가 만든 짧은 인플레이 섬을 되돌린다(2026-11-16, 대회 디버깅: 오프사이드 휘슬 뒤 공 정리를 ⑤가 빌드업으로 보고
+            # 데드볼 사이에 4.5초 인플레이를 끼웠다). ⑤ 없이 데드였던 곳에서 ⑤가 만든 인플레이가 양쪽이 데드이고
+            # out_start_window_s(5초) 안에 끝나면 데드로 되돌린다. 긴 데드를 끊어 긴 인플레이를 만드는 주된 이득은 남는다.
+            plain_enter = np.full(n, penalty)
+            plain_enter[old] = 0
+            plain = viterbi_cost(logit(np.clip(p, 1e-6, 1 - 1e-6)), plain_enter, np.full(n, penalty))
+            limit = int(CONFIG["final"]["out_start_window_s"] * FPS)
+            for a, b in runs_of(~decoded):
+                if a > 0 and b < n and decoded[a - 1] and decoded[b] and b - a <= limit and plain[a:b].mean() >= 0.5:
+                    decoded[a:b] = True
+        result[half] = decoded
     return result
