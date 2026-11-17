@@ -12,7 +12,8 @@ player features (team speed quantiles, shape, distance to the lines; no ball fea
    + slow build-up correction: stretches with a pass, a reception or a player carrying the ball are harder to enter
      dead from; a certified line crossing or a joint team stop makes entering dead cheaper; short
      crossing->restart pairs are kept (src/slow_buildup.py)
-   + entering dead is free at a visible line crossing
+   + entering dead is free at a visible line crossing; a crossing seen 0.36 m+ outside for 2 frames also pushes the
+     score towards dead from the crossing frame, and the last inside frame stays in play when the model sees play
 -> a certain line-out stays dead until the ball moves again inside the pitch and the model calls play
 -> a dead ball that ends within 5 s of a detected restart (ball leaves a player fast) ends at that restart
 -> penalty kicks (src/penalty.py, detected from the player formation, Law 14): play restarts at the kick; if a kickoff
@@ -32,11 +33,11 @@ player features (team speed quantiles, shape, distance to the lines; no ball fea
 
 | validation (final pipeline) | in-play spell F1* |
 |---|---|
-| DFL 7 matches, leave-one-match-out (`src/eval_dfl_current.py`) | **0.904** |
-| DFL with the ball deleted while the keeper holds it (as in the provided tracking) | 0.900 |
+| DFL 7 matches, leave-one-match-out (`src/eval_dfl_current.py`) | **0.905** |
+| DFL with the ball deleted while the keeper holds it (as in the provided tracking) | 0.901 |
 | DFL with the ball deleted from 1 s before the keeper receives it | 0.899 |
 | Metrica sample, 3 matches (not used for training) | 0.832 |
-| SkillCorner open data, 20 matches (not used for training; 10 fps upsampled) | 0.760 |
+| SkillCorner open data, 20 matches (not used for training; 10 fps upsampled) | 0.759 |
 
 \* the official spell score with in play = H and dead = D: how well the dead balls split the match into
 possessions. All numbers: `src/eval_clean.py`.

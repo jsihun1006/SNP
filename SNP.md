@@ -58,7 +58,9 @@ receives it). Every rule and constant was adopted only if it met criteria fixed 
 **Dead ball (`dead_ball`)**
 
 - Entering dead is free at a visible line crossing; a certain line-out stays dead until the ball moves again
-  inside the pitch (Law 9).
+  inside the pitch (Law 9). A crossing seen clearly outside (0.36 m, 2 frames) also pushes the score towards dead
+  from the crossing frame. Forcing dead there instead was rejected: DFL records the dead ball up to 2 s after the
+  crossing, and the forced frames left short in-play fragments that split possessions.
 - A dead ball ends at a detected restart — the ball leaving a player fast — when one is seen within 5 s of the
   model's end.
 - Slow build-up: stretches with a pass, a reception or a carried ball are harder to call dead.
@@ -80,11 +82,11 @@ receives it). Every rule and constant was adopted only if it met criteria fixed 
 
 | data | in-play spell F1 |
 |---|---|
-| DFL, 7 matches, leave-one-match-out | 0.904 |
-| DFL, ball deleted while the keeper holds it | 0.900 |
+| DFL, 7 matches, leave-one-match-out | 0.905 |
+| DFL, ball deleted while the keeper holds it | 0.901 |
 | DFL, ball deleted from 1 s before the keeper receives it | 0.899 |
 | Metrica, 3 matches | 0.832 |
-| SkillCorner, 20 matches | 0.760 |
+| SkillCorner, 20 matches | 0.759 |
 
 In-play spell F1 = the official spell score with in play = H and dead = D.
 
