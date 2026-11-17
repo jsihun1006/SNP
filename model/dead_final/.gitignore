@@ -1,0 +1,14 @@
+/.build-*/
+/weights/*
+!/weights/initialization.json
+!/weights/J03WMX.pt
+!/weights/J03WN1.pt
+!/weights/J03WOH.pt
+!/weights/J03WOY.pt
+!/weights/J03WPY.pt
+!/weights/J03WQQ.pt
+!/weights/J03WR9.pt
+/predictions/
+/training/
+/comparison/
+/model1_7fold/

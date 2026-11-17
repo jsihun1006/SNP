@@ -1,5 +1,7 @@
 """Seven-fold DFL evaluation of the four TranSPORTmer dead-ball conditions."""
 import argparse
+from contextlib import nullcontext
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -16,84 +18,14 @@ import dfl_load
 import features
 import final_dead_balls as fd
 import simulate
+import train_dfl
 from config import CONFIG
 
-WIDTH, HEADS, FFN = 128, 16, 512
-WINDOW, STEP, FPS = 60, 4, 25
+from transportmer_backbone import FFN, FPS, HEADS, STEP, WIDTH, WINDOW, Attention, TranSPORTmer
+
 BALL_MISSING = 0.407
 EVENT_MODES = ("none", "masked")
 ROOT = Path(__file__).resolve().parents[1]
-
-
-class Attention(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.mha = nn.MultiheadAttention(WIDTH, HEADS, dropout=0.0, batch_first=True)
-        self.norm_attention = nn.LayerNorm(WIDTH)
-        self.norm_feed = nn.LayerNorm(WIDTH)
-        self.feed = nn.Sequential(nn.Linear(WIDTH, FFN), nn.GELU(), nn.Linear(FFN, WIDTH))
-
-    def forward(self, x, mask=None):
-        keys = x
-        if mask is not None:
-            # A fully hidden trajectory has no valid key. A zero sentinel keeps
-            # the attention finite while the query still carries its type and time.
-            all_hidden = mask.all(dim=-1)
-            keys = x.masked_fill(all_hidden[:, None, None], 0)
-            mask = mask & ~(all_hidden[:, None] & (torch.arange(x.shape[1], device=x.device) == 0))
-        y = self.mha(x, keys, keys, key_padding_mask=mask, need_weights=False)[0]
-        x = self.norm_attention(x + y)
-        return self.norm_feed(x + self.feed(x))
-
-
-class TranSPORTmer(nn.Module):
-    def __init__(self, task, use_events=False, motion_input=False):
-        super().__init__()
-        self.task = task
-        self.motion_input = motion_input
-        self.position = nn.Linear(5 if motion_input else 2, WIDTH)
-        self.agent_type = nn.Embedding(4, WIDTH)
-        self.source = nn.Embedding(3, WIDTH)
-        self.event_input = nn.Linear(7, WIDTH) if use_events else None
-        self.blocks = nn.ModuleList(Attention() for _ in range(6))
-        self.readout = nn.Linear(WIDTH, {"ball": 2, "dead": 1}[task])
-        dims = torch.exp(torch.arange(0, WIDTH, 2) * (-math.log(10000) / WIDTH))
-        angle = torch.arange(WINDOW)[:, None] * dims
-        self.register_buffer("time", torch.stack([angle.sin(), angle.cos()], -1).flatten(1))
-
-    def forward(self, xy, status, kinds, event_values=None):
-        batch, time, agents, _ = xy.shape
-        coordinates = xy
-        if self.motion_input:
-            present = status > 0
-            continuous = present[:, 1:] & present[:, :-1]
-            # Displacements use the same slot and two consecutive observations.
-            # Scale 6.25 Hz normalized displacements into a useful numerical range.
-            change = 100 * (xy[:, 1:] - xy[:, :-1])
-            change = torch.where(continuous[..., None], change, 0)
-            change = torch.cat((torch.zeros_like(xy[:, :1]), change), dim=1)
-            valid = torch.cat((torch.zeros_like(present[:, :1]), continuous), dim=1)
-            centered = torch.where(present[..., None], 2 * xy - 1, 0)
-            coordinates = torch.cat((centered, change, valid[..., None]), dim=-1)
-        x = self.position(coordinates) + self.agent_type(kinds)[None, None] + self.source(status)
-        if self.task != "ball":
-            cls = self.agent_type.weight[3].expand(batch, time, 1, WIDTH)
-            if self.event_input is not None:
-                cls = cls + self.event_input(event_values).unsqueeze(2)
-            x = torch.cat((x, cls), dim=2)
-            status = torch.cat((status, torch.zeros_like(status[:, :, :1])), dim=2)
-            agents += 1
-        hidden = status == 0
-        for stage in range(2):
-            x = x + self.time[:time][None, :, None, :]
-            x = x.transpose(1, 2).reshape(batch * agents, time, WIDTH)
-            temporal = hidden.transpose(1, 2).reshape(batch * agents, time) if stage == 0 else None
-            for index in (0, 1):
-                x = self.blocks[stage * 3 + index](x, temporal)
-            x = x.reshape(batch, agents, time, WIDTH).transpose(1, 2).reshape(batch * time, agents, WIDTH)
-            social = hidden.reshape(batch * time, agents) if stage == 0 else None
-            x = self.blocks[stage * 3 + 2](x, social).reshape(batch, time, agents, WIDTH)
-        return self.readout(x[:, :, -1])
 
 
 def arrays(half):
@@ -108,7 +40,7 @@ def sample_ball(ball, rng):
     return simulate.ball_dropout(ball, rng, BALL_MISSING, 6.0).astype(np.float32)
 
 
-def load_halves(directory, cache):
+def load_halves(directory, cache, prepare_dfl=False):
     CONFIG["dfl_cache"] = str(cache)
     parts = {}
     for index, match in enumerate(dfl_load.MATCHES):
@@ -117,7 +49,21 @@ def load_halves(directory, cache):
         test = simulate.simulate(raw, seed=CONFIG["sim_seed"])
         pitch = np.asarray(raw.pitch, dtype=np.float32)
         dead = prior.dfl_labels.dead_label(track)
-        with np.load(directory / f"{match}.npz") as npz:
+        path = directory / f"{match}.npz"
+        if prepare_dfl and not path.is_file():
+            # Same DFL training simulator and seeds as the original input exporter.
+            seed = CONFIG["sim_seed"] + index
+            settings = train_dfl.random_settings(np.random.default_rng(seed))
+            training = simulate.simulate(raw, seed=seed, **settings)
+            observed = np.isfinite(training.players).all(axis=-1)
+            pending = path.with_suffix(".tmp")
+            directory.mkdir(parents=True, exist_ok=True)
+            with pending.open("wb") as file:
+                np.savez_compressed(file, positions=np.where(observed[..., None], training.players / pitch, 0),
+                                    observed=observed, frame=raw.frame, period=raw.period,
+                                    team=raw.team, dead=dead)
+            pending.replace(path)
+        with np.load(path) as npz:
             assert np.array_equal(npz["frame"], raw.frame) and np.array_equal(npz["period"], raw.period)
             assert np.array_equal(npz["team"], raw.team) and np.array_equal(npz["dead"], dead)
             for h in (1, 2):
@@ -130,6 +76,7 @@ def load_halves(directory, cache):
                     "train": arrays((train_pos, train_ball, raw.team)),
                     "test": arrays((test.players[mask] / pitch, eval_ball, raw.team)),
                     "truth_ball": truth, "dead": dead[mask],
+                    "frame": raw.frame[mask], "timestamp": track["timestamp_s"].to_numpy()[mask],
                     "event": events.label_events(track["timestamp_s"].to_numpy()[mask], e.loc[e.period_id == h]),
                     "pitch": raw.pitch,
                 }
@@ -157,60 +104,114 @@ def encode_events(labels):
     return np.concatenate([onehot, np.ones_like(labels[..., None])], axis=-1).astype(np.float32)
 
 
-def fit_epochs(parts, keys, field, task, args, seed, conditioned, epochs, validation=None):
+def precision(args):
+    if args.device == "cuda":
+        return torch.autocast("cuda", dtype=torch.bfloat16)
+    return nullcontext()
+
+
+def release_device_cache(args):
+    if args.device == "mps":
+        torch.mps.synchronize()
+        torch.mps.empty_cache()
+
+
+def fit_epochs(parts, keys, field, task, args, seed, conditioned, epochs, validation=None,
+               select_training_loss=False, initial_weights=None):
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
     model = TranSPORTmer(task, use_events=conditioned, motion_input=args.motion_input).to(args.device)
+    if initial_weights is not None:
+        model.load_state_dict(initial_weights, strict=True)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate if task == "dead" else 0.001, eps=1e-4)
     begin = perf_counter()
     best_epoch, best_loss = 0, float("inf")
+    history = []
     for epoch in range(epochs):
         model.train()
         measure = []
+        measure_weights = []
         jobs = []
         for key in keys:
             indices = starts(len(parts[key]["dead"]), args.stride, phase=int(rng.integers(args.stride)))
             rng.shuffle(indices)
             jobs.extend((key, indices[i:i+args.batch]) for i in range(0, len(indices), args.batch))
         rng.shuffle(jobs)
-        for key, indices in jobs:
+        for step_number, (key, indices) in enumerate(jobs, 1):
             part = parts[key]
-            xy, status, kind, ix = batch_tensor(part[field], indices, args.device)
-            inputs = torch.as_tensor(encode_events(part["event"][ix]), device=args.device) if conditioned else None
+            ix = indices[:, None] + STEP * np.arange(WINDOW)[None]
+            denominator = ix.size
+            if task == "ball":
+                hidden = (part[field]["status"][ix, -1] == 0) & np.isfinite(part["truth_ball"][ix]).all(axis=-1)
+                denominator = max(1, int(hidden.sum()))
             optimizer.zero_grad(set_to_none=True)
-            with torch.autocast("cuda", dtype=torch.bfloat16):
-                logits = model(xy, status, kind, inputs).float()
-                if task == "ball":
-                    truth = torch.as_tensor(part["truth_ball"][ix], device=args.device)
-                    hidden = (status[:, :, -1] == 0) & torch.isfinite(truth).all(-1)
-                    distance = torch.linalg.vector_norm((logits - truth.nan_to_num(0)) *
-                                                        torch.tensor(part["pitch"], device=args.device), dim=-1)
-                    loss = (distance * hidden).sum() / hidden.sum().clamp_min(1)
-                else:
-                    truth = torch.as_tensor(part["dead"][ix], device=args.device, dtype=torch.float32)
-                    loss = nn.functional.binary_cross_entropy_with_logits(logits.squeeze(-1), truth)
-            loss.backward()
+            batch_loss = []
+            for start in range(0, len(indices), args.microbatch):
+                selected = indices[start:start+args.microbatch]
+                xy, status, kind, ix = batch_tensor(part[field], selected, args.device)
+                inputs = torch.as_tensor(encode_events(part["event"][ix]), device=args.device) if conditioned else None
+                with precision(args):
+                    logits = model(xy, status, kind, inputs).float()
+                    if task == "ball":
+                        truth = torch.as_tensor(part["truth_ball"][ix], device=args.device)
+                        active = (status[:, :, -1] == 0) & torch.isfinite(truth).all(-1)
+                        distance = torch.linalg.vector_norm((logits - truth.nan_to_num(0)) *
+                                                            torch.tensor(part["pitch"], device=args.device), dim=-1)
+                        loss = (distance * active).sum()
+                    else:
+                        truth = torch.as_tensor(part["dead"][ix], device=args.device, dtype=torch.float32)
+                        loss = nn.functional.binary_cross_entropy_with_logits(
+                            logits.squeeze(-1), truth, reduction="sum")
+                    loss = loss / denominator
+                loss.backward()
+                batch_loss.append(loss.detach())
             nn.utils.clip_grad_norm_(model.parameters(), 5)
             optimizer.step()
-            measure.append(loss.detach())
-        training_loss = torch.stack(measure).mean().item()
+            measure.append(torch.stack(batch_loss).sum())
+            measure_weights.append(denominator)
+            if args.benchmark and step_number == 8:
+                if args.device == "mps":
+                    torch.mps.synchronize()
+                if args.device == "cuda":
+                    torch.cuda.synchronize()
+                print(f"BENCHMARK {task}: 8/{len(jobs)} batches in {perf_counter()-begin:.1f}s", flush=True)
+                return model, 1
+        batch_values = torch.stack(measure)
+        if select_training_loss:
+            weights = batch_values.new_tensor(measure_weights)
+            training_loss = (batch_values * weights).sum().div(weights.sum()).item()
+        else:
+            training_loss = batch_values.mean().item()
+        release_device_cache(args)
         if not np.isfinite(training_loss):
             raise ValueError(f"Non-finite {task} loss")
-        if validation is not None:
-            key = validation
-            check = parts[key]
-            masked = np.zeros((len(check["dead"]), 7), dtype=np.float32) if conditioned else None
-            prediction = predict(model, check[field], args, masked)
-            if task == "ball":
-                valid = (check[field]["status"][:, -1] == 0) & np.isfinite(check["truth_ball"]).all(axis=1)
-                if not valid.any():
-                    raise ValueError("No masked ground truth in the ball validation half.")
-                error = (prediction[valid] - check["truth_ball"][valid]) * np.asarray(check["pitch"])
-                loss = float(np.linalg.norm(error, axis=1).mean())
-            else:
-                prob = np.clip(prediction[:, 0].astype(float), 1e-7, 1 - 1e-7)
-                truth = check["dead"].astype(bool)
-                loss = float(-np.where(truth, np.log(prob), np.log1p(-prob)).mean())
+        if select_training_loss:
+            if training_loss < best_loss - 1e-4:
+                best_epoch, best_loss = epoch + 1, training_loss
+                best_weights = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+            history.append({"epoch": epoch + 1, "train_bce": training_loss, "elapsed_s": perf_counter() - begin})
+            print(f"TRAIN {field} {task} epoch={epoch+1}/{epochs} train_bce={training_loss:.5f} "
+                  f"best={best_epoch} elapsed={perf_counter()-begin:.0f}s", flush=True)
+            if epoch + 1 - best_epoch >= args.patience:
+                break
+        elif validation is not None:
+            errors = []
+            for key in validation:
+                check = parts[key]
+                masked = np.zeros((len(check["dead"]), 7), dtype=np.float32) if conditioned else None
+                prediction = predict(model, check[field], args, masked)
+                if task == "ball":
+                    valid = (check[field]["status"][:, -1] == 0) & np.isfinite(check["truth_ball"]).all(axis=1)
+                    error = (prediction[valid] - check["truth_ball"][valid]) * np.asarray(check["pitch"])
+                    errors.append(np.linalg.norm(error, axis=1))
+                else:
+                    prob = np.clip(prediction[:, 0].astype(float), 1e-7, 1 - 1e-7)
+                    truth = check["dead"].astype(bool)
+                    errors.append(-np.where(truth, np.log(prob), np.log1p(-prob)))
+            errors = np.concatenate(errors)
+            if not len(errors):
+                raise ValueError("No masked ground truth in the ball validation data.")
+            loss = float(errors.mean())
             if loss < best_loss - 1e-4:
                 best_epoch, best_loss = epoch + 1, loss
                 if task == "ball":
@@ -219,26 +220,80 @@ def fit_epochs(parts, keys, field, task, args, seed, conditioned, epochs, valida
                   f"loss={loss:.5f} best={best_epoch} elapsed={perf_counter()-begin:.0f}s", flush=True)
             if epoch + 1 - best_epoch >= args.patience:
                 break
-        elif epoch + 1 == epochs:
-            print(f"REFIT {field} {task} conditioned={conditioned} epochs={epochs} "
+        else:
+            print(f"REFIT {field} {task} conditioned={conditioned} epoch={epoch+1}/{epochs} "
                   f"loss={training_loss:.5f} secs={perf_counter()-begin:.0f}", flush=True)
-    if validation is not None and task == "ball":
+    if select_training_loss or (validation is not None and task == "ball"):
         model.load_state_dict(best_weights)
+    if select_training_loss:
+        save_stage(args.output / "dead_best.pt", best_weights)
+        path = args.output / "training.json"
+        pending = path.with_suffix(".tmp")
+        pending.write_text(json.dumps({"selected_epoch": best_epoch, "best_train_bce": best_loss,
+                                       "history": history}, indent=2) + "\n", encoding="utf-8")
+        pending.replace(path)
     return model, best_epoch
 
 
-def fit(parts, keys, field, task, args, seed, conditioned=False, tuning_field=None, on_tuned=None):
+def fit(parts, keys, field, task, args, seed, conditioned=False, tuning_field=None, on_tuned=None,
+        initial_weights=None):
     # Fixed by the shuffled split; no evaluation half participates in stopping.
-    validation = keys[-1]
-    model, best_epoch = fit_epochs(parts, keys[:-1], tuning_field or field, task, args, seed, conditioned,
-                                   args.epochs, validation=validation)
+    validation = args.validation_halves or [keys[-1]]
+    inner_train = [key for key in keys if key not in validation]
+    stage = args.output / f"{task}_{seed}_{'event' if conditioned else 'plain'}_{field}"
+    selection = stage.with_suffix(".tuned.pt")
+    refit = stage.with_suffix(".refit.pt")
+    timing_path = stage.with_suffix(".timing.json")
+    record_timing = getattr(args, "record_fit_timing", False)
+    timing = json.loads(timing_path.read_text()) if record_timing and timing_path.is_file() else {}
+
+    def record(phase, began):
+        if record_timing:
+            timing.update(selected_epoch=best_epoch)
+            timing[f"{phase}_seconds"] = perf_counter() - began
+            pending = timing_path.with_suffix(".tmp")
+            pending.write_text(json.dumps(timing, indent=2) + "\n", encoding="utf-8")
+            pending.replace(timing_path)
+
+    if args.model_1 and selection.exists():
+        saved = torch.load(selection, map_location="cpu", weights_only=True)
+        best_epoch = saved["epoch"]
+        model = TranSPORTmer(task, use_events=conditioned, motion_input=args.motion_input).to(args.device)
+        model.load_state_dict(saved["weights"])
+    else:
+        fixed = args.ball_selected_epochs if task == "ball" else None
+        began = perf_counter()
+        model, best_epoch = fit_epochs(
+            parts, inner_train, tuning_field or field, task, args, seed, conditioned,
+            fixed or args.epochs, validation=None if fixed else validation,
+            initial_weights=initial_weights)
+        best_epoch = fixed or best_epoch
+        if args.model_1:
+            save_stage(selection, {"epoch": best_epoch, "weights": model.state_dict()})
+        record("selection", began)
     if on_tuned is not None:
         on_tuned(model)
     del model
+    release_device_cache(args)
     print(f"STOP {field} {task} conditioned={conditioned} selected_epoch={best_epoch} "
           f"validation={validation}", flush=True)
-    model, _ = fit_epochs(parts, keys, field, task, args, seed, conditioned, best_epoch)
+    if args.model_1 and refit.exists():
+        model = TranSPORTmer(task, use_events=conditioned, motion_input=args.motion_input).to(args.device)
+        model.load_state_dict(torch.load(refit, map_location="cpu", weights_only=True))
+    else:
+        began = perf_counter()
+        model, _ = fit_epochs(parts, keys, field, task, args, seed, conditioned, best_epoch,
+                              initial_weights=initial_weights)
+        if args.model_1:
+            save_stage(refit, model.state_dict())
+        record("refit", began)
     return model
+
+
+def save_stage(path, values):
+    pending = path.with_suffix(".tmp")
+    torch.save(values, pending)
+    pending.replace(path)
 
 
 @torch.inference_mode()
@@ -251,10 +306,10 @@ def predict(model, data, args, events_input=None):
     # Keep each sampled sequence on the same 6.25 Hz grid; cover the tail.
     last = max(0, (n-1)//STEP - WINDOW + 1)
     boundaries = np.unique(np.r_[np.arange(0, last, WINDOW//2), last]) * STEP
-    for begin in range(0, len(boundaries), args.batch):
-        xy, status, kind, ix = batch_tensor(data, boundaries[begin:begin+args.batch], args.device)
+    for begin in range(0, len(boundaries), args.microbatch):
+        xy, status, kind, ix = batch_tensor(data, boundaries[begin:begin+args.microbatch], args.device)
         e = torch.as_tensor(events_input[ix], device=args.device) if events_input is not None else None
-        with torch.autocast("cuda", dtype=torch.bfloat16):
+        with precision(args):
             y = model(xy, status, kind, e).float()
             if model.task == "dead":
                 y = y.sigmoid()
@@ -369,6 +424,17 @@ def score_half(model, half, field, args, event_values, movement, decode, setting
         np.savez_compressed(file, dead_probability=score, truth=truth,
                             before_rules=state, after_rules=decoded)
     pending.replace(path)
+    if args.model_1 or args.export_csv:
+        match, period = key["half_id"].split("_H")
+        csv = path.with_suffix(".csv")
+        pending = csv.with_suffix(".csv.tmp")
+        pd.DataFrame({
+            "match_id": match, "half": int(period), "frame_id": half["frame"],
+            "timestamp_s": half["timestamp"], "truth_dead": truth.astype(np.int8),
+            "dead_probability": score, "before_rules": state.astype(np.int8),
+            "after_rules": decoded.astype(np.int8),
+        }).to_csv(pending, index=False)
+        pending.replace(csv)
     changes = np.count_nonzero(state[:-1] != state[1:])
     print(f'DIAG {name} pstd={score.std():.5f} dead_share={state.mean():.4f} '
           f'prediction_runs={changes + 1}', flush=True)
@@ -379,10 +445,31 @@ def score_half(model, half, field, args, event_values, movement, decode, setting
     ]
 
 
-def run(args):
-    spec = prior.load_folds(args.splits)
+def run(args, *, score_evaluation_half=score_half, dead_initializers=None, experiment_metadata=None):
+    args.validation_halves = []
+    if args.holdout:
+        training = [match for match in dfl_load.MATCHES if match != args.holdout]
+        spec = {
+            "split_unit": "match", "train_matches": training, "test_match": args.holdout,
+            "folds": [{
+                "fold": 1,
+                "train": [f"{match}_H{half}" for match in training for half in (1, 2)],
+                "test": [f"{args.holdout}_H{half}" for half in (1, 2)],
+            }],
+        }
+        if not args.train_loss_only:
+            validation = args.validation_match or ("J03WQQ" if args.holdout != "J03WQQ" else training[-1])
+            args.validation_halves = [f"{validation}_H{half}" for half in (1, 2)]
+            spec["inner_validation_match"] = validation
+    else:
+        spec = prior.load_folds(args.splits)
     movement, decode, settings = load_rules()
-    parts = load_halves(args.inputs, args.cache)
+    parts = load_halves(args.inputs, args.cache, args.prepare_dfl)
+    if args.benchmark:
+        train = spec["folds"][0]["train"][:-1]
+        for task in ("ball", "dead"):
+            fit_epochs(parts, train, "train", task, args, 701 if task == "ball" else 801, False, 1)
+        return
     args.output.mkdir(parents=True, exist_ok=True)
     if args.pilot:
         fold = spec["folds"][0]
@@ -393,10 +480,15 @@ def run(args):
         summary = report(args.output, [row for pair in rows for row in pair])
         print(summary.to_string(index=False), flush=True)
         return
+    conditions = (("restored", "restored_train", "restored_test"),) if args.model_1 else (
+        ("observed", "train", "test"), ("restored", "restored_train", "restored_test"))
+    modes = ("none",) if args.model_1 else EVENT_MODES
+    expected_rows = 2 * 2 * len(conditions) * len(modes)
     manifest = {
         "splits": spec, "width": WIDTH, "heads": HEADS, "ffn": FFN, "tokens": WINDOW,
         "hz": FPS/STEP, "max_epochs": args.epochs, "dead_learning_rate": args.learning_rate, "window_stride_25fps": args.stride, "batch": args.batch,
-        "early_stopping": {"patience": args.patience, "min_delta": 1e-4, "validation": "last training half",
+        "early_stopping": {"patience": args.patience, "min_delta": 1e-4,
+                           "validation": "one training match" if args.holdout else "last training half",
                            "metrics": {"ball": "masked ADE", "dead": "binary log loss with event masking"},
                            "refit_all_training_halves": True,
                            "inner_restore_uses_only_inner_training": True},
@@ -404,11 +496,32 @@ def run(args):
         "ball_missing_target": BALL_MISSING, "ball_mask_mean_gap_seconds": 6,
         "ball_mask_seed_train": 1200, "ball_mask_seed_test": 1400,
         "event_window_seconds_each_side": events.WINDOW_SECONDS,
-        "event_modes": list(EVENT_MODES),
+        "event_modes": list(modes),
         "evaluation_fps": FPS, "rules": list(prior.RULES), "rule_settings": settings,
         "uncorroborated_restored_crossings_entry_cost_multiplier": 0.7,
         "weak_crossing_guard": "observed inside within 1s before plus observed outside within 1s after or observed restart within 3s",
     }
+    if args.model_1 or args.device != "cuda" or args.export_csv or args.microbatch != args.batch:
+        manifest.update(conditions=[c[0] for c in conditions], device=args.device,
+                        torch_version=str(torch.__version__), prediction_csv=args.model_1 or args.export_csv,
+                        microbatch=args.microbatch, preselected_ball_epochs=args.ball_selected_epochs)
+    if args.train_loss_only:
+        source = json.loads(args.ball_weights.with_name("manifest.json").read_text(encoding="utf-8"))
+        for key in ("train_matches", "test_match"):
+            if source["splits"][key] != spec[key]:
+                raise ValueError(f"Ball checkpoint uses a different {key}")
+        for key in ("motion_input", "width", "heads", "ffn", "tokens", "ball_missing_target",
+                    "ball_mask_mean_gap_seconds", "ball_mask_seed_train", "ball_mask_seed_test"):
+            if source[key] != manifest[key]:
+                raise ValueError(f"Ball checkpoint uses a different {key}")
+        manifest["ball_checkpoint"] = {
+            "path": str(args.ball_weights.resolve()),
+            "sha256": hashlib.sha256(args.ball_weights.read_bytes()).hexdigest(),
+        }
+        manifest["early_stopping"] = {"patience": args.patience, "min_delta": 1e-4,
+                                      "metrics": {"dead": "training BCE"}}
+    if experiment_metadata is not None:
+        manifest["experiment"] = experiment_metadata
     file = args.output / "manifest.json"
     if file.exists() and json.loads(file.read_text(encoding="utf-8")) != manifest:
         raise ValueError("Existing output was produced with different settings.")
@@ -419,6 +532,15 @@ def run(args):
         done = args.output / f"fold_{number}.json"
         if done.exists():
             old = json.loads(done.read_text(encoding="utf-8"))
+            if len(old) != expected_rows:
+                raise ValueError(f"Incomplete scores in {done}")
+            if args.model_1 or args.export_csv:
+                for half in test:
+                    for condition, _, _ in conditions:
+                        for mode in modes:
+                            csv = args.output / "predictions" / f"{half}_{condition}_{mode}.csv"
+                            if not csv.is_file():
+                                raise FileNotFoundError(f"Completed fold {number} is missing {csv}")
             rows.extend(old)
             print(f"FOLD {number} already complete", flush=True)
             continue
@@ -427,40 +549,52 @@ def run(args):
             for key in train:
                 parts[key]["restored_tuning"] = complete(imputer, parts[key]["train"], args)
 
-        imputer = fit(parts, train, "train", "ball", args, 700 + number, on_tuned=restore_inner)
+        if args.train_loss_only:
+            imputer = TranSPORTmer("ball", motion_input=args.motion_input).to(args.device)
+            imputer.load_state_dict(torch.load(args.ball_weights, map_location="cpu", weights_only=True))
+            print(f"REUSE ball checkpoint {args.ball_weights.name}", flush=True)
+        else:
+            imputer = fit(parts, train, "train", "ball", args, 700 + number, on_tuned=restore_inner)
         for key in train:
             parts[key]["restored_train"] = complete(imputer, parts[key]["train"], args)
         for key in test:
             parts[key]["restored_test"] = complete(imputer, parts[key]["test"], args)
         del imputer
+        release_device_cache(args)
         fold_rows = []
-        for condition, training, testing in (("observed", "train", "test"),
-                                             ("restored", "restored_train", "restored_test")):
+        for condition, training, testing in conditions:
             seed = 800 + number
             tuning = "restored_tuning" if condition == "restored" else training
-            baseline = fit(parts, train, training, "dead", args, seed, tuning_field=tuning)
-            conditioned = fit(parts, train, training, "dead", args, seed,
-                              conditioned=True, tuning_field=tuning)
+            if args.train_loss_only:
+                baseline, _ = fit_epochs(parts, train, training, "dead", args, seed, False,
+                                         args.epochs, select_training_loss=True)
+            else:
+                initializer = None if dead_initializers is None else dead_initializers[number]
+                baseline = fit(parts, train, training, "dead", args, seed, tuning_field=tuning,
+                               initial_weights=initializer)
+            models = {"none": baseline}
+            if "masked" in modes:
+                models["masked"] = fit(parts, train, training, "dead", args, seed,
+                                       conditioned=True, tuning_field=tuning)
             for key in test:
                 half = parts[key]
                 data = half[testing]
                 masked = np.zeros((len(data["xy"]), 7), dtype=np.float32)
-                for mode, model, event_values in (
-                    ("none", baseline, None), ("masked", conditioned, masked),
-                ):
-                    fold_rows.extend(score_half(
-                        model, half, testing, args, event_values, movement, decode, settings,
+                for mode, model in models.items():
+                    fold_rows.extend(score_evaluation_half(
+                        model, half, testing, args, masked if mode == "masked" else None,
+                        movement, decode, settings,
                         fold=number, half_id=key, condition=condition, event_mode=mode,
                     ))
-            del baseline, conditioned
+            del baseline, models, model
             if number == 7:
                 completed = [row for row in rows + fold_rows if row["condition"] == condition]
                 summary = pd.DataFrame(completed).groupby(["event_mode", "stage"])[prior.METRICS].mean().reset_index()
-                for mode in EVENT_MODES:
+                for mode in modes:
                     result = summary[(summary.event_mode == mode) & (summary.stage == "after_rules")].iloc[0]
                     print(f"RESULT {condition} {mode} dead={result.dead_spell_f1:.6f} alive={result.alive_spell_f1:.6f}", flush=True)
-        if len(fold_rows) != 16:
-            raise ValueError("Expected 16 half/condition/stage rows.")
+        if len(fold_rows) != expected_rows:
+            raise ValueError(f"Expected {expected_rows} half/condition/stage rows.")
         tmp = done.with_suffix(".tmp")
         tmp.write_text(json.dumps(fold_rows, indent=2) + "\n", encoding="utf-8")
         tmp.replace(done)
@@ -470,14 +604,23 @@ def run(args):
             half.pop("restored_train", None)
             half.pop("restored_test", None)
             half.pop("restored_tuning", None)
-        print(f"FOLD {number}/7 complete in {perf_counter()-start:.0f}s", flush=True)
-    if len(rows) != 112:
-        raise ValueError("Expected seven complete folds.")
+        print(f"EVALUATION {number}/{len(spec['folds'])} complete in {perf_counter()-start:.0f}s", flush=True)
+    if len(rows) != len(spec["folds"]) * expected_rows:
+        raise ValueError("Missing evaluation scores.")
+    print(report(args.output, rows).to_string(index=False), flush=True)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--splits", type=Path, required=True)
+    split = parser.add_mutually_exclusive_group(required=True)
+    split.add_argument("--splits", type=Path)
+    split.add_argument("--holdout", choices=dfl_load.MATCHES,
+                       help="Evaluate both halves of one match, with the other six used for training")
+    parser.add_argument("--validation-match", choices=dfl_load.MATCHES,
+                        help="Select epochs using this training match before refitting on all six")
+    parser.add_argument("--train-loss-only", action="store_true",
+                        help="Train the holdout classifier once, selecting by training loss")
+    parser.add_argument("--ball-weights", type=Path, help="Previously fitted ball restorer from the same split")
     parser.add_argument("--inputs", type=Path, default=ROOT / "data/model_inputs/transportmer")
     parser.add_argument("--cache", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -486,16 +629,44 @@ def main():
     parser.add_argument("--learning-rate", type=float, default=0.0002)
     parser.add_argument("--motion-input", action="store_true", help="Add consecutive-coordinate displacement and its validity mask")
     parser.add_argument("--pilot", action="store_true", help="Run only fold 1 without event inputs or ball restoration")
+    parser.add_argument("--model-1", action="store_true", help="Run only restored ball, no events, and export CSVs")
+    parser.add_argument("--export-csv", action="store_true", help="Write frame-level CSVs next to existing NPZ files")
+    parser.add_argument("--prepare-dfl", action="store_true", help="Build missing training inputs from local DFL data")
+    parser.add_argument("--benchmark", action="store_true", help="Time eight training batches per task from fold 1")
+    parser.add_argument("--device", choices=("cuda", "mps", "cpu"), default="cuda")
     parser.add_argument("--batch", type=int, default=24)
+    parser.add_argument("--microbatch", type=int, help="Accumulate gradients for each logical batch")
+    parser.add_argument("--ball-selected-epochs", type=int,
+                        help="Reuse an epoch count already selected on the same training and validation split")
     parser.add_argument("--stride", type=int, default=240, help="Training-window stride in original frames")
     args = parser.parse_args()
+    if args.microbatch is None:
+        args.microbatch = args.batch
     if min(args.batch, args.epochs, args.stride, args.patience) < 1:
         parser.error("epochs, batch, stride and patience must be positive")
     if not math.isfinite(args.learning_rate) or args.learning_rate <= 0:
         parser.error("learning rate must be finite and positive")
-    if not torch.cuda.is_available():
-        parser.error("CUDA is required")
-    args.device = "cuda"
+    if args.device == "cuda" and not torch.cuda.is_available():
+        parser.error("CUDA is unavailable")
+    if args.device == "mps" and not torch.backends.mps.is_available():
+        parser.error("MPS is unavailable")
+    if args.pilot and (args.model_1 or args.benchmark):
+        parser.error("--pilot is separate from --model-1 and --benchmark")
+    if args.validation_match and (not args.holdout or args.validation_match == args.holdout):
+        parser.error("--validation-match requires a different --holdout match")
+    if not 1 <= args.microbatch <= args.batch:
+        parser.error("--microbatch must be between 1 and --batch")
+    if args.ball_selected_epochs is not None and not (
+        args.model_1 and args.holdout and 1 <= args.ball_selected_epochs <= args.epochs
+    ):
+        parser.error("--ball-selected-epochs requires a model 1 holdout and a valid epoch count")
+    if args.train_loss_only and (
+        not args.model_1 or not args.holdout or not args.ball_weights or args.validation_match
+        or args.ball_selected_epochs or args.benchmark
+    ):
+        parser.error("--train-loss-only requires --model-1, --holdout and --ball-weights")
+    if args.ball_weights and not args.train_loss_only:
+        parser.error("--ball-weights is for --train-loss-only")
     torch.set_float32_matmul_precision("high")
     run(args)
 
