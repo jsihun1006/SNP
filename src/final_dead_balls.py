@@ -214,7 +214,8 @@ def penalty_kicks(match):
     import eval_penalty_combo as pk
     # run_up_v2의 차는 순간 = 배치가 처음 깨진 순간(src/eval_penalty_moment.py: 공개 실제 페널티킥 5개 오차 절댓값
     # 중앙값 0.08초, 마크 도착 기준은 0.20초로 일찍 잡힘. 가짜 감지는 둘 다 0).
-    found = sorted([(k, "run_up_v2") for k in pk.run_up_v2(match, "break")]
+    pk.FORMATION_MIN_VISIBLE = CONFIG["penalty"]["min_visible"]
+    found = sorted([(k, "run_up_v2") for k in pk.run_up_v2(match, CONFIG["penalty"]["run_up_moment"])]
                    + [(k, "setup_then_kick_v2") for k in pk.setup_then_kick_v2(match)])
     out = []
     for k, method in found:
@@ -472,6 +473,18 @@ def main():
     for a, b, _ in final:
         mask[a:b] = True
     mask &= graded
+    # ⑦ 관측 라인 아웃 고정 프레임은 최종 출력에서도 유지한다(lineout_lock이 꺼져 있으면 support에 없어 그대로).
+    locked = slow_buildup.apply_locks(mask, support) & graded
+    if (locked != mask).any():
+        kinds = {}
+        for a, b, k in final:
+            kinds.update({i: k for i in range(a, b)})
+        final = []
+        for a0, b0 in blocks:
+            for a, b in runs_of(locked[a0:b0]):
+                ks = [kinds[i] for i in range(a0 + a, a0 + b) if i in kinds]
+                final.append((a0 + a, a0 + b, max(set(ks), key=ks.count) if ks else "lineout_lock"))
+        mask = locked
     spans = [(a, b) for a, b, _ in final]
     shifts = [(a - s) / FPS for a, b, k in final if k == "model+out_start" for s, e in model_segments if e == b]
     lines = ["== final dead balls: model ({}) + line-outs + public kickoffs ==".format(CONFIG["default_feature_set"]),

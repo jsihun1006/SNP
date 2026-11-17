@@ -1,8 +1,8 @@
 """진단: 최종 데드볼 파이프라인의 단계마다 판정이 어떻게 바뀌는지 한 지점 주변에서 보여 준다.
 직접 연 터미널에서 실행할 것(대회 트래킹을 읽는다). 먼저 python src/apply_competition.py 결과가 있어야 한다.
 
-    python src/trace_stages.py --frame 124415            # 앞뒤 20초
-    python src/trace_stages.py --frame 124415 --window 30
+    python src/trace_stages.py --frame <프레임>            # 앞뒤 20초
+    python src/trace_stages.py --frame <프레임> --window 30
 
 한 글자 = 1초(25프레임), D = 그 1초의 절반 이상이 데드, . = 인플레이. 맨 아래 줄은 가운데(--frame) 표시.
 단계(final_dead_balls.main과 같은 순서):

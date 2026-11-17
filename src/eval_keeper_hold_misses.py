@@ -42,8 +42,20 @@ def first_fail(c):
     return "zone:" + c["zone"]
 
 
-VERSIONS = {"current": dict(kh.SETTING),
-            "v8": dict(kh.SETTING, arrival_model=True, fill_before=True, merge_short_dead=True)}
+# 2026-11-17: 기본 규칙(v3, kh.CLEAN)에서 DFL이 놓치는 쥠의 원인을 세어, 각 보정(v4 완화·carry·continue_hold)이
+# DFL에서 확인되는 실패 유형을 겨냥하는지 본다. evidence = 지금 설정(kh.EVIDENCE).
+VERSIONS = {"v3": dict(kh.CLEAN), "evidence": dict(kh.EVIDENCE)}
+STILL_MPS = 0.35   # ⑤ track_carry 하한 재사용
+
+
+def outside_box(point, pitch):
+    """쥠이 끝날 때 공이 두 페널티 박스 모두의 밖(골키퍼가 굴려 나가거나 던짐)."""
+    length, width = pitch
+    x, y = point
+    if not (np.isfinite(x) and np.isfinite(y)):
+        return False
+    in_y = abs(y - width / 2) <= kh.BOX_HALF_M
+    return not (in_y and (x <= kh.BOX_DEPTH_M or x >= length - kh.BOX_DEPTH_M))
 
 
 def classify(cond, m, match, score, spans, ball_sig_for_arrival, setting=None, version="current"):
@@ -69,9 +81,14 @@ def classify(cond, m, match, score, spans, ball_sig_for_arrival, setting=None, v
                 cs_ = [c for c in carries if c["a"] < b and a < c["b"]]
                 reason = cs_[0]["first_fail"] if cs_ else "no_carry_candidate"
         lo = max(a - 2 * FPS, 0)
+        b_full = np.asarray(ball_sig_for_arrival["ball"], dtype=np.float64)
+        sp = np.linalg.norm(np.diff(b_full[a:b + 1], axis=0), axis=1) * FPS
+        end = np.asarray(ball_sig_for_arrival["ball"], dtype=np.float64)[b - 1]
         rows.append({"version": version, "cond": cond, "match": m, "seconds": (b - a) / FPS, "kind": kind, "reason": reason,
                      "fast_arrival": bool(ball_sig_for_arrival["moving"][lo:a].any()),
-                     "model_dead_1s": bool(plain[max(a - FPS, 0)])})
+                     "model_dead_1s": bool(plain[max(a - FPS, 0)]),
+                     "ball_still_most": bool(np.nanmean(sp < STILL_MPS) > 0.5) if len(sp) else False,
+                     "ends_outside_box": bool(outside_box(end, match.pitch))})
     return rows
 
 
@@ -89,7 +106,8 @@ def main():
         label = oof["dead"].to_numpy().astype(bool)
         score = oof["score"].to_numpy(np.float64)
         spans = keeper_hold_spans(match, label)
-        full_sig = fd.ball_signals(match)
+        full_sig = dict(fd.ball_signals(match))
+        full_sig["ball"] = match.ball
         ball = np.asarray(match.ball, dtype=np.float64).copy()
         for a, b in spans:
             ball[a:b] = np.nan
@@ -101,13 +119,16 @@ def main():
     t = pd.DataFrame(rows)
     print("\n== holds by outcome (count, seconds) ==")
     print(t.groupby(["version", "cond", "kind"]).agg(n=("seconds", "size"), seconds=("seconds", "sum")).round(1).to_string())
-    t = t[t["version"] == "v8"]
-    print("\n(below: v8 only)")
+    t = t[t["version"] == "v3"]
+    print("\n(below: v3 = base rule only)")
     print("\n== missed holds: reason ==")
     miss = t[t["kind"] == "missed"]
     print(miss.groupby(["cond", "reason"]).agg(n=("seconds", "size"), seconds=("seconds", "sum")).round(1).to_string())
     print("\n== missed holds: signals for the next fix ==")
-    print(miss.groupby("cond")[["fast_arrival", "model_dead_1s"]].mean().round(2).to_string())
+    cols = ["fast_arrival", "model_dead_1s", "ball_still_most", "ends_outside_box"]
+    print(miss.groupby("cond")[cols].mean().round(2).to_string())
+    print("\n== missed holds: counts of each signal ==")
+    print(miss.groupby("cond")[cols].sum().to_string())
     print("\n== all holds: fast_arrival share by outcome ==")
     print(t.groupby(["cond", "kind"])["fast_arrival"].mean().round(2).to_string())
 

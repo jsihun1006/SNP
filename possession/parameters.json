@@ -1,0 +1,192 @@
+{
+  "model_name": "possession",
+  "version": "epoch29_corrected_76.22",
+  "selected_epoch": 29,
+  "ha_model_count": 2,
+  "split": {
+    "train": [
+      "J03WMX",
+      "J03WN1",
+      "J03WOH",
+      "J03WOY",
+      "J03WPY"
+    ],
+    "validation": "J03WQQ",
+    "test": "J03WR9"
+  },
+  "network_25fps": {
+    "seed": 100,
+    "train_matches": "J03WMX J03WN1 J03WOH J03WOY J03WPY",
+    "validation_match": "J03WQQ",
+    "test_match": "J03WR9",
+    "refine_fps": 25,
+    "refine_window_frames": 100,
+    "train_stride_seconds": 0.5,
+    "infer_stride_frames": 25,
+    "ball_missing_fraction": 0.095,
+    "synthetic_gap_min_frames": 5,
+    "synthetic_gap_max_frames": 25,
+    "pitch_x": 105,
+    "pitch_y": 68,
+    "player_velocity_filter_frames": 15,
+    "player_acceleration_filter_frames": 9,
+    "width": 128,
+    "heads": 4,
+    "blocks": 2,
+    "temporal_layers": 2,
+    "inducing_points": 16,
+    "ffn_width": 256,
+    "dropout": 0.1,
+    "batch": 64,
+    "lr": 0.001,
+    "min_lr": 1e-05,
+    "weight_decay": 0.0001,
+    "max_epochs": 40,
+    "epoch_window_cap": 0,
+    "lr_patience": 3,
+    "early_stop": 5,
+    "state_loss_weight": 1.0,
+    "transition_loss_weight": 1.0,
+    "crf_loss_weight": 1.0,
+    "max_transition_class_weight": 8,
+    "pitch_flip": true,
+    "amp": true,
+    "amp_dtype": "float16",
+    "checkpoint_selection": "minimum_candidate_validation_loss",
+    "gate_threshold": [
+      0.5,
+      2.5,
+      0.65
+    ],
+    "gate_margin_frames": 15,
+    "candidate_only_loss": true,
+    "base_model_frozen": true
+  },
+  "network_5fps": {
+    "trial": 140,
+    "sources": [
+      "sportec"
+    ],
+    "lomocv": true,
+    "cv_fold_idx": 6,
+    "macro_type": "poss_edge",
+    "micro_type": "poss_edge",
+    "node_in_dim": 8,
+    "edge_in_dim": 0,
+    "team_size": 11,
+    "target_fps": 5.0,
+    "window_seconds": 10.0,
+    "window_stride": 1,
+    "no_self_loops": false,
+    "flip_pitch": true,
+    "agent_model": "set_tf",
+    "seq_model": "sab",
+    "crf_model": "dynamic_sparse_crf",
+    "att_heads": 4,
+    "coarse_dim": 16,
+    "fine_dim": 64,
+    "seq_dim": 128,
+    "crf_edge_dim": 16,
+    "dropout": 0.1,
+    "emit_loss": true,
+    "src_loss": true,
+    "dst_loss": true,
+    "team_loss": false,
+    "macro_weight": 1.0,
+    "rloss_weight": 0.0,
+    "crf_weight": 1.0,
+    "l1_weight": 0,
+    "n_epochs": 50,
+    "ce_epochs": 0,
+    "batch_size": 32,
+    "start_lr": 0.001,
+    "min_lr": 1e-05,
+    "weight_decay": 0.0001,
+    "clip": null,
+    "seed": 100,
+    "num_workers": 4,
+    "print_batch": 200,
+    "save_epoch": 10,
+    "resume_file": null,
+    "best_loss": null,
+    "best_pos_error": null,
+    "best_acc": null,
+    "distributed": false,
+    "world_size": 1,
+    "total_params": 3431031
+  },
+  "correction": {
+    "gate": "original",
+    "blend": 0.5,
+    "edge_frames": 10,
+    "switch_cost": 0.0,
+    "minimum_gain": 0.1,
+    "join_threshold": 0.0,
+    "minimum_pair_gain": 0.15,
+    "snap_radius_frames": 10
+  },
+  "calibration": {
+    "base_temperature": 2.0,
+    "specialist_temperature": 0.5
+  },
+  "weights": {
+    "specialist": {
+      "file": "weights/specialist_epoch29.pt",
+      "sha256": "cc4345f9f3170876300631e1fe0eab0e6a932530bb27bdb37dc7e311d6542bfb"
+    },
+    "pathcrf": {
+      "file": "weights/pathcrf_trial140.pt",
+      "sha256": "55757d9dca9777d60356ba368dc315867ea1ae38e90c332e935b9c5be72d83c9"
+    }
+  },
+  "dfl_reference": {
+    "condition": "corrected_selected",
+    "spellF1": 0.7622418879056048,
+    "spurious_transitions": 48,
+    "missed_transitions": 112,
+    "matched_transitions": 166,
+    "transition_mae_ms": 139.9999999999998,
+    "transition_tolerance_frames": 25,
+    "short_spells": 94,
+    "short_matched": 28,
+    "short_recall_iou_0_5": 0.2978723404255319,
+    "frame_accuracy": 0.938088986825449,
+    "wrong_runs": 352,
+    "wrong_frames": 5756,
+    "missed_spells": 106,
+    "fully_missed_spells": 56,
+    "overextended_spells": 42,
+    "fragmented_spells": 0,
+    "boundary_missed_spells": 8,
+    "short_missed": 66
+  },
+  "output": {
+    "columns": [
+      "frame",
+      "label"
+    ],
+    "labels": {
+      "0": "H",
+      "1": "A",
+      "2": "D"
+    },
+    "index": "0-based consecutive video frame"
+  },
+  "scope": "submission inference only; existing D mask supplied externally; no MLP or training",
+  "score_scope": "76.22% on reused DFL J03WR9 with the original fixed scene-D mask; changing D changes the condition",
+  "entrypoint": "run.py",
+  "prepared_input": {
+    "match": "J03WR9",
+    "tracking_npz": "inputs/J03WR9.npz",
+    "base_npz": "inputs/J03WR9_base5.npz",
+    "possession_ground_truth_in_npz": false,
+    "D_source": "same fixed predicted D used for the 76.22% reference"
+  },
+  "dfl_preprocessing": {
+    "entrypoint": "prepare_dfl.py",
+    "inputs": "local DFL XML or cached tracking/meta Parquet",
+    "native_coordinate_cache": "optional existing 105x68m coordinate Parquet",
+    "network_download": false,
+    "inference_or_training": false
+  }
+}

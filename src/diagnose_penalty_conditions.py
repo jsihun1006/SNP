@@ -46,7 +46,7 @@ def conditions(match, start=0, end=None):
     visible = seen.sum(axis=1)
     sig, per_side = pk.signals(match)
     toward = pk.toward_goal(match)
-    kicks = {"run_up_v2": set(pk.run_up_v2(match, "break")), "setup_then_kick_v2": set(pk.setup_then_kick_v2(match))}
+    kicks = {"run_up_v2": set(pk.run_up_v2(match, CONFIG["penalty"]["run_up_moment"])), "setup_then_kick_v2": set(pk.setup_then_kick_v2(match))}
     frames = np.arange(start, end)
     gap = int(0.5 * FPS)
     speed = np.full(x.shape, np.nan)

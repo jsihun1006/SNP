@@ -1,0 +1,10 @@
+torch==2.8.0
+numpy
+pandas>=2.2
+scipy>=1.12
+matplotlib
+tqdm
+scikit-learn
+torch-geometric
+pyarrow>=15
+kloppy==3.18.0

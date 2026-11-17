@@ -16,7 +16,7 @@ v2 결과: dfl_hidden −0.0001(3/3), SkillCorner +0.0011(6/6), 바꾼 프레임
 v3: + 사라지기 직전 1초가 모두 인플레이로 판정돼 있어야 함(같은 기준으로 다시 판정).
 v3 결과: dfl_hidden +0.0008(2/1), SkillCorner +0.0017(6/3), dfl·metrica 0 → 통과, 채택(final_dead_balls 2d).
 SkillCorner 10건 중 4건은 바꾼 프레임이 실제 데드였다(효과는 작고 오인도 남아 있다).
-v4(대회 진단: 골키퍼 옆 탈락 대부분이 in_play·2 m 조건, 던짐은 박스 밖에서 다시 보임): keeper_nearest·in_play_point·
+v4(DFL 쥠 누락 분석: 공 삭제 조건에서 놓친 쥠 다수가 '사라지기 전 이미 데드', 던진 공은 박스 밖에서 다시 보임): keeper_nearest·in_play_point·
    zone_any 세 완화. v3·v4와 하나씩 뺀 셋을 한 번에 같은 기준으로 판정(결과 보기 전에 정함).
    결과(dfl_hidden / SkillCorner, 좋아짐/나빠짐): v3 +0.0008 / +0.0017(6/3) 통과, v4 +0.0026 / +0.0013(7/9) 불통과,
    v4_no_nearest +0.0026 / +0.0031(8/6) 통과, v4_no_in_play_point +0.0030 / +0.0028(8/7) 통과,
@@ -66,10 +66,14 @@ def run(cond, name, match, score, label):
 
 
 # v4: 세 완화를 모두 켠 것과 하나씩 끈 것을 한 번에 같은 기준으로 판정한다(결과 보기 전에 정함, 2026-11-15).
-VARIANTS = {"adopted": dict(kh.V4_ADOPTED),
-            "v9_pitch": dict(kh.V4_ADOPTED, pitch_check=True),
-            "v9_traj": dict(kh.V4_ADOPTED, trajectory=True),
-            "v9_both": dict(kh.V4_ADOPTED, pitch_check=True, trajectory=True)}
+_NO_V8 = dict(arrival_model=False, fill_before=False, merge_short_dead=False)
+VARIANTS = {"adopted": dict(kh.EVIDENCE, trajectory=False),
+            "v9_traj": dict(kh.EVIDENCE)}
+# trajectory 재확인(2026-11-17): v9는 v8 위에서 검증했으므로 v8·pitch_check를 뺀 상태(adopted)에서 v9와 같은 기준으로
+#   다시 판정한다(기준은 아래 v9 주석 그대로). 불통과면 trajectory도 끈다.
+# 그 전 비교(같은 날): v8·pitch_check를 뺀 비용 측정(no_v8, no_pitch, no_v8_no_pitch vs V4_ADOPTED).
+# 회색 지대 정리(2026-11-17): v8은 사전 기준(DFL 하락 없음) 불통과였는데 채택했고, pitch_check는 공개 데이터 효과 0이다.
+#   둘을 뺀 것과 지금(adopted, v9까지)을 같은 조건으로 비교해 빼는 비용을 잰다. 빼는 것이 원칙이라 통과 기준은 두지 않는다.
 # v9(2026-11-16): adopted = 지금 파이프라인(v8까지). pitch = 경기장 밖에서 다시 보인 공은 재개 자리로 봄(빈틈 수정),
 #   traj = 사라진 위치가 골키퍼 2 m 밖이어도, 마지막 속도로 1초 늘인 경로가 골키퍼 2 m 안을 지나면 인정.
 #   조건 dfl_flight 추가: 쥠 시작 1초 전(날아오는 구간)부터 끝까지 공 삭제(대회처럼 날아오는 도중 사라짐).

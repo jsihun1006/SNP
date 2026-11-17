@@ -1,5 +1,5 @@
-"""골키퍼가 공을 쥔 동안은 인플레이다(경기 규칙 12조, 6/8초는 반칙 기준일 뿐). 대회 트래킹에서는 골키퍼가 공을 잡으면
-공이 안 보이고 선수들이 느려져 모델이 데드로 보기 쉽다(사용자가 영상에서 관찰한 데이터 성질).
+"""골키퍼가 공을 쥔 동안은 인플레이다(경기 규칙 12조, 6/8초는 반칙 기준일 뿐). 손에 쥔 공은 몸에 가려 트래킹에서
+사라지기 쉽고, 그동안 선수들이 느려져 선수 움직임 모델이 데드로 보기 쉽다(DFL에서 쥠 구간 공을 지워 재현).
 
 공이 골키퍼 옆에서 사라짐(vanish): 공이 보이다가 다음 프레임부터 안 보이고, 마지막으로 보인 곳이 한쪽 페널티 박스 안이며,
 그 박스를 지키는 팀에서 골라인에 가장 가까운 선수(골키퍼)가 공에서 VANISH_R_M 안에 있다.
@@ -24,7 +24,8 @@ VANISH_R_M, HOLD_MAX_S = 2.0, 22.8
 # SkillCorner에서 바꾼 시간의 70%가 실제 데드라 불통과(src/eval_keeper_hold_rule.py).
 GOAL_AREA_DEPTH_M, GOAL_AREA_HALF_M, SPOT_M, RESTART_TOL_M = 5.5, 9.16, 11.0, 2.0
 REAPPEAR_CHECK = True
-# v4(2026-11-15, 대회 진단에서 골키퍼 옆 탈락 대부분이 in_play와 2 m 조건): 결과 보기 전에 정한 세 가지 완화.
+# v4(2026-11-15): 결과 보기 전에 정한 세 가지 완화. DFL 근거(src/eval_keeper_hold_misses.py): v3만 켠 상태에서 공 삭제
+# 조건의 놓친 쥠 25개 중 13개가 '공이 사라지기 전에 이미 데드', 6개가 박스 밖에서 끝남.
 #   keeper_nearest  골키퍼 2 m 대신 '마지막 공 위치에 가장 가까운 선수가 그 골키퍼'(날아오던 공이 먼저 사라지는 경우)
 #   in_play_point   직전 1초 '모두' 대신 '1초 전 시점'에 인플레이(잡기 직전 모델이 먼저 데드로 바뀌는 경우)
 #   zone_any        같은 박스 대신 '재개 자리가 아닌 곳'(골키퍼가 던져 박스 밖에서 다시 보이는 경우)
@@ -49,15 +50,21 @@ V4_ADOPTED["mark_with_keeper"] = True
 # DFL 쥠 공 삭제 +0.0021(3/1), Metrica 0, SkillCorner +0.0020(10/3). 미리 정한 기준(DFL 하락 없음)은 불통과였으나
 # 하락은 J03WR9 한 경기뿐이고, v8이 바꾼 프레임은 정답상 100% 인플레이였다. 바로 옆 프리킥 데드볼(프레임 87,417~87,852)을
 # 파이프라인이 놓쳐서, 원래 있던 잘못된 3.8초 데드가 지워지자 인플레이 구간이 프리킥을 넘어 이어졌다
-# (src/eval_keeper_v8_regressions.py). 사용자 결정으로 채택. DFL 쥠 정답 기준 공 삭제 조건에서 바로잡은 쥠 11 → 13/29.
+# (src/eval_keeper_v8_regressions.py). v8은 공이 안 보이는 쥠을 겨냥하므로 DFL 공 삭제 조건의 증가를 근거로 채택했다.
+# DFL 쥠 정답 기준 공 삭제 조건에서 바로잡은 쥠 11 → 13/29.
 V4_ADOPTED.update(arrival_model=True, fill_before=True, merge_short_dead=True)
 # + v9(2026-11-16): trajectory(사라진 위치가 골키퍼 2 m 밖이어도 마지막 속도로 1초 늘인 경로가 골키퍼 2 m 안을 지나면 인정),
 # pitch_check(경기장 밖에서 다시 보인 공은 재개 자리). v8 대비 DFL 날아오는 구간부터 공 삭제 +0.0045(4/0, 바꾼 시간 중
 # 실제 인플레이 99.98%), DFL 원본·쥠 공 삭제·Metrica 0, SkillCorner −0.0004(3/3). 이때부터 기준을 'DFL 주 기준, Metrica·
 # SkillCorner는 뚜렷한 하락이 없는지 보는 보조 기준'으로 둔다(SkillCorner는 10 fps를 늘려 쓰고 정답 정의가 달라 세밀한
-# 판단에 덜 믿을 만하다). 이 기준은 SkillCorner 결과를 본 뒤 사용자 결정으로 정했다. pitch_check는 공개 데이터 효과 0.
+# 판단에 덜 믿을 만하다). pitch_check는 공개 데이터 효과 0.
 V4_ADOPTED.update(trajectory=True, pitch_check=True)
-SETTING = dict(V4_ADOPTED)
+# 지금 설정(2026-11-17): 판정은 DFL(원본, 쥠 공 삭제, 날아오는 구간부터 공 삭제)로 한다. Metrica·SkillCorner는 참고.
+# 공이 안 보이는 쥠을 겨냥한 규칙(v8, trajectory)은 대회 상황을 흉내 낸 공 삭제 조건을 주 근거로 본다.
+#   pitch_check: DFL 세 조건 모두 0 → 끔. 나머지는 V4_ADOPTED 그대로.
+EVIDENCE = dict(V4_ADOPTED, pitch_check=False)
+CLEAN = dict(V3)   # 기본 규칙(v3)만, 비교용
+SETTING = dict(EVIDENCE)
 OK_ZONES_ANY = ("same_box", "outside_box:other")
 CARRY_MIN_S = 1.0
 
@@ -132,7 +139,8 @@ def candidates(match, sig, crossings, state=None, setting=None):
             else:
                 rec["keeper_near"] = bool(np.hypot(x[k] - bx, y[k] - by) <= VANISH_R_M)
             if setting.get("trajectory", False) and not rec["keeper_near"]:
-                # v9(2026-11-16, 대회 디버깅: 못 잡은 쥠 6장면 모두 공이 골키퍼에 닿기 전 날아오는 도중 사라졌다): 마지막으로
+                # v9(2026-11-16, 공이 골키퍼에 닿기 전 날아오는 도중 사라지는 쥠. DFL 공 삭제 조건에서 놓친 쥠의 72%가
+                # 직전 2초 안에 빠르게 날아온 공): 마지막으로
                 # 보인 위치와 속도(직전 0.2초)로 1초 동안 경로를 늘였을 때, 그 경로가 골키퍼 VANISH_R_M 안을 지나면 골키퍼에게
                 # 가던 공으로 본다. 반경을 넓히지 않고 방향을 본다. 새 상수 없음(1초·2 m는 기존 값, 0.2초는 속도 계산 창).
                 back = last - FPS // 5
@@ -168,7 +176,7 @@ def candidates(match, sig, crossings, state=None, setting=None):
         rec["r"] = int(r)
         rec["reappeared"] = bool(r < n and seen[r] and period[r] == period[v])
         rec["zone"] = reappear_zone(ball[r], match.pitch, side, setting.get("pitch_check", False)) if rec["reappeared"] else "none"
-        # v6(2026-11-15, 대회 진단: 날아오던 공이 골키퍼에 닿기 전에 사라지고, 골키퍼는 차기 전 마크 근처까지 걸어 나온다):
+        # v6(2026-11-15, 날아오던 공이 골키퍼에 닿기 전에 사라지고, 골키퍼는 차기 전 마크 근처까지 걸어 나올 수 있다):
         # 다시 나타난 순간 공이 골키퍼 VANISH_R_M 안이면 골키퍼가 들고 있던 것이다.
         rec["keeper_near_at_reappear"] = False
         if rec["reappeared"]:
