@@ -45,8 +45,8 @@ None of it comes from the provided match.
 | dataset | role | labels | who labelled | amount |
 |---|---|---|---|---|
 | DFL/IDSSE open data (Bassek et al. 2025, Scientific Data 12, 195; CC-BY 4.0) | training + main validation | ball status alive/dead in the tracking files | DFL (data provider) | 7 Bundesliga matches |
-| Metrica Sports sample data | validation only | dead balls derived from the event files | Metrica Sports | 3 matches |
-| SkillCorner open data (A-League 2024/25; MIT) | validation only | outside "phases of play" = dead | SkillCorner | 20 matches |
+| Metrica Sports sample data (github.com/metrica-sports/sample-data; no licence file, source acknowledged as its README asks) | validation only | dead balls derived from the event files | Metrica Sports | 3 matches |
+| SkillCorner open data (github.com/SkillCorner/opendata, A-League 2024/25; MIT) | validation only | outside "phases of play" = dead | SkillCorner | 20 matches |
 
 Validation is leave-one-match-out on DFL. Because the provided tracking often loses the ball when the
 goalkeeper holds it, DFL is also scored with the ball deleted during holds (and from 1 s before the keeper

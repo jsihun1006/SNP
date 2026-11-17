@@ -50,8 +50,15 @@ between phases is in [model/README.md](model/README.md).
 - Training and tuning use external data only (DFL/IDSSE, Metrica sample data, SkillCorner open data).
 - The published 5 minutes are used only to check the pipeline, never to choose a setting.
 
-## Licences
+## Licences and data sources
 
-Organiser code (`games.py`, `evaluation/`, `starter/`) keeps its licence ([LICENSE](LICENSE)). External data
-used for training/validation: DFL/IDSSE open data (CC-BY 4.0, Bassek et al. 2025), SkillCorner open data
-(MIT), Metrica Sports sample data.
+Organiser code (`games.py`, `evaluation/`, `starter/`) keeps its licence ([LICENSE](LICENSE)).
+No external data is redistributed here; only the dead-ball model weights trained on DFL data are committed.
+
+| external data | source | licence / terms | use |
+|---|---|---|---|
+| DFL/IDSSE open data, 7 matches | Bassek et al. 2025, *Scientific Data* 12, 195; figshare doi 10.6084/m9.figshare.28196177 | CC-BY 4.0 (attribution: DFL / Bassek et al.) | training + validation |
+| SkillCorner open data, A-League 2024/25, 20 matches | github.com/SkillCorner/opendata | MIT (attribution requested) | validation only |
+| Metrica Sports sample data, 3 matches | github.com/metrica-sports/sample-data | no licence file; the README asks users to acknowledge the source for public use | validation only |
+
+Data: DFL Deutsche Fußball Liga / Bassek et al. (2025); SkillCorner; Metrica Sports.
