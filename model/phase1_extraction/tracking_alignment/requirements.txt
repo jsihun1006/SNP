@@ -1,0 +1,4 @@
+# Tactical/broadcast frame alignment; tested with CPython 3.11.
+numpy==2.4.6
+# only compare_tracking_player.py (side-by-side MP4 export) and the tests that import it
+opencv-python==5.0.0.93

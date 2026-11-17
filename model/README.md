@@ -6,6 +6,7 @@
 model/
 ├── phase1_extraction/
 │   ├── ball_tracking/      # ball-tracking correction of the provided ATD        (placeholder)
+│   ├── tracking_alignment/ # tactical/broadcast frame alignment                   -> sync/final_tracking_alignment.csv
 │   └── dead_ball/          # frame-level dead-ball detection                      -> features.csv
 └── phase2_possession/
     └── model1_dead_ball/   # H/A/D decoder; D from dead_ball, H/A from nearest team -> prediction.csv

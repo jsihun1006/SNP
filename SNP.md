@@ -11,6 +11,7 @@ The task is split into what possession needs and the possession decision itself.
 |---|---|---|
 | Phase 1 | `ball_tracking` | correct the provided ball track — **TODO (ball tracking)** |
 | Phase 1 | `dead_ball` | label every frame dead ball or not, from player movement plus football-law rules |
+| Phase 1 | `tracking_alignment` | map every tactical frame to the broadcast frame (ball trajectories + team layouts), so broadcast signals can be joined |
 | Phase 2 | `model1_dead_ball` | label every frame H/A/D: D from `dead_ball`, H/A from the nearest team with a fixed-cost decoder |
 
 **Why a separate dead-ball model.** Under `spellF1` a dead ball both ends a possession and starts a new
@@ -27,7 +28,7 @@ the Game handles what movement alone cannot see (line-outs, penalty kicks, goals
 | tactical ATD (players, ball) | all components; dead-ball features and rules; nearest team for H/A |
 | smart tagging | graded-half boundaries only (`games.half_video_blocks`); tags are not used as labels |
 | homography, video | not used by the dead-ball or possession code — **TODO (ball tracking)** if used there |
-| broadcast feed | not used |
+| broadcast ATD | `tracking_alignment` only (frame mapping to tactical); not used by the current possession pipeline |
 
 Dropped for the dead ball (all measured on external data):
 
