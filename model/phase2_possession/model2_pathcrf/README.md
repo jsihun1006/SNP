@@ -5,8 +5,8 @@ corrections. The model, its parameters, training split and DFL results are descr
 [README_MODEL.md](README_MODEL.md) (original notes) and `parameters.json`. This folder adds the workflow that
 runs it on the provided match on top of the Phase 1 dead ball.
 
-**Status: wired, not yet run on the provided match.** `run_submission.py` still defaults to
-`model1_dead_ball`; select this model with `--possession model2_pathcrf`.
+**This is the possession model of the submission** (`run_submission.py` default). `--possession model1_dead_ball`
+selects the nearest-team decoder instead.
 
 ## Run
 

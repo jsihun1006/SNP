@@ -11,8 +11,8 @@ model/
 └── phase2_possession/
     ├── overlay.py          # shared: dead ball first (D), the possession model's H/A on top -> prediction.csv
     ├── score_public.py     # public 5-minute pipeline check for any Phase 2 model
-    ├── model1_dead_ball/   # default; H/A from nearest team with a fixed-cost decoder -> prediction.csv
-    ├── model2_pathcrf/     # 5fps PathCRF + 25fps specialist on top of the dead ball (wired, not yet run)
+    ├── model1_dead_ball/   # alternative; H/A from nearest team with a fixed-cost decoder -> prediction.csv
+    ├── model2_pathcrf/     # submission default; 5fps PathCRF + 25fps specialist on top of the dead ball
     └── model2_template/    # copy to add a possession model: write predict_team(), the overlay does the rest
 outputs/                    # everything the pipeline writes (git-ignored, derived from the match)
 ├── phase1/<model>/<run_id>/

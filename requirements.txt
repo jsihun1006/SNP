@@ -5,5 +5,7 @@ pandas==3.1.0
 scipy==1.17.1
 lightgbm==4.7.0
 pyarrow==26.0.1
+# Possession model (model/phase2_possession/model2_pathcrf): torch, torch-geometric, ...
+-r model/phase2_possession/model2_pathcrf/requirements.txt
 # Only needed to rebuild the DFL training cache from the public raw files (dead_ball/src/dfl_load.py).
 kloppy==3.18.0
