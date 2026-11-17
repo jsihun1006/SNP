@@ -147,6 +147,49 @@ def movement_signals(players, ball, pitch, margin, team=None, stop_team=None):
             "carry": carry, "cross": cross, "stop": stop, "fallback": fallback, "accel": accel}
 
 
+LOCK_OUT_M, LOCK_FRAMES = 0.36, 2   # ⑦의 값(JSH 보정 목록 그대로, 결과 보기 전에 고정)
+
+
+def lineout_events(distance, reliable, p, out_m=None):
+    """⑦ 관측 라인 아웃 사건: [(f, end, alive_frame or -1)]. f = 라인을 넘은 첫 바깥 프레임, [f, end)를 데드로,
+    alive_frame = 이탈 직전 마지막 안쪽 프레임(모델이 인플레이로 볼 때). distance: 가장 가까운 라인까지(안 +, 밖 −)."""
+    out_m = LOCK_OUT_M if out_m is None else out_m
+    d = np.where(reliable, distance, np.nan)
+    events = []
+    for a, b in runs_of(d < -out_m):
+        if b - a < LOCK_FRAMES or a == 0 or not np.isfinite(d[a - 1]) or not d[a] < d[a - 1]:
+            continue   # 짧은 바깥 관측, 하프 시작, 직전 관측 없음, 바깥으로 움직이지 않음
+        f = a
+        while f > 0 and np.isfinite(d[f - 1]) and d[f - 1] < 0:
+            f -= 1     # 바깥 구간의 첫 프레임(라인을 넘은 프레임)
+        alive = f - 1 if (f > 0 and np.isfinite(d[f - 1]) and d[f - 1] >= 0 and p[f - 1] < 0.5) else -1
+        events.append((f, a + LOCK_FRAMES, alive))
+    return events
+
+
+def lineout_locks(distance, reliable, p, out_m=None, keep=None):
+    """⑦ 고정 프레임 (lock_dead, lock_alive). keep(f) -> bool로 데드 고정할 사건을 고른다(없으면 전부)."""
+    n = len(distance)
+    lock_dead = np.zeros(n, dtype=bool)
+    lock_alive = np.zeros(n, dtype=bool)
+    for f, end, alive in lineout_events(distance, reliable, p, out_m):
+        if keep is None or keep(f):
+            lock_dead[f:end] = True
+        if alive >= 0:
+            lock_alive[alive] = True
+    lock_alive &= ~lock_dead
+    return lock_dead, lock_alive
+
+
+def apply_locks(state, support):
+    """⑦ 고정 프레임을 최종 상태에 다시 적용한다(뒤 단계가 바꾼 것을 되돌림)."""
+    state = np.asarray(state, dtype=bool).copy()
+    if support and "lock_dead" in support:
+        state[support["lock_dead"]] = True
+        state[support["lock_alive"]] = False
+    return state
+
+
 def viterbi_cost(log_odds, enter, leave):
     """smoothing.viterbi와 같은 2상태 재귀에 프레임별 진입(enter)·이탈(leave) 비용을 둔 것."""
     alive, dead = 0., float(-log_odds[0])
@@ -258,6 +301,36 @@ def decode(score, players, ball, pitch, period, crossings, setting=None, restart
         enter[old] = 0
         leave[rs_in] = 0
         log_odds[rs_in] = -1e9
+        if setting.get("lineout_lock", False):
+            # ⑦ 관측된 라인 아웃 시작점 고정(JSH 보정 목록 ⑦): 공이 바깥으로 움직이며 공 중심이 라인에서 LOCK_OUT_M 이상
+            # 바깥인 관측이 LOCK_FRAMES 프레임 연속이면, 그 바깥 구간의 첫 프레임부터 확인 프레임까지 데드로 고정한다.
+            # 이탈 직전 마지막 안쪽 프레임은 모델이 인플레이로 보면(확률 < 0.5) 인플레이로 고정한다. 비터비의 강제 상태로
+            # 넣어 하프 전체 상태열을 다시 푼다. 고정 프레임은 support로 돌려주고 최종 출력에서도 유지한다.
+            # 변형(2026-11-17, 원래 ⑦ = hard는 DFL −0.023, 고정 데드의 92.5%가 실제 인플레이로 불통과):
+            #   alive_only  인플레이 고정만(데드 고정 없음)
+            #   soft        데드 쪽은 강제 대신 ⑥과 같은 점수(+0.45 × bonus)와 진입 비용 0, 인플레이 고정은 그대로
+            #   certified   데드 고정은 인증된 넘음(재개가 25초 안에 이어지고 모델 데드 확률이 0.4 이상 오름)에서만
+            #   alive_certified  인플레이 고정 전부 + 인증된 넘음에서만 데드 고정
+            mode = setting.get("lock_mode", "hard")
+            cert = set(int(c) for c in confirmed)
+            near_cert = (lambda f: any(abs(f - c) <= 2 for c in cert))
+            keep = near_cert if mode in ("certified", "alive_certified") else None
+            lock_dead, lock_alive = lineout_locks(sig["distance"], sig["reliable"], p, setting.get("lock_out_m"), keep)
+            if mode == "certified":
+                lock_alive &= np.isin(np.arange(n), [f - 1 for f in range(n) if lock_dead[f] and (f == 0 or not lock_dead[f - 1])])
+            if mode == "alive_only":
+                lock_dead[:] = False
+            if mode == "soft":
+                log_odds[lock_dead] += .45 * bonus
+                enter[lock_dead] = 0
+                lock_dead[:] = False
+            else:
+                log_odds[lock_dead] = 1e9
+                enter[lock_dead] = 0
+            log_odds[lock_alive] = -1e9
+            if support is not None:
+                support.setdefault("lock_dead", np.zeros(len(score), dtype=bool))[half] |= lock_dead
+                support.setdefault("lock_alive", np.zeros(len(score), dtype=bool))[half] |= lock_alive
         decoded = viterbi_cost(log_odds, enter, leave)
         if setting.get("revert_short_islands", False):
             # ⑤가 만든 짧은 인플레이 섬을 되돌린다(2026-11-16 실험, 가설: 휘슬 뒤 공 정리를 ⑤가 빌드업으로 보고 데드볼

@@ -45,6 +45,7 @@ def run(match, score, keeper=True):
     st &= graded
     if keeper:
         st, _ = kh.keep_holds_alive(st, match, sig, cr)
+    st = sb.apply_locks(st & graded, sup)   # ⑦ 고정 프레임 유지(lineout_lock이 꺼져 있으면 그대로)
     return st & graded
 
 

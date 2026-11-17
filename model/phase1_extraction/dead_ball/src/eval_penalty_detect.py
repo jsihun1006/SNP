@@ -28,10 +28,8 @@ from config import CONFIG  # noqa: E402
 import features as fx  # noqa: E402
 
 FPS = CONFIG["fps"]
-BOX_DEPTH, BOX_HALF, SPOT, ARC, POST_HALF = 16.5, 20.16, 11.0, 9.15, 3.66   # 경기 규칙 1조·14조
-GOAL_LINE_M = 1.5
+from penalty import BOX_DEPTH, BOX_HALF, SPOT, ARC, POST_HALF, GOAL_LINE_M, MIN_HOLD_S  # noqa: E402,F401
 MIN_VISIBLE = 16
-MIN_HOLD_S = 1.0
 SPOT_LABEL_TOL_M = 2.0   # SkillCorner 이벤트 위치가 마크에서 이만큼 안이면 마크 시작으로 본다
 
 

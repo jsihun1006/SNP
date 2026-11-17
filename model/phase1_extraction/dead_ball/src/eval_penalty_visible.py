@@ -19,7 +19,8 @@ ROOT = __import__("repo_root").ROOT
 sys.path[:0] = [HERE, os.path.join(ROOT, "starter")]
 from config import CONFIG  # noqa: E402
 import features as fx  # noqa: E402
-import eval_penalty_combo as pk  # noqa: E402
+import eval_penalty_combo as pk
+import penalty  # noqa: E402
 import eval_penalty_detect as epd  # noqa: E402
 
 FPS = CONFIG["fps"]
@@ -37,7 +38,7 @@ def main():
                 ball = match.ball if cond == "ball" else np.full_like(np.asarray(match.ball, dtype=np.float64), np.nan)
                 m = fx.Match(players=match.players, team=match.team, ball=ball, period=match.period, pitch=match.pitch)
                 for th in THRESHOLDS:
-                    pk.FORMATION_MIN_VISIBLE = th
+                    penalty.FORMATION_MIN_VISIBLE = th
                     for method, fn in METHODS.items():
                         found = fn(m)
                         good = [k for k in found if any(abs(k - t) <= 5 * FPS for t in kicks)]
@@ -45,7 +46,7 @@ def main():
                                      "true": len(kicks),
                                      "found": sum(1 for t in kicks if any(abs(k - t) <= 5 * FPS for k in found)),
                                      "false": len(found) - len(good)})
-            pk.FORMATION_MIN_VISIBLE = 0
+            penalty.FORMATION_MIN_VISIBLE = 0
             print("done", name, flush=True)
     t = pd.DataFrame(rows)
     print("\n== found / false ==")

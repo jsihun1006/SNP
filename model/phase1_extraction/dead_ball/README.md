@@ -15,7 +15,7 @@ player features (team speed quantiles, shape, distance to the lines; no ball fea
    + entering dead is free at a visible line crossing
 -> a certain line-out stays dead until the ball moves again inside the pitch and the model calls play
 -> a dead ball that ends within 5 s of a detected restart (ball leaves a player fast) ends at that restart
--> penalty kicks (detected from the player formation, Law 14): play restarts at the kick; if a kickoff
+-> penalty kicks (src/penalty.py, detected from the player formation, Law 14): play restarts at the kick; if a kickoff
    follows (Law 8 formation) the goal holds dead until the kickoff (Law 10)
 -> goalkeeper holding the ball is in play (Law 12): the ball vanishes next to the keeper in the box and
    reappears away from a restart spot (goal area for a goal kick, penalty mark for a penalty)
@@ -95,9 +95,11 @@ python model/phase1_extraction/dead_ball/src/train_dfl.py --save-final
 
 | role | files |
 |---|---|
-| run on the provided data | `apply_competition.py`, `final_dead_balls.py`, `config.py`, `features.py`, `smoothing.py`, `slow_buildup.py`, `keeper_hold.py`, `kickoff.py`, `eval_penalty_combo.py` (penalty kicks), `eval_penalty_detect.py`, `competition_data.py`, `repo_root.py` |
+| run on the provided data | `apply_competition.py` (model probabilities), `final_dead_balls.py` (final calls), `config.py` (all settings), `features.py`, `smoothing.py`, `slow_buildup.py` (Viterbi with slow build-up, line-out and restart terms), `penalty.py` (penalty kicks), `kickoff.py`, `keeper_hold.py`, `competition_data.py`, `repo_root.py` |
 | training | `train_dfl.py`, `dfl_load.py`, `dfl_labels.py`, `simulate.py`, `metrics.py` |
 | validation on external data | `eval_*.py`, `metrica_eval.py`, `metrica_load.py`, `skillcorner_eval.py`, `skillcorner_check.py`, `compare_smoothing.py` |
+
+Some functions keep options that are off in `config.py` (dropped variants such as `case3`, `no_exit` or the hard line-out lock). They stay so that the `eval_*.py` scripts can reproduce the comparisons that rejected them; the submitted path uses only the settings in `config.py`.
 
 ## Limitations
 

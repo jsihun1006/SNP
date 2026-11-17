@@ -99,8 +99,13 @@ CONFIG = {
     # 1개 더, src/eval_penalty_visible.py / 배치가 깨진 순간: 공개 페널티킥 시점 오차 0.08초 vs 마크 도착 0.20초,
     # src/eval_penalty_moment.py). 골키퍼는 keeper_hold.EVIDENCE(DFL 기준, v8·pitch_check 제외).
     "penalty": {"run_up_moment": "break", "min_visible": 0},
+    # + lineout_lock soft(2026-11-17, src/eval_lineout_lock.py): 공이 바깥으로 움직이며 라인 0.36 m 바깥 관측이 2프레임
+    #   이어지면(⑦) 넘은 프레임부터 데드 쪽 점수 +0.45 × bonus와 진입 비용 0, 이탈 직전 안쪽 프레임은 모델이 인플레이로
+    #   보면 인플레이로 고정. DFL +0.0005(2/1), 쥠 공 삭제 +0.0005, Metrica 0, SkillCorner −0.0012(2/8).
+    #   강제 데드 고정(hard)은 DFL −0.023: 사건의 99.7%가 2초 안에 실제 데드였지만 DFL은 넘은 순간보다 늦게 데드로 적고,
+    #   강제 고정 뒤 짧은 인플레이 조각이 생겨 구간이 쪼개졌다.
     "slow_buildup": {"margin": 0.0, "strength": 1.0, "bonus": 0.85, "case1": True, "case6": True,
-                     "restart_snap": True},
+                     "restart_snap": True, "lineout_lock": True, "lock_mode": "soft"},
 
     # --- 대회 데이터 적용 (src/apply_competition.py, src/final_dead_balls.py) ---------------------
     # 스마트 태깅 SET PIECES 태그 창을 앞뒤로 이만큼(초) 넓혀 겹치는지 본다. 결과 보고(참고용 지표)에만 쓴다.
