@@ -1,133 +1,94 @@
-# Team SNP — technical document (draft)
+# Team SNP — technical document
 
-> Draft. Sections marked **TODO (ball tracking)** and **TODO (possession)** are for the teammates who own
-> those parts. The dead-ball sections are complete.
+More than a Hack 2027, Phase 1: frame-level ball possession (`H`/`A`/`D`/`X`) for the BAR–ATH tactical video.
 
 ## 1. Approach
 
-The task is split into what possession needs and the possession decision itself.
+**Dead ball first, possession on top.**
 
-| step | component | what it does |
-|---|---|---|
-| Phase 1 | `ball_tracking` | retained tracking sources + checkpoint export; not used by the current `SNP.csv` |
-| Phase 1 | `dead_ball` | label every frame dead ball or not, from player movement plus football-law rules |
-| Phase 1 | `tracking_alignment` | map every tactical frame to the broadcast frame (ball trajectories + team layouts), so broadcast signals can be joined |
-| Phase 2 | `model1_dead_ball` (default) | label every frame: D from `dead_ball`, H/A from the nearest team with a fixed-cost decoder, X outside the graded halves |
-| Phase 2 | `model2_pathcrf` (wired, not yet run on the match) | H/A from a 5fps PathCRF + 25fps specialist on top of the same dead ball (`run_submission.py --possession model2_pathcrf`) |
+| step | what it does |
+|---|---|
+| input | players: the 46 Tactical ATD track slots (anonymous, never joined); ball: the team's corrected ball on the 155,923 Tactical frames its checkpoint maps, the ATD ball elsewhere |
+| Phase 1 `dead_ball` | every frame dead or not: LightGBM on player movement (trained on public DFL matches) + Viterbi smoothing + rules from the Laws of the Game |
+| Phase 2 `model1_dead_ball` | graded halves: `D` where the dead ball says dead, otherwise `H`/`A` from a fixed-cost decoder over the team nearest to the ball; outside the graded halves: `X` |
 
-**Why a separate dead-ball model.** Under `spellF1` a dead ball both ends a possession and starts a new
-one, so missed or invented dead balls split or merge possessions. The provided ball is missing on about 40% of
-graded frames, mostly during dead balls but also when a goalkeeper holds it, so "ball missing" is not a usable
-dead-ball signal. Player movement is: after a whistle, teams slow down and reshape in recognisable ways. The
-model learns this from public matches with ball-status labels, and a small set of rules taken from the Laws of
-the Game handles what movement alone cannot see (line-outs, penalty kicks, goals, goalkeeper holds).
+Under `spellF1` a dead ball ends one possession and starts the next, so dead-ball errors split or merge
+possessions. The provided ball is missing on about 40% of frames, so "ball missing" is not a dead-ball signal;
+player movement is (teams slow down and reshape after a whistle). With the dead ball fixed, the possession step only
+decides which team has the ball inside each in-play stretch.
 
 ## 2. Assets used and dropped
 
 | asset | use |
 |---|---|
-| tactical ATD (players, ball) | players: dead-ball features and rules, nearest team for H/A; ball: nearest team for H/A, and the dead-ball rules on frames the corrected ball does not cover |
-| corrected ball (`ball_tracking` checkpoint) | the ball for the dead-ball rules (line crossings, restarts, penalty kicks, goalkeeper holds) on every Tactical frame the checkpoint maps |
-| smart tagging | graded-half boundaries only (`games.half_video_blocks`); tags are not used as labels |
-| homography, video | not read by the dead-ball/possession code; the ball-tracking path that produced the corrected ball used them (see its README) |
-| broadcast ATD | `tracking_alignment` only (frame mapping to tactical); not used by the current possession pipeline |
+| Tactical ATD | players for both phases; ATD ball for H/A and for the dead-ball rules where the corrected ball has no frame |
+| corrected ball (team `ball_tracking` checkpoint; see §3) | ball for the dead-ball rules (line crossings, restarts, penalty kicks, keeper holds) |
+| smart tagging | graded-half boundaries only; tags are not labels, no setting was chosen on them |
+| broadcast ATD, homography, video | only inside the ball-tracking path |
+| public 5 minutes | pipeline check only, never used to choose a setting |
 
-Dropped for the dead ball (all measured on external data):
+Tried and dropped (all judged on external data): a rule-based dead-ball detector from ball signals; interpolating
+ball gaps; extrapolating line-outs through long gaps (19% precision on DFL); training on SkillCorner/Metrica with
+DFL; holding dead from every goal to its restart (DFL 0.897 → 0.792); forcing dead at line crossings; a TranSPORTmer
+dead-ball model; a PathCRF possession model (wired in `model2_pathcrf`, not used for `SNP.csv`).
 
-- a rule-based detector built from ball signals — many unsupported constants, worse than the model;
-- interpolating ball gaps — short gaps barely exist in the provided track, so nothing to gain;
-- line-outs inferred by extrapolating the ball through long gaps — 19% precision on DFL;
-- training on SkillCorner or Metrica together with DFL — did not improve the fair held-out test;
-- holding dead from every goal to its restart by locating the placed ball — DFL 0.897 → 0.792;
-- several goalkeeper and slow build-up variants that failed their pre-set criteria (listed in `LESSONS.md` of the development branch).
-
-## 3. Training and validation data
-
-The training data below describe the dead-ball/possession models. None of those training datasets comes from the provided match. The corrected ball that the dead-ball rules read comes from the ball-tracking checkpoint, whose path contains stored object-review decisions and match-specific model heads; its provenance is documented in its README and is not covered by this statement.
+## 3. Training data
 
 | dataset | role | labels | who labelled | amount |
 |---|---|---|---|---|
-| DFL/IDSSE open data (Bassek et al. 2025, Scientific Data 12, 195; CC-BY 4.0) | training + main validation | ball status alive/dead in the tracking files | DFL (data provider) | 7 Bundesliga matches |
-| Metrica Sports sample data (github.com/metrica-sports/sample-data; no licence file, source acknowledged as its README asks) | validation only | dead balls derived from the event files | Metrica Sports | 3 matches |
-| SkillCorner open data (github.com/SkillCorner/opendata, A-League 2024/25; MIT) | validation only | outside "phases of play" = dead | SkillCorner | 20 matches |
+| DFL/IDSSE open data (Bassek et al. 2025; CC-BY 4.0) | dead-ball training + validation | ball alive/dead in the tracking | DFL | 7 matches |
+| Metrica Sports sample data | validation only | dead balls from the event files | Metrica Sports | 3 matches |
+| SkillCorner open data (MIT) | validation only | outside "phases of play" = dead | SkillCorner | 20 matches |
 
-Validation is leave-one-match-out on DFL. Because the provided tracking often loses the ball when the
-goalkeeper holds it, DFL is also scored with the ball deleted during holds (and from 1 s before the keeper
-receives it). Every rule and constant was adopted only if it met criteria fixed before the run on these data.
+The possession step has no training: fixed costs declared before any evaluation. Nothing from the provided game was
+used to train or tune the dead-ball or possession models.
 
-## 4. Possession rules implemented
+**Corrected ball.** It comes from the team's ball-tracking path (`model/phase1_extraction/ball_tracking`): YOLO26X
+ball detections in the broadcast video, projected with the provided homography and aligned to the Tactical frames,
+then false-positive, precision and temporal corrections. That path uses stored object-review decisions and
+classification heads specific to this match.
 
-**Dead ball (`dead_ball`)**
+## 4. Possession rules
 
-- Entering dead is free at a visible line crossing; a certain line-out stays dead until the ball moves again
-  inside the pitch (Law 9). A crossing seen clearly outside (0.36 m, 2 frames) also pushes the score towards dead
-  from the crossing frame. Forcing dead there instead was rejected: DFL records the dead ball up to 2 s after the
-  crossing, and the forced frames left short in-play fragments that split possessions.
-- A dead ball ends at a detected restart — the ball leaving a player fast — when one is seen within 5 s of the
-  model's end.
-- Slow build-up: stretches with a pass, a reception or a carried ball are harder to call dead.
-- Penalty kick (Law 14): detected from the formation (keeper on the line, one kicker at the mark, nobody else
-  in the box); play restarts at the kick. If a kickoff formation (Law 8) follows, the goal holds dead until the
-  kickoff (Law 10).
-- Goalkeeper holding the ball is in play (Law 12): the ball vanishes next to the keeper in the box during play
-  and reappears away from a restart spot (goal area, penalty mark).
-- The second-half pre-kickoff window published in `FAQ.md` is D.
-
-**Possession (`model1_dead_ball`)** — **TODO (possession)** if the final possession model differs.
-
-- Dead ball first: inside the graded halves every frame the dead-ball model calls dead is D, and the possession
-  model decides only H or A on the other frames (`model/phase2_possession/overlay.py` for any Phase 2 model).
-- Frames outside the graded halves (before kickoff, halftime, after the final whistle) are X; they are never scored.
-
-- H/A is the team of the player nearest to the ball; a change of team must be sustained (switch cost) rather
-  than a single nearest-player flip.
-- While the ball is missing inside an in-play stretch, the surrounding team keeps possession.
-- Loose balls and challenges: possession stays with the last team until the other team is consistently nearest.
+- **Dead ball (`D`)**: free entry at a visible line crossing, a certain line-out stays dead until the ball moves
+  again inside the pitch (Law 9); a dead ball ends at a detected restart (ball leaves a player fast) within 5 s;
+  passes, receptions and carries make a stretch harder to call dead; penalty kicks detected from the formation
+  restart play at the kick, and a following kickoff formation holds dead after the goal (Laws 14, 8); a goalkeeper
+  holding the ball is in play (Law 12); a missing ball is never dead by itself.
+- **Team (`H`/`A`)**: the team nearest to the ball, decoded as a sequence (2.0 per second of disagreement, 1.2 per
+  change of team), so a change must be sustained. Loose balls and challenges stay with the last team until the other
+  team is consistently nearest; a missing ball keeps the surrounding team.
+- **`X`**: every frame outside the graded halves (before kickoff, halftime, after the final whistle).
 
 ## 5. Results on external data (dead ball)
+
+Official spell score with in play = `H` and dead = `D`:
 
 | data | in-play spell F1 |
 |---|---|
 | DFL, 7 matches, leave-one-match-out | 0.905 |
 | DFL, ball deleted while the keeper holds it | 0.901 |
-| DFL, ball deleted from 1 s before the keeper receives it | 0.899 |
 | Metrica, 3 matches | 0.832 |
 | SkillCorner, 20 matches | 0.759 |
 
-In-play spell F1 = the official spell score with in play = H and dead = D.
-
 ## 6. Limitations
 
-- Movement-based dead balls: a slow build-up can look like a short dead ball; a pass right after a whistle can
-  cut a running dead ball for a few seconds.
-- 2-D tracking jitter near a line can create a false line-out.
-- After an ordinary goal with the ball out of sight, the celebration can briefly look like play.
-- A goalkeeper hold where the ball never disappears and never rolls away is not recognised.
-- H/A uses only the nearest player — **TODO (possession)**.
-- With more time: learn restarts directly from public event data, and a possession model that uses ball
-  trajectory rather than nearest player only.
+- A slow build-up can look like a short dead ball; 2-D jitter near a line can create a false line-out; a goalkeeper
+  hold where the ball never disappears is not recognised.
+- H/A uses only the nearest player; contested balls and fast passes between teams are the main errors.
+- The corrected ball is a private derived file, so `SNP.csv` cannot be rebuilt from the data bundle alone, and its
+  path is not label-free (§3).
+- With more time: a possession model that uses ball trajectory and touches, and an end-to-end ball tracker without
+  stored review decisions.
 
 ## 7. Reproduction
 
 ```bash
 python -m pip install -r requirements.txt
-python run_submission.py          # data/ -> SNP.csv, validated with evaluation/validate_submission.py
+python run_submission.py          # data/ -> SNP.csv, checked with evaluation/validate_submission.py
 ```
 
-Weights for the dead-ball model are in the repository; retraining instructions are in
-`model/phase1_extraction/dead_ball/README.md`.
-
-The dead-ball step reads the corrected ball from `outputs/unified_tracking_v1/tracking_all_frames.csv` (checked against its
-SHA-256). That checkpoint is a private derived file: it is not in the repository and cannot be rebuilt from
-the data bundle with this repository alone (see the ball-tracking README). Without it the run stops; setting
-`CONFIG["competition_ball"]["source"] = "atd"` in `model/phase1_extraction/dead_ball/src/config.py` uses the
-provided ATD ball instead and needs only the data bundle.
-
-## Ball-tracking module
-
-The ball-tracking module now preserves the retained V3 ball/Tactical-player source path and exports an
-existing private unified checkpoint to the Phase 1 tracking contract. This export is a frame/format
-adapter, not new detection, correction, training or possession inference. The dead-ball step reads the
-ball of the same checkpoint directly (Tactical frames it maps). Its stored review references/model heads are
-not covered by the external-training-only statement above; see
-[ball_tracking/README.md](model/phase1_extraction/ball_tracking/README.md) for the exact scope.
+The provided bundle goes under `data/` (`data/README.md`). The corrected-ball checkpoint
+(`outputs/unified_tracking_v1/tracking_all_frames.csv`, SHA-256 checked) is not in the repository; without it set
+`CONFIG["competition_ball"]["source"] = "atd"` in `model/phase1_extraction/dead_ball/src/config.py` to run from the
+bundle alone. Dead-ball weights are committed; retraining is in `model/phase1_extraction/dead_ball/README.md`.
