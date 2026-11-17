@@ -25,7 +25,11 @@ provided data. Technical document: [SNP.md](SNP.md).
    published 5 minutes as a pipeline check. All intermediate files go to `outputs/` (git-ignored).
 
 The dead-ball model weights are committed (`model/phase1_extraction/dead_ball/weights/`, trained on public
-DFL data). No other download is needed to regenerate the file.
+DFL data). The dead-ball step also reads the corrected ball of the team's ball-tracking checkpoint,
+`outputs/unified_tracking_v1/tracking_all_frames.csv`, a private derived file that is not in this repository (see
+[ball_tracking/README.md](model/phase1_extraction/ball_tracking/README.md)). Without it, set
+`CONFIG["competition_ball"]["source"] = "atd"` in `model/phase1_extraction/dead_ball/src/config.py` to run
+from the data bundle alone.
 
 ## Layout
 
@@ -34,7 +38,7 @@ run_submission.py                 one command: data/ -> SNP.csv
 SNP.md                            technical document
 model/
 ├── phase1_extraction/
-│   ├── ball_tracking/            retained tracking sources + checkpoint export (not used by SNP.csv yet)
+│   ├── ball_tracking/            retained tracking sources + checkpoint export (its ball feeds dead_ball)
 │   ├── tracking_alignment/       tactical/broadcast frame alignment (not used by SNP.csv yet)
 │   └── dead_ball/                frame-level dead-ball detection (DFL-trained LightGBM + football-law rules)
 └── phase2_possession/
@@ -48,11 +52,13 @@ between phases is in [model/README.md](model/README.md).
 
 ## Rules followed
 
-These statements describe the active dead-ball/possession submission. The optional tracking sources
-have separate review/model provenance documented in their module README.
+These statements describe the dead-ball and possession models. The corrected ball they read comes from
+the ball-tracking checkpoint, whose path has its own review/model provenance (stored object-review
+decisions, match-specific model heads), documented in its module README and not covered here.
 
-- Labels come out of code. Nothing on the provided match was labelled or corrected by hand.
-- Training and tuning use external data only (DFL/IDSSE, Metrica sample data, SkillCorner open data).
+- Possession and dead-ball labels come out of code; no frame label was set by hand.
+- The dead-ball and possession models are trained and tuned on external data only (DFL/IDSSE, Metrica
+  sample data, SkillCorner open data).
 - The published 5 minutes are used only to check the pipeline, never to choose a setting.
 
 ## Licences and data sources
@@ -72,5 +78,5 @@ Data: DFL Deutsche Fußball Liga / Bassek et al. (2025); SkillCorner; Metrica Sp
 
 `model/phase1_extraction/ball_tracking/` now contains the verified retained tracking sources and a
 checkpoint-to-Phase-1 export/validation interface. It needs the private accepted unified checkpoint;
-it is not a raw-data rebuild and is not called by the current `run_submission.py`. The active submission
-continues to use the provided Tactical ATD. See the module README for its inputs and status.
+it is not a raw-data rebuild and is not called by `run_submission.py`. The dead-ball step reads the ball of
+the same checkpoint directly. See the module README for its inputs and status.

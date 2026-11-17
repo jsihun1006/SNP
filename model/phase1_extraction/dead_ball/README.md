@@ -26,6 +26,10 @@ player features (team speed quantiles, shape, distance to the lines; no ball fea
 
 - The ball is used for line crossings, restarts, penalty kicks and goalkeeper holds. **A missing ball is
   never taken as dead by itself.**
+- On the provided match the ball is the corrected ball of the ball-tracking checkpoint
+  (`outputs/unified_tracking_v1/tracking_all_frames.csv`, SHA-256 checked) on every Tactical frame it maps, and the ATD ball on the
+  other frames; players always come from the ATD. `CONFIG["competition_ball"]["source"] = "atd"` uses the
+  ATD ball everywhere. No setting was changed for the corrected ball.
 - The model input has no ball features: DFL fixes the ball during dead balls and the Metrica samples
   delete it, so ball features would read the label off the training data.
 

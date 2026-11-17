@@ -44,5 +44,5 @@ check only.
 
 The ball-tracking folder contains preserved original sources plus a retained-checkpoint export adapter.
 Its tracking output uses Tactical frame0 and its frame-status output keeps all 199,319 frames. The
-private accepted unified checkpoint is required. This optional module is not called by the current
-submission runner or Phase 2; the existing `SNP.csv` generation remains unchanged.
+private accepted unified checkpoint is required. The module itself is not called by the submission runner;
+the dead-ball step (`dead_ball/src/competition_data.py`) reads the ball of the same checkpoint directly.

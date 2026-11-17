@@ -25,9 +25,10 @@ the Game handles what movement alone cannot see (line-outs, penalty kicks, goals
 
 | asset | use |
 |---|---|
-| tactical ATD (players, ball) | all components; dead-ball features and rules; nearest team for H/A |
+| tactical ATD (players, ball) | players: dead-ball features and rules, nearest team for H/A; ball: nearest team for H/A, and the dead-ball rules on frames the corrected ball does not cover |
+| corrected ball (`ball_tracking` checkpoint) | the ball for the dead-ball rules (line crossings, restarts, penalty kicks, goalkeeper holds) on every Tactical frame the checkpoint maps |
 | smart tagging | graded-half boundaries only (`games.half_video_blocks`); tags are not used as labels |
-| homography, video | not used by the active dead-ball/possession code; the optional historical tracking path used them (see its README) |
+| homography, video | not read by the dead-ball/possession code; the ball-tracking path that produced the corrected ball used them (see its README) |
 | broadcast ATD | `tracking_alignment` only (frame mapping to tactical); not used by the current possession pipeline |
 
 Dropped for the dead ball (all measured on external data):
@@ -41,7 +42,7 @@ Dropped for the dead ball (all measured on external data):
 
 ## 3. Training and validation data
 
-The training data below describe the active dead-ball/possession pipeline. None of those training datasets comes from the provided match. The optional historical ball-tracking source has separate review/model provenance documented in its README and is not consumed by the current submission.
+The training data below describe the dead-ball/possession models. None of those training datasets comes from the provided match. The corrected ball that the dead-ball rules read comes from the ball-tracking checkpoint, whose path contains stored object-review decisions and match-specific model heads; its provenance is documented in its README and is not covered by this statement.
 
 | dataset | role | labels | who labelled | amount |
 |---|---|---|---|---|
@@ -111,11 +112,17 @@ python run_submission.py          # data/ -> SNP.csv, validated with evaluation/
 Weights for the dead-ball model are in the repository; retraining instructions are in
 `model/phase1_extraction/dead_ball/README.md`.
 
-## Optional tracking source module
+The dead-ball step reads the corrected ball from `outputs/unified_tracking_v1/tracking_all_frames.csv` (checked against its
+SHA-256). That checkpoint is a private derived file: it is not in the repository and cannot be rebuilt from
+the data bundle with this repository alone (see the ball-tracking README). Without it the run stops; setting
+`CONFIG["competition_ball"]["source"] = "atd"` in `model/phase1_extraction/dead_ball/src/config.py` uses the
+provided ATD ball instead and needs only the data bundle.
+
+## Ball-tracking module
 
 The ball-tracking module now preserves the retained V3 ball/Tactical-player source path and exports an
 existing private unified checkpoint to the Phase 1 tracking contract. This export is a frame/format
-adapter, not new detection, correction, training or possession inference. The current `SNP.csv` does
-not consume this optional output. Its stored review references/model heads are not covered by the
-active pipeline's external-training-only statement; see
+adapter, not new detection, correction, training or possession inference. The dead-ball step reads the
+ball of the same checkpoint directly (Tactical frames it maps). Its stored review references/model heads are
+not covered by the external-training-only statement above; see
 [ball_tracking/README.md](model/phase1_extraction/ball_tracking/README.md) for the exact scope.

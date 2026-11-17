@@ -42,6 +42,38 @@ def read_tracking(raw_path, n_slots, n_frames, length, width):
     return players, ball
 
 
+def corrected_ball(ball, length, width):
+    """Replace the ATD ball with the ball_tracking checkpoint ball on every Tactical frame the checkpoint maps.
+    Returns (ball, report). The checkpoint is checked against its recorded SHA-256."""
+    import hashlib
+
+    import pandas as pd
+    from config import CONFIG
+    setting = CONFIG["competition_ball"]
+    path = setting["csv"]
+    if not os.path.isfile(path):
+        raise SystemExit("corrected ball checkpoint not found: {} (see model/phase1_extraction/ball_tracking/"
+                         "README.md, or set CONFIG['competition_ball']['source'] = 'atd')".format(path))
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    if digest.hexdigest() != setting["sha256"]:
+        raise SystemExit("corrected ball checkpoint SHA-256 mismatch: {}".format(path))
+    table = pd.read_csv(path, usecols=["tactical_frame", "ball_x_norm", "ball_y_norm"])
+    frame = pd.to_numeric(table["tactical_frame"], errors="raise").to_numpy(float)
+    mapped = np.isfinite(frame) & (frame >= 0) & (frame < len(ball))
+    frame = frame[mapped].astype(np.int64)
+    if len(np.unique(frame)) != len(frame):
+        raise SystemExit("corrected ball checkpoint maps a Tactical frame twice")
+    xy = table[["ball_x_norm", "ball_y_norm"]].to_numpy(float)[mapped] * (length, width)
+    out = ball.copy()
+    out[frame] = xy                       # missing in the checkpoint stays missing on its mapped frames
+    report = {"source": "corrected", "csv": path, "sha256": setting["sha256"],
+              "tactical_frames_mapped": int(len(frame)), "tactical_frames_kept_atd": int(len(ball) - len(frame))}
+    return out, report
+
+
 def load_competition_match():
     """(Match, half_blocks). half_blocks는 [(start, stop)] 채점 구간."""
     from baseline import team_of_each_track
@@ -52,6 +84,11 @@ def load_competition_match():
     n = source_frames("tactical")
     length, width = GAMES[GAME]["pitch"]
     players, ball = read_tracking(raw_path, len(team), n, length, width)
+    from config import CONFIG
+    if CONFIG.get("competition_ball", {}).get("source", "atd") == "corrected":
+        ball, report = corrected_ball(ball, length, width)
+        print("competition ball: corrected checkpoint on {} Tactical frames, ATD ball on the other {}".format(
+            report["tactical_frames_mapped"], report["tactical_frames_kept_atd"]), flush=True)
     blocks = [(first, last + 1) for _, first, last in half_video_blocks(GAME)]
     period = np.zeros(n, dtype=np.int64)
     for number, (start, stop) in enumerate(blocks, start=1):

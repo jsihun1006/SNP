@@ -123,4 +123,13 @@ CONFIG = {
         "out_min_restart_s": 1.6,
         "out_start_window_s": 5.0,      # 모델 데드볼 시작 앞뒤 이 시간 안의 라인 아웃으로 시작을 옮긴다
     },
+    # Ball of the provided match: "atd" = the provided Tactical ATD ball; "corrected" = the ball of the team's
+    # ball_tracking checkpoint (model/phase1_extraction/ball_tracking, its README states its provenance).
+    # With "corrected", Tactical frames that the checkpoint maps take its ball (missing there stays missing);
+    # frames it does not map keep the ATD ball. Players always come from the provided ATD.
+    "competition_ball": {
+        "source": "corrected",
+        "csv": os.path.join(ROOT, "outputs", "unified_tracking_v1", "tracking_all_frames.csv"),
+        "sha256": "bdd017ba3f8335028a951631768780af570e71bf064c7bb850572af5419b0608",
+    },
 }

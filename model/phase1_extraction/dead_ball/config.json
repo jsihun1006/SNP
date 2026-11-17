@@ -20,6 +20,7 @@
     "dead",
     "dead_source"
   ],
+  "competition_ball": "src/config.py CONFIG['competition_ball']: corrected ball of the ball_tracking checkpoint (outputs/unified_tracking_v1/tracking_all_frames.csv) on the Tactical frames it maps, ATD ball elsewhere",
   "selection_policy": "Every rule and constant was chosen on external data: DFL/IDSSE (main criterion, leave-one-match-out, with ball-hidden simulations), Metrica and SkillCorner (auxiliary). No labels, tuning or validation on the provided match or its public 5 minutes.",
   "phase2_user": "model/phase2_possession/model1_dead_ball"
 }
