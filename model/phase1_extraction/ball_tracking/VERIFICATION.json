@@ -1,0 +1,688 @@
+{
+  "status": "CODE_SELECTION_VERIFIED_INPUTS_NOT_MATERIALIZED",
+  "code_selection_passed": true,
+  "scope": "Source selection/package and read-only final lineage verification; no inference or coordinate regeneration",
+  "sources_verified": 49,
+  "stages": 22,
+  "actual_artifact_hashes_verified": 30,
+  "declared_links_checked": 71,
+  "exact_byte_hash_links": 55,
+  "line_ending_only_input_variants": {
+    "data/broadcast/BAR-ATH_broadcast_homography.csv": {
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "content_matches_with_line_endings": "CRLF"
+    }
+  },
+  "LFS_inputs_not_materialized": {
+    "data/broadcast/BAR-ATH_broadcast_atd.txt": {
+      "required_sha256": "a71c1c9391e564032446be91ffbd7564205b47966060181532d80a338685e458",
+      "recorded_size": 141966465,
+      "current_state": "LFS_POINTER_ONLY",
+      "actual_content_verified_in_this_run": false
+    },
+    "data/tactical/BAR-ATH_tactical_atd.txt": {
+      "required_sha256": "f130e350d2bfdf734b7e32f072931fccc6d015c1e837d082064875fe0a700431",
+      "recorded_size": 195714285,
+      "current_state": "LFS_POINTER_ONLY",
+      "actual_content_verified_in_this_run": false
+    }
+  },
+  "hash_links": [
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/first_half_completion_report.json",
+      "recorded_sha256": "534c3a06de96db7ea8604b7f16012a884e53b1954fe56fe4eb9ee7a32d92e64b",
+      "current_sha256": "534c3a06de96db7ea8604b7f16012a884e53b1954fe56fe4eb9ee7a32d92e64b",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/first_half_corrected_ball_coordinates.csv",
+      "recorded_sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+      "current_sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/first_half_homography_conversion_report.json",
+      "recorded_sha256": "52602b858dedb0c62e9256986e3feff1b4bcfd3c96b9a546f2d63821c2843536",
+      "current_sha256": "52602b858dedb0c62e9256986e3feff1b4bcfd3c96b9a546f2d63821c2843536",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/reference_project_ball_candidates.py",
+      "recorded_sha256": "ef8068b9a8227bc5bfcc0b5c4f9302993bb1b9e725048da21a0b24eaab5ef86a",
+      "current_sha256": "ef8068b9a8227bc5bfcc0b5c4f9302993bb1b9e725048da21a0b24eaab5ef86a",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/second_half_ball_object_audited.csv",
+      "recorded_sha256": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+      "current_sha256": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/second_half_run_config.json",
+      "recorded_sha256": "ff0f55e6f158e26e608d5f926614c89edad35c42956cbb51319dbe855bf3aec0",
+      "current_sha256": "ff0f55e6f158e26e608d5f926614c89edad35c42956cbb51319dbe855bf3aec0",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_tracking_homography_20261116/audit_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/second_half_summary.json",
+      "recorded_sha256": "018d936f80c8dd4b9b16c06a1cb9845dce6647e9a52021cea1197cad78c3a72d",
+      "current_sha256": "018d936f80c8dd4b9b16c06a1cb9845dce6647e9a52021cea1197cad78c3a72d",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_fp_reduction_20261116/source_integrity.json",
+      "field": null,
+      "input": "data/derived/ball_tracking_homography_20261116/sources/first_half_corrected_ball_coordinates.csv",
+      "recorded_sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+      "current_sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_fp_reduction_20261116/source_integrity.json",
+      "field": null,
+      "input": "data/derived/ball_tracking_homography_20261116/sources/second_half_ball_object_audited.csv",
+      "recorded_sha256": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+      "current_sha256": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_fp_reduction_20261116/source_integrity.json",
+      "field": null,
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_fp_reduction_20261116/fp_inputs.npz",
+      "recorded_sha256": "58c8cc69cafc1b8defebf2d0acd8efb5d8a6fb5be40224467d9885c8efe64218",
+      "current_sha256": "58c8cc69cafc1b8defebf2d0acd8efb5d8a6fb5be40224467d9885c8efe64218",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_fp_reduction_20261116/evidence.npz",
+      "recorded_sha256": "422cf1d89cf5efc46af617a79898a0274852e7d49075068c2e124111d27aaee7",
+      "current_sha256": "422cf1d89cf5efc46af617a79898a0274852e7d49075068c2e124111d27aaee7",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_uniform_context_20261116/context_decisions.csv",
+      "recorded_sha256": "421ffa9956c3d795db4ee4f88bf8fc13b3f3022dc4ecabfc6f242a4785b9bb45",
+      "current_sha256": "421ffa9956c3d795db4ee4f88bf8fc13b3f3022dc4ecabfc6f242a4785b9bb45",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_uniform_context_20261116/filtered_ball_coordinates.csv",
+      "recorded_sha256": "0854c2a27fb0ac9ac688cf1e7180805f7b089e0e3bec686f1906ea789e8f4830",
+      "current_sha256": "0854c2a27fb0ac9ac688cf1e7180805f7b089e0e3bec686f1906ea789e8f4830",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_targeted_redetection_20261116/frame_audit/penalty_reference.json",
+      "recorded_sha256": "21b1ef5f11b3d9ffd7b3f6d683b44cb7839b9f6482348157ebcd1f99ebc1479e",
+      "current_sha256": "21b1ef5f11b3d9ffd7b3f6d683b44cb7839b9f6482348157ebcd1f99ebc1479e",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/first_half_corrected_ball_coordinates.csv",
+      "recorded_sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+      "current_sha256": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_tracking_homography_20261116/sources/second_half_ball_object_audited.csv",
+      "recorded_sha256": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+      "current_sha256": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_targeted_redetection_20261116/selection_summary.json",
+      "field": "source_sha256",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_yolo26x_pitch_20261116/projection_summary.json",
+      "field": "source_sha256",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_yolo26x_pitch_20261116/projection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_yolo26x_redetection_20261116/all_candidates.csv",
+      "recorded_sha256": "3670f80b94fba7b572c01c83c6d2c3e99f43f4718e252cc7994f9fd271e7f1a8",
+      "current_sha256": "3670f80b94fba7b572c01c83c6d2c3e99f43f4718e252cc7994f9fd271e7f1a8",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_yolo26x_pitch_20261116/projection_summary.json",
+      "field": "source_sha256",
+      "input": "data/derived/ball_yolo26x_redetection_20261116/ball_candidates.csv",
+      "recorded_sha256": "4f123ebf0e757c10bace65e8d9508e024a494772c313ef6aa19eb1938ea8fe35",
+      "current_sha256": "4f123ebf0e757c10bace65e8d9508e024a494772c313ef6aa19eb1938ea8fe35",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_full_match_restored_20261116/artifact_integrity.json",
+      "field": "unchanged_inputs",
+      "input": "data/derived/ball_fp_reduction_20261116/filtered_ball_coordinates.csv",
+      "recorded_sha256": "8418a2294a174fdf4d05d6c5f6057eca46938eba84d18a67c88d817f460bc0f5",
+      "current_sha256": "8418a2294a174fdf4d05d6c5f6057eca46938eba84d18a67c88d817f460bc0f5",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_full_match_restored_20261116/artifact_integrity.json",
+      "field": "unchanged_inputs",
+      "input": "data/derived/ball_yolo26x_pitch_20261116/reviewed_ball_pitch.csv",
+      "recorded_sha256": "9e8f00bc0311f1ec449cb0d68eea09a9bfffcb71b14fdd92998d9f6fcfba95cf",
+      "current_sha256": "9e8f00bc0311f1ec449cb0d68eea09a9bfffcb71b14fdd92998d9f6fcfba95cf",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_full_match_restored_20261116/artifact_integrity.json",
+      "field": "unchanged_inputs",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "unchanged_source_inputs",
+      "input": "data/derived/ball_fp_reduction_20261116/filtered_ball_coordinates.csv",
+      "recorded_sha256": "8418a2294a174fdf4d05d6c5f6057eca46938eba84d18a67c88d817f460bc0f5",
+      "current_sha256": "8418a2294a174fdf4d05d6c5f6057eca46938eba84d18a67c88d817f460bc0f5",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "unchanged_source_inputs",
+      "input": "data/derived/ball_yolo26x_pitch_20261116/reviewed_ball_pitch.csv",
+      "recorded_sha256": "9e8f00bc0311f1ec449cb0d68eea09a9bfffcb71b14fdd92998d9f6fcfba95cf",
+      "current_sha256": "9e8f00bc0311f1ec449cb0d68eea09a9bfffcb71b14fdd92998d9f6fcfba95cf",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "unchanged_source_inputs",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/harden_ball_precision.py",
+      "recorded_sha256": "9259ededdc9344d16e7c53e9a8ae10bdc1515d35ba95561e3564cd061665a741",
+      "current_sha256": "9259ededdc9344d16e7c53e9a8ae10bdc1515d35ba95561e3564cd061665a741",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/apply_ball_precision.py",
+      "recorded_sha256": "ec729166e7286a2753ae0f78835698fa1d5f82abf23c3d4dc59ed7cb7e1fb791",
+      "current_sha256": "ec729166e7286a2753ae0f78835698fa1d5f82abf23c3d4dc59ed7cb7e1fb791",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/export_ball_precision_view.py",
+      "recorded_sha256": "0d22501c369ec0d21e6cbb92ab8b28a210181aac908f88e952cc581d022e49ae",
+      "current_sha256": "0d22501c369ec0d21e6cbb92ab8b28a210181aac908f88e952cc581d022e49ae",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/verify_ball_precision.py",
+      "recorded_sha256": "2abf95b54f3a5f34d89239cccaa1c81a14e9a52a4fe698fc79690cae0466d51c",
+      "current_sha256": "2abf95b54f3a5f34d89239cccaa1c81a14e9a52a4fe698fc79690cae0466d51c",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_precision_review_20261117/final/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/render_ball_bidirectional_native.m",
+      "recorded_sha256": "8becac9e9b7c3f6a8000796a3afc2486db0747725ba54e7a19fd22493dbff60c",
+      "current_sha256": "8becac9e9b7c3f6a8000796a3afc2486db0747725ba54e7a19fd22493dbff60c",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/summary.json",
+      "field": "input_sha256",
+      "input": "data/derived/ball_precision_review_20261117/final/ball_homography_high_precision_all_frames.csv",
+      "recorded_sha256": "e6a31e2f9bc99ee8fd786cf8b5d22693ecd0a49236fceee7d1201ec4e70033a6",
+      "current_sha256": "e6a31e2f9bc99ee8fd786cf8b5d22693ecd0a49236fceee7d1201ec4e70033a6",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/summary.json",
+      "field": "input_sha256",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/artifact_integrity.json",
+      "field": "unchanged_source_inputs",
+      "input": "data/derived/ball_precision_review_20261117/final/ball_homography_high_precision_all_frames.csv",
+      "recorded_sha256": "e6a31e2f9bc99ee8fd786cf8b5d22693ecd0a49236fceee7d1201ec4e70033a6",
+      "current_sha256": "e6a31e2f9bc99ee8fd786cf8b5d22693ecd0a49236fceee7d1201ec4e70033a6",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/artifact_integrity.json",
+      "field": "unchanged_source_inputs",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/refine_ball_temporal_ai.py",
+      "recorded_sha256": "eed298082e3459d70f91ef0d645b5a9e558ced87e3caeda53c7a7e5dc409fdf6",
+      "current_sha256": "eed298082e3459d70f91ef0d645b5a9e558ced87e3caeda53c7a7e5dc409fdf6",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/deliver_ball_temporal_ai.py",
+      "recorded_sha256": "c43ca266f15f0bc8eaa38ee8098f9a8cae29d0e8dc8c3ad96437b09efa09b177",
+      "current_sha256": "c43ca266f15f0bc8eaa38ee8098f9a8cae29d0e8dc8c3ad96437b09efa09b177",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "data/derived/ball_temporal_ai_20261117/artifact_integrity.json",
+      "field": "code_sha256",
+      "input": "starter/render_ball_bidirectional_native.m",
+      "recorded_sha256": "8becac9e9b7c3f6a8000796a3afc2486db0747725ba54e7a19fd22493dbff60c",
+      "current_sha256": "8becac9e9b7c3f6a8000796a3afc2486db0747725ba54e7a19fd22493dbff60c",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_atd_from_csv_v1/source_hashes.json",
+      "field": null,
+      "input": "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv",
+      "recorded_sha256": "f5ebcc494f3d96b7255ba5880dd31c037128cb3789969c42bc25de2b5b802da1",
+      "current_sha256": "f5ebcc494f3d96b7255ba5880dd31c037128cb3789969c42bc25de2b5b802da1",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_atd_from_csv_v1/source_hashes.json",
+      "field": null,
+      "input": "data/broadcast/BAR-ATH_broadcast_atd.txt",
+      "recorded_sha256": "a71c1c9391e564032446be91ffbd7564205b47966060181532d80a338685e458",
+      "current_sha256": "e617386315b21cec2b4fd32ee2a20e2a457d5a2c8cdd013e325ff7530ecd5237",
+      "comparison": "LFS_OID_MATCH_ONLY_NOT_MATERIALIZED",
+      "actual_content_verified": false
+    },
+    {
+      "report": "outputs/broadcast_atd_from_csv_v1/source_hashes.json",
+      "field": null,
+      "input": "data/broadcast/BAR-ATH_broadcast_atd.xml",
+      "recorded_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "current_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_atd_from_csv_v1/source_hashes.json",
+      "field": null,
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv",
+      "recorded_sha256": "f5ebcc494f3d96b7255ba5880dd31c037128cb3789969c42bc25de2b5b802da1",
+      "current_sha256": "f5ebcc494f3d96b7255ba5880dd31c037128cb3789969c42bc25de2b5b802da1",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_atd_temporal_v2/ball_homography_all_frames.csv",
+      "recorded_sha256": "2de5c73a221561410c04c2e511b75678a440489e16ecc03ea3fd5be0d1d5790c",
+      "current_sha256": "2de5c73a221561410c04c2e511b75678a440489e16ecc03ea3fd5be0d1d5790c",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_atd_temporal_v2/BAR-ATH_broadcast_atd.txt",
+      "recorded_sha256": "83169bf1048255540c9b5691dfa6fbb70b014b2c9aac912a3d208d11789d42c1",
+      "current_sha256": "83169bf1048255540c9b5691dfa6fbb70b014b2c9aac912a3d208d11789d42c1",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_atd_temporal_v2/BAR-ATH_broadcast_atd.xml",
+      "recorded_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "current_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/broadcast/BAR-ATH_broadcast_atd.txt",
+      "recorded_sha256": "a71c1c9391e564032446be91ffbd7564205b47966060181532d80a338685e458",
+      "current_sha256": "e617386315b21cec2b4fd32ee2a20e2a457d5a2c8cdd013e325ff7530ecd5237",
+      "comparison": "LFS_OID_MATCH_ONLY_NOT_MATERIALIZED",
+      "actual_content_verified": false
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/broadcast/BAR-ATH_broadcast_atd.xml",
+      "recorded_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "current_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/tactical/BAR-ATH_tactical_atd.txt",
+      "recorded_sha256": "f130e350d2bfdf734b7e32f072931fccc6d015c1e837d082064875fe0a700431",
+      "current_sha256": "0533d853541a5e4a55afe30405ae4cc98aa028a61e27846d72f4a6cbf5be4380",
+      "comparison": "LFS_OID_MATCH_ONLY_NOT_MATERIALIZED",
+      "actual_content_verified": false
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/tactical/BAR-ATH_tactical_atd.xml",
+      "recorded_sha256": "327e35e32e46a647389b88f883d4f9a2ab931e3e6148aef2fcf8f22b1e93c43a",
+      "current_sha256": "327e35e32e46a647389b88f883d4f9a2ab931e3e6148aef2fcf8f22b1e93c43a",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_merge_v2/merge_summary.json",
+      "field": "source_hashes",
+      "input": "data/derived/sync/final_tracking_alignment.csv",
+      "recorded_sha256": "3eeb0c27487e75ec52516baadebb526e1dffb35f10187a5d67bd7e1a228a5bfa",
+      "current_sha256": "3eeb0c27487e75ec52516baadebb526e1dffb35f10187a5d67bd7e1a228a5bfa",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_tactical_ball_merge_v2/ball_homography_all_frames.csv",
+      "recorded_sha256": "24cc478c434b3d24a363f5129202b5ee587e049c0f99335498a8e962e156d9dc",
+      "current_sha256": "24cc478c434b3d24a363f5129202b5ee587e049c0f99335498a8e962e156d9dc",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_tactical_ball_merge_v2/BAR-ATH_broadcast_atd.txt",
+      "recorded_sha256": "38c9255c8dafac33f0a28548ab3eedb69d200e8ebae87d546318dd818a2538b9",
+      "current_sha256": "38c9255c8dafac33f0a28548ab3eedb69d200e8ebae87d546318dd818a2538b9",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_tactical_ball_merge_v2/BAR-ATH_broadcast_atd.xml",
+      "recorded_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "current_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "data/derived/ball_fp_reduction_20261116/evidence.npz",
+      "recorded_sha256": "422cf1d89cf5efc46af617a79898a0274852e7d49075068c2e124111d27aaee7",
+      "current_sha256": "422cf1d89cf5efc46af617a79898a0274852e7d49075068c2e124111d27aaee7",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_atd_temporal_v2/ball_homography_all_frames.csv",
+      "recorded_sha256": "2de5c73a221561410c04c2e511b75678a440489e16ecc03ea3fd5be0d1d5790c",
+      "current_sha256": "2de5c73a221561410c04c2e511b75678a440489e16ecc03ea3fd5be0d1d5790c",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "data/tactical/BAR-ATH_tactical_atd.txt",
+      "recorded_sha256": "f130e350d2bfdf734b7e32f072931fccc6d015c1e837d082064875fe0a700431",
+      "current_sha256": "0533d853541a5e4a55afe30405ae4cc98aa028a61e27846d72f4a6cbf5be4380",
+      "comparison": "LFS_OID_MATCH_ONLY_NOT_MATERIALIZED",
+      "actual_content_verified": false
+    },
+    {
+      "report": "outputs/broadcast_tactical_ball_smoothed_v3/smoothing_summary.json",
+      "field": "source_hashes",
+      "input": "outputs/broadcast_tactical_ball_merge_v2/frame_alignment.csv",
+      "recorded_sha256": "25eb50ca2ff92baa6929c6d3bb43a101ce8984e80ff6f9ade0b99417b7eee708",
+      "current_sha256": "25eb50ca2ff92baa6929c6d3bb43a101ce8984e80ff6f9ade0b99417b7eee708",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "outputs/broadcast_tactical_ball_smoothed_v3/ball_homography_all_frames.csv",
+      "recorded_sha256": "32c406da92142da3d64e9383941a4d60817d933031125089476a674ef461aa8e",
+      "current_sha256": "32c406da92142da3d64e9383941a4d60817d933031125089476a674ef461aa8e",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "outputs/broadcast_tactical_ball_smoothed_v3/BAR-ATH_broadcast_atd.txt",
+      "recorded_sha256": "13bb706b30af4710800b3c0855980e55e0a7c8decfdf34f6ba36ad1cb2d88749",
+      "current_sha256": "13bb706b30af4710800b3c0855980e55e0a7c8decfdf34f6ba36ad1cb2d88749",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "outputs/broadcast_tactical_ball_smoothed_v3/BAR-ATH_broadcast_atd.xml",
+      "recorded_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "current_sha256": "53d387bcdef718c2034ee2e05c3036c7edfa3cfcd5bbe8270a43695bd252dbe9",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "data/tactical/BAR-ATH_tactical_atd.txt",
+      "recorded_sha256": "f130e350d2bfdf734b7e32f072931fccc6d015c1e837d082064875fe0a700431",
+      "current_sha256": "0533d853541a5e4a55afe30405ae4cc98aa028a61e27846d72f4a6cbf5be4380",
+      "comparison": "LFS_OID_MATCH_ONLY_NOT_MATERIALIZED",
+      "actual_content_verified": false
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "data/tactical/BAR-ATH_tactical_atd.xml",
+      "recorded_sha256": "327e35e32e46a647389b88f883d4f9a2ab931e3e6148aef2fcf8f22b1e93c43a",
+      "current_sha256": "327e35e32e46a647389b88f883d4f9a2ab931e3e6148aef2fcf8f22b1e93c43a",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "data/derived/sync/final_tracking_alignment.csv",
+      "recorded_sha256": "3eeb0c27487e75ec52516baadebb526e1dffb35f10187a5d67bd7e1a228a5bfa",
+      "current_sha256": "3eeb0c27487e75ec52516baadebb526e1dffb35f10187a5d67bd7e1a228a5bfa",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/tracking_manifest.json",
+      "field": "input_hashes",
+      "input": "data/broadcast/BAR-ATH_broadcast_homography.csv",
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "comparison": "EXACT_CONTENT_WITH_CRLF_LINE_ENDINGS",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/artifact_integrity.json",
+      "field": "source_files",
+      "input": "starter/render_unified_tracking_v1.py",
+      "recorded_sha256": "5cc82a5401c910d7c75b0c82806912ffc0a1920513f04d36a73abc74ef94f806",
+      "current_sha256": "5cc82a5401c910d7c75b0c82806912ffc0a1920513f04d36a73abc74ef94f806",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/artifact_integrity.json",
+      "field": "source_files",
+      "input": "starter/build_unified_tracking_v1.py",
+      "recorded_sha256": "95fb417a93cd68570c6c07793539d46fe34fb74378d58d6f73b969de0a2d3f59",
+      "current_sha256": "95fb417a93cd68570c6c07793539d46fe34fb74378d58d6f73b969de0a2d3f59",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    },
+    {
+      "report": "outputs/unified_tracking_v1/artifact_integrity.json",
+      "field": "source_files",
+      "input": "starter/render_unified_tracking_native_v1.m",
+      "recorded_sha256": "dd5dbc0e34caaa4ddb0d2bea922462f8d518929b99fd36157b3312d88828493e",
+      "current_sha256": "dd5dbc0e34caaa4ddb0d2bea922462f8d518929b99fd36157b3312d88828493e",
+      "comparison": "EXACT_BYTES",
+      "actual_content_verified": true
+    }
+  ],
+  "direct_array_checks": [
+    "Initial merged pixel/pitch -> FP input arrays",
+    "restored -> precision before_precision columns, all164487 rows",
+    "high precision -> temporal previous_pass columns, all164487 rows"
+  ],
+  "final_four_saved_data_files_match_integrity": true,
+  "original_artifact_stats_preserved": 477,
+  "V3_used": true,
+  "V4_used": false,
+  "line_H_repair_used": false,
+  "separate_ATD_baseline_used": false,
+  "original_workspace_code_modified": false,
+  "new_pipeline_algorithm_implemented": false,
+  "tracking_rerun": false,
+  "source_originals_copied_only_into_package": true,
+  "current_checkout_ready_for_rerun": false
+}

@@ -1,0 +1,13 @@
+{
+  "mode": "accepted_checkpoint_export",
+  "input_csv": "outputs/unified_tracking_v1/tracking_all_frames.csv",
+  "roster": "outputs/unified_tracking_v1/roster.json",
+  "source_sha256": "bdd017ba3f8335028a951631768780af570e71bf064c7bb850572af5419b0608",
+  "roster_sha256": "b011c78316bf98d5d83d3f6dfb63f5691965e752d19e0447bfaed26934f4dd4a",
+  "source_frames": 164487,
+  "tactical_frames": 199319,
+  "fps": 25,
+  "pitch_m": [105.0, 68.0],
+  "chunk_frames": 2000,
+  "validation_chunk_rows": 50000
+}

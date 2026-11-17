@@ -1,0 +1,28 @@
+{
+  "source_branch": "final",
+  "source_commit": "acf854c411339590afbf202e00a8e621d73df5c2",
+  "destination": "model/phase1_extraction/ball_tracking",
+  "original_verified_sources": 49,
+  "original_source_bytes_preserved": true,
+  "new_module_interface": "Checkpoint export/validation adapters; no new tracking or correction algorithm",
+  "legacy_sources_are_historical_functions_with_original_paths": true,
+  "possession_runner_changed": false,
+  "private_match_data_or_weights_copied": false,
+  "adapter_files_sha256": {
+    "extract.py": "60ac62583ddd886ad763886d088034575055c309c10104c976c98bd52f552a38",
+    "validate.py": "754e9d55d8b5b15a3e09bdc740499abe89165ece4a3a9eef34f589ec68d51881",
+    "config.json": "1c00d84ad05574795cd28e2e9aa79aeae23985ccf391c66e8d65dcfe47cd52ce",
+    "requirements.txt": "9645e2d37957dafea7c4e35bafc97564c2d449862e99f98ddbebeee3e6dc6f15",
+    "tests/test_export_adapter.py": "2c462507582ad09ee13e7f3614d8b6ac13a62a2c63cc53f25448acde3b218d8f"
+  },
+  "verification": {
+    "synthetic_tests": 9,
+    "synthetic_tests_passed": 9,
+    "command": "python -m unittest discover -s model/phase1_extraction/ball_tracking/tests -v",
+    "actual_extract_and_validate_cli_tested": true,
+    "original_source_hashes_checked": 49,
+    "python_syntax": "PASS",
+    "real_match_export_executed_in_this_integration": false,
+    "position_accuracy_evaluated": false
+  }
+}

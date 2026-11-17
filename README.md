@@ -34,7 +34,7 @@ run_submission.py                 one command: data/ -> SNP.csv
 SNP.md                            technical document
 model/
 ├── phase1_extraction/
-│   ├── ball_tracking/            ball-tracking correction (placeholder, see its README)
+│   ├── ball_tracking/            retained tracking sources + checkpoint export (not used by SNP.csv yet)
 │   ├── tracking_alignment/       tactical/broadcast frame alignment (not used by SNP.csv yet)
 │   └── dead_ball/                frame-level dead-ball detection (DFL-trained LightGBM + football-law rules)
 └── phase2_possession/
@@ -47,6 +47,9 @@ Each model folder has its own README with inputs, command, outputs and column me
 between phases is in [model/README.md](model/README.md).
 
 ## Rules followed
+
+These statements describe the active dead-ball/possession submission. The optional tracking sources
+have separate review/model provenance documented in their module README.
 
 - Labels come out of code. Nothing on the provided match was labelled or corrected by hand.
 - Training and tuning use external data only (DFL/IDSSE, Metrica sample data, SkillCorner open data).
@@ -64,3 +67,10 @@ No external data is redistributed here; only the dead-ball model weights trained
 | Metrica Sports sample data, 3 matches | github.com/metrica-sports/sample-data | no licence file; the README asks users to acknowledge the source for public use | validation only |
 
 Data: DFL Deutsche Fußball Liga / Bassek et al. (2025); SkillCorner; Metrica Sports.
+
+## Optional ball-tracking module
+
+`model/phase1_extraction/ball_tracking/` now contains the verified retained tracking sources and a
+checkpoint-to-Phase-1 export/validation interface. It needs the private accepted unified checkpoint;
+it is not a raw-data rebuild and is not called by the current `run_submission.py`. The active submission
+continues to use the provided Tactical ATD. See the module README for its inputs and status.

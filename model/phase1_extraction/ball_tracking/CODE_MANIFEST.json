@@ -1,0 +1,1239 @@
+{
+  "schema_version": 1,
+  "scope": "Confirmed local tracking path from pinned completed SNP inputs through retained V3 and final Tactical player fusion; no possession inference",
+  "final_dataset": "outputs/unified_tracking_v1",
+  "source_file_count": 49,
+  "sources": [
+    {
+      "path": "games.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "games.py",
+        "sha256": "3b2122794e9e0476e2b3a871d14880e5fa47c4feaeacf99caef054c2309076ce",
+        "bytes": 10301
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/analyze_broadcast_atd_coordinate_difference.py",
+      "roles": [
+        "required_guard_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/analyze_broadcast_atd_coordinate_difference.py",
+        "sha256": "8e5ec746cbaff908be5524ad0acd3cb442f999be72ec0743a2a8aaae7374101a",
+        "bytes": 12041
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/apply_ball_fp_reduction.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/apply_ball_fp_reduction.py",
+        "sha256": "4084cf5f08b54205c26bc7cf160918bc0e60769ab4564a700c3d1565b6f01ca7",
+        "bytes": 11034
+      },
+      "local_dependencies": [
+        "starter/compare_broadcast_ball_coordinates.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/apply_ball_precision.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/apply_ball_precision.py",
+        "sha256": "ec729166e7286a2753ae0f78835698fa1d5f82abf23c3d4dc59ed7cb7e1fb791",
+        "bytes": 19788
+      },
+      "local_dependencies": [
+        "starter/fill_ball_bidirectional.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/audit_corrected_ball_homography.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "original_git_blob",
+        "git_blob": "d295c6410c70b888c84fa4b5f906a423c8377366",
+        "sha256": "2b159f2ad8768ae3908558282b9da0bfd5260225138ace5a41e238611ec14708",
+        "bytes": 21079,
+        "original_workspace_path_still_absent": true
+      },
+      "local_dependencies": [
+        "games.py"
+      ],
+      "scope_note": "Original used transform/merge producer. Run --skip-visuals to limit it to data/diagnostic tables; discarded H repair code is not included."
+    },
+    {
+      "path": "starter/audit_yolo26x_green_balls.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/audit_yolo26x_green_balls.py",
+        "sha256": "97c817b50df53147b08af33816e13eedffad67429c7faf2f80de0ebcecd6736f",
+        "bytes": 18937
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/audit_yolo26x_green_independent.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/audit_yolo26x_green_independent.py",
+        "sha256": "669d72053e3334591eb67f45a99c8a1c674fe974248be3075977d10f82fa4057",
+        "bytes": 2542
+      },
+      "local_dependencies": [
+        "starter/audit_yolo26x_green_balls.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/ball_fp_evidence.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/ball_fp_evidence.py",
+        "sha256": "7b188b87f738c85585382aac9ca38209ba062b86822bdc2fb76b061ecfa029f9",
+        "bytes": 15768
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/ball_tactical_fusion_common.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/ball_tactical_fusion_common.py",
+        "sha256": "4015be5fdb10ee3ff29b74d654c9e967a6e1d9fa91a81875d8f553d99a73efb2",
+        "bytes": 4111
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/ball_tracking_video_utils.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/ball_tracking_video_utils.py",
+        "sha256": "5c0698f81276917dafbc9279e3a9df47ce33c94578706d0eaa5f51112ff43888",
+        "bytes": 767
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/ball_uniform_context.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/ball_uniform_context.py",
+        "sha256": "58f628dafce7da66642c4d3c658dd972c2ae530dbb8c62b2db6f707f717bdd3b",
+        "bytes": 13443
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/benchmark_ball_yolo26.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/benchmark_ball_yolo26.py",
+        "sha256": "29cf65e0a577d89e0655e01c102cec14509af829fcc02ed3c594ff9a12203243",
+        "bytes": 14465
+      },
+      "local_dependencies": [],
+      "scope_note": "Required shared hashing/helpers and historical model evidence; N/S/M/L comparison outputs are not coordinate inputs."
+    },
+    {
+      "path": "starter/build_unified_tracking_v1.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/build_unified_tracking_v1.py",
+        "sha256": "95fb417a93cd68570c6c07793539d46fe34fb74378d58d6f73b969de0a2d3f59",
+        "bytes": 15647
+      },
+      "local_dependencies": [
+        "starter/ball_tactical_fusion_common.py",
+        "starter/render_broadcast_atd_from_csv.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/classify_ball_yolo26_candidates.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/classify_ball_yolo26_candidates.py",
+        "sha256": "4265e340b70bf9cd99ac620f6ad418cbd9a513f4d759a11beb983afd86898bdd",
+        "bytes": 17034
+      },
+      "local_dependencies": [
+        "starter/benchmark_ball_yolo26.py"
+      ],
+      "scope_note": "Required square_crop/shared inference helpers; comparison classifier outputs are not final coordinates."
+    },
+    {
+      "path": "starter/compare_broadcast_ball_coordinates.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/compare_broadcast_ball_coordinates.py",
+        "sha256": "deb1bbc142d6538d16628e777a19d2fdf5dbb0298ba0805c4b0df86ffc902deb",
+        "bytes": 12905
+      },
+      "local_dependencies": [],
+      "scope_note": "Required imports/constants for FP/context exporters; standalone comparison video is not a coordinate producer."
+    },
+    {
+      "path": "starter/compile_ball_tracking_renderers.py",
+      "roles": [
+        "final_video"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/compile_ball_tracking_renderers.py",
+        "sha256": "532cc713213bda8d73254559a0c25c0079c6ea0357ab7f74415e8ac0d2682383",
+        "bytes": 1660
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/correct_broadcast_atd_temporal_v2.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/correct_broadcast_atd_temporal_v2.py",
+        "sha256": "63430c67278e6e9ad6f655e6589b06c81649ccb986892a4739bc1daab05956af",
+        "bytes": 30751
+      },
+      "local_dependencies": [
+        "starter/apply_ball_precision.py",
+        "starter/fill_ball_bidirectional.py",
+        "starter/refine_ball_temporal_ai.py",
+        "starter/render_broadcast_atd_from_csv.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/decide_ball_yolo26_candidates.py",
+      "roles": [
+        "applied_model_or_parameter_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/decide_ball_yolo26_candidates.py",
+        "sha256": "ac95b100c7d5f43031a1a38c45d9d17e70e41702ee85b266a668c1c0060f3396",
+        "bytes": 8121
+      },
+      "local_dependencies": [
+        "starter/benchmark_ball_yolo26.py"
+      ],
+      "scope_note": "Only generated decision_parameters.json thresholds feed the X-only finalizer; its mixed S+new-X verdict table is excluded as a coordinate input."
+    },
+    {
+      "path": "starter/download_ball_fp_reference.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/download_ball_fp_reference.py",
+        "sha256": "e3b0e91232e19588e5a96a8857fb273c52b1d5b85db10a467610823e67ba1d06",
+        "bytes": 2281
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/export_ball_precision_view.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/export_ball_precision_view.py",
+        "sha256": "0d22501c369ec0d21e6cbb92ab8b28a210181aac908f88e952cc581d022e49ae",
+        "bytes": 6573
+      },
+      "local_dependencies": [],
+      "scope_note": "Despite the name, main actually creates the high-precision CSV consumed by temporal AI."
+    },
+    {
+      "path": "starter/export_ball_uniform_context.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/export_ball_uniform_context.py",
+        "sha256": "e9514c2355b3b4d9a70f72efbfb8760e4a184916cde1c8748b01e5d120fb1508",
+        "bytes": 10730
+      },
+      "local_dependencies": [
+        "starter/ball_uniform_context.py",
+        "starter/compare_broadcast_ball_coordinates.py"
+      ],
+      "scope_note": "apply creates uniform decisions/filtered inputs consumed by the redetection queue and precision negative evidence."
+    },
+    {
+      "path": "starter/export_broadcast_atd_from_input_csv.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/export_broadcast_atd_from_input_csv.py",
+        "sha256": "c71db2a47d3e3025123b0b7df646e69b2a6bdfe48ed3debd1f0cd20f1caa1caa",
+        "bytes": 14051
+      },
+      "local_dependencies": [
+        "starter/tracking_utils.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/export_yolo26x_green_pitch.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/export_yolo26x_green_pitch.py",
+        "sha256": "6ee4a410949dd53841e5a3869bf1b52d3f14b7225bf244e43ebd839a80c329fe",
+        "bytes": 12858
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/fill_ball_bidirectional.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/fill_ball_bidirectional.py",
+        "sha256": "65d4ef0295fa49040a3a929c55f894d4fa8f305f42aaaed8155b0b39c3aab2c8",
+        "bytes": 17571
+      },
+      "local_dependencies": [],
+      "scope_note": "Only predict_gap/homography_project/local_histogram helpers are part of the active path; its old standalone prepare output is excluded."
+    },
+    {
+      "path": "starter/final_tracking_alignment.py",
+      "roles": [
+        "alignment_producer"
+      ],
+      "origin": {
+        "kind": "byte_identical_preserved_source",
+        "path": "outputs/submission_public_code_v1/starter/final_tracking_alignment.py",
+        "sha256": "e251d8e3d61fbecefdec10aa40141c149e5ef35379200d5beabde043342fdbd2",
+        "bytes": 17286
+      },
+      "local_dependencies": [
+        "games.py",
+        "starter/find_joint_tracking_match.py",
+        "starter/load_smart_tagging.py",
+        "starter/tracking_utils.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/finalize_ball_precision_candidates.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/finalize_ball_precision_candidates.py",
+        "sha256": "9827b9894f7016e5aefe8bc71a4f230b655c9414cb5975b497d1dd64e8cd664d",
+        "bytes": 2663
+      },
+      "local_dependencies": [
+        "starter/infer_ball_yolo26_binary_head.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/finalize_ball_yolo26x.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/finalize_ball_yolo26x.py",
+        "sha256": "eb77a2391e8b2344ebf67d8404cffb365c0060b3faec6230bdc31952d9dd7cca",
+        "bytes": 13411
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/find_joint_tracking_match.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "byte_identical_preserved_source",
+        "path": "outputs/submission_public_code_v1/starter/find_joint_tracking_match.py",
+        "sha256": "5f8c32b26cc3197e9680293ea7ff6d20a5b6076a4e05035db78aba775f0414db",
+        "bytes": 11426
+      },
+      "local_dependencies": [
+        "games.py",
+        "starter/find_layout_match.py",
+        "starter/tracking_utils.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/find_layout_match.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "byte_identical_preserved_source",
+        "path": "outputs/submission_public_code_v1/starter/find_layout_match.py",
+        "sha256": "85e1f704bd780dd9d0e3f0917040ee604d54195f6523f02de0375d1d486e3e40",
+        "bytes": 11966
+      },
+      "local_dependencies": [
+        "games.py",
+        "starter/tracking_utils.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/harden_ball_precision.py",
+      "roles": [
+        "required_input_preparation",
+        "applied_model_or_parameter_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/harden_ball_precision.py",
+        "sha256": "9259ededdc9344d16e7c53e9a8ae10bdc1515d35ba95561e3564cd061665a741",
+        "bytes": 15666
+      },
+      "local_dependencies": [
+        "starter/classify_ball_yolo26_candidates.py",
+        "starter/infer_ball_yolo26_binary_head.py",
+        "starter/probe_ball_yolo26_binary_verifier.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/infer_ball_yolo26_binary_head.py",
+      "roles": [
+        "actual_detector_or_candidate_scorer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/infer_ball_yolo26_binary_head.py",
+        "sha256": "ba3eb439cb0b0028d524a4cd2a9242bf15eda553ea8184ab2b5608e3cf266e5b",
+        "bytes": 12241
+      },
+      "local_dependencies": [
+        "starter/benchmark_ball_yolo26.py",
+        "starter/classify_ball_yolo26_candidates.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/load_smart_tagging.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/load_smart_tagging.py",
+        "sha256": "cacfe90acf1deb37b3aa3e4666d6a9d5595c1766d59fe24c9150e1a1d51d0c64",
+        "bytes": 6092
+      },
+      "local_dependencies": [
+        "games.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/merge_tactical_into_corrected_ball_v2.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/merge_tactical_into_corrected_ball_v2.py",
+        "sha256": "41936f501d3b74ad94688102ccec63b96a52bb78a0a485d9771ffab71e808e4d",
+        "bytes": 24187
+      },
+      "local_dependencies": [
+        "starter/ball_tactical_fusion_common.py",
+        "starter/render_broadcast_atd_from_csv.py",
+        "starter/tracking_utils.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/prepare_ball_fp_inputs.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/prepare_ball_fp_inputs.py",
+        "sha256": "8fc14123ad2cd8e8219f8e70e8aa3101e97c7b97072ae1a5b6bea8b3a4247985",
+        "bytes": 3217
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/prepare_ball_redetection_frames.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/prepare_ball_redetection_frames.py",
+        "sha256": "4041cd8fb9526db4957f16f9d65d89e72cfe5bff322f97e83fa42c5b1c7a5d30",
+        "bytes": 10272
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/prepare_ball_yolo26_reference.py",
+      "roles": [
+        "required_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/prepare_ball_yolo26_reference.py",
+        "sha256": "0d18b8ef60b7eb9969edea9c81562ca058d377b8301aae3586dacb80269b26b7",
+        "bytes": 9324
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/probe_ball_yolo26_binary_verifier.py",
+      "roles": [
+        "applied_model_or_parameter_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/probe_ball_yolo26_binary_verifier.py",
+        "sha256": "0e4564e369de300fe47d1fdb2acadd3b95dd47fc290e9633f3855432145a17b0",
+        "bytes": 7918
+      },
+      "local_dependencies": [
+        "starter/classify_ball_yolo26_candidates.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/refine_ball_temporal_ai.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/refine_ball_temporal_ai.py",
+        "sha256": "eed298082e3459d70f91ef0d645b5a9e558ced87e3caeda53c7a7e5dc409fdf6",
+        "bytes": 25137
+      },
+      "local_dependencies": [
+        "starter/apply_ball_precision.py",
+        "starter/fill_ball_bidirectional.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/render_broadcast_atd_from_csv.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/render_broadcast_atd_from_csv.py",
+        "sha256": "8a73853c20b588ae8b8ed48db9e74202544512c1ae4f0342709344169bc7cf1d",
+        "bytes": 21575
+      },
+      "local_dependencies": [
+        "starter/ball_tracking_video_utils.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/render_unified_tracking_native_v1.m",
+      "roles": [
+        "final_video"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/render_unified_tracking_native_v1.m",
+        "sha256": "dd5dbc0e34caaa4ddb0d2bea922462f8d518929b99fd36157b3312d88828493e",
+        "bytes": 13654
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/render_unified_tracking_v1.py",
+      "roles": [
+        "final_video"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/render_unified_tracking_v1.py",
+        "sha256": "5cc82a5401c910d7c75b0c82806912ffc0a1920513f04d36a73abc74ef94f806",
+        "bytes": 19250
+      },
+      "local_dependencies": [
+        "starter/render_broadcast_atd_from_csv.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/restore_atd_original_by_y_difference.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/restore_atd_original_by_y_difference.py",
+        "sha256": "2a04185f0fdd52838c6572af29b9842664e2f1c3c9a34aa7ad90c1ac5458b369",
+        "bytes": 27391
+      },
+      "local_dependencies": [
+        "starter/ball_tracking_video_utils.py"
+      ],
+      "scope_note": "export is the coordinate function. CLI is prepare/render/verify; prepare also creates video assets. There is no export CLI choice."
+    },
+    {
+      "path": "starter/restore_full_ball_observations.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/restore_full_ball_observations.py",
+        "sha256": "434405bb55bd3e68330294365d17605209ac3179ad5a30a71e299bffd7e63cc3",
+        "bytes": 9896
+      },
+      "local_dependencies": [
+        "starter/fill_ball_bidirectional.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/score_ball_false_positives.py",
+      "roles": [
+        "applied_model_or_parameter_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/score_ball_false_positives.py",
+        "sha256": "f7c9dd8fd060a0cc5b0c0721a92f95f301c41fcb9af1dd5e9b1439afdc433879",
+        "bytes": 8003
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/smooth_merged_ball_teleports_v3.py",
+      "roles": [
+        "coordinate_producer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/smooth_merged_ball_teleports_v3.py",
+        "sha256": "a657cc109bbc1843eb044109db4f51025d1ddf3633094302533263a3f7b987ec",
+        "bytes": 28147
+      },
+      "local_dependencies": [
+        "starter/fill_ball_bidirectional.py",
+        "starter/refine_ball_temporal_ai.py",
+        "starter/render_broadcast_atd_from_csv.py"
+      ],
+      "scope_note": "Current source differs from the execution-hashed source only in validation-report copy path. Reverse that single expression in memory and the recorded execution SHA matches exactly."
+    },
+    {
+      "path": "starter/tracking_utils.py",
+      "roles": [
+        "shared_dependency"
+      ],
+      "origin": {
+        "kind": "byte_identical_preserved_source",
+        "path": "outputs/submission_public_code_v1/starter/tracking_utils.py",
+        "sha256": "cf8ded860c3a0797a8a1c8fba9daa3ec4f2ae292c01a4f32953956ab4da7c57a",
+        "bytes": 6727
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/validate_ball_smoothed_v3_model.py",
+      "roles": [
+        "applied_model_or_parameter_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/validate_ball_smoothed_v3_model.py",
+        "sha256": "1eec8c2decb74a5a63aebc8d69d002f2fac8732bedfb4af847f7e79d926913e0",
+        "bytes": 6896
+      },
+      "local_dependencies": [
+        "starter/refine_ball_temporal_ai.py"
+      ],
+      "scope_note": ""
+    },
+    {
+      "path": "starter/visualize_atd_y_difference.py",
+      "roles": [
+        "required_guard_input_preparation"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "starter/visualize_atd_y_difference.py",
+        "sha256": "5909d2ed23b112fe7fad0690ef8bdc78fe6cbe62b1616c7d394a59339c0c4ba0",
+        "bytes": 17010
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    },
+    {
+      "path": "yolo26_football_detection/src/redetect_ball_frames.py",
+      "roles": [
+        "actual_detector_or_candidate_scorer"
+      ],
+      "origin": {
+        "kind": "current_source",
+        "path": "yolo26_football_detection/src/redetect_ball_frames.py",
+        "sha256": "0301ccd84129c68582699239a96374bc57643ffe76b4be3158b1919451743502",
+        "bytes": 18142
+      },
+      "local_dependencies": [],
+      "scope_note": ""
+    }
+  ],
+  "stages": [
+    {
+      "id": "00_alignment",
+      "title": "Broadcast/Tactical frame alignment",
+      "code": [
+        "starter/final_tracking_alignment.py"
+      ],
+      "inputs": [
+        "data/broadcast/BAR-ATH_broadcast_atd.txt",
+        "data/tactical/BAR-ATH_tactical_atd.txt",
+        "data/tactical/BAR-ATH_tactical_smart_tagging.xml"
+      ],
+      "outputs": [
+        "data/derived/sync/final_tracking_alignment.csv"
+      ],
+      "note": "Automatic ball/player matcher; use mapping only, not its blank possession label tables."
+    },
+    {
+      "id": "01_fixed_SNP_assets",
+      "title": "Pinned incoming corrected SNP first/second-half assets",
+      "code": [],
+      "inputs": [],
+      "outputs": [
+        "data/derived/ball_tracking_homography_20261116/sources/first_half_corrected_ball_coordinates.csv",
+        "data/derived/ball_tracking_homography_20261116/sources/second_half_ball_object_audited.csv"
+      ],
+      "note": "These completed exports are the user-specified input boundary, not a request to reimplement their upstream object audit."
+    },
+    {
+      "id": "02_initial_H_merge",
+      "title": "Initial original-H projection and half merge",
+      "code": [
+        "starter/audit_corrected_ball_homography.py"
+      ],
+      "inputs": [
+        "data/derived/ball_tracking_homography_20261116/sources/first_half_corrected_ball_coordinates.csv",
+        "data/derived/ball_tracking_homography_20261116/sources/second_half_ball_object_audited.csv",
+        "data/broadcast/BAR-ATH_broadcast_homography.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_tracking_homography_20261116/combined_corrected_ball_pitch.csv"
+      ],
+      "note": "Preserve first-half normalized coordinates; invert original same-frame H for second-half image observations; no H repair."
+    },
+    {
+      "id": "03_FP",
+      "title": "Additional FP selection",
+      "code": [
+        "starter/prepare_ball_fp_inputs.py",
+        "starter/ball_fp_evidence.py",
+        "starter/score_ball_false_positives.py",
+        "starter/apply_ball_fp_reduction.py"
+      ],
+      "inputs": [
+        "data/derived/ball_tracking_homography_20261116/combined_corrected_ball_pitch.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_fp_reduction_20261116/fp_inputs.npz",
+        "data/derived/ball_fp_reduction_20261116/filtered_ball_coordinates.csv"
+      ],
+      "note": "Requires existing exact reference/approval assets; source positions are retained except approved rejections."
+    },
+    {
+      "id": "04_uniform_context",
+      "title": "Uniform/context evidence for queue and later precision",
+      "code": [
+        "starter/ball_uniform_context.py",
+        "starter/export_ball_uniform_context.py"
+      ],
+      "inputs": [
+        "data/derived/ball_fp_reduction_20261116/filtered_ball_coordinates.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_uniform_context_20261116/context_decisions.csv",
+        "data/derived/ball_uniform_context_20261116/filtered_ball_coordinates.csv",
+        "data/derived/ball_uniform_context_20261116/new_uniform_rejections.csv"
+      ],
+      "note": "These feed requests/negative evidence, not the restored coordinate base."
+    },
+    {
+      "id": "05_queue",
+      "title": "Targeted full-frame redetection queue",
+      "code": [
+        "starter/prepare_ball_redetection_frames.py"
+      ],
+      "inputs": [
+        "data/derived/ball_uniform_context_20261116/context_decisions.csv",
+        "data/derived/ball_uniform_context_20261116/filtered_ball_coordinates.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_targeted_redetection_20261116/frames_to_redetect.csv"
+      ],
+      "note": "Queueing is not a false-ball label."
+    },
+    {
+      "id": "06_X_detection",
+      "title": "Actual YOLO26X full-frame detections",
+      "code": [
+        "yolo26_football_detection/src/redetect_ball_frames.py"
+      ],
+      "inputs": [
+        "data/derived/ball_targeted_redetection_20261116/frames_to_redetect.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_yolo26_model_audit_20261116/yolo26x_recheck/raw_ball_candidates.csv"
+      ],
+      "note": "Verified 11092-frame completed X work, 34784 boxes. Source explicitly YOLO26x_FULL_REDETECT."
+    },
+    {
+      "id": "07_X_score",
+      "title": "Score actual X candidates and select",
+      "code": [
+        "starter/infer_ball_yolo26_binary_head.py",
+        "starter/finalize_ball_yolo26x.py"
+      ],
+      "inputs": [
+        "data/derived/ball_yolo26_model_audit_20261116/yolo26x_recheck/raw_ball_candidates.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_yolo26x_redetection_20261116/all_candidates.csv"
+      ],
+      "note": "X-only candidates; decision parameters are a separate required model asset."
+    },
+    {
+      "id": "08_X_pitch_review",
+      "title": "Original-H projection and recorded candidate review",
+      "code": [
+        "starter/export_yolo26x_green_pitch.py",
+        "starter/audit_yolo26x_green_balls.py",
+        "starter/audit_yolo26x_green_independent.py"
+      ],
+      "inputs": [
+        "data/derived/ball_yolo26x_redetection_20261116/all_candidates.csv",
+        "data/broadcast/BAR-ATH_broadcast_homography.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_yolo26x_pitch_20261116/reviewed_ball_pitch.csv"
+      ],
+      "note": "Existing review manifests are inputs; this task did not create new review labels."
+    },
+    {
+      "id": "09_restore",
+      "title": "Restore original SNP observations and local X replacements",
+      "code": [
+        "starter/restore_full_ball_observations.py"
+      ],
+      "inputs": [
+        "data/derived/ball_fp_reduction_20261116/filtered_ball_coordinates.csv",
+        "data/derived/ball_yolo26x_pitch_20261116/reviewed_ball_pitch.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_full_match_restored_20261116/ball_homography_all_frames.csv"
+      ],
+      "note": "Uses fill helper functions; does not read the old partial fill output."
+    },
+    {
+      "id": "10_precision_inputs",
+      "title": "Precision features/model/candidate preparation",
+      "code": [
+        "starter/harden_ball_precision.py",
+        "starter/finalize_ball_precision_candidates.py"
+      ],
+      "inputs": [
+        "data/derived/ball_full_match_restored_20261116/ball_homography_all_frames.csv"
+      ],
+      "outputs": [],
+      "note": "Existing v2/v3 heads, source candidates, exact review references and feature banks are required private inputs."
+    },
+    {
+      "id": "11_precision",
+      "title": "Precision coordinate selection",
+      "code": [
+        "starter/apply_ball_precision.py"
+      ],
+      "inputs": [
+        "data/derived/ball_full_match_restored_20261116/ball_homography_all_frames.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_precision_review_20261117/final/ball_homography_all_frames.csv"
+      ],
+      "note": "before_precision coordinates preserve the restored source."
+    },
+    {
+      "id": "12_precision_export",
+      "title": "Select high-precision coordinates",
+      "code": [
+        "starter/export_ball_precision_view.py"
+      ],
+      "inputs": [
+        "data/derived/ball_precision_review_20261117/final/ball_homography_all_frames.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_precision_review_20261117/final/ball_homography_high_precision_all_frames.csv"
+      ],
+      "note": "This exporter is an actual coordinate producer, not only a viewer."
+    },
+    {
+      "id": "13_temporal",
+      "title": "Two-ended temporal candidate recovery/prediction",
+      "code": [
+        "starter/refine_ball_temporal_ai.py"
+      ],
+      "inputs": [
+        "data/derived/ball_precision_review_20261117/final/ball_homography_high_precision_all_frames.csv"
+      ],
+      "outputs": [
+        "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv"
+      ],
+      "note": "bank/train/associate/build; existing operational model selection is learned."
+    },
+    {
+      "id": "14_ATD",
+      "title": "Apply the selected CSV to a new Broadcast ATD",
+      "code": [
+        "starter/export_broadcast_atd_from_input_csv.py"
+      ],
+      "inputs": [
+        "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv",
+        "data/broadcast/BAR-ATH_broadcast_atd.txt"
+      ],
+      "outputs": [
+        "outputs/broadcast_atd_from_csv_v1/BAR-ATH_broadcast_atd.txt"
+      ],
+      "note": "Normalized XY carried to XML pitch 105x68m."
+    },
+    {
+      "id": "15_Y_guard",
+      "title": "Required Y-difference guard inputs",
+      "code": [
+        "starter/analyze_broadcast_atd_coordinate_difference.py",
+        "starter/visualize_atd_y_difference.py"
+      ],
+      "inputs": [
+        "outputs/broadcast_atd_from_csv_v1/BAR-ATH_broadcast_atd.txt",
+        "data/broadcast/BAR-ATH_broadcast_atd.txt"
+      ],
+      "outputs": [
+        "outputs/broadcast_atd_from_csv_v1/coordinate_difference_analysis/y_only_normalized_view/y_difference_all_frames.csv"
+      ],
+      "note": "Required by the next export assertions even though these scripts also draw charts."
+    },
+    {
+      "id": "16_Y_restore",
+      "title": "Restore original ATD XY at normalized Y threshold",
+      "code": [
+        "starter/restore_atd_original_by_y_difference.py"
+      ],
+      "inputs": [
+        "outputs/broadcast_atd_from_csv_v1/BAR-ATH_broadcast_atd.txt"
+      ],
+      "outputs": [
+        "outputs/broadcast_atd_y_minus_0p1_original_v1/BAR-ATH_broadcast_atd.txt"
+      ],
+      "note": "export() restores XY pair, not H or Y alone."
+    },
+    {
+      "id": "17_temporal_V2",
+      "title": "Two-ended temporal correction V2",
+      "code": [
+        "starter/correct_broadcast_atd_temporal_v2.py"
+      ],
+      "inputs": [
+        "outputs/broadcast_atd_y_minus_0p1_original_v1/BAR-ATH_broadcast_atd.txt",
+        "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv"
+      ],
+      "outputs": [
+        "outputs/broadcast_atd_temporal_v2/ball_homography_all_frames.csv"
+      ],
+      "note": "run()/CLI correct; package finalizer is not a coordinate producer."
+    },
+    {
+      "id": "18_tactical_ball",
+      "title": "Tactical ball replacement in the corrected destination",
+      "code": [
+        "starter/merge_tactical_into_corrected_ball_v2.py"
+      ],
+      "inputs": [
+        "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv",
+        "outputs/broadcast_atd_temporal_v2/ball_homography_all_frames.csv",
+        "data/tactical/BAR-ATH_tactical_atd.txt",
+        "data/derived/sync/final_tracking_alignment.csv"
+      ],
+      "outputs": [
+        "outputs/broadcast_tactical_ball_merge_v2/ball_homography_all_frames.csv"
+      ],
+      "note": "Missing mask and coordinate destination are different inputs."
+    },
+    {
+      "id": "19_V3",
+      "title": "Accepted local V3 repair",
+      "code": [
+        "starter/smooth_merged_ball_teleports_v3.py"
+      ],
+      "inputs": [
+        "outputs/broadcast_tactical_ball_merge_v2/ball_homography_all_frames.csv"
+      ],
+      "outputs": [
+        "outputs/broadcast_tactical_ball_smoothed_v3/ball_homography_all_frames.csv"
+      ],
+      "note": "Used by final dataset. 1346 frames/292 segments; V4 excluded."
+    },
+    {
+      "id": "20_unified",
+      "title": "Retained V3 ball + Tactical players",
+      "code": [
+        "starter/build_unified_tracking_v1.py"
+      ],
+      "inputs": [
+        "outputs/broadcast_tactical_ball_smoothed_v3/ball_homography_all_frames.csv",
+        "outputs/broadcast_tactical_ball_smoothed_v3/BAR-ATH_broadcast_atd.txt",
+        "data/tactical/BAR-ATH_tactical_atd.txt",
+        "data/derived/sync/final_tracking_alignment.csv"
+      ],
+      "outputs": [
+        "outputs/unified_tracking_v1/tracking_all_frames.csv",
+        "outputs/unified_tracking_v1/tracking_atd.txt",
+        "outputs/unified_tracking_v1/tracking_atd.xml",
+        "outputs/unified_tracking_v1/roster.json"
+      ],
+      "note": "Final Broadcast 164487 frames, 46 player slots, valid ball107517. No new smoothing in builder."
+    },
+    {
+      "id": "21_final_video",
+      "title": "One full-length final tracking video",
+      "code": [
+        "starter/compile_ball_tracking_renderers.py",
+        "starter/render_unified_tracking_v1.py",
+        "starter/render_unified_tracking_native_v1.m"
+      ],
+      "inputs": [
+        "outputs/unified_tracking_v1/tracking_all_frames.csv",
+        "data/broadcast/BAR-ATH_broadcast_homography.csv"
+      ],
+      "outputs": [
+        "outputs/unified_tracking_v1/unified_tracking.mp4"
+      ],
+      "note": "compile target unified; renderer prepare/render/verify. No intermediate alternative viewers included as run steps."
+    }
+  ],
+  "artifact_sha256": {
+    "data/broadcast/BAR-ATH_broadcast_homography.csv": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+    "data/derived/ball_fp_reduction_20261116/filtered_ball_coordinates.csv": "8418a2294a174fdf4d05d6c5f6057eca46938eba84d18a67c88d817f460bc0f5",
+    "data/derived/ball_fp_reduction_20261116/fp_inputs.npz": "58c8cc69cafc1b8defebf2d0acd8efb5d8a6fb5be40224467d9885c8efe64218",
+    "data/derived/ball_full_match_restored_20261116/ball_homography_all_frames.csv": "132a1de397e07f267b29e8c71da6f2d6d9186740af41f9aac2e12f876f31aa3e",
+    "data/derived/ball_precision_review_20261117/final/ball_homography_all_frames.csv": "b48dce1ec41f9eed6b3a5d857c040971b4cc3a1c9af312c6595382973923f45d",
+    "data/derived/ball_precision_review_20261117/final/ball_homography_high_precision_all_frames.csv": "e6a31e2f9bc99ee8fd786cf8b5d22693ecd0a49236fceee7d1201ec4e70033a6",
+    "data/derived/ball_targeted_redetection_20261116/frames_to_redetect.csv": "f65b88fef6d9cb98822a1a93229ee80a08aa8f4dab0051edef96ed2188feb1bb",
+    "data/derived/ball_temporal_ai_20261117/ball_homography_all_frames.csv": "f5ebcc494f3d96b7255ba5880dd31c037128cb3789969c42bc25de2b5b802da1",
+    "data/derived/ball_tracking_homography_20261116/combined_corrected_ball_pitch.csv": "cc4405625a5bf6468e564e000d636842654dd206073f748eaa29711b8449c97c",
+    "data/derived/ball_tracking_homography_20261116/sources/first_half_corrected_ball_coordinates.csv": "64969e64c5f38e14e02f083e8cd492dd46e3ef65deb99414168c633f515d2679",
+    "data/derived/ball_tracking_homography_20261116/sources/second_half_ball_object_audited.csv": "22c69f031cda4e8ec9485d6d9184d4a850daa61f98613652c02a3b65a3b187d3",
+    "data/derived/ball_uniform_context_20261116/context_decisions.csv": "421ffa9956c3d795db4ee4f88bf8fc13b3f3022dc4ecabfc6f242a4785b9bb45",
+    "data/derived/ball_uniform_context_20261116/filtered_ball_coordinates.csv": "0854c2a27fb0ac9ac688cf1e7180805f7b089e0e3bec686f1906ea789e8f4830",
+    "data/derived/ball_uniform_context_20261116/new_uniform_rejections.csv": "84465f82002489aeca76afc9c4f3dbf377546d3761123dfd0d6610ebff7eac2d",
+    "data/derived/ball_yolo26_model_audit_20261116/yolo26x_recheck/raw_ball_candidates.csv": "b2c2afcdef09ab271e92253f14e4d28975841e5c303088a7e994ac91d7613b00",
+    "data/derived/ball_yolo26x_pitch_20261116/reviewed_ball_pitch.csv": "9e8f00bc0311f1ec449cb0d68eea09a9bfffcb71b14fdd92998d9f6fcfba95cf",
+    "data/derived/ball_yolo26x_redetection_20261116/all_candidates.csv": "3670f80b94fba7b572c01c83c6d2c3e99f43f4718e252cc7994f9fd271e7f1a8",
+    "data/derived/sync/final_tracking_alignment.csv": "3eeb0c27487e75ec52516baadebb526e1dffb35f10187a5d67bd7e1a228a5bfa",
+    "data/tactical/BAR-ATH_tactical_smart_tagging.xml": "7c21853139365cb4187b9cf01e9ce778e0dc791069d6c62ceda1dbcc60fa7eb8",
+    "outputs/broadcast_atd_from_csv_v1/BAR-ATH_broadcast_atd.txt": "d54f0b1202341471e44faf9ab23d15264969db9d2d28ad3f8693a831f4f543f7",
+    "outputs/broadcast_atd_from_csv_v1/coordinate_difference_analysis/y_only_normalized_view/y_difference_all_frames.csv": "e135c66f7284cc57e0a3e61d51d330f5e3fd5574b549fc8de1da6c18abec04a5",
+    "outputs/broadcast_atd_temporal_v2/ball_homography_all_frames.csv": "2de5c73a221561410c04c2e511b75678a440489e16ecc03ea3fd5be0d1d5790c",
+    "outputs/broadcast_atd_y_minus_0p1_original_v1/BAR-ATH_broadcast_atd.txt": "3e635a1b094e69cb13f8d4d19f8d8231319dabd786c8e36d2437fc776010bcb6",
+    "outputs/broadcast_tactical_ball_merge_v2/ball_homography_all_frames.csv": "24cc478c434b3d24a363f5129202b5ee587e049c0f99335498a8e962e156d9dc",
+    "outputs/broadcast_tactical_ball_smoothed_v3/BAR-ATH_broadcast_atd.txt": "13bb706b30af4710800b3c0855980e55e0a7c8decfdf34f6ba36ad1cb2d88749",
+    "outputs/broadcast_tactical_ball_smoothed_v3/ball_homography_all_frames.csv": "32c406da92142da3d64e9383941a4d60817d933031125089476a674ef461aa8e",
+    "outputs/unified_tracking_v1/roster.json": "b011c78316bf98d5d83d3f6dfb63f5691965e752d19e0447bfaed26934f4dd4a",
+    "outputs/unified_tracking_v1/tracking_all_frames.csv": "bdd017ba3f8335028a951631768780af570e71bf064c7bb850572af5419b0608",
+    "outputs/unified_tracking_v1/tracking_atd.txt": "0403957db3fa751694bad17f9afc9ca5b95cec38aaf69cf115cab4018acc3b4b",
+    "outputs/unified_tracking_v1/tracking_atd.xml": "c38931bd3b294a3a8b36e85519ac6925a73c5e0914353c0f3cc0a6c44ce1fa37"
+  },
+  "excluded": [
+    {
+      "scope": "Discarded line/H repair",
+      "paths": [
+        "starter/correct_broadcast_ball.py",
+        "starter/verify_corrected_broadcast_ball.py",
+        "data/derived/ball_tracking_correction_20261116"
+      ],
+      "reason": "No actual coordinate ancestor references this branch; initial FP inputs match the original-H merged data."
+    },
+    {
+      "scope": "Discarded stronger smoothing",
+      "paths": [
+        "V4 smoothing"
+      ],
+      "reason": "Final manifest rejected_V4_used=false; final V3 input hashes match."
+    },
+    {
+      "scope": "Separate raw-ATD baseline",
+      "paths": [
+        "submission_tracking/",
+        "outputs/submission_tracking_v1/"
+      ],
+      "reason": "Not an input of final unified tracking."
+    },
+    {
+      "scope": "Old partial-fill standalone output",
+      "paths": [
+        "data/derived/ball_bidirectional_fill_20261116/"
+      ],
+      "reason": "Restored source explicitly invalidates that output; helper functions remain included."
+    },
+    {
+      "scope": "Model comparison coordinate alternatives",
+      "paths": [
+        "all_candidate_verdicts.csv (mixed S+new-X)"
+      ],
+      "reason": "X-only finalizer reads raw X and decision thresholds, not the mixed verdict coordinates."
+    },
+    {
+      "scope": "Non-coordinate packaging/finalizers",
+      "paths": [
+        "starter/finalize_ball_precision_delivery.py",
+        "starter/finalize_broadcast_atd_temporal_v2.py",
+        "starter/finalize_merged_ball_smoothed_v3.py",
+        "starter/deliver_ball_temporal_ai.py"
+      ],
+      "reason": "JSON/video/completion packaging; excluded from the coordinate-generation run order."
+    },
+    {
+      "scope": "Other experiments",
+      "paths": [
+        "3D",
+        "longpass",
+        "goalpost camera",
+        "unused AIRBORNE replacement"
+      ],
+      "reason": "No edge in the verified final input graph."
+    }
+  ],
+  "required_fixed_assets": [
+    "Pinned corrected SNP CSVs",
+    "Original Broadcast/Tactical ATD XML H video",
+    "Existing detection bank and actual X run metadata",
+    "Existing reference/approval/review manifests",
+    "Existing model weights/heads/features and validation-selection records"
+  ],
+  "V3_used": true,
+  "V4_used": false,
+  "new_algorithm_implemented": false,
+  "pipeline_rerun": false,
+  "final_possession_submission_implemented": false,
+  "source_semantics_caveat": "Whole modules are retained where imported; scope_note restricts old standalone alternatives. No new automatic pipeline runner is created.",
+  "V3_execution_source": {
+    "recorded_sha256": "407b2a0fe7edb1cd2cd82c02b4c93b74e4d46fa991421e6232b3158c3faa0b77",
+    "current_sha256": "a657cc109bbc1843eb044109db4f51025d1ddf3633094302533263a3f7b987ec",
+    "only_change": "Validation report copy path /private/tmp -> outputs/ball_tracking_validation; exact reverse substitution reproduces execution SHA"
+  },
+  "artifact_hash_policy": "Current actual artifact bytes; LFS pointer files excluded and recorded separately as required inputs",
+  "line_ending_only_input_variants": {
+    "data/broadcast/BAR-ATH_broadcast_homography.csv": {
+      "recorded_sha256": "9ed07e7085bb0f200e171929948ae378cdba760d844bd18266c0b7caa4ba4afb",
+      "current_sha256": "cc55a3c8726b32542618502fc64daa2b21d6ab57f2598483ca5323d350421fa5",
+      "content_matches_with_line_endings": "CRLF"
+    }
+  },
+  "required_input_materialization": {
+    "data/broadcast/BAR-ATH_broadcast_atd.txt": {
+      "required_sha256": "a71c1c9391e564032446be91ffbd7564205b47966060181532d80a338685e458",
+      "recorded_size": 141966465,
+      "current_state": "LFS_POINTER_ONLY",
+      "actual_content_verified_in_this_run": false
+    },
+    "data/tactical/BAR-ATH_tactical_atd.txt": {
+      "required_sha256": "f130e350d2bfdf734b7e32f072931fccc6d015c1e837d082064875fe0a700431",
+      "recorded_size": 195714285,
+      "current_state": "LFS_POINTER_ONLY",
+      "actual_content_verified_in_this_run": false
+    }
+  },
+  "current_checkout_ready_for_rerun": false
+}

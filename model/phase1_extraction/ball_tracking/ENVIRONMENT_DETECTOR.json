@@ -1,0 +1,13 @@
+{
+  "python": "3.11.17 (main, Oct  1 2026, 20:09:52) [Clang 20.1.8 ]",
+  "executable": "/Users/kkj_1120/performance_analyst/projects/metrica_hack/more-than-a-hack-2027/yolo26_football_detection/.venv/bin/python",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.1",
+    "opencv-python": "4.14.0.94",
+    "Pillow": "13.0.0",
+    "matplotlib": "3.11.2",
+    "torch": "2.15.0",
+    "ultralytics": "8.4.212"
+  }
+}

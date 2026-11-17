@@ -9,7 +9,7 @@ The task is split into what possession needs and the possession decision itself.
 
 | step | component | what it does |
 |---|---|---|
-| Phase 1 | `ball_tracking` | correct the provided ball track — **TODO (ball tracking)** |
+| Phase 1 | `ball_tracking` | retained tracking sources + checkpoint export; not used by the current `SNP.csv` |
 | Phase 1 | `dead_ball` | label every frame dead ball or not, from player movement plus football-law rules |
 | Phase 1 | `tracking_alignment` | map every tactical frame to the broadcast frame (ball trajectories + team layouts), so broadcast signals can be joined |
 | Phase 2 | `model1_dead_ball` | label every frame H/A/D: D from `dead_ball`, H/A from the nearest team with a fixed-cost decoder |
@@ -27,7 +27,7 @@ the Game handles what movement alone cannot see (line-outs, penalty kicks, goals
 |---|---|
 | tactical ATD (players, ball) | all components; dead-ball features and rules; nearest team for H/A |
 | smart tagging | graded-half boundaries only (`games.half_video_blocks`); tags are not used as labels |
-| homography, video | not used by the dead-ball or possession code — **TODO (ball tracking)** if used there |
+| homography, video | not used by the active dead-ball/possession code; the optional historical tracking path used them (see its README) |
 | broadcast ATD | `tracking_alignment` only (frame mapping to tactical); not used by the current possession pipeline |
 
 Dropped for the dead ball (all measured on external data):
@@ -41,7 +41,7 @@ Dropped for the dead ball (all measured on external data):
 
 ## 3. Training and validation data
 
-None of it comes from the provided match.
+The training data below describe the active dead-ball/possession pipeline. None of those training datasets comes from the provided match. The optional historical ball-tracking source has separate review/model provenance documented in its README and is not consumed by the current submission.
 
 | dataset | role | labels | who labelled | amount |
 |---|---|---|---|---|
@@ -108,3 +108,12 @@ python run_submission.py          # data/ -> SNP.csv, validated with evaluation/
 
 Weights for the dead-ball model are in the repository; retraining instructions are in
 `model/phase1_extraction/dead_ball/README.md`.
+
+## Optional tracking source module
+
+The ball-tracking module now preserves the retained V3 ball/Tactical-player source path and exports an
+existing private unified checkpoint to the Phase 1 tracking contract. This export is a frame/format
+adapter, not new detection, correction, training or possession inference. The current `SNP.csv` does
+not consume this optional output. Its stored review references/model heads are not covered by the
+active pipeline's external-training-only statement; see
+[ball_tracking/README.md](model/phase1_extraction/ball_tracking/README.md) for the exact scope.

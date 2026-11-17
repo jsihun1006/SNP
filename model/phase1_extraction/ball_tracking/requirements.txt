@@ -1,0 +1,4 @@
+# Checkpoint export/validation adapter, tested with CPython 3.11.17.
+# Historical detector/correction environments are recorded separately.
+numpy==2.4.6
+pandas==3.1.0

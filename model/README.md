@@ -5,7 +5,7 @@
 ```text
 model/
 ├── phase1_extraction/
-│   ├── ball_tracking/      # ball-tracking correction of the provided ATD        (placeholder)
+│   ├── ball_tracking/      # retained tracking checkpoint -> tracking.csv (optional)
 │   ├── tracking_alignment/ # tactical/broadcast frame alignment                   -> sync/final_tracking_alignment.csv
 │   └── dead_ball/          # frame-level dead-ball detection                      -> features.csv
 └── phase2_possession/
@@ -38,4 +38,11 @@ check only.
 
 - **Frames** are 0-based tactical-video frames; ATD `frame_id` = frame + 1. `time_seconds = frame / 25`.
 - **Raw data** is read from `data/` (organiser layout, see `data/README.md`) and never copied into a model folder.
-- **Nothing derived from the match is committed.** `outputs/` and the submission CSV are git-ignored.
+- **Private match files and frame-level exports are not committed.** `outputs/` and the submission CSV are git-ignored.
+
+## ball_tracking status
+
+The ball-tracking folder contains preserved original sources plus a retained-checkpoint export adapter.
+Its tracking output uses Tactical frame0 and its frame-status output keeps all 199,319 frames. The
+private accepted unified checkpoint is required. This optional module is not called by the current
+submission runner or Phase 2; the existing `SNP.csv` generation remains unchanged.
