@@ -11,7 +11,8 @@ Decision
   (config.json). Inside the graded halves, frames the dead-ball model calls dead may only be D and all
   other frames may only be H or A, so dead-ball boundaries come from Phase 1 and only H<->A changes
   inside an in-play stretch come from this decoder. Outside the graded halves the decoder runs unconstrained
-  (those frames are not scored).
+  (so the halves' edges are decoded with their context), and those frames are then written as X: before
+  kickoff, halftime and after the final whistle are never scored.
 Output: outputs/phase2/model1_dead_ball/<run_id>/
   prediction.csv          frame,label for all 199,319 frames
   frame_diagnostics.csv   frame,predicted_label,input_source,observation,dead,dead_source
@@ -41,6 +42,7 @@ FPS = GAMES[GAME]["fps"]
 H, A, D = 0, 1, 2
 MISSING = -1
 STATES = np.array(["H", "A", "D"])
+ABSTAIN = "X"
 BIG = 1e9
 DEAD_ROOT = ROOT / "outputs" / "phase1" / "dead_ball"
 OUT_ROOT = ROOT / "outputs" / "phase2" / NAME
@@ -144,6 +146,11 @@ def share_table(labels, graded):
     return pd.DataFrame(rows)
 
 
+def final_labels(labels, graded):
+    """H/A/D from the decoder inside the graded halves, X outside them."""
+    return np.where(np.asarray(graded, dtype=bool), STATES[labels], ABSTAIN)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--dead-run", help="dead_ball run id (default: latest)")
@@ -165,8 +172,9 @@ def main():
     out = OUT_ROOT / (args.run_id or dead_dir.name)
     out.mkdir(parents=True, exist_ok=True)
     prediction = out / "prediction.csv"
-    baseline.write_submission(str(prediction), STATES[labels])
-    pd.DataFrame({"frame": np.arange(N_FRAMES), "predicted_label": STATES[labels],
+    final = final_labels(labels, graded)
+    baseline.write_submission(str(prediction), final)
+    pd.DataFrame({"frame": np.arange(N_FRAMES), "predicted_label": final,
                   "input_source": np.where(graded & dead, "dead_ball", np.where(graded, "decoder", "ungraded")),
                   "observation": np.where(observations == H, "H", np.where(observations == A, "A", "MISSING")),
                   "dead": dead.astype(int), "dead_source": features["dead_source"].fillna("").to_numpy()}
@@ -180,9 +188,9 @@ def main():
                          "features_sha256": sha256(features_path)},
         "atd_inputs": [{"path": str(p.relative_to(ROOT)).replace("\\", "/"), "sha256": sha256(p)} for p in inputs],
         "config": config, "code_sha256": sha256(Path(__file__)), "prediction_sha256": sha256(prediction),
-        "label_counts": {label: int(np.sum(labels == i)) for i, label in enumerate(STATES)}})
+        "label_counts": {label: int(np.sum(final == label)) for label in ("H", "A", "D", ABSTAIN)}})
     print("{}: wrote {}".format(NAME, str(prediction.relative_to(ROOT))))
-    print("label counts:", {label: int(np.sum(labels == i)) for i, label in enumerate(STATES)})
+    print("label counts:", {label: int(np.sum(final == label)) for label in ("H", "A", "D", ABSTAIN)})
     return 0
 
 

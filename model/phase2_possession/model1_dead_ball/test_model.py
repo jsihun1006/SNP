@@ -31,6 +31,12 @@ class TestConstraint(unittest.TestCase):
         labels = ps.viterbi(ps.constrained_costs(costs, np.zeros(n, bool), np.zeros(n, bool)), 1.2, 0.8)
         self.assertTrue((labels == ps.D).all())
 
+    def test_ungraded_frames_are_written_as_x(self):
+        graded = np.r_[np.zeros(5, bool), np.ones(10, bool), np.zeros(5, bool)]
+        labels = np.r_[np.full(5, ps.H), np.full(10, ps.A), np.full(5, ps.D)]
+        final = ps.final_labels(labels, graded)
+        self.assertTrue((final[:5] == "X").all() and (final[5:15] == "A").all() and (final[15:] == "X").all())
+
     def test_long_missing_prefers_dead_without_constraint(self):
         obs = np.r_[np.zeros(50), -np.ones(200), np.zeros(50)].astype(np.int8)
         cfg = {"fps": ps.FPS, "long_missing_seconds": 3.0, "opposite_team_cost_per_second": 2.0,

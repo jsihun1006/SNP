@@ -42,7 +42,10 @@ model/
 │   ├── tracking_alignment/       tactical/broadcast frame alignment (not used by SNP.csv yet)
 │   └── dead_ball/                frame-level dead-ball detection (DFL-trained LightGBM + football-law rules)
 └── phase2_possession/
-    └── model1_dead_ball/         H/A/D decoder: D from dead_ball, H/A from the nearest team
+    ├── overlay.py                dead ball first (D), the possession model's H/A on top, X outside the graded halves
+    ├── model1_dead_ball/         default: H/A from the nearest team with a fixed-cost decoder
+    ├── model2_pathcrf/           5fps PathCRF + 25fps specialist (run_submission.py --possession model2_pathcrf)
+    └── model2_template/          template for another possession model
 games.py, evaluation/, starter/   organiser code used by the pipeline (scorer, validator, ATD loaders)
 tests/                            synthetic tests for tracking_alignment (no match data)
 ```

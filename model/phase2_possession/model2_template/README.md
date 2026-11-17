@@ -17,7 +17,7 @@ python run_submission.py --possession model2_<name>
 |---|---|
 | graded, dead ball says dead | `D` (always; the possession model cannot override it) |
 | graded, dead ball says in play | the model's `H`/`A` (**required on every such frame**) |
-| outside the graded halves | the model's `H`/`A`, or `D` where it gives none (not scored) |
+| outside the graded halves (before kickoff, halftime, after the final whistle) | `X` (never scored) |
 
 ## Input given to `predict_team(match, features)`
 

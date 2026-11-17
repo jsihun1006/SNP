@@ -18,7 +18,8 @@ No ground truth is read when predicting.
 - **Inside the graded halves, frames the dead-ball model calls dead may only be D; every other frame may only
   be H or A.** Dead-ball boundaries therefore come from Phase 1; this decoder decides only H↔A changes inside an
   in-play stretch, so a single nearest-player flip does not become a possession change.
-- Outside the graded halves the decoder runs unconstrained (not scored).
+- Outside the graded halves the decoder runs unconstrained, and those frames are written as `X` (before kickoff,
+  halftime, after the final whistle: never scored).
 
 ## Run
 

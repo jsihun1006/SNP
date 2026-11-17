@@ -12,7 +12,8 @@ The task is split into what possession needs and the possession decision itself.
 | Phase 1 | `ball_tracking` | retained tracking sources + checkpoint export; not used by the current `SNP.csv` |
 | Phase 1 | `dead_ball` | label every frame dead ball or not, from player movement plus football-law rules |
 | Phase 1 | `tracking_alignment` | map every tactical frame to the broadcast frame (ball trajectories + team layouts), so broadcast signals can be joined |
-| Phase 2 | `model1_dead_ball` | label every frame H/A/D: D from `dead_ball`, H/A from the nearest team with a fixed-cost decoder |
+| Phase 2 | `model1_dead_ball` (default) | label every frame: D from `dead_ball`, H/A from the nearest team with a fixed-cost decoder, X outside the graded halves |
+| Phase 2 | `model2_pathcrf` (wired, not yet run on the match) | H/A from a 5fps PathCRF + 25fps specialist on top of the same dead ball (`run_submission.py --possession model2_pathcrf`) |
 
 **Why a separate dead-ball model.** Under `spellF1` a dead ball both ends a possession and starts a new
 one, so missed or invented dead balls split or merge possessions. The provided ball is missing on about 40% of
@@ -73,6 +74,10 @@ receives it). Every rule and constant was adopted only if it met criteria fixed 
 - The second-half pre-kickoff window published in `FAQ.md` is D.
 
 **Possession (`model1_dead_ball`)** — **TODO (possession)** if the final possession model differs.
+
+- Dead ball first: inside the graded halves every frame the dead-ball model calls dead is D, and the possession
+  model decides only H or A on the other frames (`model/phase2_possession/overlay.py` for any Phase 2 model).
+- Frames outside the graded halves (before kickoff, halftime, after the final whistle) are X; they are never scored.
 
 - H/A is the team of the player nearest to the ball; a change of team must be sustained (switch cost) rather
   than a single nearest-player flip.

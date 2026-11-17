@@ -4,7 +4,7 @@ A possession model only has to give a team (H or A) for every frame. This module
   1. reads the Phase 1 dead-ball run (outputs/phase1/dead_ball/<run_id>/features.csv),
   2. overlays:  graded & dead  -> D          (the dead ball always wins inside the graded halves)
                 graded & alive -> the model's H/A (required on every such frame)
-                ungraded       -> the model's H/A, or D where it gives none (not scored)
+                ungraded       -> X (before kickoff, halftime, after the final whistle: never scored)
   3. writes outputs/phase2/<model>/<run_id>/ (prediction.csv, frame_diagnostics.csv, possession_share.csv,
      run_manifest.json) and runs the organisers' validator on prediction.csv.
 load_match() gives the possession model the provided match with the same ball the dead-ball step used
@@ -69,7 +69,7 @@ def load_match():
 
 
 def overlay(team, graded, dead):
-    """Labels H/A/D per frame. team: N_FRAMES values 'H', 'A' or '' (no call)."""
+    """Labels H/A/D/X per frame. team: N_FRAMES values 'H', 'A' or '' (no call)."""
     team = np.asarray(team, dtype=object)
     graded, dead = np.asarray(graded, dtype=bool), np.asarray(dead, dtype=bool)
     if not len(team) == len(graded) == len(dead) == N_FRAMES:
@@ -83,13 +83,14 @@ def overlay(team, graded, dead):
             int(missing.sum()), int(np.flatnonzero(missing)[0])))
     labels = np.where(has_team, team, "D").astype(object)
     labels[graded & dead] = "D"
+    labels[~graded] = "X"
     return labels.astype(str)
 
 
 def share_table(labels, graded):
     rows = []
     for scope, mask in (("graded", graded), ("full_video", np.ones(len(labels), dtype=bool))):
-        alive = int(np.sum(mask & (labels != "D")))
+        alive = int(np.sum(mask & np.isin(labels, TEAMS)))
         for team in TEAMS:
             frames = int(np.sum(mask & (labels == team)))
             rows.append({"scope": scope, "team": team, "frames": frames, "seconds": round(frames / FPS, 2),
@@ -111,14 +112,13 @@ def write_run(model, run_id, team, features, dead_run, extra=None, code=None):
     team = np.asarray(team, dtype=object)
     pd.DataFrame({"frame": np.arange(N_FRAMES), "label": labels, "model_team": np.where(np.isin(team, TEAMS), team, ""),
                   "graded": graded.astype(int), "dead": dead.astype(int), "dead_source": features["dead_source"],
-                  "label_source": np.where(graded & dead, "dead_ball", np.where(np.isin(team, TEAMS), "possession_model",
-                                                                                "no_call"))}
+                  "label_source": np.where(~graded, "ungraded", np.where(dead, "dead_ball", "possession_model"))}
                  ).to_csv(out / "frame_diagnostics.csv", index=False)
     share_table(labels, graded).to_csv(out / "possession_share.csv", index=False)
-    counts = {label: int(np.sum(labels == label)) for label in ("H", "A", "D")}
+    counts = {label: int(np.sum(labels == label)) for label in ("H", "A", "D", "X")}
     manifest = {
         "model": model, "run_id": run_id, "phase": 2, "created_at_utc": datetime.now(timezone.utc).isoformat(),
-        "overlay": "graded & dead -> D; graded & alive -> model H/A; ungraded -> model H/A or D",
+        "overlay": "graded & dead -> D; graded & alive -> model H/A; ungraded -> X",
         "phase1_input": {"model": "dead_ball", "run_id": dead_run.name,
                          "features_sha256": sha256(dead_run / "features.csv")},
         "code_sha256": {Path(p).name: sha256(p) for p in ([code] if code else []) + [__file__]},

@@ -11,7 +11,8 @@ model/
 └── phase2_possession/
     ├── overlay.py          # shared: dead ball first (D), the possession model's H/A on top -> prediction.csv
     ├── score_public.py     # public 5-minute pipeline check for any Phase 2 model
-    ├── model1_dead_ball/   # H/A/D decoder; D from dead_ball, H/A from nearest team -> prediction.csv
+    ├── model1_dead_ball/   # default; H/A from nearest team with a fixed-cost decoder -> prediction.csv
+    ├── model2_pathcrf/     # 5fps PathCRF + 25fps specialist on top of the dead ball (wired, not yet run)
     └── model2_template/    # copy to add a possession model: write predict_team(), the overlay does the rest
 outputs/                    # everything the pipeline writes (git-ignored, derived from the match)
 ├── phase1/<model>/<run_id>/
@@ -48,7 +49,7 @@ check only.
 `run_submission.py --possession <folder>` runs Phase 1 dead ball, then `model/phase2_possession/<folder>/possession.py`.
 A new possession model only returns H/A per frame (`predict_team(match, features)`, see `model2_template/`);
 `overlay.py` makes every graded frame the dead ball calls dead `D`, requires H/A on every other graded frame,
-writes the outputs above and runs the organisers' validator. `overlay.load_match()` gives the model the match
+writes `X` on every frame outside the graded halves (never scored), then writes the outputs above and runs the organisers' validator. `overlay.load_match()` gives the model the match
 exactly as the dead-ball step reads it (ATD players, corrected ball per the dead-ball `CONFIG["competition_ball"]`).
 
 ## ball_tracking status

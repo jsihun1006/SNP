@@ -47,7 +47,13 @@ def test_no_call_allowed_on_dead_and_ungraded():
     team[120:130] = ""
     team[:100] = ""
     labels = overlay.overlay(team, graded, dead)
-    assert (labels[:100] == "D").all() and (labels[120:130] == "D").all() and (labels[200:] == "A").all()
+    assert (labels[:100] == "X").all() and (labels[120:130] == "D").all() and (labels[200:] == "X").all()
+
+
+def test_ungraded_is_x_even_with_a_team():
+    graded, dead = frames(graded=(100, 200), dead=[(150, 160)])
+    labels = overlay.overlay(np.array(["H"] * N, dtype=object), graded, dead)
+    assert (labels[:100] == "X").all() and (labels[200:] == "X").all() and set(labels[100:200]) == {"H", "D"}
 
 
 def test_bad_value_rejected():

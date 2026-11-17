@@ -5,7 +5,7 @@
 Only predict_team() is model-specific. Everything else is shared (../overlay.py):
   - the dead ball is read from Phase 1 and always wins (D) inside the graded halves,
   - predict_team() must give 'H' or 'A' on every graded frame the dead ball calls in play
-    ('' is allowed on dead or ungraded frames),
+    ('' is allowed on dead or ungraded frames; ungraded frames always become X),
   - prediction.csv is written to outputs/phase2/<model>/<run_id>/ and checked with the organisers' validator.
 Rules: train and tune on external data only; never read the ground truth or the video here.
 """
