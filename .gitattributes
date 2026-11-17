@@ -1,0 +1,2 @@
+# keep the LightGBM weights byte-identical on every platform (the README lists their SHA-256)
+model/phase1_extraction/dead_ball/weights/* binary

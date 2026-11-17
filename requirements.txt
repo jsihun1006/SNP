@@ -1,0 +1,9 @@
+# Pinned versions used to produce the submission (CPython 3.11).
+# Install:  python -m pip install -r requirements.txt
+numpy==2.4.6
+pandas==3.1.0
+scipy==1.17.1
+lightgbm==4.7.0
+pyarrow==26.0.1
+# Only needed to rebuild the DFL training cache from the public raw files (dead_ball/src/dfl_load.py).
+kloppy==3.18.0

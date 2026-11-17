@@ -1,0 +1,20 @@
+{
+  "model": "model1_dead_ball",
+  "phase": 2,
+  "version": 1,
+  "fps": 25,
+  "long_missing_seconds": 3.0,
+  "opposite_team_cost_per_second": 2.0,
+  "dead_when_observed_cost_per_second": 2.0,
+  "dead_in_short_gap_cost_per_second": 1.0,
+  "alive_in_long_gap_cost_per_second": 0.5,
+  "team_switch_cost": 1.2,
+  "dead_switch_cost": 0.8,
+  "phase1_input": "outputs/phase1/dead_ball/<run_id>/features.csv",
+  "selection_policy": "One fixed configuration declared before any evaluation (the team's model1 priors). No fitting or search on the provided match or its public 5 minutes.",
+  "rationale": {
+    "dead_constraint": "Inside the graded halves the Phase 1 dead-ball call fixes D; this decoder only decides H vs A.",
+    "short_team_changes": "Require sustained opposing observations instead of accepting every nearest-player flip.",
+    "time_units": "Observation costs accumulate per second; switch costs apply once per change. Engineering priors, not measured constants."
+  }
+}

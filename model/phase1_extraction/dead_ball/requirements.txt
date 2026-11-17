@@ -1,0 +1,9 @@
+# tested with CPython 3.11 on Windows
+numpy==2.4.6
+pandas==3.1.0
+lightgbm==4.7.0
+pyarrow==26.0.1
+# 1-D filters and logit in src/slow_buildup.py
+scipy==1.17.1
+# only to rebuild the DFL training cache from the raw XML (src/dfl_load.py); not needed to run on the provided data
+kloppy==3.18.0
