@@ -265,7 +265,7 @@ def main():
                     locked_line_out_config=asdict(RULE_CONFIG),
                     code_sha256={str(path.relative_to(ROOT)): sha(path) for path in source_files()},
                     dfl_sha256={str(path.relative_to(ROOT)): sha(path) for path in hashes},
-                    versions={name: version(name) for name in ("torch", "numpy", "pandas", "scipy", "pyarrow", "lightgbm")})
+                    versions={name: version(name) for name in ("torch", "numpy", "pandas", "scipy", "pyarrow", "kloppy")})
     if (output / "manifest.json").exists() and read_json(output / "manifest.json").get("experiment") != metadata:
         raise ValueError(f"Existing output was generated from different files or settings: {output}")
     if preparation.exists() and read_json(preparation) != metadata:

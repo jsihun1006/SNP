@@ -4,13 +4,11 @@ import argparse
 import json
 from pathlib import Path
 
-import lightgbm as lgb
 import numpy as np
 import pandas as pd
 
 import compare_deadball_half_folds as prior
 import dfl_load
-from compare_derived_vif import feature_matrix
 from config import CONFIG
 
 BASELINE = "vif50_plus_current_mean_370"
@@ -56,6 +54,8 @@ def add_event_columns(frame, values):
 
 
 def fit(features, target, threads, event_model=False):
+    import lightgbm as lgb
+
     params = dict(CONFIG["lgbm_params"])
     rounds = params.pop("n_estimators")
     params.update(
@@ -121,6 +121,8 @@ def run_folds(spec, data, decode, settings, threads, evaluation_events):
 
 
 def matrices(match):
+    from compare_derived_vif import feature_matrix
+
     result = feature_matrix(match)
     if result.shape[1] != 370:
         raise ValueError(f"Expected 370 tracking features, found {result.shape[1]}.")

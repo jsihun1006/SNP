@@ -6,7 +6,7 @@
 
 ### 준비와 실행
 
-1. Python 3.12 환경에서 장치에 맞는 명령 하나로 의존성을 설치한다. Mac에서 LightGBM이 `libomp`를 찾지 못하면 `brew install libomp`를 실행한다.
+1. Python 3.12 새 가상환경에서 장치에 맞는 명령을 실행한다. Mac은 아래 Model 1 전용 의존성 목록을 사용한다.
 
    ```sh
    # NVIDIA CUDA 12.8

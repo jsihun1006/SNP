@@ -9,7 +9,6 @@ import ast
 import json
 from pathlib import Path
 
-import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from scipy.ndimage import maximum_filter1d, minimum_filter1d, uniform_filter1d
@@ -23,7 +22,6 @@ import final_dead_balls as fd
 import simulate
 import smoothing
 import train_dfl
-from compare_derived_vif import feature_matrix
 from config import CONFIG
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -98,6 +96,8 @@ def slice_half(match, rows):
 
 
 def matrices(match):
+    from compare_derived_vif import feature_matrix
+
     baseline = features.compute_features(match)
     v2 = baseline[train_dfl.model_columns(baseline.columns)].astype(np.float32)
     expanded = feature_matrix(match).astype(np.float32)
@@ -142,6 +142,8 @@ def prepare_halves(movement_features, build_matrices=matrices):
 
 
 def fit_model(parts, name, threads):
+    import lightgbm as lgb
+
     columns = parts[0]["train"][name].columns.tolist()
     if any(part["train"][name].columns.tolist() != columns for part in parts):
         raise ValueError(f"Training columns differ for {name}.")
