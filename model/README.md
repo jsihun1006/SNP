@@ -9,7 +9,10 @@ model/
 │   ├── tracking_alignment/ # tactical/broadcast frame alignment                   -> sync/final_tracking_alignment.csv
 │   └── dead_ball/          # frame-level dead-ball detection                      -> features.csv
 └── phase2_possession/
-    └── model1_dead_ball/   # H/A/D decoder; D from dead_ball, H/A from nearest team -> prediction.csv
+    ├── overlay.py          # shared: dead ball first (D), the possession model's H/A on top -> prediction.csv
+    ├── score_public.py     # public 5-minute pipeline check for any Phase 2 model
+    ├── model1_dead_ball/   # H/A/D decoder; D from dead_ball, H/A from nearest team -> prediction.csv
+    └── model2_template/    # copy to add a possession model: write predict_team(), the overlay does the rest
 outputs/                    # everything the pipeline writes (git-ignored, derived from the match)
 ├── phase1/<model>/<run_id>/
 ├── phase2/<model>/<run_id>/
@@ -39,6 +42,14 @@ check only.
 - **Frames** are 0-based tactical-video frames; ATD `frame_id` = frame + 1. `time_seconds = frame / 25`.
 - **Raw data** is read from `data/` (organiser layout, see `data/README.md`) and never copied into a model folder.
 - **Private match files and frame-level exports are not committed.** `outputs/` and the submission CSV are git-ignored.
+
+## Dead ball first, possession on top
+
+`run_submission.py --possession <folder>` runs Phase 1 dead ball, then `model/phase2_possession/<folder>/possession.py`.
+A new possession model only returns H/A per frame (`predict_team(match, features)`, see `model2_template/`);
+`overlay.py` makes every graded frame the dead ball calls dead `D`, requires H/A on every other graded frame,
+writes the outputs above and runs the organisers' validator. `overlay.load_match()` gives the model the match
+exactly as the dead-ball step reads it (ATD players, corrected ball per the dead-ball `CONFIG["competition_ball"]`).
 
 ## ball_tracking status
 
