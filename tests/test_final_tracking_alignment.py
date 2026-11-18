@@ -7,9 +7,9 @@ import unittest
 
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.final_tracking_alignment import (half_specs, require_supported, first_observed_pair,
+from src.tracking.tracking_alignment.final_tracking_alignment import (half_specs, require_supported, first_observed_pair,
                                               write_mapping, start_second_half_at_broadcast_ball, write_source_labels)
-from model.영상추출.모델.tracking_alignment.compare_tracking_player import read_half_map
+from src.tracking.tracking_alignment.compare_tracking_player import read_half_map
 
 
 class FinalTrackingAlignmentTests(unittest.TestCase):

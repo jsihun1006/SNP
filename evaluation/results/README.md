@@ -17,7 +17,7 @@ frames. `baseline_smooth50` is the published floor.
 
 They are worth scoring before you write anything, because the four differ in exactly one number
 and the board still reorders them. That is the clearest demonstration in the repository of what
-`spellF1` measures and `macroF1` does not — see [EVALUATION.md](../../EVALUATION.md).
+`spellF1` measures and `macroF1` does not — see [EVALUATION.md](../../docs/competition/EVALUATION.md).
 
 ## Why these are committed and yours will not be
 

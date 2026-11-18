@@ -9,11 +9,11 @@ from unittest.mock import Mock, patch
 import cv2
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.compare_tracking_player import (
+from src.tracking.tracking_alignment.compare_tracking_player import (
     SIZE, comparison_length, export_video, make_template, read_tracking, render, view,
     read_half_map,
 )
-from model.영상추출.모델.tracking_alignment.align_half_starts import build_mapping
+from src.tracking.tracking_alignment.align_half_starts import build_mapping
 
 
 class TrackingPlayerTests(unittest.TestCase):
@@ -99,7 +99,7 @@ class TrackingPlayerTests(unittest.TestCase):
                 mapped.release()
 
     def test_scroll_playback_and_keyboard_keep_both_sources_aligned(self):
-        module = 'model.영상추출.모델.tracking_alignment.compare_tracking_player'
+        module = 'src.tracking.tracking_alignment.compare_tracking_player'
         data = np.arange(18, dtype=np.float32).reshape(3, 3, 2) / 30
         teams = ['H', 'A']
         slider = {'position': 7150}
@@ -133,7 +133,7 @@ class TrackingPlayerTests(unittest.TestCase):
                                      (7152, True), (7150, False), (7151, False)])
 
     def test_mapped_player_steps_across_halftime_and_displays_unmatched(self):
-        module = 'model.영상추출.모델.tracking_alignment.compare_tracking_player'
+        module = 'src.tracking.tracking_alignment.compare_tracking_player'
         tf = np.array([2, 3, 4, 7, 8, 9, 10])
         bf = np.array([1, 2, 3, 6, 7, 8, -1])
         halves = np.array([1, 1, 1, 2, 2, 2, 2])
@@ -169,7 +169,7 @@ class TrackingPlayerTests(unittest.TestCase):
         self.assertEqual(displayed, [(2, 1), (4, 3), (7, 6), (10, -1)])
 
     def test_initial_anchor_and_backward_extrapolation_label(self):
-        module = 'model.영상추출.모델.tracking_alignment.compare_tracking_player'
+        module = 'src.tracking.tracking_alignment.compare_tracking_player'
         data = np.full((3, 3, 2), 0.5, dtype=np.float32)
         teams = ['H', 'A']
         tf, bf = np.array([1102, 1103, 1104]), np.array([21, 22, 23])

@@ -4,7 +4,7 @@ import unittest
 
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.team_motion_metrics import MotionConfig, filtered_velocities, measure_team, hull_area_rate
+from src.tracking.tracking_alignment.team_motion_metrics import MotionConfig, filtered_velocities, measure_team, hull_area_rate
 
 
 class TeamMotionMetricTests(unittest.TestCase):

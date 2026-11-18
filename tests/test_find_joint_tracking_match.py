@@ -3,7 +3,7 @@
 import unittest
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.find_joint_tracking_match import ball_curve, correlate_valid, find_joint
+from src.tracking.tracking_alignment.find_joint_tracking_match import ball_curve, correlate_valid, find_joint
 
 
 class JointTrackingMatchTests(unittest.TestCase):

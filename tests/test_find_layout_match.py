@@ -7,7 +7,7 @@ import unittest
 
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.find_layout_match import assignment_costs, find_matches, layout_error, read_positions
+from src.tracking.tracking_alignment.find_layout_match import assignment_costs, find_matches, layout_error, read_positions
 
 
 class LayoutMatchTests(unittest.TestCase):

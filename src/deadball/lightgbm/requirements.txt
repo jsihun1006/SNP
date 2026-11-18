@@ -1,0 +1,7 @@
+# 검증 환경: Windows, conda env "mtah", CPython 3.11.17
+numpy==2.4.6
+pandas==3.1.0
+lightgbm==4.7.0
+pyarrow==26.0.1
+# DFL 원본 XML을 parquet로 바꿀 때만 필요(src/dfl_load.py). 대회 데이터 적용에는 필요 없다.
+kloppy==3.18.0

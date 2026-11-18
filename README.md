@@ -47,7 +47,7 @@ switches, and the ball itself is invisible on 41% of the frames you are scored o
 
 It is deliberately **not** a tracking challenge. The tracking, tagging and homography are given to
 you so that nobody has to rebuild detection, re-identification and camera calibration before
-getting to the actual question. See [CHALLENGE.md](CHALLENGE.md).
+getting to the actual question. See [CHALLENGE.md](docs/competition/CHALLENGE.md).
 
 ---
 
@@ -79,7 +79,7 @@ rank  submission                macroF1  spellF1   poss     dur
 Those four are **the same algorithm four times** — nearest tracked player to the ball, then a
 majority vote over a window. Only the window changes. `macroF1` barely moves; `spellF1` moves by a
 factor of eleven. That disagreement is the whole point of the metric, and
-[EVALUATION.md](EVALUATION.md) explains it.
+[EVALUATION.md](docs/competition/EVALUATION.md) explains it.
 
 Once you have the data, regenerate them yourself and go further:
 
@@ -94,6 +94,32 @@ It takes two seconds and it is the single most common way a good entry scores no
 
 ---
 
+## 연구 작업
+
+연구 저장소는 `jsihun1006/SNP`의 `JSH`에서 관리한다. 제출용 저장소는 `stanliy/SNP-MTAH2027`이다.
+
+| 경로 | 내용 |
+|---|---|
+| [src/common](src/common) | DFL·Metrica 로더, 공통 좌표·특징 처리 |
+| [src/deadball](src/deadball) | 데드볼 학습·추론·보정 |
+| [src/possession](src/possession) | 팀 소유 모델과 전환 보정 |
+| [src/tracking](src/tracking) | 볼·선수 검출, 좌표 처리, 영상 시간축 정렬 |
+| [experiments](experiments/README.md) | 과제 / 모델 / 실행별 설정과 평가 지표 |
+| [notebooks](notebooks) | 과제별 Colab·분석 노트북 |
+| [docs](docs) | 대회 규정과 연구 기록 |
+| [data](data/README.md) | 로컬 원본 경기 데이터와 전처리 캐시 |
+| `artifacts/` | 로컬 가중치, 프레임별 예측, 로그와 생성 결과 |
+
+각 모델의 README에 입력·실행·출력 경로를 기록한다. 이전 경로로 직접 실행하거나 가져오는 스크립트는 상대 링크로 원본 코드를 참조한다. `mp4/BAR-ATH_tactical-001.mp4`는 표준 입력명 `data/tactical/BAR-ATH_tactical.mp4`를 참조한다. `data/public` 아래의 동일한 공개 평가 자료 6개는 `evaluation/`의 원본을 참조한다.
+
+- YOLO11n과 football YOLOv8x는 공통 검출·검사 코드를 쓰고 모델마다 클래스, 임계값, 가중치를 지정한다. [검출 모델 안내](src/tracking/detection/README.md)
+- Dead Final 1은 동일 가중치 7쌍을 공유한다. 후보 25fps 모델은 학습 때의 `best.pt`를 추론에서도 사용한다. [Dead Final 1 기록](experiments/deadball/transportmer/dead_final_1/README.md) · [소유 모델 안내](src/possession/possession/README.md)
+- SHA-256이 같은 과거 실행 입력·평가 자료 46개는 APFS에서 저장 공간을 공유하도록 정리했다. 각 경로의 파일은 개별적으로 갱신할 수 있다. 중복 목록과 이동 전후 경로는 로컬 `artifacts/organization/duplicate-storage.json`, `artifacts/organization/moves.json`에 있다.
+
+Git에는 코드·설정·문서·결과 집계와 공식 평가 예제만 둔다. 기존 DFL 압축본과 모델 가중치는 기존 작업 폴더에 있으므로, 새 체크아웃에서 학습·추론하려면 각 README에 적힌 입력과 가중치도 준비해야 한다. [데이터 준비](data/README.md)
+
+---
+
 ## Getting the data
 
 The match assets are released to enrolled participants who have accepted the terms of use.
@@ -103,7 +129,7 @@ The match assets are released to enrolled participants who have accepted the ter
 3. You receive a download link.
 4. Unpack it into `./data`, or point `MTAH_DATA_DIR` at wherever you put it.
 
-Full description of every asset and how the frames line up: **[DATA.md](DATA.md)**.
+Full description of every asset and how the frames line up: **[DATA.md](docs/competition/DATA.md)**.
 
 ---
 
@@ -111,13 +137,13 @@ Full description of every asset and how the frames line up: **[DATA.md](DATA.md)
 
 | | |
 |---|---|
-| **[CHALLENGE.md](CHALLENGE.md)** | the problem, the four labels, what counts as possession |
-| **[DATA.md](DATA.md)** | every provided asset, its format, and the frame alignment |
-| **[EVALUATION.md](EVALUATION.md)** | how you are scored, and why — read before optimising anything |
-| **[SUBMISSION.md](SUBMISSION.md)** | the file contract, the three deliverables, how to submit |
-| **[RULES.md](RULES.md)** | what you may and may not do |
-| **[FAQ.md](FAQ.md)** | |
-| **[OVERVIEW.md](OVERVIEW.md)** | the competition as a whole — context, why the 2027 format changed, the calendar |
+| **[CHALLENGE.md](docs/competition/CHALLENGE.md)** | the problem, the four labels, what counts as possession |
+| **[DATA.md](docs/competition/DATA.md)** | every provided asset, its format, and the frame alignment |
+| **[EVALUATION.md](docs/competition/EVALUATION.md)** | how you are scored, and why — read before optimising anything |
+| **[SUBMISSION.md](docs/competition/SUBMISSION.md)** | the file contract, the three deliverables, how to submit |
+| **[RULES.md](docs/competition/RULES.md)** | what you may and may not do |
+| **[FAQ.md](docs/competition/FAQ.md)** | |
+| **[OVERVIEW.md](docs/competition/OVERVIEW.md)** | the competition as a whole — context, why the 2027 format changed, the calendar |
 
 
 ---

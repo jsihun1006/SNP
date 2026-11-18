@@ -1,0 +1,42 @@
+parameter,value,status,description
+seed,100,default,공개 PathCRF trial 140 seed 재사용
+train_matches,J03WMX J03WN1 J03WOH J03WOY J03WPY,confirmed,학습 5경기
+validation_match,J03WQQ,confirmed,기준값과 체크포인트 선택
+test_match,J03WR9,confirmed,최종 비교 전 격리
+base_fps,5,confirmed,고정한 PathCRF
+base_window_seconds,10,confirmed,기존 추론 창
+refine_fps,25,confirmed,원본 프레임
+refine_window_frames,100,confirmed,4초
+train_stride_seconds,0.5,confirmed,12와 13프레임 교대
+infer_stride_frames,25,confirmed,1초
+validation_gate_max_fraction,0.40,confirmed,재판정 구간 합집합 기준
+gate_margin_frames,15,default,후보 신호 전후 여유
+candidate_train_fraction,0.75,confirmed,경합 후보 대 일반 3 대 1
+ball_missing_fraction,0.095,confirmed,자연 결측 포함 학습 목표
+synthetic_gap_min_frames,5,assumption,연속 결측 분포 미측정
+synthetic_gap_max_frames,25,assumption,연속 결측 분포 미측정
+pitch_x,105,confirmed,표준 피치 m
+pitch_y,68,confirmed,표준 피치 m
+player_velocity_filter_frames,15,confirmed,Savitzky–Golay 차수 2
+player_acceleration_filter_frames,9,confirmed,Savitzky–Golay 차수 2
+width,128,confirmed,임베딩
+heads,4,confirmed,attention
+blocks,2,confirmed,팀 내부와 전체 attention 뒤 시간 attention
+temporal_layers,2,confirmed,블록당 양방향 층
+inducing_points,16,default,공개 PathCRF 구성
+ffn_width,256,default,25fps 시간 attention 내부 FFN
+dropout,0.1,confirmed,원본 설정
+batch,64,confirmed,사용자 요청으로 배치 확대
+lr,0.001,confirmed,Adam
+min_lr,0.00001,confirmed,하한
+weight_decay,0.0001,confirmed,원본 설정
+max_epochs,40,provisional,로컬과 Colab 실측 후 검토
+epoch_window_cap,0,provisional,0은 후보 전체와 일반 창 보충
+lr_patience,3,confirmed,검증 정체 후 절반
+early_stop,5,confirmed,연속 검증 개선 없음
+validation_every_epochs,1,confirmed,예측 D 기준 최종 Spell F1
+state_loss_weight,1.0,confirmed,H/A CE
+transition_loss_weight,1.0,confirmed,전환 CE
+crf_loss_weight,1.0,confirmed,길이 정규화한 2상태 CRF
+max_transition_class_weight,8,default,역제곱근 빈도 가중치 상한
+pitch_flip,true,confirmed,선수와 볼을 같은 축으로 변환

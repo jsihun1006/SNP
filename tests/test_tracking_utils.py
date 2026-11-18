@@ -7,7 +7,7 @@ import unittest
 import cv2
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.tracking_utils import (pack_source_frames, load_label_mask, source_state,
+from src.tracking.tracking_alignment.tracking_utils import (pack_source_frames, load_label_mask, source_state,
                                     track_teams, trailing_mean)
 
 

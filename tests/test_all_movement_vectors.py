@@ -7,7 +7,7 @@ import unittest
 
 import numpy as np
 
-from model.영상추출.모델.tracking_alignment.view_all_movement_vectors import select_timeline, timeline_segments, pack_non_x, write_player
+from src.tracking.tracking_alignment.view_all_movement_vectors import select_timeline, timeline_segments, pack_non_x, write_player
 
 
 def state(active, halves):
