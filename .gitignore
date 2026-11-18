@@ -1,10 +1,5 @@
 # ---------------------------------------------------------------------------------------------
-# This repository is public. The full-match ground truth is not.
-#
-# Everything below either is a private asset, would leak the answer, or is generated output. The
-# history of this repo is new, so anything committed once is committed forever -- when in doubt,
-# add it here first and take it out later.
-# ---------------------------------------------------------------------------------------------
+# Keep match inputs, model weights, frame-wise predictions, and execution outputs local.
 
 # -- private ground truth ----------------------------------------------------------------------
 # The public ground truth is evaluation/gt/*_possession_gt_public.csv and is committed on purpose.
@@ -26,25 +21,32 @@ evaluation/results/*.csv
 evaluation/reports/
 evaluation/scoreboard.csv
 
-# -- gated data --------------------------------------------------------------------------------
-# Keep the gated match and generated data local. Share only the listed public DFL assets.
-data/*
-!data/README.md
-!data/external/
-/data/external/*
-!/data/external/dfl/
-/data/external/dfl/*
-!/data/external/dfl/model_all_v2.txt
-!/data/external/dfl/raw/
-/data/external/dfl/raw/*
-!/data/external/dfl/raw/DFL_*.xml.gz
+# -- local data and runs ------------------------------------------------------------------------
+/data/*
+!/data/README.md
+!/data/README.download.md
+/artifacts/
+/mp4/
+/tracking_all_frames.csv
+/model/dead_final/comparison
+/model/dead_final/predictions
+/model/dead_final/training
+/model/dead_final/weights
+/model/영상추출/추출csv
+.Rhistory
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.parquet
+*.log
 
 *.mp4
 *.gzip
 *.pl3container
 
 # -- internal documents ---------------------------------------------------------------------------
-# OVERVIEW.md -- the institutional description of the competition -- IS committed. It is the only
+# docs/competition/OVERVIEW.md -- the institutional description of the competition -- IS committed. It is the only
 # place that explains why the format changed from 2026, and a document like that circulating by
 # email is exactly the artifact README.md's "anything you were sent earlier is superseded" line
 # exists to prevent. Versioned next to what it describes, it cannot drift out of sight.
