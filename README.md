@@ -10,6 +10,15 @@ question to answer with it.
 
 ---
 
+## SNP 브랜치
+
+| 브랜치 | 담당 범위 |
+|---|---|
+| [main](https://github.com/jsihun1006/SNP/tree/main) | 팀 공통 기준과 공모전 원본 기반 평가 |
+| [JSH](https://github.com/jsihun1006/SNP/tree/JSH) | 전환·점유, JSH의 데드볼 모델 및 실험 |
+| [HSJ](https://github.com/jsihun1006/SNP/tree/HSJ) | HSJ의 데드볼 검출과 재개 보정 |
+| [KKJ](https://github.com/jsihun1006/SNP/tree/KKJ) | 영상 트래킹·데이터 추출, Tryolabs, GSR, SSS-1 |
+
 ## The task
 
 **For every frame of the match, say who has the ball.**
