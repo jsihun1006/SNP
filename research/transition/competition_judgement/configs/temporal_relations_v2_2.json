@@ -1,0 +1,17 @@
+{
+  "version": "temporal-relations-v2-2",
+  "window_radius_frames": 50,
+  "fps": 25,
+  "anchor_min_radius_m": 6.0,
+  "anchor_diameter_margin_m": 3.0,
+  "kernel_decay_m": 3.0,
+  "partial_side_fraction": 0.8,
+  "matching_max_center_step_m": 2.0,
+  "matching_min_size_ratio": 0.5,
+  "matching_min_disk_radius_m": 1.0,
+  "matching_min_disk_iou": 0.1,
+  "batch_anchors": 96,
+  "seed": 2027,
+  "fit_required": false,
+  "interpretation": "Offline spatial-anchor temporal descriptors; no contest labels, candidate policy, or permanent cluster identities"
+}

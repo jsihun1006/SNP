@@ -25,3 +25,13 @@ The primary score is official spellF1. The short-spell recall uses the official 
 | `error_ledger.csv`, `oof_selection.json` | Framed OOF error intervals and frozen postprocessing |
 | `locked_holdout_recipe.json`, `holdout_comparison.csv` | Completed B/C settings and DFL holdout scores |
 | `oof_probabilities/`, `holdout_B/`, `holdout_C/` | Per-half probabilities and frame-aligned audits |
+
+## Colab cache
+
+Prepare the public DFL Parquet ZIP using:
+
+```sh
+python experiments/possession/transportmer/ha_oof/prepare_colab_cache.py
+```
+
+Upload `artifacts/possession/transportmer/ha_runs/DFL_7matches_Parquet.zip` to the Colab notebook. The aggregate ball availability profile is stored in [ball_profile.json](ball_profile.json). [Colab notebook](../../../../notebooks/possession/DFL_TranSPORTmer_Colab_로컬캐시.ipynb)

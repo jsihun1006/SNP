@@ -1,0 +1,21 @@
+{
+  "seed": 2027,
+  "additional_epochs": 8,
+  "small_temporal_epochs": 20,
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "patience": 3,
+  "min_delta": 0.0001,
+  "train_stride": 5,
+  "validation_stride": 25,
+  "representation_train_stride": 25,
+  "huber_delta": 1.0,
+  "gradient_clip": 1.0,
+  "cpu_threads": 4,
+  "feature_weights": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  "device": "auto",
+  "selection_objective": "equal mean of fixed Validation Huber for 8-13,25,50",
+  "adoption_rule": "at least 2 percent lower Validation composite Huber than original and short-mask Huber no worse than 5 percent",
+  "run_plan": ["continued_short", "token_short", "token_mixed", "small_temporal_mixed"],
+  "test_access": false
+}

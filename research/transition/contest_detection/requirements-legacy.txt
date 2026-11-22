@@ -1,0 +1,4 @@
+# Optional: full historical regression and video debugger. Install torch separately.
+-r requirements-core.txt
+matplotlib==3.11.2
+opencv-python==5.0.0.93

@@ -1,0 +1,2 @@
+-r requirements-model-a.txt
+torch-geometric>=2.6,<3

@@ -1,0 +1,44 @@
+{
+  "version": "stage-b2-local-temporal-v1",
+  "fps": 25,
+  "seed": 2027,
+  "batch_anchors": 64,
+  "legacy_config": "competition_judgement/configs/evidence_stage_b.json",
+  "pattern_config": "competition_judgement/configs/pattern_b1.json",
+  "scopes": {"past_short": [-10, 0], "past_near": [-25, 0], "future_short": [0, 10], "future_near": [0, 25]},
+  "direction": {
+    "smoothing": "scope-contained trailing median",
+    "smoothing_frames": 5,
+    "lag_frames": 5,
+    "comparison": "last median minus first median; mean of ALL lag5 increments must agree",
+    "soft_deadband": 0.02,
+    "distance_deadband_m": 0.1,
+    "require_all_reliable": true,
+    "require_constant_local_team_counts": true
+  },
+  "proximity": {
+    "require_all_reliable_for_outcome": true,
+    "criterion": "all radius-specific cross-edge counts > 0 in fixed scope",
+    "prefix": "current-connected close reliable run only; stop at first unknown or known non-close",
+    "duration": "frame bins n/25; sample span (n-1)/25 is different",
+    "structure_stability_required": false
+  },
+  "motion": {
+    "scope": [-10, 10],
+    "min_contiguous_samples": 2,
+    "path": "frozen reciprocal-unique links; same half/split/exact frame/QC/global and component H/A counts",
+    "anchor": "each retained path centroid inside current fixed seed anchor",
+    "selection": "maximal center-connected valid run, selected by availability only",
+    "criterion": "nonzero measured path length; numerical tolerance only, no physical 1m threshold",
+    "co_movement_claim": false
+  },
+  "numeric_tolerance": 1e-12,
+  "robustness": {
+    "mask_counts": [1, 5, 10, 20, 30],
+    "conditions": [["jitter", 0.1], ["jitter", 0.5], ["jitter", 1.0], ["dropout", 0.1], ["dropout", 0.2], ["dropout", 0.3], ["composition", 0.2], ["permutation", 0.0], ["team_swap", 0.0]],
+    "reference": "Stage A fixed 1778 Validation windows, original seeds/masks; B.1 12x151 support"
+  },
+  "candidate_decision": false,
+  "aggregate_evidence": false,
+  "note": "Frozen before B.2 implementation and Validation. Geometric observations only; no pattern promotion, error guarantee, identity, or contest label. Short/Near stay separate."
+}

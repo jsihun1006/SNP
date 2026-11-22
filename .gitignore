@@ -71,3 +71,9 @@ __pycache__/
 venv/
 env/
 .DS_Store
+
+# Historical transition entry points write local derivatives.
+/research/transition/data
+/research/transition/**/data/
+/research/transition/**/outputs/
+/research/transition/contest_detection/results/

@@ -1,0 +1,6 @@
+# Install inside existing mtah2027 conda environment.
+# Install official repository dependencies first if missing.
+numpy>=1.24,<3
+pandas>=2,<4
+matplotlib>=3.7,<4
+pytest>=8,<10

@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1.0",
+  "project": "competition_judgement",
+  "stage": "candidate_only",
+  "source_index": "mtah_relational.candidate_baseline.CausalContestedIndex",
+  "candidate_rule": {
+    "kind": "train_only_quantile",
+    "quantile": 0.9,
+    "min_consecutive_valid_frames": 5,
+    "bridge_unknown_gap_frames": 0,
+    "fit_on": "unique_train_raw_frames",
+    "fit_quality": "existing_strict_valid",
+    "notes": "Starter policy, not GT-calibrated nor validated as optimal"
+  },
+  "sensitivity_only": {
+    "quantiles": [
+      0.85,
+      0.9,
+      0.95
+    ],
+    "minimum_run_frames": [
+      1,
+      5,
+      10
+    ]
+  },
+  "quality": {
+    "primary": "existing_strict_valid",
+    "secondary": "metric_specific_validity",
+    "invalid_state": "insufficient_observation",
+    "invalid_feature_value": null
+  },
+  "time": {
+    "fps": 25,
+    "block_source": "games.half_video_blocks()",
+    "cross_half_history": false,
+    "outside_official_block": "retain_row_and_mark_outside"
+  },
+  "features": {
+    "global_pair_radii_m": [
+      3,
+      5,
+      10
+    ],
+    "zone_grid": [
+      8,
+      6
+    ],
+    "zones_are_auxiliary": true
+  },
+  "allowed_sources": [
+    "player_xy",
+    "source_team_metadata",
+    "official_frame_blocks",
+    "existing_player_only_features"
+  ],
+  "forbidden_sources": [
+    "ball_xy",
+    "smart_tagging",
+    "public_gt_for_tuning",
+    "human_annotations_of_competition_match"
+  ],
+  "output": {
+    "frame_rows": 199319,
+    "labels": [
+      "candidate",
+      "not_candidate",
+      "insufficient_observation"
+    ],
+    "probability": false
+  }
+}

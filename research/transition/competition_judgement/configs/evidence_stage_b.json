@@ -1,0 +1,24 @@
+{
+  "version": "stage-b-evidence-v1",
+  "fps": 25,
+  "radius_frames": 50,
+  "seed": 2027,
+  "batch_anchors": 48,
+  "scales": {"distance_m": 3.0, "soft_change": 0.25, "radius_m": 3.0, "diameter_m": 6.0, "participants": 4.0, "density": 0.25, "log_edges": 1.0986122886681098, "cluster_count": 2.0, "duration_s": 4.04, "soft_std": 0.1, "motion_m": 1.0, "motion_diameter_range_m": 1.0, "motion_radius_range_m": 0.5},
+  "policies": {
+    "P1": {"scope": "past", "bands": [20,23,0,0], "center_radius": 10, "max_gap": 5, "global_constant": false, "local_constant": false},
+    "P2": {"scope": "near_past", "bands": [0,23,0,0], "center_radius": 10, "max_gap": 2, "global_constant": true, "local_constant": true, "geometry_min": 20},
+    "P3": {"scope": "middle", "bands": [0,24,24,0], "center_radius": 10, "max_gap": 1, "global_constant": true, "local_constant": false},
+    "P4": {"scope": "future", "bands": [0,0,23,22], "center_radius": 10, "max_gap": 3, "global_constant": true, "local_constant": true, "require_known_end_or_full_censor": true},
+    "N1": {"scope": "whole", "bands": [20,25,25,20], "center_radius": 25, "max_gap": 3, "global_constant": true, "local_constant": true},
+    "N2": {"scope": "path", "bands": [0,0,0,0], "center_radius": 10, "max_gap": 0, "global_constant": true, "local_constant": false, "path_radius": 10},
+    "N3": {"scope": "whole", "bands": [23,23,23,23], "center_radius": 10, "max_gap": 2, "global_constant": false, "local_constant": false}
+  },
+  "positive_aggregation": {"kind": "available_component_mean", "minimum_components": 2},
+  "negative_aggregation": {"kind": "available_family_mean", "persistence_family": "N1_preferred_else_N3", "other_family": "N2", "minimum_families": 1},
+  "diagnostics": {"high_band": 0.5, "bootstrap_block_frames": 500, "bootstrap_replicates": 400, "mask_counts": [1,5,10,20,30], "small_error": 0.05, "deadband": 0.02},
+  "fit_required": false,
+  "candidate_decision": false,
+  "probability": false,
+  "note": "Fixed before Stage B implementation and Validation analysis. Physical descriptor scales and experimental support guards, not calibrated contest thresholds. Original v2-2 masks and policies remain immutable."
+}
