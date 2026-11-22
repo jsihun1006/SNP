@@ -1,13 +1,13 @@
-# GSR 브랜치: Windows 실행에 필요한 파일
+# KKJ의 GSR 모듈: Windows 실행에 필요한 파일
 
-이 문서는 `KKJ`에서 분기한 `GSR` 브랜치를 새 Windows 컴퓨터에서 실행할 때 준비할 파일을 정리한다. 코드와 합성 테스트를 포함하며, 경기 영상·ATD·Homography 원본·모델 가중치는 Git에 포함하지 않는다.
+이 문서는 `KKJ`에 포함된 `broadcast_gsr` 모듈을 새 Windows 컴퓨터에서 실행할 때 준비할 파일을 정리한다. 코드와 합성 테스트를 포함하며, 경기 영상·ATD·Homography 원본·모델 가중치는 Git에 포함하지 않는다.
 
 ## Git에서 받는 파일
 
 저장소 루트에서 브랜치를 내려받는다. 기존 작업 폴더에 수정 사항이 있으면 별도 clone을 사용한다.
 
 ```bat
-git clone --branch GSR https://github.com/jsihun1006/SNP.git SNP-GSR
+git clone --branch KKJ https://github.com/jsihun1006/SNP.git SNP-GSR
 cd SNP-GSR
 ```
 

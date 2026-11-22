@@ -2,7 +2,7 @@ name: SSS Windows first run
 
 on:
   push:
-    branches: [SSS]
+    branches: [KKJ]
     paths:
       - 'sss1_reimplementation/**'
       - '.github/workflows/sss-windows.yml'
