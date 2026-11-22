@@ -1,0 +1,11 @@
+data/
+outputs/
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.mp4
+*.pt
+*.onnx
+*.npy
+*.npz

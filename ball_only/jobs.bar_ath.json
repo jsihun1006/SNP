@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "video_name": "BAR-ATH_broadcast.mp4",
+  "source_video_sha256": "3dc2a7d952302d33df69a26e3d8935648015f8d7e1b86bf614436b7009abf9f8",
+  "video_frames": 164487,
+  "fps": 25.0,
+  "interval": "zero-based source frames; start inclusive, end exclusive",
+  "alignment_source": {
+    "repository": "jsihun1006/SNP",
+    "branch": "main",
+    "commit": "42023fe321e93e11ef803b0ad6a297d5995eb420",
+    "script": "model/영상추출/모델/tracking_alignment/final_tracking_alignment.py",
+    "method": "ball trajectory and team layout anchor, then constant offset per half",
+    "full_half_synchronization_verified": false,
+    "broadcast_mp4_alignment_verified": false
+  },
+  "jobs": [
+    {
+      "part": "first_half",
+      "start_frame": 7171,
+      "end_frame": 86638,
+      "start": "00:04:46.84",
+      "end": "00:57:45.52"
+    },
+    {
+      "part": "second_half",
+      "start_frame": 86823,
+      "end_frame": 163279,
+      "start": "00:57:52.92",
+      "end": "01:48:51.16"
+    }
+  ]
+}

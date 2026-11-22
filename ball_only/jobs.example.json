@@ -1,0 +1,23 @@
+{
+  "purpose": "Fill in both job boundaries, then pass this file to run_pc1.ps1 or run_pc2.ps1 with -RangesFile",
+  "source_video_sha256": null,
+  "time_format": "HH:MM:SS or HH:MM:SS.mmm; align to the source video frame rate",
+  "interval": "start inclusive, end exclusive",
+  "video": "PATH_TO_THE_SAME_COMPLETE_BROADCAST.mp4",
+  "weights": "PATH_TO_yolo26x.pt",
+  "jobs": [
+    {
+      "part": "first_half",
+      "start": null,
+      "end": null,
+      "output": "ball_only/outputs/first_half"
+    },
+    {
+      "part": "second_half",
+      "start": null,
+      "end": null,
+      "output": "ball_only/outputs/second_half"
+    }
+  ],
+  "note": "The null boundaries must be filled before execution. Use broadcast boundaries from verified alignment or manual source-video review; do not copy tactical timestamps or split at 50 percent. Optional source_video_sha256 protects against using a range file with another video."
+}
