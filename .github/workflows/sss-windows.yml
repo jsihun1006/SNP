@@ -1,0 +1,39 @@
+name: SSS Windows first run
+
+on:
+  push:
+    branches: [SSS]
+    paths:
+      - 'sss1_reimplementation/**'
+      - '.github/workflows/sss-windows.yml'
+  pull_request:
+    paths:
+      - 'sss1_reimplementation/**'
+      - '.github/workflows/sss-windows.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-first-run:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          architecture: x64
+      - name: Install into sss1, run CPU tests and pretrained sample
+        shell: powershell
+        run: '& .\sss1_reimplementation\scripts\setup_windows.ps1 -Profile CoreCPU -Verify'
+      - name: Save installation and first-run evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sss-windows-cpu-first-run
+          path: |
+            sss1_reimplementation/outputs/install/
+            sss1_reimplementation/outputs/first_run/CoreCPU/
+          if-no-files-found: warn

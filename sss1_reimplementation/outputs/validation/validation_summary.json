@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-11-13T23:16:06.767224+09:00",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "38",
+    "time": "2.440",
+    "timestamp": "2026-11-13T23:13:36.991867+09:00",
+    "hostname": "gimgyujin-ui-MacBookAir.local"
+  },
+  "tests_by_module": {
+    "tests.test_detection": 6,
+    "tests.test_evaluation": 6,
+    "tests.test_geometry": 6,
+    "tests.test_pipeline": 3,
+    "tests.test_pose": 5,
+    "tests.test_tiling": 12
+  },
+  "platform": "macOS ARM64 CPU, NOT Windows runtime verification",
+  "pose": {
+    "purpose": "architecture and official Body-7 initialization only; two-point head UNTRAINED",
+    "device": "cpu",
+    "checkpoint_sha256": "d28b58e620a6b1da09427c1c0e21ec419d9a71602379eebcee48ca32bd6f0667",
+    "matched_backbone_tensors": 566,
+    "source_backbone_tensors": 566,
+    "simcc_x_shape": [
+      1,
+      2,
+      576
+    ],
+    "simcc_y_shape": [
+      1,
+      2,
+      768
+    ],
+    "pipeline_input_shape": [
+      3,
+      384,
+      288
+    ],
+    "target_fields": [
+      "keypoint_x_labels",
+      "keypoint_y_labels",
+      "keypoint_weights"
+    ],
+    "trained_inference_verified": false,
+    "untrained_head_topdown_decode_shape": [
+      1,
+      2,
+      2
+    ]
+  },
+  "verified": [
+    "real YOLO26-Large pretrained CPU inference",
+    "official SAHI comparison",
+    "real MMPose two-point GAU/SimCC KL gradient",
+    "Body-7 566 backbone tensors",
+    "full untrained-pose forward and augmentation/topdown API",
+    "sskit camera and LocSim parity",
+    "image/video CSV+JSON+visualizations",
+    "pip check"
+  ],
+  "not_executed": [
+    "Windows native runtime",
+    "CUDA training",
+    "real SynLoc dataset evaluation",
+    "trained two-point model integrated inference",
+    "paper C/B1/B2/A1/A2 experiment"
+  ],
+  "source_files": {
+    "interfaces.py": "580dd8324bb8591b9b1b745e7b26d8202bb5c0c535dc6b3d5aef3e2e19fa9cc3",
+    "__init__.py": "ce41f660ada026d252fb5a9d5d108d676f9239bad753fc2088724b2e3cc2bca9",
+    "types.py": "fd016207cc5bfe27b10f280e35f483a0897029c4f923f19129c2704cc4002690",
+    "pipeline.py": "7198049196836f115f070971b6da4d727f5ff651cf632710bfa01583629f71e1",
+    "visualization/__init__.py": "4eba09c0cd3701ca4c5cd51ecbcd25a6f4ed08c8779f0182e65f5d5e871b2ca3",
+    "visualization/draw.py": "f5d0d4317572c7ef5e72975c4c0e8dccee23a970417c0bae9be1644057be9c07",
+    "tests/test_tiling.py": "71759779d9a182762bea238b310dc1933547488f2049c3106e09d4be9080d954",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_evaluation.py": "ba0051a2c6cc9190625822b847d833236188d6df14613e6698d822344c3675ad",
+    "tests/test_pose.py": "306ed0e052b0a7574cc363a6ed4eefd769d078c81fa9bc4916b39a587e03c24b",
+    "tests/test_detection.py": "ed59ac1dae243a861284a12dcc1f586f9789d7a5cea9d2b2050e21fcab8551b2",
+    "tests/test_geometry.py": "e1a7d6398bc77b868de71ab4221120e6095271cd1a186e28fd4a1ca2ba0161e3",
+    "tests/test_pipeline.py": "27f3094411e82a1d2031b75b3d06f148c373a5b59f96289cdcbc2e5b1bc4989b",
+    "pose/metainfo.py": "544039ff8ebd9a14d24ed57fb93c666b689eca5d9ac67bdf9ad67d8cd24ce20b",
+    "pose/__init__.py": "1976c5f5df9715a5653d7366101d734b0d223f95e09ea44ce6e5eebff828bbae",
+    "pose/checkpoints.py": "5e7699f4ee800b8dbafb2673ed2e5dbc1991e2bbf1d2abdaf80eecac5276e99f",
+    "pose/head.py": "f51e3dd1bc1a93bb685b106616a57726b34b37ea477dd83b02707f4d16b8e048",
+    "pose/inference.py": "1d3d189c63109f75f0f4b2416df02952126561b25a5c08ce8f71952b87ff40e8",
+    "configs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "configs/rtmpose_x_two_points.py": "0b19445292a752e9cadbdaa9b6b6b2fc5a2963fbe2a517bdfcf4806c211c1a23",
+    "scripts/infer_pose.py": "6320c94bc2699283bcb08fd8e484efef83f7488e01aa6072435f99cd9b1d7ec3",
+    "scripts/validate_pose_model.py": "e53a6d15f356429aa6ffaa21936e6a1386ea5cc93b4c38843d4fe32cf1325c6d",
+    "scripts/prepare_data.py": "a0cad339671aeeaef03bf7e03f9af9387600b38e55e7444c6af0dc3c648d1346",
+    "scripts/train_detection.py": "501140ca4ddb0de418f3bc1d2cf4d8cf13b746ac649cab5949fcfb1813a830f5",
+    "scripts/ablation.py": "808eb50a89ec33d71c7b67d8a76f10f65f3cdbd781c0ed005de1939c856b880f",
+    "scripts/download_weights.py": "704cf19b3f50fe2bd7e3bee8800369874f570400efb2b0760310165e09f08e19",
+    "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scripts/compare_detection.py": "4b773bd388f3dba9ec1e71975680d3b01fe3d22d3454010c4941b8764a9c4409",
+    "scripts/train_pose.py": "e6d523c7fc6e951f8088d2c066b0a5805b6eda2ef1dbd4b9c07a8fd9105d6de3",
+    "scripts/infer.py": "d9d55065887a60602bd5c66f118ede2a8246937c04aa7b6f2b7ec62dce6ded02",
+    "scripts/evaluate.py": "3dcfe46c9dfa065e33ddb1c62b51debd2647fc2da2b9c47c7950ede9cd1b1f81",
+    "scripts/probe_environment.py": "3992bbe974f5c07de11fadfb9a814ad58cf0e690f3e219ad980deb9ea852bbcc",
+    "scripts/demo_geometry.py": "889ec445546266a88bece2372bfccaae6b2638347ed5972d6968275a9be7d5af",
+    "scripts/raycast.py": "c0125374070eb2d8982523175a9533c95905a5642e156830175270f264a98cda",
+    "tiling/__init__.py": "600380621e315d2f580224a5d6fd6749f46d7765476809e4e1fa7d4831c7dd88",
+    "tiling/baat.py": "9c84a72470931d25078a61daa14a62c05ec922268027fd9838e1bee02f30927f",
+    "evaluation/metrics.py": "3967ce4da327cb5c3a52e784f421ac43040936e2617f87759b7a2fd0ea7a7224",
+    "evaluation/__init__.py": "f9dce4e4bd1641302be961e84a125dd0c93da4a9d08e7b44d92ab45504941545",
+    "evaluation/official.py": "08b05178f826db47996f70be1ec03e63bbb0f3f00a622b91715797a799b44644",
+    "geometry/__init__.py": "d570e062ca13b91609c97faa37ef41866a9deb100427dc24b3b11708520635bc",
+    "geometry/camera.py": "24e8456adc94ae02bb915298c335c0c0970a57b10cb50742ba32953367bc1ca3",
+    "outputs/validation/validated_pose_config.py": "6c5dfc9d7e94cff2e00c3e78b0636442208c39a4416dde43001bcccb58f15ffc",
+    "detection/__init__.py": "56a6015b03366aa6f403d140fb6b5ea701537f9ae705481d24a2c6ddf8ec88c8",
+    "detection/engine.py": "ec5844b655e98ffd5f084f96e8515b8e445b83f5e820f49d46ff1c17d6d23006",
+    "detection/yolo.py": "17b50b70cc2ac7a0f76212a7e0b1c3158a72f5a92ea07e8b9556bf489073c706"
+  }
+}

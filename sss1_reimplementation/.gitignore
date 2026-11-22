@@ -1,0 +1,11 @@
+sss1/
+__pycache__/
+.pytest_cache/
+checkpoints/*
+!checkpoints/README.md
+data/*
+!data/README.md
+outputs/*
+!outputs/README.md
+!outputs/validation/
+*.egg-info/

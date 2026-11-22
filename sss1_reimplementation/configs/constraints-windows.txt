@@ -1,0 +1,7 @@
+# Verified published wheel tuple; runtime execution must be tested on the target Windows GPU.
+torch==2.1.0
+torchvision==0.16.0
+mmcv==2.1.0
+numpy==1.26.4
+setuptools==75.8.2
+sahi==0.11.22

@@ -1,0 +1,7 @@
+{
+  "C": {"training_domain": "full", "inference": "full"},
+  "B1": {"training_domain": "sahi", "inference": "sahi"},
+  "B2": {"training_domain": "full", "inference": "sahi"},
+  "A1": {"training_domain": "sahi", "inference": "baat"},
+  "A2": {"training_domain": "full", "inference": "baat"}
+}

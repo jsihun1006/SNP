@@ -1,0 +1,51 @@
+{
+  "paper": "https://arxiv.org/html/2609.02705v1",
+  "sskit_commit": "e64b7d89741b7bdb7e4c6d41ed6796b38516360c",
+  "mmpose_v1_3_2_commit": "5408bc76f5b848cf925a0d1857899011d8c5b497",
+  "spiideo_baseline_commit": "bf1b4401a0f12b1f7d2a2e007d287e0f26ca789e",
+  "body7_and_yolo": [
+    {
+      "file": "yolo26l.pt",
+      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26l.pt",
+      "bytes": 53211173,
+      "sha256": "9fe3c544f2b19bebad7ea41e76d7ad3d88b7c2f10d11d24430c5311f6b32db26",
+      "role": "detection-pretrained"
+    },
+    {
+      "file": "cspnext-x_udp-body7_210e-384x288-d28b58e6_20230529.pth",
+      "url": "https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/cspnext-x_udp-body7_210e-384x288-d28b58e6_20230529.pth",
+      "bytes": 220061763,
+      "sha256": "d28b58e620a6b1da09427c1c0e21ec419d9a71602379eebcee48ca32bd6f0667",
+      "role": "Body-7 backbone initialization ONLY"
+    }
+  ],
+  "sample": {
+    "url": "https://raw.githubusercontent.com/ultralytics/assets/main/im/bus.jpg",
+    "sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "note": "Non-soccer public sample; 4K version is an upscaled test canvas, no ground truth."
+  },
+  "mmcv_windows_wheel_index": "https://download.openmmlab.com/mmcv/dist/cu118/torch2.1/index.html",
+  "matching_windows_wheel": "../torch2.1.0/mmcv-2.1.0-cp310-cp310-win_amd64.whl",
+  "source_hashes": {
+    "coco.py": "ef453060b35274360d7329d34c344fbf9e3ac0d8ce63fbe73aa2b132d01d8d70",
+    "mmpose_init.py": "592371e7429edc2b715db26201cf12c7bee198bf136b29cbee6c3192ba35aca4",
+    "mmcv_wheels.html": "44913912a6c73b8c6c3959ef99bd84dd07fcfd1c6b23813af8f07f8929311a5d",
+    "baseline.py": "6628341b21314713884223fcd99704e34ec137a82eb37b7311596f9042855f81",
+    "sskit_README.md": "9ccaa8b99edd073a99a1cfa2a43be394bb6f9dbca3c56bbdd36430ecf452d5e3",
+    "rtmpose_tree.json": "bf3a8d1e5d79e5631ba8d87fab25b0d89ef39343d375c90860f03f4f5fc290c6",
+    "sskit_tree.json": "95dbe488c6456b934b0800f2904df3c28689859b62251ed386d2b851f3c4c8d3",
+    "scoring.py": "66f3b6c201e87c778372ef1e91a9cb5d1208700f3b52a37d09d37aa87530bbeb",
+    "make_coco.py": "f103bcb7f7e2932e29dd1c05d3ed8cfc00a2b5aee4f33cb92b54b2ce97394ac5",
+    "metric.py": "c1908ffb3c8e96932f49f7fcf4005def33368a9188a6fd456fdf77619b64226c",
+    "cspnext.py": "3b59baa195f253475d130da1d3f9b7e8d997d728556480109bb681499e6a3f31",
+    "baseline_inftst.py": "bce6f57296555c8bdcddc2dcc5bcb9f22be8d2f9a7f7d292f3e40c8760d036e5",
+    "camera.py": "cf41c1edc5d7d8f796ee339962db046e4d1642f00bf3f5491b0f5a4f2e182645",
+    "setup.py": "a4492ba7a7325840eefab473c45c7dd4b645071bdbd8d100c1d540b39c21aefa",
+    "ultralytics.json": "0e0d12058c5db01ae8a3d2293b8bd2e5998b4958c82595720bf382ebb61a51eb",
+    "mmpose_requirements.txt": "3d6096970fa1334abf290ef3a9706be1f08779fce9c3153942db9f1e5fe8216b",
+    "baseline_tree.json": "35251a1ab23587c073dff27392a6430e4154f0e80bb17d7311595d11862dd193",
+    "baseline_cocotst.py": "ffee368f77124c9cd72ddfea92684619d96f6f92d35f9d61d71311bbb074e257",
+    "baseline_README.md": "0c1234dd15695cd1b0164aa3206683bd2abf2d03ad72e2754794c4314744ada0",
+    "rtmpose-x.py": "6d1c4cb00c36ac1928e404ecc10e1a83744b90a545a995a74904b29bb1c39657"
+  }
+}
